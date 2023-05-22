@@ -1,0 +1,230 @@
+.App {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+  flex-direction: column;
+  /* background-color: #f2e9e4; */
+}
+
+
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* layout */
+
+.containerCenter {
+  display: flex;
+  justify-content: center;
+  /* background-color: #f2e9e4; */
+
+
+}
+
+.header-card{
+  display: flex;
+  direction: row; 
+  justify-content: space-between;
+
+}
+
+.main-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 2em;
+
+}
+
+
+
+
+
+
+/* user pages */
+.user-dashboard{
+  width:70%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.user-profile-container{
+  display: flex;
+  flex-direction: column;
+  width: 70%;
+  justify-content: left;
+}
+
+.editable-field{
+  display: flex;
+  flex-direction: row;
+}
+
+.icon-mgL{
+  margin-left: 1em;
+}
+
+.icon-mgR{
+  margin-right: 1em;
+  margin-right: 1em;
+}
+
+/* NavBar */
+
+
+.navLink {
+  margin-right: 1em;
+  margin-left: 1em;
+  color:black;
+  font-family: 'Poppins', sans-serif;
+
+}
+
+.navLink:hover {
+
+  color: #553C9A;
+
+}
+
+.font{
+  font-family: 'Poppins', sans-serif;
+
+}
+
+/* .nav-right {
+  display: flex;
+  flex: 1;
+  justify-content: right;
+  align-items: center;
+  margin-right: 2em;
+} */
+
+.active-page {
+  font-family: 'Poppins', sans-serif;
+
+  color: #553C9A;
+  margin-right: 1em;
+  margin-left: 1em;
+}
+
+a {
+  text-decoration: none !important;
+}
+
+a:visited {
+  color: #f2e9e4;
+}
+
+/* Home Page */
+.main-header {
+  font-family: 'Mukta', sans-serif;
+  font-family: 'Signika Negative', sans-serif;
+  font-size: 3em;
+}
+.main-header:hover {
+  cursor: pointer;
+}
+
+.sub-header {
+  font-family: 'Mukta', sans-serif;
+  font-family: 'Signika Negative', sans-serif;
+  font-size: 1.5em;
+  margin-bottom: 0.5em;
+}
+
+.sub-header:hover {
+  cursor: pointer;
+}
+
+.home-welcome-dog-pic {
+  margin-top: 2em;
+}
+
+.home-welcome-dog-pic :hover {
+  cursor: pointer;
+}
+
+.errorMsg{
+  color:red;
+  display: flex;
+  justify-content: center;
+  margin: 1.5em 1.5em
+}
+
+.userLoggedIn{
+  margin-right:1.5em;
+}
+
+.user-edit-field{
+  font-family: 'Poppins', sans-serif;
+  font-weight: 550;
+  margin-top: 1.2em;
+  font-size: 1.2em;
+
+}
+
+.heart-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  width: 24px;
+  height: 24px;
+  transition: transform 0.2s;
+}
+
+.heart-button:hover {
+  transform: scale(1.2);
+}
+
+.heart {
+  width: 24px;
+  height: 24px;
+  margin-left: 0.3em;
+  background-image: url('../src/images/heartEmpty.svg'); /* Replace with your SVG paths */
+  background-repeat: no-repeat;
+  background-position: center;
+  transition: background-image 0.2s;
+}
+
+.heart-button.filled .heart {
+  background-image: url('../src/images/heartFilled.svg'); /* Replace with your SVG paths */
+}
+
+.bold{
+  font-weight: 600;
+}
