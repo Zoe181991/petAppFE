@@ -25,7 +25,7 @@ const PetsContext = ({ children }) => {
         console.log("you have already adopted/fostered this pet")
         return
       }
-      const res = await axios.post(`http://localhost:8080/pets/save`, savePetToUser, { withCredentials: true });
+      const res = await axios.post(`${process.env.REACT_APP_SERVER_URL}/pets/save`, savePetToUser, { withCredentials: true });
       setSavedPetsList(res.data.savedPets)
     }
 
@@ -38,7 +38,7 @@ const PetsContext = ({ children }) => {
 
   const removeSavedPet = async (petId) => {
     try {
-      const res = await axios.delete(`http://localhost:8080/pets/${petId}/removesaved/${loggedInUserID}`, { withCredentials: true });
+      const res = await axios.delete(`${process.env.REACT_APP_SERVER_URL}/pets/${petId}/removesaved/${loggedInUserID}`, { withCredentials: true });
         const updateList = savedPetsList.filter((pet) => pet._id !== petId);
         setSavedPetsList(updateList);
     } catch (err) {
@@ -48,7 +48,7 @@ const PetsContext = ({ children }) => {
 
   const fosterPet = async (petId) => {
     try {
-      const res = await axios.put(`http://localhost:8080/pets/${petId}/foster/${loggedInUserID}`, { withCredentials: true });
+      const res = await axios.put(`${process.env.REACT_APP_SERVER_URL}/pets/${petId}/foster/${loggedInUserID}`, { withCredentials: true });
       setFosteredPetsList(res.data.fosteredPets)
       removeSavedPet(petId)
       const updateList = savedPetsList.filter((pet) => pet._id !== petId);
@@ -61,7 +61,7 @@ const PetsContext = ({ children }) => {
 
   const removeFosteredPet = async (petId) => {
     try {
-      const res = await axios.delete(`http://localhost:8080/pets/${petId}/removefoster/${loggedInUserID}`, { withCredentials: true });
+      const res = await axios.delete(`${process.env.REACT_APP_SERVER_URL}/pets/${petId}/removefoster/${loggedInUserID}`, { withCredentials: true });
       const updateList = fosteredPetsList.filter((pet) => pet._id !== petId);
       setFosteredPetsList(updateList);
       
@@ -72,7 +72,7 @@ const PetsContext = ({ children }) => {
 
   const adoptPet = async (petId) => {
     try {
-      const res = await axios.put(`http://localhost:8080/pets/${petId}/adopt/${loggedInUserID}`, { withCredentials: true });
+      const res = await axios.put(`${process.env.REACT_APP_SERVER_URL}/pets/${petId}/adopt/${loggedInUserID}`, { withCredentials: true });
       setAdoptedPetsList(res.data.adoptedPets)
       removeSavedPet(petId)
 
@@ -89,7 +89,7 @@ const PetsContext = ({ children }) => {
 
   const removeAdoptedPet = async (petId) => {
     try {
-      const res = await axios.delete(`http://localhost:8080/pets/${petId}/removeadopt/${loggedInUserID}`, { withCredentials: true });
+      const res = await axios.delete(`${process.env.REACT_APP_SERVER_URL}/pets/${petId}/removeadopt/${loggedInUserID}`, { withCredentials: true });
   
       const updateList = adoptedPetsList.filter((pet) => pet._id !== petId);
       setAdoptedPetsList(updateList);

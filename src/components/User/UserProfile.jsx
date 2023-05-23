@@ -48,7 +48,7 @@ function UserProfile() {
         }
 
         if (userImage) {
-            const res = await axios.post(`http://localhost:8080/users/update/`, formData, { withCredentials: true });
+            const res = await axios.post(`${process.env.REACT_APP_SERVER_URL}/users/update/`, formData, { withCredentials: true });
             console.log(res.data)
             setLoggedInUser(res.data)
         } else {
@@ -61,7 +61,7 @@ function UserProfile() {
                 bio
             }
             console.log(updatedUser)
-            const res = await axios.post(`http://localhost:8080/users/updateinfo/`,
+            const res = await axios.post(`${process.env.REACT_APP_SERVER_URL}/users/updateinfo/`,
                 updatedUser, { withCredentials: true });
             console.log(res.data)
             setLoggedInUser(res.data)

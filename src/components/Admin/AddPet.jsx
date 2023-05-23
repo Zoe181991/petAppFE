@@ -61,7 +61,7 @@ function AddPet() {
     const registerPet = async (formData) => {
           try {
             setIsLoading(true)
-            const res = await axios.post('http://localhost:8080/admin/addpet', formData, {withCredentials: true});
+            const res = await axios.post(`${process.env.REACT_APP_SERVER_URL}/admin/addpet`, formData, {withCredentials: true});
             if (res.data) {
                 setIsLoading(false)
                 toast({

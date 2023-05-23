@@ -82,7 +82,9 @@ const UsersContext = ({ children }) => {
 
     const loginReq = async (userDetails) => {
         try {
-            const res = await axios.post('http://localhost:8080/users/login', userDetails, {withCredentials: true});
+            console.log("hi")
+            console.log(`${process.env.REACT_APP_SERVER_URL}`)
+            const res = await axios.post(`${process.env.REACT_APP_SERVER_URL}/users/login`, userDetails, {withCredentials: true});
             console.log(res.data)
             if (res.data.ok) {
                 localStorage.setItem('isLoggedin', res.data.id);
