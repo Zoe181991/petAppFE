@@ -91,6 +91,7 @@ const UsersContext = ({ children }) => {
             if (res.data.ok) {
                 localStorage.setItem('isLoggedin', res.data.id);
                 setLoggedInUserID(res.data.id);
+                setLoggedInUser(res.data)
                 fetchInfo(res.data.id)
                 navigate('/search')
             }
