@@ -10,7 +10,7 @@ function PetsList() {
   return (
 
           <div>
-            <SimpleGrid minChildWidth='300px' spacing='20px'>
+            <SimpleGrid size={['sm', 'md', 'lg' ]} minChildWidth='300px' spacing='20px'>
             {petsList.map((pet) => (<PetCard key={pet._id} pet={pet} />))}
 </SimpleGrid>
               
