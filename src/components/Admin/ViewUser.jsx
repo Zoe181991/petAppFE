@@ -45,7 +45,7 @@ function ViewUser() {
   const fetchInfoAdmin = async (id) => {
     try {
       setIsLoading(true)
-      const res = await axios.get(`http://localhost:8080/admin/${id}`, { withCredentials: true });
+      const res = await axios.get(`${process.env.REACT_APP_SERVER_URL}/admin/${id}`, { withCredentials: true });
       console.log(res.data)
       setUser(res.data)
       setIsLoading(false)
@@ -62,7 +62,7 @@ function ViewUser() {
   const deleteUser = async () => {
     try {
       setIsLoadingChanges(true)
-      const res = await axios.delete(`http://localhost:8080/admin/deleteuser/${user._id}`, { withCredentials: true });
+      const res = await axios.delete(`${process.env.REACT_APP_SERVER_URL}/admin/deleteuser/${user._id}`, { withCredentials: true });
       console.log(res.data)
       setUser(res.data)
       setIsLoadingChanges(false)
@@ -78,7 +78,7 @@ function ViewUser() {
   const updateToAdmin = async () => {
     try {
       setIsLoadingChanges(true)
-      const res = await axios.put(`http://localhost:8080/admin/updateuserinfo/turnintoadmin/${user._id}`, { withCredentials: true });
+      const res = await axios.put(`${process.env.REACT_APP_SERVER_URL}/admin/updateuserinfo/turnintoadmin/${user._id}`, { withCredentials: true });
       setUser(res.data)
       setIsLoadingChanges(false)
 
@@ -93,7 +93,7 @@ function ViewUser() {
   const updateToUser = async () => {
     try {
       setIsLoadingChanges(true)
-      const res = await axios.put(`http://localhost:8080/admin/updateuserinfo/turnintouser/${user._id}`, { withCredentials: true });
+      const res = await axios.put(`${process.env.REACT_APP_SERVER_URL}/admin/updateuserinfo/turnintouser/${user._id}`, { withCredentials: true });
       console.log(res.data)
       setUser(res.data)
       setIsLoadingChanges(false)
@@ -109,7 +109,7 @@ function ViewUser() {
   const fetchSavedPets = async (id) => {
     try {
         if(id){
-        const res = await axios.get(`http://localhost:8080/users/${id}/savedpets`,  { withCredentials: true });
+        const res = await axios.get(`${process.env.REACT_APP_SERVER_URL}/users/${id}/savedpets`,  { withCredentials: true });
         setTempSavedList(res.data)
     }
     }
@@ -122,7 +122,7 @@ function ViewUser() {
 const fetchAdoptedPets = async (id) => {
     try {
         if(id){
-        const res = await axios.get(`http://localhost:8080/users/${id}/adoptedpets`,  { withCredentials: true });
+        const res = await axios.get(`${process.env.REACT_APP_SERVER_URL}/users/${id}/adoptedpets`,  { withCredentials: true });
         setTempAdoptedList(res.data)
     } 
     }
@@ -134,7 +134,7 @@ const fetchAdoptedPets = async (id) => {
 const fetchFosteredPets = async (id) => {
     try {
         if(id){
-        const res = await axios.get(`http://localhost:8080/users/${id}/fosteredpets`,  { withCredentials: true });
+        const res = await axios.get(`${process.env.REACT_APP_SERVER_URL}/users/${id}/fosteredpets`,  { withCredentials: true });
         setTempFosteredList(res.data)
     }
     }
