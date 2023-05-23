@@ -88,8 +88,9 @@ function PetsListAdminTable() {
 
 
                   <Hide breakpoint='(max-width: 1150px)'>
+                  <Th>Height (Cm)</Th>
+
                     <Th>Weight (Kg)</Th>
-                    <Th>Height (Cm)</Th>
                   </Hide>
 
                   <Hide breakpoint='(max-width: 550px)'>
