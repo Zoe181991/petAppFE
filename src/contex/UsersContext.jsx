@@ -26,7 +26,7 @@ const UsersContext = ({ children }) => {
 
     const fetchInfo = async (id) => {
         try {
-            const res = await axios.get(`http://localhost:8080/users/${id}`, { withCredentials: true });
+            const res = await axios.get(`${process.env.REACT_APP_SERVER_URL}/users/${id}`, { withCredentials: true });
             setLoggedInUser(res.data)
             setSavedPetsList(res.data.savedPets)
             if(res.data.role==='Admin')
@@ -44,7 +44,7 @@ const UsersContext = ({ children }) => {
     const fetchSavedPets = async (id) => {
         try {
             if(id){
-            const res = await axios.get(`http://localhost:8080/users/${id}/savedpets`,  { withCredentials: true });
+            const res = await axios.get(`${process.env.REACT_APP_SERVER_URL}/users/${id}/savedpets`,  { withCredentials: true });
             setSavedPetsList(res.data)
         }
         }
@@ -57,7 +57,7 @@ const UsersContext = ({ children }) => {
     const fetchAdoptedPets = async (id) => {
         try {
             if(id){
-            const res = await axios.get(`http://localhost:8080/users/${id}/adoptedpets`,  { withCredentials: true });
+            const res = await axios.get(`${process.env.REACT_APP_SERVER_URL}/users/${id}/adoptedpets`,  { withCredentials: true });
             setAdoptedPetsList(res.data)
         } 
         }
@@ -69,7 +69,7 @@ const UsersContext = ({ children }) => {
     const fetchFosteredPets = async (id) => {
         try {
             if(id){
-            const res = await axios.get(`http://localhost:8080/users/${id}/fosteredpets`,  { withCredentials: true });
+            const res = await axios.get(`${process.env.REACT_APP_SERVER_URL}/${id}/fosteredpets`,  { withCredentials: true });
             setFosteredPetsList(res.data)
         }
         }
