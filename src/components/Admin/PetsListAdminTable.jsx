@@ -32,7 +32,7 @@ function PetsListAdminTable() {
 
   const fetchResults = async () => {
     try {
-      const res = await axios.get(`http://localhost:8080/petsadmin?page=${page}&limit=10`);
+      const res = await axios.get(`${process.env.REACT_APP_SERVER_URL}/petsadmin?page=${page}&limit=10`);
       if (res.request.status === 200) {
         setResults(res.data);
       }
