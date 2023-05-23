@@ -57,7 +57,7 @@ function EditPet() {
   const fetchPet = async (petIdUrl) => {
     try {
       setIsLoading(true)
-      const res = await axios.get(`http://localhost:8080/pets/${petIdUrl}`);
+      const res = await axios.get(`${process.env.REACT_APP_SERVER_URL}/pets/${petIdUrl}`);
       console.log(res.data);
       setPet(res.data);
       setName(res.data.name)
@@ -78,7 +78,7 @@ function EditPet() {
   const deletePet = async () => {
     setIsLoadingChanges(true)
     try {
-      const res = await axios.delete(`http://localhost:8080/pets/admin/deletepet/${pet._id}`, { withCredentials: true });
+      const res = await axios.delete(`${process.env.REACT_APP_SERVER_URL}/pets/admin/deletepet/${pet._id}`, { withCredentials: true });
       console.log(res.data)
 
       setDeleteConfirm(res.data)
@@ -116,14 +116,14 @@ function EditPet() {
     setIsLoadingChanges(true)
     try {
       if (image) {
-        const res = await axios.post(`http://localhost:8080/admin/updatepetwithimage/`, formData, { withCredentials: true });
+        const res = await axios.post(`${process.env.REACT_APP_SERVER_URL}/admin/updatepetwithimage/`, formData, { withCredentials: true });
         console.log(res.data)
         setIsLoadingChanges(false)
 
       } else {
         const updatedPet = { id: pet._id, name, height, weight, hypoallergnic, bio, color, adoptionStatus, dietery: dietArray }
         console.log(updatedPet)
-        const res = await axios.post(`http://localhost:8080/admin/updatepetinfo`, updatedPet, { withCredentials: true });
+        const res = await axios.post(`${process.env.REACT_APP_SERVER_URL}/admin/updatepetinfo`, updatedPet, { withCredentials: true });
         console.log(res.data)
         setPet(res.data)
         setIsLoadingChanges(false)
