@@ -25,7 +25,7 @@ function Navbar({ onOpen }) {
   const handleSignout = async () => {
     //ROUTE TO LOG OUT CLEAR COOKIES RES.CLEAR.COOKIES
     try {
-      const res = await axios.get(`http://localhost:8080/users/logout`, { withCredentials: true });
+      const res = await axios.get(`${process.env.REACT_APP_SERVER_URL}/users/logout`, { withCredentials: true });
       if (res.data) {
         setLoggedInUser("");
         setLoggedInUserID("")

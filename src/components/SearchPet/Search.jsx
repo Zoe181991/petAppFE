@@ -33,7 +33,7 @@ function Search() {
   useEffect(() => {
     const fetchPetsList = async () => {
       try {
-        const res = await axios.get('http://localhost:8080/pets');
+        const res = await axios.get(`${process.env.REACT_APP_SERVER_URL}/pets`);
         setPetsList(res.data);
       } catch (err) {
         console.log(err);
@@ -50,7 +50,7 @@ function Search() {
   async function getPetbyType(e) {
     try {
       setLoading(true)
-      const res = await axios.get(`http://localhost:8080/pets/search/${type}`, { withCredentials: true });
+      const res = await axios.get(`${process.env.REACT_APP_SERVER_URL}/pets/search/${type}`, { withCredentials: true });
       setPetsList(res.data)
       setNumResultsS(res.data.length)
       setLoading(false)
@@ -67,7 +67,7 @@ function Search() {
     try {
       setNumResults("")
       setLoading(true)
-      const res = await axios.get(`http://localhost:8080/search?type=${type}&name=${name}&status=${status}&height=${height}&weight=${weight}`, { withCredentials: true });
+      const res = await axios.get(`${process.env.REACT_APP_SERVER_URL}/search?type=${type}&name=${name}&status=${status}&height=${height}&weight=${weight}`, { withCredentials: true });
       setNumResults(res.data.length)
 
       if (res.status === 200) {

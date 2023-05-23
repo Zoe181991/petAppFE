@@ -42,7 +42,7 @@ function UpdatePassword() {
 
 
     const updatePassword = async (updatedPasswords) => {
-        const res = await axios.put(`http://localhost:8080/users/update/password/${loggedInUser._id}`, updatedPasswords,  { withCredentials: true });
+        const res = await axios.put(`${process.env.REACT_APP_SERVER_URL}/users/update/password/${loggedInUser._id}`, updatedPasswords,  { withCredentials: true });
         setLoggedInUser(res.data)
         console.log(res.data)
     }

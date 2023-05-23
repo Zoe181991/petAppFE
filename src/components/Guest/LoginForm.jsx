@@ -9,8 +9,8 @@ import {UsersContextInstance} from '../../contex/UsersContext';
 
 function LoginForm({initialRef, onClose}) {
 
-    const [loginEmail, setLoginEmail]= useState();
-    const [loginPassword, setLoginPassword]= useState();
+    const [loginEmail, setLoginEmail]= useState("");
+    const [loginPassword, setLoginPassword]= useState("");
     const { errorMsgClient, loginReq} = useContext(UsersContextInstance);
 
 

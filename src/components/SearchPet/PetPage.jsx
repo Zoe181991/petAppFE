@@ -95,7 +95,7 @@ function PetPage() {
 
     const fetchPet = async (petIdUrl) => {
         try {
-            const res = await axios.get(`http://localhost:8080/pets/${petIdUrl}`);
+            const res = await axios.get(`${process.env.REACT_APP_SERVER_URL}/pets/${petIdUrl}`);
             console.log(res.data);
             setPet(res.data);
         } catch (err) {
