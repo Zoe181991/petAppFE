@@ -78,7 +78,7 @@ function EditPet() {
   const deletePet = async () => {
     setIsLoadingChanges(true)
     try {
-      const res = await axios.delete(`${process.env.REACT_APP_SERVER_URL}/pets/admin/deletepet/${pet._id}`, { withCredentials: true });
+      const res = await axios.delete(`${process.env.REACT_APP_SERVER_URL}/admin/deletepet/${pet._id}`, { withCredentials: true });
       console.log(res.data)
 
       setDeleteConfirm(res.data)
