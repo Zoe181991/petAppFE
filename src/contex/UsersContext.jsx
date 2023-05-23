@@ -21,7 +21,9 @@ const UsersContext = ({ children }) => {
     const navigate = useNavigate();
 
     useEffect(()=>{
-    fetchInfo(loggedInUserID);
+        if(loggedInUser){
+            fetchInfo(loggedInUserID);
+        }
     },[])
 
     const fetchInfo = async (id) => {
