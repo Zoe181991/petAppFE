@@ -45,6 +45,8 @@ function Home() {
 >
   Welcome to Pawsitive Adoptions
 </Text>
+
+<Text> WOW</Text>
           <h2 onClick={navigateSearch} className='sub-header'>Your new best friend is waiting for you</h2>
           <Image className="home-welcome-dog-pic"
             onClick={navigateSearch}
