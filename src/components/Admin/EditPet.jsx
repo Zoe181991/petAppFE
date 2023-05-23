@@ -35,7 +35,7 @@ function EditPet() {
   const [diet, setDiet] = useState("")
   const [dietArray, setDietArray] = useState([])
   const [image, setImage] = useState("")
-  const [photo, setNewPhoto] = useState(false)
+  const [newPhoto, setNewPhoto] = useState(false)
 
   useEffect(() => {
     console.log("petsID", params.petId)
@@ -55,9 +55,7 @@ function EditPet() {
     setImage(pet.picture)
   }, [pet])
 
-  useEffect(()=>{
-    setNewPhoto(true)
-  }, [image])
+ 
 
   const fetchPet = async (petIdUrl) => {
     try {
@@ -120,13 +118,14 @@ function EditPet() {
 
     setIsLoadingChanges(true)
     try {
-      if (photo) {
+      console.log(newPhoto)
+      if ( newPhoto === true) {
         const res = await axios.post(`${process.env.REACT_APP_SERVER_URL}/admin/updatepetwithimage/`, formData, { withCredentials: true });
         console.log(res.data)
         setNewPhoto(false)
         setIsLoadingChanges(false)
 
-      } else {
+      } if ( newPhoto === false) {
         const updatedPet = { id: pet._id, name, height, weight, hypoallergnic, bio, color, adoptionStatus, dietery: dietArray }
         console.log(updatedPet)
         const res = await axios.post(`${process.env.REACT_APP_SERVER_URL}/admin/updatepetinfo`, updatedPet, { withCredentials: true });
@@ -233,7 +232,11 @@ function EditPet() {
 
             <Skeleton isLoaded={!isLoading}>
               <Text fontWeight='semibold' mt={5} >Upload Photo:</Text>
-              <input type='file' variant='filled' onChange={(e) => setImage(e.target.files[0])} />
+              <input type='file' variant='filled' onChange={(e) => {
+                
+                setImage(e.target.files[0])
+                setNewPhoto(true)
+                }} />
             </Skeleton>
 
             <Skeleton isLoaded={!isLoading}>
