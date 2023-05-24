@@ -42,7 +42,7 @@ function App() {
                 {/* //Admin */}
                 <Route path='/' element={<Home />} />
                 <Route path='/admin' element={ <HomeAdmin />}/>  
-                <Route path='/admin/addpet' element={ <PrivateRouteAdmin><AddPet /></PrivateRouteAdmin>} />
+                <Route path='/admin/addpet' element={ <AddPet />} />
                 
                 <Route path='/admin/editpet/'> 
                 <Route path=':petId' element={<PrivateRouteAdmin><EditPet /></PrivateRouteAdmin>} />
