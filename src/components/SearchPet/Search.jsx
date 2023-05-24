@@ -118,7 +118,7 @@ function Search() {
       >
         Search for a pet
       </Text>
-      <Stack spacing={4} width='50%' >
+      <Stack spacing={4} width={['90%', '80%','65%','60%']} >
         <Stack direction='row'>
           <InputGroup className='font'>
             <Select name='type' value={type} onChange={(e) => setType(e.target.value)} variant='filled'>
@@ -259,7 +259,7 @@ function Search() {
       </Stack>
 
 
-      <Stack spacing={4} w="50%" >
+      <Stack spacing={4} width={['90%', '80%','65%','60%']} >
         <PetsList/>
       </Stack>
     </div>

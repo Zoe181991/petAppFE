@@ -90,8 +90,11 @@ function PetCard({ pet}) {
       >
         <Image
           objectFit='cover'
-          maxW={{ base: '100%', sm: '400px' }}
-          maxH={{ base: '100%', sm: '250px' }}
+          maxW={{ base: '100%', sm: '400px', md: '380px', lg: '400px' }}
+          minW={{ base: '100%', sm: '380px', md: '340px', lg: '250px' }}
+          maxH={{ base: '100%', sm: '320px', md: '220px', lg: '220px' }}
+          minH={{ base: '100%', sm: '300px', md: '200px', lg: '170px' }}
+
           src={pet.picture ? pet.picture :
             pet.type == 'Dog' ?
               "https://i.pinimg.com/564x/2c/ac/e1/2cace15889eb210ce4ab764d8e49848f.jpg"
@@ -115,27 +118,27 @@ function PetCard({ pet}) {
              
             </Text> */}
 
-            <Tag fontWeight='normal' mt={4} mr={2} size='lg'> 
+            <Tag  size={['sm', 'sm', 'md', 'md']}  fontWeight='normal' mt={4} mr={2} > 
             <span className="icon-mgR" >
             <FontAwesomeIcon icon={faPaw} />
             </span>
             Type: {pet.type}
             </Tag>
 
-            <Tag fontWeight='normal' mt={4} mr={2} size='lg'>  
+            <Tag fontWeight='normal' mt={4} mr={2} size={['sm', 'sm', 'md', 'md']}>  
             <span className="icon-mgR" >
             <FontAwesomeIcon icon={faShieldDog} />
             </span>
             Breed: {pet.breed}
             </Tag>
 
-            <Tag fontWeight='normal' mt={4} mr={2} size='lg'>  
+            <Tag fontWeight='normal' mt={4} mr={2} size={['sm', 'sm', 'md', 'md']}>  
             <span className="icon-mgR" >
             <FontAwesomeIcon icon={faRuler} />
             </span>
             Height: {pet.height}</Tag>
 
-            <Tag fontWeight='normal' mt={4} mr={2} size='lg'>  
+            <Tag fontWeight='normal' mt={4} mr={2} size={['sm', 'sm', 'md', 'md']}>  
             <span className="icon-mgR" >
             <FontAwesomeIcon icon={faWeightScale} />
             </span>
@@ -150,7 +153,10 @@ function PetCard({ pet}) {
           <ButtonGroup spacing='3'>
 
           
-          <Button rightIcon={ <InfoOutlineIcon/>} variant='outline' size='sm' colorScheme='purple' onClick={navigatePetsParams}>
+          <Button rightIcon={ <InfoOutlineIcon/>} variant='outline' 
+          size={['xs', 'xs', 'xs', 'sm']}
+          
+          colorScheme='purple' onClick={navigatePetsParams}>
               More info
              
             </Button>
@@ -158,7 +164,8 @@ function PetCard({ pet}) {
 
             <>
               <Button  onClick={(e)=>{navigate('/login')}}
-              size='sm' variant='ghost' colorScheme='pink'>  Save     
+              size={['xs', 'xs', 'xs', 'sm']}
+              variant='ghost' colorScheme='pink'>  Save     
               <div className="heart"></div>
               </Button>
             </>
@@ -167,8 +174,9 @@ function PetCard({ pet}) {
 
             <>
                <button onClick={handleClick} className={`heart-button ${isFilled ? 'filled' : 'empty'}`}>
-              <Button onClick={handleSaveBtn} 
-              size='sm' variant='ghost' colorScheme='pink'>
+              <Button               size={['xs', 'xs', 'xs', 'sm']}
+onClick={handleSaveBtn} 
+              variant='ghost' colorScheme='pink'>
               {isFilled? "Saved" : "Save"}          
               <div className="heart"></div>
               </Button>

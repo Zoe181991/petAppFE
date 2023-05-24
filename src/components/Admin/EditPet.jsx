@@ -240,7 +240,7 @@ function EditPet() {
             </Skeleton>
 
             <Skeleton isLoaded={!isLoading}>
-              <Text fontWeight='semibold' mt={5} >Height:</Text>
+              <Text fontWeight='semibold' mt={5} >Height (cm):</Text>
               <Editable className='editable-field' defaultValue={height} fontSize={['md', 'lg', 'xl']} isPreviewFocusable={false}>
                 <EditablePreview />
                 <Input value={height} as={EditableInput} onChange={(e) => setHeight(e.target.value)} />
@@ -249,7 +249,7 @@ function EditPet() {
             </Skeleton>
 
             <Skeleton isLoaded={!isLoading}>
-              <Text fontWeight='semibold' mt={5} >Weight:</Text>
+              <Text fontWeight='semibold' mt={5} >Weight (Kg):</Text>
               <Editable className='editable-field' defaultValue={weight} fontSize={['md', 'lg', 'xl']} isPreviewFocusable={false}>
                 <EditablePreview />
                 <Input value={weight} as={EditableInput} onChange={(e) => setWeight(e.target.value)} />
