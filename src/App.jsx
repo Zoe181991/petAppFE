@@ -41,7 +41,7 @@ function App() {
               <Routes>
                 {/* //Admin */}
                 <Route path='/' element={<Home />} />
-                <Route path='/admin' element={<PrivateRouteAdmin> <HomeAdmin /> </PrivateRouteAdmin>}/>  
+                <Route path='/admin' element={ <HomeAdmin />}/>  
                 <Route path='/admin/addpet' element={ <PrivateRouteAdmin><AddPet /></PrivateRouteAdmin>} />
                 
                 <Route path='/admin/editpet/'> 
