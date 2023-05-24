@@ -92,8 +92,8 @@ function PetCard({ pet}) {
           objectFit='cover'
           maxW={{ base: '100%', sm: '400px', md: '380px', lg: '400px' }}
           minW={{ base: '100%', sm: '380px', md: '340px', lg: '250px' }}
-          maxH={{ base: '100%', sm: '320px', md: '220px', lg: '220px' }}
-          minH={{ base: '100%', sm: '300px', md: '200px', lg: '170px' }}
+          maxH={{ base: '100%', sm: '180px', md: '220px', lg: '220px' }}
+          minH={{ base: '100%', sm: '150px', md: '200px', lg: '170px' }}
 
           src={pet.picture ? pet.picture :
             pet.type == 'Dog' ?
