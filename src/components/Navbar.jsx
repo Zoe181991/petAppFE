@@ -14,7 +14,7 @@ import axios from 'axios';
 function Navbar({ onOpen }) {
 
   const { loggedInUser, setLoggedInUser, fetchInfo } = useContext(UsersContextInstance);
-  const { setLoggedInUserID, loggedInUserID, isAdmin } = useContext(AuthContextInstance);
+  const { setLoggedInUserID, loggedInUserID, isAdmin, setIsAdmin } = useContext(AuthContextInstance);
 
   const navigate = useNavigate();
   useEffect(() => {
@@ -29,6 +29,7 @@ function Navbar({ onOpen }) {
       if (res.data) {
         setLoggedInUser("");
         setLoggedInUserID("")
+        setIsAdmin(false)
         localStorage.clear();
         navigate('/');
       }
