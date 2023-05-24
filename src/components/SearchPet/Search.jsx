@@ -44,7 +44,10 @@ function Search() {
 
   useEffect(() => {
     setErrorMsgClient("")
-    fetchInfo(loggedInUserID)
+    if(loggedInUserID){
+      fetchInfo(loggedInUserID)
+
+    }
   }, [])
 
   async function getPetbyType(e) {
