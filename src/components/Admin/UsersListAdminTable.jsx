@@ -11,6 +11,7 @@ import axios from 'axios';
 import { Avatar, AvatarGroup } from '@chakra-ui/react'
 import { ArrowBackIcon, ArrowForwardIcon } from '@chakra-ui/icons'
 import { useNavigate } from 'react-router-dom';
+import { ViewIcon } from '@chakra-ui/icons'
 
 
 function UsersListAdminTable() {
@@ -122,13 +123,15 @@ function UsersListAdminTable() {
                     </Hide>
 
                     <Td>
-                      <Button fontWeight='medium' size='sm' color='white' bgGradient='linear(to-r, teal.500, purple.500)'
+                    
+                        <Button className='font-weird' size='sm' color='black' colorScheme='gray'
+                       leftIcon={<ViewIcon />}
                         _hover={{
-                          bgGradient: 'linear(to-r, teal.200, purple.200)',
+                          bgGradient: 'linear(to-r, gray.200, gray.100)',
                         }}
                         onClick={(e) => navigate(`/admin/viewuser/${user._id}`)}>
 
-                        View Profile</Button>
+View Profile</Button>
                     </Td>
                   </Tr>
                 ))}

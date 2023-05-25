@@ -75,6 +75,14 @@ html{
 
 }
 
+.dashboard-container{
+  display: flex;
+  justify-content: left;
+  flex-direction: column;
+  padding: 3em;
+
+}
+
 .bg{
   background-color: #f9de10;
   height: 90vh;

@@ -27,19 +27,17 @@ function HomeAdmin() {
   return (
     <>
 
+<div className='dashboard-container'>
+
     <Flex ml="7em"  mr="7em"  mt={6} justify='left'>
 
       <Stack>
-      <Text
-        bgGradient='linear(to-r, teal.500, purple.500)'
-        bgClip='text'
-        fontSize='4xl'
-        fontWeight='extrabold'
-        mb={2}
-      >
-        Admin Dashboard
-      </Text>
-      <Text className=' font' 
+   
+      <Text  className='main-header' mb={3} textColor='red.800' 
+      fontSize={['xl', '2xl', '3xl', '5xl']}> Admin Dashboard</Text>
+
+
+      <Text className='font-weird' 
         fontSize='xl'
         mb={4}
       >
@@ -66,15 +64,10 @@ function HomeAdmin() {
             <h2>
               <AccordionButton>
                 <Box as="span" flex='1' textAlign='left'>
-                  <Text
+              
 
-                    color='teal.400'
-                    fontSize='2xl'
-                    fontWeight='extrabold'
-                    mb={6}
-                  >
-                    View Pets
-                  </Text>
+                  <Text  className='main-header' mb={3} textColor='red.800' 
+      fontSize={['lg', 'xl', '2xl', '3xl']}> View Pets</Text>
                 </Box>
                 <AccordionIcon />
               </AccordionButton>
@@ -91,14 +84,12 @@ function HomeAdmin() {
             <h2>
               <AccordionButton>
                 <Box as="span" flex='1' textAlign='left'>
-                  <Text
-                    color='purple.400'
-                    fontSize='2xl'
-                    fontWeight='extrabold'
-                    mb={6}
-                  >
-                    View Users
-                  </Text>
+              
+
+                  <Text  className='main-header' mb={3} textColor='red.800' 
+      fontSize={['lg', 'xl', '2xl', '3xl']}> View Users</Text>
+
+                  
                 </Box>
                 <AccordionIcon />
               </AccordionButton>
@@ -116,6 +107,7 @@ function HomeAdmin() {
       </Stack>
 
 
+    </div>
     </div>
     </>
   )

@@ -9,7 +9,7 @@ import {
 } from '@chakra-ui/react'
 import axios from 'axios';
 import { Avatar, AvatarGroup } from '@chakra-ui/react'
-import { ArrowBackIcon, ArrowForwardIcon } from '@chakra-ui/icons'
+import { ArrowBackIcon, ArrowForwardIcon, EditIcon } from '@chakra-ui/icons'
 import { useNavigate } from 'react-router-dom';
 
 
@@ -67,29 +67,31 @@ function PetsListAdminTable() {
         {endResults === '' ?
 
           <>
-            <Table className='font' size="sm" variant='striped' colorScheme='gray'>
+            <Table bgColor='white' className='font' size="sm" 
+            
+            minW={['15em', '20em', '30em', '50em']}
+            
+            variant='striped' colorScheme='gray'>
               <Thead>
                 <Tr>
 
-                  <Hide breakpoint='(max-width: 450px)'>
                     <Th>Image</Th>
-                  </Hide>
 
                   <Th>Name</Th>
 
-                  <Hide breakpoint='(max-width: 250px)'>
-<Th>Type</Th>
-</Hide>
+
+                  <Hide breakpoint='(max-width: 450px)'>
+                    <Th>Type</Th>
+                  </Hide>
 
 
-<Hide breakpoint='(max-width: 900px)'>
+                  <Hide breakpoint='(max-width: 900px)'>
                     <Th>Breed</Th>
                   </Hide>
 
 
                   <Hide breakpoint='(max-width: 1150px)'>
-                  <Th>Height (Cm)</Th>
-
+                    <Th>Height (Cm)</Th>
                     <Th>Weight (Kg)</Th>
                   </Hide>
 
@@ -105,24 +107,20 @@ function PetsListAdminTable() {
                 {results && results.map((pet) => (
 
                   <Tr key={pet._id}>
-
-                    <Hide breakpoint='(max-width: 450px)'>
                       <Td width={['15px', '25px', '40px']}>
                         <Avatar name={pet.name} size='md' bg='#553C9A' src={pet?.picture} />
                       </Td>
-                    </Hide>
 
-                    
                     <Td>
                       {pet.name}
                     </Td>
 
-                    <Hide breakpoint='(max-width: 250px)'>
+                    <Hide breakpoint='(max-width: 450px)'>
                       <Td>{pet.type}</Td>
-                      </Hide>
+                    </Hide>
 
 
-                      <Hide breakpoint='(max-width: 900px)'>
+                    <Hide breakpoint='(max-width: 900px)'>
                       <Td>{pet.breed}</Td>
                     </Hide>
 
@@ -134,15 +132,16 @@ function PetsListAdminTable() {
 
                     <Hide breakpoint='(max-width: 550px)'>
                       <Td>
-                        <Tag colorScheme={pet.adoptionStatus === 'Available' ? 'green' : pet.adoptionStatus === 'Fostered' ? 'cyan' : 'purple'}> {pet.adoptionStatus}
+                        <Tag colorScheme={pet.adoptionStatus === 'Available' ? 'yellow' : pet.adoptionStatus === 'Fostered' ? 'teal' : 'red'}> {pet.adoptionStatus}
                         </Tag>
                       </Td>
                     </Hide>
 
                     <Td>
-                      <Button fontWeight='medium' size='sm' color='white' bgGradient='linear(to-r, teal.500, purple.500)'
+                      <Button className='font-weird' size='sm' color='black' colorScheme='gray'
+                       leftIcon={<EditIcon />}
                         _hover={{
-                          bgGradient: 'linear(to-r, teal.200, purple.200)',
+                          bgGradient: 'linear(to-r, gray.200, gray.100)',
                         }}
                         onClick={(e) => navigate(`/admin/editpet/${pet._id}`)}>
 
