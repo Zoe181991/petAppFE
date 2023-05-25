@@ -6,7 +6,7 @@ import axios from 'axios';
 import { Tag, Spacer, Card, CardBody, CardFooter, ButtonGroup } from '@chakra-ui/react'
 import { PetsContextInstance } from '../../contex/PetsContext';
 import { UsersContextInstance } from '../../contex/UsersContext';
-import { faRuler, faShieldDog, faPen, faBowlFood, faPaw, faWeightScale } from '@fortawesome/free-solid-svg-icons'
+import { faFaceFrownOpen, faRuler, faShieldDog, faPen, faBowlFood, faPaw, faWeightScale } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 
@@ -109,27 +109,23 @@ function PetPage() {
     return (
 
         <div className='main-container'>
-            <Skeleton isLoaded={!isLoading}>
-            <Stack spacing={4} width='60%' justify='center' >
+            <Skeleton isLoaded={!isLoading} >
+            <Stack spacing={4} width={['90%', '80%','65%','60%']} alignContent='center' >
 
                 {pet &&
-                    <Card direction={{ base: 'column', sm: 'row' }}
+                    <Card direction={{ base: 'column', md: 'row' }}
                         overflow='hidden' className='font' 
                         variant='outline'
                     >
 
-
-
                         <Image objectFit='cover'
-                            maxW={{ base: '100%', sm: '200px' }}
+                            maxW={{ base: '100%', md: '280px' }}
                             src={pet?.picture ?
                                 pet?.picture :
                                 pet?.type == 'Dog' ?
                                     "https://i.pinimg.com/564x/2c/ac/e1/2cace15889eb210ce4ab764d8e49848f.jpg"
                                     :
-
                                     "https://i.pinimg.com/564x/87/5d/a7/875da7e9bc315b93715186e0cf09667a.jpg"
-
                             }
                             alt={pet?.type}
                             borderRadius='lg'
@@ -139,14 +135,19 @@ function PetPage() {
                             <CardBody>
 
                                 <Stack direction='row'>
-                                    <Text className='font'
-                                        fontSize='1.5em'
+                                    <Text
+                                    fontSize={['lg', 'xl', '2xl', '3xl']}
                                         fontWeight='semibold'
+                                        className='font-weird'
                                     >
                                         Hi I'm {pet?.name}!
                                     </Text>
+
+
                                     <Spacer />
-                                    <Tag className='font' fontSize='1.2em' mr={3}
+                                    <Tag className='font' size={['lg', 'lg', 'lg', 'xl']} 
+                                    p={3}
+                                    fontWeight='semibold'  mr={3}
                                         colorScheme={colorStatus}>
                                         {pet?.adoptionStatus}</Tag>
                                 </Stack>
@@ -201,7 +202,7 @@ function PetPage() {
                             <CardFooter >
 
                                
-                                <ButtonGroup spacing='2'>
+                                <ButtonGroup spacing='2' className='font-weird'>
 
 
 
@@ -283,14 +284,17 @@ function PetPage() {
 
 
                                                     <Button ml={3} size='sm' variant='outline' onClick={() => {
-
                                                         removeFosteredPet(pet._id)
                                                         setchange("RemoveFostered")
                                                     }}
-                                                        colorScheme='gray.400'>
+                                                        colorScheme='gray'
+                                                        leftIcon={<FontAwesomeIcon icon={faFaceFrownOpen}/>}
+                                                        >
                                                         Return to Shelter
 
                                                     </Button>
+
+                                            \
 
                                                 </>
                                                 :
@@ -326,7 +330,9 @@ function PetPage() {
                                                         setchange("removeAdopted")
                                                     }
                                                     }
-                                                        colorScheme='gray.400'>
+                                                        colorScheme='gray'
+                                                        leftIcon={<FontAwesomeIcon icon={faFaceFrownOpen}/>}
+                                                        >
                                                         Return to Shelter
                                                     </Button>
 

@@ -1,10 +1,10 @@
 import React from 'react'
-import { Tag, Card, Text, ButtonGroup, CardHeader, CardBody, CardFooter, Image, Button, Stack, Heading } from '@chakra-ui/react'
+import {  Hide, Tag, Card, Divider, Text, ButtonGroup, CardHeader, CardBody, CardFooter, Image, Button, Stack, Heading } from '@chakra-ui/react'
 import {  useNavigate } from 'react-router-dom';
 import { useEffect, useState, useContext } from 'react'
 import { PetsContextInstance } from '../../contex/PetsContext';
 import { UsersContextInstance } from '../../contex/UsersContext';
-import { ArrowForwardIcon, InfoOutlineIcon } from '@chakra-ui/icons'
+import { InfoOutlineIcon } from '@chakra-ui/icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faRuler,faShieldDog, faPaw, faWeightScale } from '@fortawesome/free-solid-svg-icons'
 
@@ -16,28 +16,21 @@ function PetCard({ pet}) {
   const { loggedInUser } = useContext(UsersContextInstance);
   const [isFilled, setIsFilled] = useState(false);
 
-
   const navigate = useNavigate();
   const navigatePetsParams = () => {
     navigate(`/pets/${pet._id}`);
   };
 
   
-
-
   useEffect(()=>{
     if(loggedInUser.savedPets){
       for(let i=0; i<loggedInUser.savedPets.length;i++){
         if(loggedInUser.savedPets[i]===pet._id){
           setIsFilled(true)
-        }
-  
-      }
-
-
-    }
-   
+        }}}
   },[])
+
+ 
 
 
   useEffect(() => {
@@ -63,56 +56,45 @@ function PetCard({ pet}) {
         petId: pet._id,
         owner: pet.owner
     }
-
     savePet(saveReq)
     } else{
       removeSavedPet(pet._id)
     }
-   
-
 }
-
 
 
   return (
     <>
-    
+
       <Card mt={5} className='font'  
        _hover={{
         bgGradient: 'linear(to-r, yellow.100, gray.100)',
        cursor: 'pointer'
       }}
-
         direction={{ base: 'column', sm: 'column' }}
         overflow='hidden'
         variant='outline'
       >
         <Image
           objectFit='cover'
-
+          maxH={['180px', '200px', '220px']}
           src={pet.picture ? pet.picture :
             pet.type == 'Dog' ?
               "https://i.pinimg.com/564x/2c/ac/e1/2cace15889eb210ce4ab764d8e49848f.jpg"
               :
-
               "https://i.pinimg.com/564x/87/5d/a7/875da7e9bc315b93715186e0cf09667a.jpg"
-
           }
           alt={pet.type}
         />
 
         <Stack>
-          <CardBody
-          
-          >
+          <CardBody ml={2}>
             <Stack  direction='row'> 
-            <Text fontSize={['lg', 'lg', 'xl', '2xl']} className='font-weird'>{pet.name}</Text>
-              <Tag fontSize='0.8em' ml={4} colorScheme={colorStatus}>{pet?.adoptionStatus}</Tag>
+            <Text  fontSize={['lg', 'lg', 'xl', '2xl']} className='font-weird'>{pet.name}</Text>
+              <Tag fontWeight='semibold' fontSize='0.8em' ml={4} colorScheme={colorStatus}>{pet?.adoptionStatus}</Tag>
 
             </Stack>
-            {/* <Text py='2'>
-             
-            </Text> */}
+       
 
             <Tag  size={['sm', 'sm', 'md', 'md']}  fontWeight='normal' mt={4} mr={2} > 
             <span className="icon-mgR" >
@@ -141,27 +123,31 @@ function PetCard({ pet}) {
 
             Weight: {pet.weight}</Tag>
        
-
-
           </CardBody>
 
-          <CardFooter>
-          <ButtonGroup spacing='3'>
+          <CardFooter
+          position='-webkit-sticky'
+          bottom='1'
+          alignItems='end'
+           justify='space-between'
+           flexWrap='wrap'
+          >
 
-          
+          <ButtonGroup spacing={4} className='font-weird'>
           <Button rightIcon={ <InfoOutlineIcon/>} 
-          size={['xs', 'xs', 'xs', 'sm']}
+          size={['base: sm', 'sm', 'xs', 'sm', 'sm']}
           
           colorScheme='yellow' onClick={navigatePetsParams}>
               More info
-             
             </Button>
             { !loggedInUser?
-
             <>
               <Button  onClick={(e)=>{navigate('/login')}}
-              size={['xs', 'xs', 'xs', 'sm']}
-              variant='ghost' colorScheme='pink'>  Save     
+              size={['base: sm', 'sm', 'xs', 'sm', 'sm']}
+              variant='ghost' colorScheme='pink'>  
+              <Hide below='md'>
+              Save
+              </Hide>     
               <div className="heart"></div>
               </Button>
             </>
@@ -170,15 +156,15 @@ function PetCard({ pet}) {
 
             <>
                <button onClick={handleClick} className={`heart-button ${isFilled ? 'filled' : 'empty'}`}>
-              <Button               size={['xs', 'xs', 'xs', 'sm']}
-onClick={handleSaveBtn} 
+              <Button size={['base: sm', 'sm', 'xs', 'xs', 'sm']}
+              onClick={handleSaveBtn} 
               variant='ghost' colorScheme='pink'>
-              {isFilled? "Saved" : "Save"}          
+                  <Hide below='md'>
+              {isFilled? "Saved" : "Save"} 
+              </Hide>         
               <div className="heart"></div>
               </Button>
               </button>
-
-
 
               </>
             }

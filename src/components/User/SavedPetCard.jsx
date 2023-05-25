@@ -5,9 +5,9 @@ import { useNavigate } from 'react-router-dom';
 import { useEffect, useState, useContext } from 'react'
 import { PetsContextInstance } from '../../contex/PetsContext';
 import { UsersContextInstance } from '../../contex/UsersContext';
-import { ArrowForwardIcon } from '@chakra-ui/icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faRuler,faShieldDog, faPaw, faWeightScale } from '@fortawesome/free-solid-svg-icons'
+import { faRuler,faShieldDog, faPaw, faWeightScale, faFaceFrownOpen } from '@fortawesome/free-solid-svg-icons'
+import {  InfoOutlineIcon } from '@chakra-ui/icons'
 
 function SavedPetCard({ pet }) {
 
@@ -87,10 +87,10 @@ function SavedPetCard({ pet }) {
 
                 <Stack>
                     <CardBody>
-                        <Heading size='md'> {pet.name}
+                        <Stack  direction='row'> 
+                        <Text  fontSize={['lg', 'lg', 'xl', '2xl']} className='font-weird'>{pet.name}</Text>
                             <Tag fontSize='0.8em' ml={4} colorScheme={colorStatus}>{pet?.adoptionStatus}</Tag>
-                        
-                        </Heading>
+                        </Stack>
                    
                         <Tag fontWeight='normal' mt={4} mr={2} size='lg'> 
             <span className="icon-mgR" >
@@ -125,96 +125,89 @@ function SavedPetCard({ pet }) {
 
                     </CardBody>
 
-                    <CardFooter>
-                        <ButtonGroup spacing='3'>
-
+                    <CardFooter >
+                        <ButtonGroup spacing='3'  className='font-weird'>
+                        <Button rightIcon={ <InfoOutlineIcon/>} 
+                        size={['base: sm', 'sm', 'xs', 'sm', 'sm']}
+                        colorScheme='yellow' onClick={navigatePetsParams}>
+                        More info
+                        </Button>
+                        
                             {pet.adoptionStatus === "Available" &&
                                 <>
-
-                   
-
                                     <Button ml={3} size='sm' color='white' onClick={() => adoptPet(pet._id)}
                                         bgGradient='linear(to-r, purple.500, purple.300)'
                                         _hover={{
                                             bgGradient: 'linear(to-r, purple.400, purple.200)',
                                         }}>
                                         Adopt me
-
                                     </Button>
 
-
-
-                                    <Button ml={3} size='sm' color='white' onClick={() => fosterPet(pet._id)}
+                                    <Button 
+                                    ml={3} size='sm' color='white' onClick={() => fosterPet(pet._id)}
                                         bgGradient='linear(to-r, teal.400, blue.400)'
                                         _hover={{
                                             bgGradient: 'linear(to-r, teal.200, blue.200)',
                                         }}>
                                         Foster
-
                                     </Button>
 
-
                                     <button onClick={handleClick} className={`heart-button ${isFilled ? 'filled' : 'empty'}`}>
-              <Button onClick={handleSaveBtn} 
-              size='sm' variant='ghost' colorScheme='pink'>
-              {isFilled? "Saved" : "Save"}          
-              <div className="heart"></div>
-              </Button>
-              </button>
+                                    <Button onClick={handleSaveBtn} 
+                                    size='sm' variant='ghost' colorScheme='pink'>
+                                    {isFilled? "Saved" : "Save"}          
+                                    <div className="heart"></div>
+                                    </Button>
+                                    </button>
                                 </>
                             }
 
-                            {pet.adoptionStatus === "Fostered" &&
+                 {pet.adoptionStatus === "Fostered" &&
                                 <>
-                                    {pet.owner === loggedInUser._id ?
-                                        <>
-                                            <Button ml={3} size='sm' color='white' onClick={() => adoptPet(pet._id)}
-                                                bgGradient='linear(to-r, purple.500, purple.300)'
-                                                _hover={{
-                                                    bgGradient: 'linear(to-r, purple.400, purple.200)',
-                                                }}>
-                                                Adopt me
+                                pet.owner === loggedInUser._id ?
+                                <>
+                                <Button ml={3} size='sm' color='white' onClick={() => adoptPet(pet._id)}
+                                bgGradient='linear(to-r, purple.500, purple.300)'
+                                _hover={{
+                                bgGradient: 'linear(to-r, purple.400, purple.200)',
+                                }}>
+                                Adopt me
 
-                                            </Button>
+                                </Button>
 
 
-                                            <Button ml={3} size='sm' variant='outline' onClick={() => removeFosteredPet(pet._id)}
-                                                colorScheme='gray.400'>
-                                                Return to Shelter
+                                <Button ml={3} size='sm' variant='outline' onClick={() => removeFosteredPet(pet._id)}
+                                leftIcon={<FontAwesomeIcon icon={faFaceFrownOpen} />} 
+                                colorScheme='gray'>
+                                Return to Shelter
+                                </Button>
 
-                                            </Button>
-
-                                        </>
-                                        :
-                                        <>
-                                                    
-               <button onClick={handleClick} className={`heart-button ${isFilled ? 'filled' : 'empty'}`}>
-              <Button onClick={handleSaveBtn} 
-              size='sm' variant='ghost' colorScheme='pink'>
-              {isFilled? "Saved" : "Save"}          
-              <div className="heart"></div>
-              </Button>
-              </button>
+                                </>
+                                :
+                                <>                         
+                                <button onClick={handleClick} className={`heart-button ${isFilled ? 'filled' : 'empty'}`}>
+                                <Button onClick={handleSaveBtn} size='sm' variant='ghost' colorScheme='pink'>
+                                {isFilled? "Saved" : "Save"}          
+                                <div className="heart"></div>
+                                </Button>
+                                </button>
               
             
                                         </>
-
-
                                     }
-
                                 </>
-
                             }
 
                             {pet.adoptionStatus === "Adopted" &&
                                 <>
-
                                     {pet.owner === loggedInUser._id ?
 
                                         <>
 
                                             <Button ml={3} size='sm' variant='outline' onClick={() => removeAdoptedPet(pet._id)}
-                                                colorScheme='gray.400'>
+                                                colorScheme='gray'
+                                                leftIcon={<FontAwesomeIcon icon={faFaceFrownOpen} />}
+                                                >
                                                 Return to Shelter
                                             </Button>
 

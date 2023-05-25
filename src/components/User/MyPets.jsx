@@ -37,7 +37,7 @@ function MyPets() {
     
 
 <Text  className='main-header' mb={3} textColor='red.800' 
-      fontSize={['xl', '2xl', '3xl', '5xl']}> My Pets</Text>
+      fontSize={['3xl', '4xl', '4xl', '5xl']}> My Pets</Text>
 
       <Stack width={['90%', '80%','65%','60%']}>
         <Tabs isFitted variant='enclosed-colored' color='red.800' colorScheme='red' >

@@ -34,7 +34,7 @@ function HomeAdmin() {
       <Stack>
    
       <Text  className='main-header' mb={3} textColor='red.800' 
-      fontSize={['xl', '2xl', '3xl', '5xl']}> Admin Dashboard</Text>
+      fontSize={['3xl', '4xl', '4xl', '5xl']}> Admin Dashboard</Text>
 
 
       <Text className='font-weird' 

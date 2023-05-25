@@ -101,7 +101,7 @@ function Search() {
   return (
     <div className='main-container'>
       <Text  className='main-header' mb={3} textColor='red.800' 
-      fontSize={['xl', '2xl', '3xl', '5xl']}> Search for a pet</Text>
+      fontSize={['3xl', '4xl', '4xl', '5xl']}> Search for a pet</Text>
 
 
       <Text  className='sub-header' mb={3} textColor='red.800' 

@@ -98,7 +98,7 @@ function UserProfile() {
         <div className='main-container'>
 
                 <Text  className='main-header' mb={3} textColor='red.800' 
-      fontSize={['xl', '2xl', '3xl', '5xl']}>  Edit your profile</Text>
+      fontSize={['3xl', '4xl', '4xl', '5xl']}>  Edit your profile</Text>
 
 <Stack width={['90%', '80%','65%','60%']} align='center'>
 

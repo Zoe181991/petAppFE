@@ -85,7 +85,7 @@ function UpdatePassword() {
 
 
                 <Text className='main-header' mb={3} textColor='red.800'
-                    fontSize={['2xl', '3xl', '4xl', '5xl']}>  Update Password</Text>
+                    fontSize={['3xl', '4xl', '4xl', '5xl']}>  Update Password</Text>
 
 
                 <FormControl isInvalid={!passwordsMatch}>
