@@ -78,15 +78,14 @@ function ViewUser() {
   const updateToAdmin = async () => {
     try {
       setIsLoadingChanges(true)
+      console.log(user._id)
       const res = await axios.put(`${process.env.REACT_APP_SERVER_URL}/admin/updateuserinfo/turnintoadmin/${user._id}`, { withCredentials: true });
       setUser(res.data)
       setIsLoadingChanges(false)
-
     }
     catch (err) {
       console.log(err);
       setIsLoadingChanges(false)
-
     }
   }
 
@@ -122,7 +121,7 @@ function ViewUser() {
 const fetchAdoptedPets = async (id) => {
     try {
         if(id){
-        const res = await axios.get(`${process.env.REACT_APP_SERVER_URL}/users/${id}/adoptedpets`,  { withCredentials: true });
+        const res = await axios.get(`${process.env.REACT_APP_SERVER_URL}/users/${id}/adoptedpets`, { withCredentials: true });
         setTempAdoptedList(res.data)
     } 
     }
@@ -151,10 +150,10 @@ const fetchFosteredPets = async (id) => {
         maxW={600}>
 
         <Skeleton isLoaded={!isLoading}>
-          <Text bgGradient='linear(to-r, teal.500, purple.500)'
-            bgClip='text' fontWeight='extrabold' fontSize={['xl', '2xl', '3xl', '4xl']} mb={[3, 4, 6]}>
-            View User {user?.first_name}
-          </Text>
+          <Text className='main-header' mb={3} textColor='red.800'
+                    fontSize={['3xl', '4xl', '4xl', '5xl']}>   View User {user?.first_name}</Text>
+          
+      
         </Skeleton>
 
         <Stack className='font' p={6} bgColor='gray.100' wrap={true} width={['100%', '100%', '90%']} borderRadius='md'>
@@ -179,23 +178,25 @@ const fetchFosteredPets = async (id) => {
               Back to Dashboard
             </Button>
 
-            {user.role!=='Admin'?
 
-<Button onClick= {updateToAdmin} ml={3} color='white' width={{ base: 'sm', sm: 'sm', md: 'md', lg: 'md' }}
-maxW='10em' minW='8em' bgGradient='linear(to-r, teal.500, purple.500)'
-_hover={{ bgGradient: 'linear(to-r, teal.200, purple.200)', }}>
-Turn Into Admin</Button>
+<Button className='font-weird' mt={5} color='white' 
+maxW='15em' minW='5em' 
+bgColor='red.800' 
+borderBlockEndWidth={4}
+_hover={{
+  bgGradient: 'linear(to-r, gray.200, gray.100)',
+  color: 'black'
+}}
+size={['md', 'lg']}
+isLoading={isLoadingChanges} 
+loadingText='Saving Changes'
+colorScheme='red' 
+variant='outline'  
+spinnerPlacement='start'
 
-:
-            
-            <Button onClick= {updateToUser} ml={3} color='white' width={{ base: 'sm', sm: 'sm', md: 'md', lg: 'md' }}
-maxW='10em' p={3} minW='8em' bgGradient='linear(to-r, teal.500, purple.500)'
-_hover={{ bgGradient: 'linear(to-r, teal.200, purple.200)', }}>
-Update role to User</Button>
-            
-            
+onClick= {user.role!=='Admin'? updateToAdmin : updateToUser }>
+{user.role!=='Admin'? "Turn Into Admin" : "Update role to User" }</Button>
 
-            }
           </Stack> 
 
         </Stack>
@@ -206,15 +207,9 @@ Update role to User</Button>
             <h2>
               <AccordionButton>
                 <Box as="span" flex='1' textAlign='left'>
-                  <Text
 
-                    color='teal.400'
-                    fontSize='2xl'
-                    fontWeight='extrabold'
-                    mb={6}
-                  >
-                    View Saved Pets
-                  </Text>
+                  <Text  className='main-header' mb={3} textColor='red.800' 
+      fontSize={['lg', 'xl', '2xl', '2xl']}>  View Saved Pets</Text>
                 </Box>
                 <AccordionIcon />
               </AccordionButton>
@@ -233,15 +228,29 @@ Update role to User</Button>
           <AccordionItem>
             <h2>
               <AccordionButton>
+                <Box as="span" flex='1' textAlign='left'>              
+                  <Text  className='main-header' mb={3} textColor='red.800' 
+      fontSize={['lg', 'xl', '2xl', '2xl']}>   View Fostered Pets</Text>
+                </Box>
+                <AccordionIcon />
+              </AccordionButton>
+            </h2>
+            <AccordionPanel pb={4}>
+            <div>
+              {tempFosteredList.map((pet) => (<PetCardAdminView key={pet._id} pet={pet}/>))}
+          </div>
+
+
+            </AccordionPanel>
+          </AccordionItem>
+
+          <AccordionItem>
+            <h2>
+              <AccordionButton>
                 <Box as="span" flex='1' textAlign='left'>
-                  <Text
-                    color='purple.400'
-                    fontSize='2xl'
-                    fontWeight='extrabold'
-                    mb={6}
-                  >
-                    View Adopted / Fostered Pets
-                  </Text>
+
+                  <Text  className='main-header' mb={3} textColor='red.800' 
+      fontSize={['lg', 'xl', '2xl', '2xl']}>  View Adopted Pets</Text>
                 </Box>
                 <AccordionIcon />
               </AccordionButton>
@@ -249,15 +258,14 @@ Update role to User</Button>
             <AccordionPanel pb={4}>
 
             <div>
-              {tempFosteredList.map((pet) => (<PetCardAdminView key={pet._id} pet={pet}/>))}
-          </div>
-
-          <div>
               {tempAdoptedList.map((pet) => (<PetCardAdminView key={pet._id} pet={pet}/>))}
           </div>
 
+
             </AccordionPanel>
           </AccordionItem>
+
+
         </Accordion>
 
         </Stack>
@@ -289,6 +297,8 @@ Update role to User</Button>
               >
 
                 Delete User</Button>
+
+
 
               <Button colorScheme='gray' ml={3} onClick={(e) => { navigate('/admin') }}>
                 Back to Dashboard

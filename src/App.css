@@ -137,19 +137,19 @@ html{
 
 @media (min-width: 800px) and (max-width: 1050px) {
   .icon-nav {
-    height: 1.5em;
+    height: 1em;
   }
 }
 
 @media (min-width: 500px) and (max-width: 800px) {
   .icon-nav {
-    height: 2em;
+    height: 1.6em;
   }
 }
 
 @media (min-width: 200px) and (max-width: 500px) {
   .icon-nav {
-    height: 2.3em;
+    height: 2.2em;
   }
 }
 

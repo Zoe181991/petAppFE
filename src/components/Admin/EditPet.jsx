@@ -163,8 +163,7 @@ function EditPet() {
 
   return (
     <div className='main-container'>
-      <Stack minW='10em' spacing={4} width={['100%', '90%', '80%']} align='center'
-        maxW={450}>
+      <Stack minW='10em' spacing={4} width={['80%', '60%', '50%', '35%']} align='center'>
      
 
         <Text className='main-header' mb={3} textColor='red.800'

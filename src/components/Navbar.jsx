@@ -53,7 +53,7 @@ function Navbar({ onOpen }) {
 
 <Stack direction='row' shouldWrapChildren='false'> 
         <Box
-          fontSize={['md', 'lg', '2lg', '2xl']}
+          fontSize={['sm', 'md', '2lg', 'xl']}
           ml={{ base: 2, sm: 8, md: 12, lg: 30 }}
         >
           <NavLink to={isAdmin ? '/admin' : '/'}>
@@ -130,19 +130,22 @@ function Navbar({ onOpen }) {
             <></>
             :
             <>
-              <NavLink to='/userprofile/edit'
-              >
+
+<Hide below='md'>
+              <NavLink to='/userprofile/edit'>
                 <AvatarGroup mr={3} >
                   <Avatar bg='#553C9A' src={loggedInUser.picture} />
                 </AvatarGroup>
               </NavLink>
+              </Hide>
 
 
              
 
               <Menu>
                 {loggedInUser &&
-                  <MenuButton className='font-weird' as={Button} colorScheme='yellow'  rightIcon={<SettingsIcon />}>
+                  <MenuButton size={['sm', 'md', 'md']} className='font-weird' as={Button} 
+                  colorScheme='yellow' color='red.800' rightIcon={<SettingsIcon />}>
                     <Show  above='md'> {loggedInUser.first_name}'s Profile</Show>
                   </MenuButton>
                 }
