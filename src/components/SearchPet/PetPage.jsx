@@ -110,7 +110,7 @@ function PetPage() {
 
         <div className='main-container'>
             <Skeleton isLoaded={!isLoading} >
-            <Stack spacing={4} width={['90%', '80%','65%','60%']} alignContent='center' >
+            <Stack spacing={4} width={['90%', '80%','65%','60%']} >
 
                 {pet &&
                     <Card direction={{ base: 'column', md: 'row' }}

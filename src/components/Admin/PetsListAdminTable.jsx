@@ -8,17 +8,22 @@ import {
   Tr, Th, Td, TableCaption, TableContainer,
 } from '@chakra-ui/react'
 import axios from 'axios';
-import { Avatar, AvatarGroup } from '@chakra-ui/react'
+import { Avatar, Spinner,  AvatarGroup } from '@chakra-ui/react'
 import { ArrowBackIcon, ArrowForwardIcon, EditIcon } from '@chakra-ui/icons'
 import { useNavigate } from 'react-router-dom';
+import { UsersContextInstance } from '../../contex/UsersContext';
 
 
 function PetsListAdminTable() {
   const [results, setResults] = useState([]);
   const [page, setPage] = useState(1);
   const [endResults, setEndResults] = useState('');
+  const [totalResults, setTotalResults] = useState('');
+  const [countResults, setCountResults] = useState('');
+
   const [disableBtn, setDisableBtn] = useState(false);
   const navigate = useNavigate();
+  const { isLoading, setIsLoading} = useContext(UsersContextInstance);
 
 
   useEffect(() => {
@@ -30,25 +35,48 @@ function PetsListAdminTable() {
   }, []);
 
 
+  useEffect(() => {
+    const fetchPetsList = async () => {
+      try {
+        const res = await axios.get(`${process.env.REACT_APP_SERVER_URL}/pets`);
+        setTotalResults(res.data.length)
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    fetchPetsList();
+  }, []);
+
+
   const fetchResults = async () => {
+    setIsLoading(true)
     try {
       const res = await axios.get(`${process.env.REACT_APP_SERVER_URL}/petsadmin?page=${page}&limit=10`);
       if (res.request.status === 200) {
         setResults(res.data);
+        setCountResults(res.data.length)
+        setIsLoading(false)
+
       }
 
       if (res.request.status === 204) {
-        console.log("hello")
+        setIsLoading(false)
         setDisableBtn(true)
         setEndResults("You have reached the end of the search results")
       }
     } catch (error) {
+      setIsLoading(false)
       console.log(error);
     }
   }
 
   const handleNextPage = () => {
-    setPage(page + 1);
+    if(page*10>totalResults-countResults){
+      setDisableBtn(true)
+      setEndResults("You have reached the end of the search results")
+    }else{
+      setPage(page + 1);
+    }
   };
 
   const handlePreviousPage = () => {
@@ -64,33 +92,43 @@ function PetsListAdminTable() {
   return (
     <>
       <TableContainer>
+
+        {isLoading? 
+        
+        <>
+        <Spinner
+  thickness='8px'
+  speed='0.65s'
+  emptyColor='gray.200'
+  color='red.800'
+  size='xl'
+/>
+
+
+        </>
+        
+        : 
+        
+        <>
         {endResults === '' ?
 
           <>
             <Table bgColor='white' className='font' size="sm" 
-            
             minW={['15em', '20em', '30em', '50em']}
-            
             variant='striped' colorScheme='gray'>
               <Thead>
                 <Tr>
-
                     <Th>Image</Th>
-
                   <Th>Name</Th>
-
-
-                  <Hide breakpoint='(max-width: 450px)'>
+                  <Hide breakpoint='(max-width: 900px)'>
                     <Th>Type</Th>
                   </Hide>
 
-
-                  <Hide breakpoint='(max-width: 900px)'>
+                  <Hide breakpoint='(max-width: 1100px)'>
                     <Th>Breed</Th>
                   </Hide>
 
-
-                  <Hide breakpoint='(max-width: 1150px)'>
+                  <Hide breakpoint='(max-width: 1300px)'>
                     <Th>Height (Cm)</Th>
                     <Th>Weight (Kg)</Th>
                   </Hide>
@@ -115,16 +153,16 @@ function PetsListAdminTable() {
                       {pet.name}
                     </Td>
 
-                    <Hide breakpoint='(max-width: 450px)'>
+                    <Hide breakpoint='(max-width: 900px)'>
                       <Td>{pet.type}</Td>
                     </Hide>
 
 
-                    <Hide breakpoint='(max-width: 900px)'>
+                    <Hide breakpoint='(max-width: 1100px)'>
                       <Td>{pet.breed}</Td>
                     </Hide>
 
-                    <Hide breakpoint='(max-width: 1150px)'>
+                    <Hide breakpoint='(max-width: 1300px)'>
                       <Td>{pet.height}</Td>
                       <Td>{pet.weight}</Td>
                     </Hide>
@@ -170,7 +208,8 @@ function PetsListAdminTable() {
             </Hide>
           </Button>
           <Spacer />
-          <Text className='font'> Page number {page}</Text>
+          {/* <Text className='font'> Page number {page}</Text> */}
+          <Text className='font'> Displaying {([page-1]*10)+ countResults} out of {totalResults} pets</Text>
           <Spacer />
 
           <Button size={['0.5xs', 'xs', 'sm', 'sm']} isDisabled={disableBtn} onClick={handleNextPage} rightIcon={<ArrowForwardIcon />}>
@@ -181,7 +220,7 @@ function PetsListAdminTable() {
           </Button>
         </Flex>
 
-
+        </> }
       </TableContainer>
     </>
 

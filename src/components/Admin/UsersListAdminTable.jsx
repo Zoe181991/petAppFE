@@ -4,7 +4,7 @@ import PetCard from '../SearchPet/PetCard'
 import { useContext, useState } from 'react';
 import { Tag, Hide, Show, Button, Spacer, Text } from '@chakra-ui/react';
 import {
-  Table, Thead, Tbody, Tfoot, Box, Stack, ListItem, List, Flex,
+  Table, Spinner, Thead, Tbody, Tfoot, Box, Stack, ListItem, List, Flex,
   Tr, Th, Td, TableCaption, TableContainer,
 } from '@chakra-ui/react'
 import axios from 'axios';
@@ -12,14 +12,19 @@ import { Avatar, AvatarGroup } from '@chakra-ui/react'
 import { ArrowBackIcon, ArrowForwardIcon } from '@chakra-ui/icons'
 import { useNavigate } from 'react-router-dom';
 import { ViewIcon } from '@chakra-ui/icons'
+import { UsersContextInstance } from '../../contex/UsersContext';
 
 
 function UsersListAdminTable() {
   const [results, setResults] = useState([]);
   const [page, setPage] = useState(1);
   const [endResults, setEndResults] = useState('');
+  const [totalResults, setTotalResults] = useState('');
+  const [countResults, setCountResults] = useState('');
+
   const [disableBtn, setDisableBtn] = useState(false);
   const navigate = useNavigate();
+  const { isLoading, setIsLoading} = useContext(UsersContextInstance);
 
 
   useEffect(() => {
@@ -30,17 +35,26 @@ function UsersListAdminTable() {
     fetchResults();
   }, []);
 
+  useEffect(() => {
+    const fetchUsersList = async () => {
+      try {
+        const res = await axios.get(`${process.env.REACT_APP_SERVER_URL}/users`);
+        setTotalResults(res.data.length)
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    fetchUsersList();
+  }, []);
+
 
   const fetchResults = async () => {
     try {
-      const res = await axios.get(`${process.env.REACT_APP_SERVER_URL}/usersadmin?page=${page}&limit=10`);
+      const res = await axios.get(`${process.env.REACT_APP_SERVER_URL}/usersadmin?page=${page}&limit=5`);
       if (res.request.status === 200) {
         setResults(res.data);
-      }
+        setCountResults(res.data.length)
 
-      if (res.request.status === 204) {
-        setDisableBtn(true)
-        setEndResults("You have reached the end of the search results")
       }
     } catch (error) {
       console.log(error);
@@ -48,7 +62,12 @@ function UsersListAdminTable() {
   }
 
   const handleNextPage = () => {
-    setPage(page + 1);
+    if(page*10>totalResults-countResults){
+      setDisableBtn(true)
+      setEndResults("You have reached the end of the search results")
+    }else{
+      setPage(page + 1);
+    }
   };
 
   const handlePreviousPage = () => {
@@ -60,29 +79,53 @@ function UsersListAdminTable() {
   };
 
 
-
   return (
     <>
       <TableContainer>
+
+
+      {isLoading? 
+        
+        <>
+        <Spinner
+  thickness='8px'
+  speed='0.65s'
+  emptyColor='gray.200'
+  color='red.800'
+  size='xl'
+/>
+
+
+        </>
+        
+        : 
+        
+        <>
+
         {endResults === '' ?
 
           <>
-            <Table className='font' size="sm" variant='striped' colorScheme='gray'>
+            <Table className='font' bgColor='white' size="sm" variant='striped' colorScheme='gray'>
               <Thead>
                 <Tr>
                   <Th>Image</Th>
                   <Th>Name</Th>
 
-                  <Hide breakpoint='(max-width: 900px)'>
+                  <Hide breakpoint='(max-width: 950px)'>
                     <Th>Adopted Pets</Th>
                     <Th>Saved Pets</Th>
                   </Hide>
 
 
-                  <Hide breakpoint='(max-width: 1150px)'>
+                  <Hide breakpoint='(max-width: 1350px)'>
                     <Th>Email</Th>
+                    </Hide>
+
+                    <Hide breakpoint='(max-width: 1500px)'>
+
                     <Th>Phone</Th>
-                  </Hide>
+                    </Hide>
+
 
                   <Hide breakpoint='(max-width: 550px)'>
                     <Th>Role</Th>
@@ -104,13 +147,16 @@ function UsersListAdminTable() {
                       {user.first_name}  {user.last_name}
                     </Td>
 
-                    <Hide breakpoint='(max-width: 900px)'>
+                    <Hide breakpoint='(max-width: 950px)'>
                       <Td>{user.adoptedPets.length}</Td>
                       <Td>{user.savedPets.length}</Td>
                     </Hide>
 
-                    <Hide breakpoint='(max-width: 1150px)'>
+                    <Hide breakpoint='(max-width: 1350px)'>
                       <Td>{user.email}</Td>
+                      </Hide>
+                      
+                      <Hide breakpoint='(max-width: 1500px)'>
                       <Td>{user.phone_number}</Td>
                     </Hide>
 
@@ -156,7 +202,9 @@ View Profile</Button>
  </Hide>
           </Button>
           <Spacer />
-          <Text className='font'> Page number {page}</Text>
+          {/* <Text className='font'> Page number {page}</Text> */}
+          <Text className='font'> Displaying {([page-1]*5)+ countResults} out of {totalResults} users</Text>
+
           <Spacer />
 
           <Button size={['0.5xs', 'xs', 'sm', 'sm']} isDisabled={disableBtn} onClick={handleNextPage} rightIcon={<ArrowForwardIcon />}>
@@ -166,7 +214,7 @@ View Profile</Button>
 
             </Button>
         </Flex>
-
+</>}
 
       </TableContainer>
     </>

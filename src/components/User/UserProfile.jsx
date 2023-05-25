@@ -12,7 +12,7 @@ import axios from 'axios';
 function UserProfile() {
 
 
-    const { loggedInUser, setLoggedInUser, errorMsgClient, setErrorMsgClient, fetchInfo } = useContext(UsersContextInstance);
+    const { isLoading, setIsLoading, loggedInUser, setLoggedInUser, errorMsgClient, setErrorMsgClient, fetchInfo } = useContext(UsersContextInstance);
     const { loggedInUserID } = useContext(AuthContextInstance);
 
 
@@ -43,6 +43,7 @@ function UserProfile() {
 
 
     const updateUser = async (formData) => {
+        setIsLoading(true)
         for (const value of formData.values()) {
             console.log(value)
         }
@@ -51,6 +52,8 @@ function UserProfile() {
             const res = await axios.post(`${process.env.REACT_APP_SERVER_URL}/users/update/`, formData, { withCredentials: true });
             console.log(res.data)
             setLoggedInUser(res.data)
+            setIsLoading(false)
+
         } else {
             const updatedUser = {
                 id: loggedInUserID,
@@ -65,10 +68,8 @@ function UserProfile() {
                 updatedUser, { withCredentials: true });
             console.log(res.data)
             setLoggedInUser(res.data)
-
+            setIsLoading(false)
         }
-
-
     }
 
 
@@ -100,14 +101,17 @@ function UserProfile() {
                 <Text  className='main-header' mb={3} textColor='red.800' 
       fontSize={['3xl', '4xl', '4xl', '5xl']}>  Edit your profile</Text>
 
-<Stack width={['90%', '80%','65%','60%']} align='center'>
+<Stack width={['90%', '85%','80%','70%']} align='center'>
 
             <Card maxW='md'>
                 <CardHeader>
                     <Flex flex='1' gap='2' alignItems='center' flexWrap='wrap'>
-                        <Avatar name={firstName} src={loggedInUser.picture} />
-                        <Heading size='md'>{firstName} {lastName}</Heading>
-                    </Flex>
+                        <Avatar mr={5} name={firstName} src={loggedInUser.picture} />
+                        <Stack>
+                        <Text fontSize= '1.5em' className= 'font-weird'>{firstName} {lastName}</Text>
+                        <Text fontSize= '1em' className= 'font' >Role: {loggedInUser.role}</Text>
+                        </Stack>
+                        </Flex>
                 </CardHeader>
                 <CardBody mt={0}>
                     <Text className='user-edit-field'>First name:</Text>
@@ -176,6 +180,7 @@ function UserProfile() {
 
                 <CardFooter
                     justify='space-between'
+                    justifyContent='center'
                     flexWrap='wrap'
                     sx={{
                         '& > button': {
@@ -184,16 +189,20 @@ function UserProfile() {
                     }}
                 >
 
-                    <Button onClick={handleSubmit} color='white' 
+
+                    <Button onClick={handleSubmit} className='font-weird' 
+                    color='white' 
                     width={{base: 'sm', sm: 'sm', md: 'md', lg: 'md' }}
                     maxW='15em' minW='10em'
-                    bgGradient='linear(to-r, teal.500, purple.500)'
-              _hover={{
-                bgGradient: 'linear(to-r, teal.200, purple.200)',
-              }}
-            //   isLoading={loading}
+                    bgColor='red.800' 
+                    borderBlockEndWidth={4}
+                    _hover={{
+                      bgGradient: 'linear(to-r, gray.200, gray.100)',
+                      color: 'black'
+                  }}
+              isLoading={isLoading}
               loadingText='Loading'
-              colorScheme='teal'
+              colorScheme='red'
               variant='outline'
               spinnerPlacement='start'
             >

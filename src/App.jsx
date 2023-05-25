@@ -12,6 +12,7 @@ import MyPets from './components/User/MyPets';
 import PrivateRouteUser from './components/User/PrivateRouteUser'
 
 import HomeAdmin from './components/Admin/HomeAdmin';
+import AdminDashboard from './components/Admin/AdminDashboard';
 import PrivateRouteAdmin from './components/Admin/PrivateRouteAdmin'
 import AddPet from './components/Admin/AddPet';
 import EditPet from './components/Admin/EditPet';
@@ -42,7 +43,8 @@ function App() {
               <Routes>
                 {/* //Admin */}
                 <Route path='/' element={<Home />} />
-                <Route path='/admin' element={ <HomeAdmin />}/>  
+                <Route path='/admin' element={ <PrivateRouteAdmin><HomeAdmin /></PrivateRouteAdmin>}/>  
+                <Route path='/dashboard' element={ <PrivateRouteAdmin><AdminDashboard /></PrivateRouteAdmin>}/>  
                 <Route path='/admin/addpet' element={ <AddPet />} />
                 
                 <Route path='/admin/editpet/'> 

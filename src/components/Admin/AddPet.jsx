@@ -7,6 +7,8 @@ import { SmallCloseIcon, MinusIcon } from '@chakra-ui/icons'
 import axios from 'axios';
 import { useToast } from '@chakra-ui/react'
 import { AdminContextInstance } from '../../contex/AdminContext'
+import {  faPaw } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 function AddPet() {
 
@@ -59,18 +61,18 @@ function AddPet() {
 
 
     const registerPet = async (formData) => {
-          try {
+        try {
             setIsLoading(true)
-            const res = await axios.post(`${process.env.REACT_APP_SERVER_URL}/admin/addpet`, formData, {withCredentials: true});
+            const res = await axios.post(`${process.env.REACT_APP_SERVER_URL}/admin/addpet`, formData, { withCredentials: true });
             if (res.data) {
                 setIsLoading(false)
                 toast({
                     title: res.data.name + " is now registered!",
-                    description: res.data.name + " the " + res.data.type + " was added succsufly!" ,
+                    description: res.data.name + " the " + res.data.type + " was added succsufly!",
                     status: 'success',
                     duration: 5000,
                     isClosable: true,
-                  })
+                })
             }
         }
         catch (err) {
@@ -85,18 +87,13 @@ function AddPet() {
     return (
 
         <div className='main-container'>
-            <Stack minW='10em' spacing={4} width={['100%', '90%', '80%']} align='center'
-                maxW={500}>
-                <Text
-                    bgGradient='linear(to-r, teal.500, purple.500)'
-                    bgClip='text'
-                    fontSize='4xl'
-                    fontWeight='extrabold'
-                    mb={6}
-                >
-                    Add a pet
-                </Text>
+            <Stack minW='10em' spacing={4} align='center'
+                maxW={500}
+                width={['90%', '80%', '65%', '60%']}
+            >
 
+                <Text className='main-header' mb={3} textColor='red.800'
+                    fontSize={['3xl', '4xl', '4xl', '5xl']}> Add a pet</Text>
 
                 <FormControl mt={4} isRequired>
                     <FormLabel className='font'>Type:</FormLabel>
@@ -114,17 +111,17 @@ function AddPet() {
 
                 <FormControl mt={4} isRequired>
                     <FormLabel className='font'>Name:</FormLabel>
-                    <Input className='font' placeholder="Enter the pet's name"
+                    <Input variant='filled' className='font' placeholder="Enter the pet's name"
                         value={name}
                         onChange={(e) => setName(e.target.value)} />
                 </FormControl>
 
 
 
-                <FormControl mt={4}>
+                <FormControl isRequired mt={4}>
                     <FormLabel className='font'>Breed:</FormLabel>
                     <InputGroup className='font'>
-                        <Input placeholder="Enter the pet's breed"
+                        <Input variant='filled' placeholder="Enter the pet's breed"
                             value={breed}
                             onChange={(e) => setBreed(e.target.value)} />
                     </InputGroup>
@@ -180,7 +177,7 @@ function AddPet() {
                 <FormControl mt={4}>
                     <FormLabel className='font'>Color:</FormLabel>
                     <InputGroup className='font'>
-                        <Input placeholder="Pet's color"
+                        <Input variant='filled' placeholder="Pet's color"
                             value={color}
                             onChange={(e) => setColor(e.target.value)} />
                     </InputGroup>
@@ -188,7 +185,7 @@ function AddPet() {
 
                 <FormControl mt={4}>
                     <InputGroup className='font'>
-                        <Checkbox onChange={(e) => setHypoallergenic(!hypoallergenic)} size='md' colorScheme='purple' >
+                        <Checkbox onChange={(e) => setHypoallergenic(!hypoallergenic)} size='md' colorScheme='red' >
                             Pet is hypoallergenic
                         </Checkbox>
                     </InputGroup>
@@ -198,7 +195,7 @@ function AddPet() {
                 <FormControl mt={4}>
                     <FormLabel className='font'>Bio</FormLabel>
                     <InputGroup className='font'>
-                        <Textarea placeholder="Enter the pet's bio"
+                        <Textarea variant='filled' placeholder="Enter the pet's bio"
                             value={bio}
                             onChange={(e) => setBio(e.target.value)} />
                     </InputGroup>
@@ -208,9 +205,19 @@ function AddPet() {
                     <FormLabel className='font'>Enter the pet's dietary restrictions:</FormLabel>
                     <InputGroup className='font'>
                         <Input placeholder="Add one dietary restriction"
-                            value={diet}
+                            variant='filled' value={diet}
                             onChange={(e) => setDiet(e.target.value)} />
-                        <Button ml={2} fontWeight='light' fontSize={15} onClick={addItem}>Add Restriction</Button>
+                        <Button className='font-weird' color='white'
+                            ml={2} fontWeight='light' fontSize={13}
+                            bgColor='red.800' variant='outline'
+                            borderBlockEndWidth={4}
+                            _hover={{
+                                bgGradient: 'linear(to-r, gray.200, gray.100)',
+                                color: 'black'
+                            }}
+                            onClick={addItem}>Add Restriction</Button>
+
+
                     </InputGroup>
 
 
@@ -237,20 +244,25 @@ function AddPet() {
 
                 {/* <div className='errorMsg'>{errorMsgClient}</div> */}
 
-                <Button  onClick={handleSubmit} className='font' color='white' bgGradient='linear(to-r, teal.500, purple.500)'
-                    _hover={{
-                        bgGradient: 'linear(to-r, teal.200, purple.200)',
-                    }}
-                    
+                <Button onClick={handleSubmit} className='font-weird' 
+                size={['md', 'lg']}
+                color='white' 
+                bgColor='red.800' variant='outline'
+                borderBlockEndWidth={4}
+                _hover={{
+                    bgGradient: 'linear(to-r, gray.200, gray.100)',
+                    color: 'black'
+                }}
                     isLoading={isLoading}
-              loadingText='Saving'
-              colorScheme='teal'
-              variant='outline'
-              spinnerPlacement='start'
+                    loadingText='Saving'
+                    colorScheme='red'
+                    spinnerPlacement='start'
                     
-                    
-                    >
-                    Register a New Pet</Button>
+                >
+<FontAwesomeIcon className='icon-mgR' icon={faPaw} />
+                    Register A New Pet</Button>
+
+        
 
             </Stack>
 

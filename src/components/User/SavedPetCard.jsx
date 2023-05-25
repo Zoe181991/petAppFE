@@ -118,21 +118,16 @@ function SavedPetCard({ pet }) {
             </span>
 
             Weight: {pet.weight}</Tag>
-       
-
-
-                      
-
                     </CardBody>
 
-                    <CardFooter >
+                    <CardFooter>
                         <ButtonGroup spacing='3'  className='font-weird'>
                         <Button rightIcon={ <InfoOutlineIcon/>} 
                         size={['base: sm', 'sm', 'xs', 'sm', 'sm']}
                         colorScheme='yellow' onClick={navigatePetsParams}>
                         More info
                         </Button>
-                        
+
                             {pet.adoptionStatus === "Available" &&
                                 <>
                                     <Button ml={3} size='sm' color='white' onClick={() => adoptPet(pet._id)}
@@ -162,7 +157,7 @@ function SavedPetCard({ pet }) {
                                 </>
                             }
 
-                 {pet.adoptionStatus === "Fostered" &&
+                            {pet.adoptionStatus === "Fostered" &&
                                 <>
                                 pet.owner === loggedInUser._id ?
                                 <>
@@ -232,7 +227,6 @@ function SavedPetCard({ pet }) {
                             }
 
                         </ButtonGroup>
-
                     </CardFooter>
                 </Stack>
             </Card>

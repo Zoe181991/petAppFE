@@ -165,10 +165,10 @@ function EditPet() {
     <div className='main-container'>
       <Stack minW='10em' spacing={4} width={['100%', '90%', '80%']} align='center'
         maxW={450}>
-        <Text bgGradient='linear(to-r, teal.500, purple.500)'
-          bgClip='text' fontWeight='extrabold' fontSize={['xl', '2xl', '3xl', '4xl']} mb={[3, 4, 6]}>
-          Edit the pet {pet?.name}
-        </Text>
+     
+
+        <Text className='main-header' mb={3} textColor='red.800'
+                    fontSize={['3xl', '4xl', '4xl', '5xl']}>  Edit the pet {pet?.name}</Text>
 
         <Flex className='font' flex='1' gap='2' jusitify='center' alignItems='center' flexWrap='wrap' w='100%'>
           <Stack direction='row' bgColor='gray.300' wrap={true} width={['100%', '100%', '90%']} p={5} borderRadius='md'>
@@ -280,12 +280,24 @@ function EditPet() {
 
             <Stack className='font' direction='row' align='center' justify='center' flexWrap='wrap' >
               <Skeleton isLoaded={!isLoading}>
-                <Button mt={5} color='white' width={{ base: 'sm', sm: 'sm', md: 'md', lg: 'md' }}
-                  maxW='15em' minW='5em' bgGradient='linear(to-r, teal.500, purple.500)'
-                  _hover={{ bgGradient: 'linear(to-r, teal.200, purple.200)', }}
-                  isLoading={isLoadingChanges} loadingText='Saving Changes'
-                  colorScheme='teal' variant='outline' spinnerPlacement='start' onClick={handleSubmit}>
+                <Button className='font-weird' mt={5} color='white' 
+                  maxW='15em' minW='5em' 
+                  bgColor='red.800' 
+                  borderBlockEndWidth={4}
+                  _hover={{
+                    bgGradient: 'linear(to-r, gray.200, gray.100)',
+                    color: 'black'
+                }}
+                  size={['md', 'lg']}
+                  isLoading={isLoadingChanges} 
+                  loadingText='Saving Changes'
+                  colorScheme='red' 
+                  variant='outline'  
+                  spinnerPlacement='start'
+
+                  onClick={handleSubmit}>
                   Save changes</Button>
+
               </Skeleton>
             </Stack>
 

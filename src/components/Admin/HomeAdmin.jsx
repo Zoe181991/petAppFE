@@ -30,12 +30,9 @@ function HomeAdmin() {
 <div className='dashboard-container'>
 
     <Flex ml="7em"  mr="7em"  mt={6} justify='left'>
-
-      <Stack>
-   
+      <Stack>  
       <Text  className='main-header' mb={3} textColor='red.800' 
-      fontSize={['3xl', '4xl', '4xl', '5xl']}> Admin Dashboard</Text>
-
+      fontSize={['3xl', '4xl', '4xl', '5xl']}> Admin HomePage</Text>
 
       <Text className='font-weird' 
         fontSize='xl'
@@ -45,66 +42,13 @@ function HomeAdmin() {
       </Text>
       </Stack>
       <Spacer />
-      <Button   bgGradient='linear(to-r, green.300, teal.300)'
-                  _hover={{
-                    bgGradient: 'linear(to-r, green.100, teal.200)',
-                  }} color="cyan.50"
-                  onClick={(e) => navigate('/admin/addpet')} mt={6} leftIcon={<AddIcon />} >
-        Add a new pet</Button>
+
+    
       </Flex>
 
 
     <div className='main-container'>
 
-
-
-      <Stack width={['100%', '95%', '90%']} >
-        <Accordion defaultIndex={[0]} allowMultiple >
-          <AccordionItem>
-            <h2>
-              <AccordionButton>
-                <Box as="span" flex='1' textAlign='left'>
-              
-
-                  <Text  className='main-header' mb={3} textColor='red.800' 
-      fontSize={['lg', 'xl', '2xl', '3xl']}> View Pets</Text>
-                </Box>
-                <AccordionIcon />
-              </AccordionButton>
-            </h2>
-            <AccordionPanel pb={4}>
-
-              <PetsListAdminTable />
-
-            </AccordionPanel>
-          </AccordionItem>
-
-
-          <AccordionItem>
-            <h2>
-              <AccordionButton>
-                <Box as="span" flex='1' textAlign='left'>
-              
-
-                  <Text  className='main-header' mb={3} textColor='red.800' 
-      fontSize={['lg', 'xl', '2xl', '3xl']}> View Users</Text>
-
-                  
-                </Box>
-                <AccordionIcon />
-              </AccordionButton>
-            </h2>
-            <AccordionPanel pb={4}>
-
-            <UsersListAdminTable />
-
-
-            </AccordionPanel>
-          </AccordionItem>
-        </Accordion>
-
-
-      </Stack>
 
 
     </div>

@@ -10,7 +10,7 @@ import { AuthContextInstance } from '../contex/AuthContext';
 import { Flex, Stack, Spacer, Show, Hide } from '@chakra-ui/react'
 import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faHomeUser, faMagnifyingGlass, faPaw } from '@fortawesome/free-solid-svg-icons'
+import { faHomeUser, faMagnifyingGlass, faPaw , faGaugeHigh} from '@fortawesome/free-solid-svg-icons'
 
 function Navbar({ onOpen }) {
 
@@ -81,6 +81,23 @@ function Navbar({ onOpen }) {
               </>
             )}
           </NavLink>
+
+          {isAdmin &&
+          <NavLink to='/dashboard'>
+            {({ isActive }) => (
+              <>
+                <span className={isActive ? "active-page" : "navLink"}>
+                  <FontAwesomeIcon className='icon-nav' icon={faGaugeHigh} />
+                  <Hide below='md'>
+                    Dashboard
+                  </Hide>
+                </span>
+              </>
+            )}
+          </NavLink>
+        }
+
+
 
 
           {!loggedInUser ?
