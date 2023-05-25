@@ -30,17 +30,6 @@ function Search() {
   const [weight, setWeight] = useState(1)
   const [status, setStatus] = useState("Available")
 
-  useEffect(() => {
-    const fetchPetsList = async () => {
-      try {
-        const res = await axios.get(`${process.env.REACT_APP_SERVER_URL}/pets`);
-        setPetsList(res.data);
-      } catch (err) {
-        console.log(err);
-      }
-    };
-    fetchPetsList();
-  }, []);
 
   useEffect(() => {
     setErrorMsgClient("")
@@ -101,7 +90,7 @@ function Search() {
     setWeight(1)
     setNumResults("")
     setNumResultsS("")
-
+    setPetsList([])
 
   }
 
@@ -111,16 +100,14 @@ function Search() {
 
   return (
     <div className='main-container'>
-      {/* <h2 className='sub-header'>Search for a pet</h2> */}
-      <Text
-        bgGradient='linear(to-r, teal.500, purple.500)'
-        bgClip='text'
-        fontSize='4xl'
-        fontWeight='extrabold'
-        mb={6}
-      >
-        Search for a pet
-      </Text>
+      <Text  className='main-header' mb={3} textColor='red.800' 
+      fontSize={['xl', '2xl', '3xl', '5xl']}> Search for a pet</Text>
+
+
+      <Text  className='sub-header' mb={3} textColor='red.800' 
+      fontSize={['md', 'lg', 'xl', '2xl']}> Your new friend is waiting for you</Text>
+
+
       <Stack spacing={4} width={['90%', '80%','65%','60%']} >
         <Stack direction='row'>
           <InputGroup className='font'>
@@ -135,15 +122,19 @@ function Search() {
 
         <Stack direction='row'>
           <FormControl onChange={(e) => setAdvSearch(!advSearch)} display='flex' alignItems='center'>
-            <FormLabel htmlFor='email-alerts' mb='0' >
+            <FormLabel htmlFor='adv-search' mb='0' >
               Advanced Search?
             </FormLabel>
-            <Switch colorScheme='purple' id='email-alerts' />
+            <Switch colorScheme='red' id='adv-search' />
           </FormControl>
           {!advSearch &&
-            <Button onClick={getPetbyType} color='white' w='10em' size="md" bgGradient='linear(to-r, teal.500, purple.500)'
-              _hover={{
-                bgGradient: 'linear(to-r, teal.200, purple.200)',
+            <Button className='font-weird' onClick={getPetbyType} color='white' w='10em' 
+            size="lg" 
+bgColor='red.800'
+borderBlockEndWidth={4}
+            _hover={{
+                bgGradient: 'linear(to-r, gray.200, gray.100)',
+                color: 'black'
               }}
               isLoading={loading}
               loadingText='Loading'
@@ -162,7 +153,7 @@ function Search() {
               Displaying {numResultsS} results that match your search
             </FormLabel>
             <Spacer />
-            <Button size='sm' colorScheme='gray' onClick={clearSearch}>Clear search</Button>
+            <Button w='11em' size='sm' colorScheme='gray' onClick={clearSearch}>Clear search</Button>
           </Stack>
 
         }
@@ -237,11 +228,21 @@ function Search() {
 
 
 
-            <Button onClick={handleSubmit} className='font' color='white' bgGradient='linear(to-r, teal.500, purple.500)'
-              _hover={{
-                bgGradient: 'linear(to-r, teal.200, purple.200)',
-              }}>
-              Search</Button>
+    <Button className='font-weird' onClick={handleSubmit}  color='white' h='2.6em' p={1}
+           
+bgColor='red.800'
+borderBlockEndWidth={4}
+            _hover={{
+                bgGradient: 'linear(to-r, gray.200, gray.100)',
+                color: 'black'
+              }}
+              isLoading={loading}
+              loadingText='Loading'
+              colorScheme='teal'
+              variant='outline'
+              spinnerPlacement='start'
+              fontSize={['md', 'lg', 'xl']}
+            >  Search</Button>
 
             {numResults &&
 
@@ -250,7 +251,7 @@ function Search() {
                   Displaying {numResults} results that match your search
                 </FormLabel>
                 <Spacer />
-                <Button size='sm' colorScheme='gray' onClick={clearSearch}>Clear search</Button>
+                <Button w='11em' size='sm'colorScheme='gray' onClick={clearSearch}>Clear search</Button>
               </Stack>
 
             }

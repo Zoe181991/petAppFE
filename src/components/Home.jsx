@@ -36,22 +36,17 @@ function Home() {
     <>
       {!loggedInUserID ?
         <div className='main-container'>
-          <h1 className='main-header' ></h1>
-          <Text onClick={navigateSearch}
-  bgGradient='linear(to-r, teal.500, purple.500)'
-  bgClip='text'
-  fontSize='4xl'
-  fontWeight='extrabold'
->
-  Welcome to Pawsitive Adoptions
-</Text>
 
+          <Text className='main-header'  
+fontSize='4xl'>  Welcome to Pawsitive Adoptions
+</Text>
+    
           <h2 onClick={navigateSearch} className='sub-header'>Your new best friend is waiting for you</h2>
           <Image className="home-welcome-dog-pic"
             onClick={navigateSearch}
             borderRadius='full'
             boxSize='400px'
-            src="https://i.pinimg.com/564x/c7/9a/b6/c79ab6c22b034839be610ba578be97a0.jpg"
+            src="https://i.gifer.com/WTw.gif"
             alt='dog-img'/>
         </div>
 

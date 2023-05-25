@@ -1,5 +1,5 @@
 import React from 'react'
-import {FormControl,FormLabel,} from '@chakra-ui/react'
+import {FormControl,FormLabel, Stack,} from '@chakra-ui/react'
 import { Input } from '@chakra-ui/react'
 import { Button, ButtonGroup } from '@chakra-ui/react'
 import { useNavigate} from 'react-router-dom';
@@ -18,10 +18,6 @@ function LoginForm({initialRef, onClose}) {
     const navigate = useNavigate();
 
 
-    // useEffect(()=>{
-    //     setErrorMsgClient("")
-    // },[])
- 
     const navigateHome = () => {
         // 👇️ navigate to /
         navigate('/');
@@ -35,12 +31,6 @@ function LoginForm({initialRef, onClose}) {
         }
         loginReq(newLogin);
     }
-
-   
-
-    
-   
-
 
     return (
         <>
@@ -57,10 +47,13 @@ function LoginForm({initialRef, onClose}) {
 
             <div className='errorMsg'>{errorMsgClient}</div>
 
-            <Button onClick={handleLogin}colorScheme='purple' mr={3} mt={6}>
+<Stack  mt={6} direction='row' justifyContent='center'>
+            <Button className="font-weird" color='red.800' onClick={handleLogin} colorScheme='yellow' 
+            mr={3} size='lg'>
                             Login
                         </Button>
-                        <Button mt={6} onClick={navigateHome}>Cancel</Button>
+           <Button size='lg' className="font-weird" onClick={navigateHome}>Cancel</Button>
+           </Stack>
         </>
     )
 }

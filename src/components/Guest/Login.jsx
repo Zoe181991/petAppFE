@@ -47,10 +47,10 @@ function Login({ isOpen, onOpen, onClose }) {
                     <ModalCloseButton />
                     <ModalBody pb={6}>
 
-                        <Tabs variant='soft-rounded' colorScheme='purple'>
+                        <Tabs variant='soft-rounded'  colorScheme="red">
                             <TabList>
-                                <Tab>Login</Tab>
-                                <Tab>Sign Up</Tab>
+                                <Tab className="font-weird" color='red.800'>Login</Tab>
+                                <Tab className="font-weird" color='red.800'>Sign Up</Tab>
                             </TabList>
                             <TabPanels>
                                 <TabPanel>

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Tag, Card, ButtonGroup, CardHeader, CardBody, CardFooter, Image, Button, Stack, Heading } from '@chakra-ui/react'
+import { Tag, Card, Text, ButtonGroup, CardHeader, CardBody, CardFooter, Image, Button, Stack, Heading } from '@chakra-ui/react'
 import {  useNavigate } from 'react-router-dom';
 import { useEffect, useState, useContext } from 'react'
 import { PetsContextInstance } from '../../contex/PetsContext';
@@ -7,7 +7,6 @@ import { UsersContextInstance } from '../../contex/UsersContext';
 import { ArrowForwardIcon, InfoOutlineIcon } from '@chakra-ui/icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faRuler,faShieldDog, faPaw, faWeightScale } from '@fortawesome/free-solid-svg-icons'
-import { icon } from '@fortawesome/fontawesome-svg-core';
 
 
 function PetCard({ pet}) {
@@ -43,12 +42,12 @@ function PetCard({ pet}) {
 
   useEffect(() => {
     if (pet?.adoptionStatus === 'Available') {
-      setColorStatus("green")
+      setColorStatus("yellow")
     }
     if (pet?.adoptionStatus === 'Fostered') {
-      setColorStatus("blue")
+      setColorStatus("teal")
     } if (pet?.adoptionStatus === 'Adopted') {
-      setColorStatus("purple")
+      setColorStatus("red")
     }
   }, [pet]);
 
@@ -80,7 +79,7 @@ function PetCard({ pet}) {
     
       <Card mt={5} className='font'  
        _hover={{
-        bgGradient: 'linear(to-r, gray.100, purple.100)',
+        bgGradient: 'linear(to-r, yellow.100, gray.100)',
        cursor: 'pointer'
       }}
 
@@ -90,10 +89,6 @@ function PetCard({ pet}) {
       >
         <Image
           objectFit='cover'
-          maxW={{ base: '100%', sm: '400px', md: '380px', lg: '400px' }}
-          minW={{ base: '100%', sm: '380px', md: '340px', lg: '250px' }}
-          maxH={{ base: '100%', sm: '180px', md: '220px', lg: '220px' }}
-          minH={{ base: '100%', sm: '150px', md: '200px', lg: '170px' }}
 
           src={pet.picture ? pet.picture :
             pet.type == 'Dog' ?
@@ -110,10 +105,11 @@ function PetCard({ pet}) {
           <CardBody
           
           >
-            <Heading size='md'> {pet.name}
+            <Stack  direction='row'> 
+            <Text fontSize={['lg', 'lg', 'xl', '2xl']} className='font-weird'>{pet.name}</Text>
               <Tag fontSize='0.8em' ml={4} colorScheme={colorStatus}>{pet?.adoptionStatus}</Tag>
 
-            </Heading>
+            </Stack>
             {/* <Text py='2'>
              
             </Text> */}
@@ -153,10 +149,10 @@ function PetCard({ pet}) {
           <ButtonGroup spacing='3'>
 
           
-          <Button rightIcon={ <InfoOutlineIcon/>} variant='outline' 
+          <Button rightIcon={ <InfoOutlineIcon/>} 
           size={['xs', 'xs', 'xs', 'sm']}
           
-          colorScheme='purple' onClick={navigatePetsParams}>
+          colorScheme='yellow' onClick={navigatePetsParams}>
               More info
              
             </Button>

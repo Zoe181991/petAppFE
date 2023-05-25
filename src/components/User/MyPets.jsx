@@ -35,29 +35,22 @@ function MyPets() {
     <div className='main-container'>
 
     
-      <Text 
-  bgGradient='linear(to-r, teal.500, purple.500)'
-  bgClip='text'
-  fontSize='4xl'
-  fontWeight='extrabold'
-  mb={6}
->
-My Pets
-</Text>
 
-      <Stack w="60%">
+<Text  className='main-header' mb={3} textColor='red.800' 
+      fontSize={['xl', '2xl', '3xl', '5xl']}> My Pets</Text>
 
-        <Tabs isFitted variant='line' colorScheme='purple' >
-          <TabList mb='1em'>
-            <Tab>   <Box className="font" as="span" flex='1' textAlign='center' fontSize='1.2em'>
+      <Stack width={['90%', '80%','65%','60%']}>
+        <Tabs isFitted variant='enclosed-colored' color='red.800' colorScheme='red' >
+          <TabList className=" font-weird" as="span" flex='1' textAlign='center'  mb='1em'>
+            <Tab fontSize={['md', 'lg', 'xl', '2xl']}> 
               Saved Pets
-            </Box></Tab>
-            <Tab>   <Box className="font" as="span" flex='1' textAlign='center' fontSize='1.2em'>
+            </Tab>
+            <Tab fontSize={['md', 'lg', 'xl', '2xl']}> 
               Fostered Pets
-            </Box></Tab>
-            <Tab>   <Box className="font" as="span" flex='1' textAlign='center' fontSize='1.2em'>
+            </Tab>
+            <Tab fontSize={['md', 'lg', 'xl', '2xl']}> 
               Adopted Pets
-            </Box></Tab>
+            </Tab>
           </TabList>
           <TabPanels>
             <TabPanel>

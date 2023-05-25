@@ -4,8 +4,14 @@
   text-align: center;
   align-items: center;
   flex-direction: column;
-  /* background-color: #f2e9e4; */
+  background-color: #f9de10;
 }
+
+html{
+  background-color: #f9de10;
+
+}
+
 
 
 
@@ -69,6 +75,11 @@
 
 }
 
+.bg{
+  background-color: #f9de10;
+  height: 90vh;
+}
+
 
 
 
@@ -100,30 +111,73 @@
 
 .icon-mgR{
   margin-right: 1em;
-  margin-right: 1em;
+}
+
+
+.icon-nav{
+  height: 1.2em;
+  margin-right: 10px;
+}
+
+
+
+/* @media (prefers-reduced-motion: no-preference) {
+  .icon-nav {
+    animation: App-logo-spin infinite 20s linear;
+  }
+} */
+
+@media (min-width: 800px) and (max-width: 1050px) {
+  .icon-nav {
+    height: 1.5em;
+  }
+}
+
+@media (min-width: 500px) and (max-width: 800px) {
+  .icon-nav {
+    height: 2em;
+  }
+}
+
+@media (min-width: 200px) and (max-width: 500px) {
+  .icon-nav {
+    height: 2.3em;
+  }
 }
 
 /* NavBar */
+
+.navBar{
+
+  background-color: rgb(139, 4, 4);
+
+}
+
+.font-weird{
+  font-family: 'Kalam', cursive;
+}
+
+.font{
+  font-family: 'Poppins', sans-serif;
+ }
+
 
 
 .navLink {
   margin-right: 1em;
   margin-left: 1em;
-  color:black;
-  font-family: 'Poppins', sans-serif;
+  color:rgb(255, 255, 255);
+  font-family: 'Kalam', cursive;
 
 }
 
 .navLink:hover {
 
-  color: #553C9A;
+  color: #f9de10;
 
 }
 
-.font{
-  font-family: 'Poppins', sans-serif;
 
-}
 
 /* .nav-right {
   display: flex;
@@ -134,9 +188,9 @@
 } */
 
 .active-page {
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Kalam', cursive;
 
-  color: #553C9A;
+  color: #f9de10;
   margin-right: 1em;
   margin-left: 1em;
 }
@@ -151,17 +205,18 @@ a:visited {
 
 /* Home Page */
 .main-header {
-  font-family: 'Mukta', sans-serif;
-  font-family: 'Signika Negative', sans-serif;
-  font-size: 3em;
+  font-family: 'Titan One', cursive; 
 }
-.main-header:hover {
-  cursor: pointer;
+
+
+
+.font-titan{
+  font-family: 'Titan One', cursive;
+
 }
 
 .sub-header {
-  font-family: 'Mukta', sans-serif;
-  font-family: 'Signika Negative', sans-serif;
+  font-family: 'Kalam', cursive;
   font-size: 1.5em;
   margin-bottom: 0.5em;
 }

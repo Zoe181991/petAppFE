@@ -11,7 +11,7 @@ import axios from 'axios';
 
 function UpdatePassword() {
 
-    const { loggedInUser, setLoggedInUser, errorMsgClient, setErrorMsgClient, fetchInfo } = useContext(UsersContextInstance);
+    const { isLoading, setIsLoading, loggedInUser, setLoggedInUser, errorMsgClient, setErrorMsgClient, fetchInfo } = useContext(UsersContextInstance);
     const { loggedInUserID } = useContext(AuthContextInstance);
 
     const [password, setPassword] = useState("");
@@ -42,9 +42,19 @@ function UpdatePassword() {
 
 
     const updatePassword = async (updatedPasswords) => {
-        const res = await axios.put(`${process.env.REACT_APP_SERVER_URL}/users/update/password/${loggedInUser._id}`, updatedPasswords,  { withCredentials: true });
-        setLoggedInUser(res.data)
-        console.log(res.data)
+        setIsLoading(true)
+
+        try {
+            const res = await axios.put(`${process.env.REACT_APP_SERVER_URL}/users/update/password/${loggedInUser._id}`, updatedPasswords, { withCredentials: true });
+            setLoggedInUser(res.data)
+            console.log(res.data)
+            setIsLoading(false)
+
+        } catch (err) {
+            console.log(err)
+            setIsLoading(false)
+        }
+
     }
 
 
@@ -71,45 +81,38 @@ function UpdatePassword() {
 
     return (
         <div className='main-container'>
-        <Stack minW='10em' spacing={4} width={['100%', '90%', '70%']} align='center' 
-        maxW={450}>
+            <Stack minW='10em' spacing={4} width={['100%', '80%', '60%', '50%']} align='center' >
 
-               <Text
-                    fontSize={{base: '3xl', sm: '3xl', md: '4xl', lg: '4xl' }}
-                    bgGradient='linear(to-r, teal.500, purple.500)'
-                    bgClip='text'
-                    fontWeight='extrabold'
-                    mb={6}
-                >
-                    Update Password
-                </Text>
-             
+
+                <Text className='main-header' mb={3} textColor='red.800'
+                    fontSize={['2xl', '3xl', '4xl', '5xl']}>  Update Password</Text>
+
 
                 <FormControl isInvalid={!passwordsMatch}>
                     {/* <p className='user-edit-field'>Enter a new Password:</p> */}
-                    <Text  
-                    fontSize={{base: 'md', sm: 'md', md: 'xl', lg: 'xl' }}
-                    fontWeight='medium'
-                    className='user-edit-field font'>
-                    Enter a new Password:                </Text>
+                    <Text
+                        fontSize={{ base: 'md', sm: 'md', md: 'xl', lg: 'xl' }}
+                        fontWeight='medium'
+                        className='user-edit-field font'>
+                        Enter a new Password:                </Text>
 
 
-                    <Input type='password' 
-                    variant='filled' value={password} onChange={(e) => setPassword(e.target.value)} />
+                    <Input type='password'
+                        variant='filled' value={password} onChange={(e) => setPassword(e.target.value)} />
 
-                  
 
-                    <Text 
-                    fontSize={{base: 'md', sm: 'md', md: 'xl', lg: 'xl' }}
-                    fontWeight='medium'
-                    className='user-edit-field font'>
-                  Retype your Password:             </Text>
-                    <Input minW='10em' type='password' variant='filled' value={repassword} onChange={handleConfirmPasswordChange} />
+
+                    <Text
+                        fontSize={{ base: 'md', sm: 'md', md: 'xl', lg: 'xl' }}
+                        fontWeight='medium'
+                        className='user-edit-field font'>
+                        Retype your Password:             </Text>
+                    <Input mb={6}  minW='10em' type='password' variant='filled' value={repassword} onChange={handleConfirmPasswordChange} />
                     <FormErrorMessage>Passwords doesn't match!</FormErrorMessage>
                 </FormControl>
 
 
-                <Button 
+                {/* <Button 
                 width={{base: 'xs', md: 'sm', lg: 'md' }}
                 onClick={handlePasswordUpdate} isDisabled={!passwordsMatch} mt={10}
                 color='white' maxW='15em' minW='10em' bgGradient='linear(to-r, teal.500, purple.500)'
@@ -122,7 +125,31 @@ function UpdatePassword() {
               variant='outline'
               spinnerPlacement='start'
             >
-              Update password</Button>
+              Update password</Button> */}
+
+
+                <Button
+                className='font-weird' isDisabled={!passwordsMatch}
+                    onClick={handlePasswordUpdate} color='white' 
+                    h='2.6em'
+                    width={['15em', '20em', '25em', '30em']}
+                    p={1}
+                    bgColor='red.800'
+                    size='lg'
+                    borderBlockEndWidth={4}
+                    _hover={{
+                        bgGradient: 'linear(to-r, gray.200, gray.100)',
+                        color: 'black'
+                    }}
+                    isLoading={isLoading}
+                    loadingText='Loading'
+                    colorScheme='red'
+                    variant='outline'
+                    spinnerPlacement='start'
+                >
+                    Update password</Button>
+
+
                 <div className='errorMsg'>{errorMsgClient}</div>
 
             </Stack>

@@ -9,7 +9,8 @@ import { Avatar, AvatarGroup } from '@chakra-ui/react'
 import { AuthContextInstance } from '../contex/AuthContext';
 import { Flex, Stack, Spacer, Show, Hide } from '@chakra-ui/react'
 import axios from 'axios';
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faHomeUser, faMagnifyingGlass, faPaw } from '@fortawesome/free-solid-svg-icons'
 
 function Navbar({ onOpen }) {
 
@@ -42,141 +43,161 @@ function Navbar({ onOpen }) {
 
   return (
     <>
-        <Box bg='#EDF2F7'  h='20%' width={['100%', '100%', '100%']} 
+      
+      <Box  className='navBar' h='20%'
         wrap='false'
         align='center'
-          display={{ base: 'flex', md: 'flex' }}
-          // pr={{ base:6, md: 15}} pl={{ base: 6, md: 15 }}
-          pt={{ base: 6,  lg: 8 }} pb={{ base: 6, lg: 8}}
+        display={{ base: 'flex', md: 'flex' }}
+        pt={{ base: 6, lg: 8 }} pb={{ base: 6, lg: 8 }}
+        color='white' alignItems='center'>
 
-          color='white' alignItems='center'>
-          {/* <nav className='NavContainer'> */}
-          <Box
-            fontSize={['sm', 'md', 'lg', 'lg']}
-            ml={{base: 2, sm: 2, md: 12, lg: 30}}
-          >
-            <NavLink to={isAdmin ? '/admin' : '/'}>
-              {({ isActive }) => (
-                <span className={isActive ? "active-page" : "navLink"}>Home</span>
-              )}
-            </NavLink>
-
-            <NavLink to='/search'>
-              {({ isActive }) => (
-                <span className={isActive ? "active-page" : "navLink"}>Search</span>
-              )}
-            </NavLink>
-            {!loggedInUser ?
-              <></>
-              :
-              <NavLink to='/mypets'>
-                {({ isActive }) => (
-                  <span className={isActive ? "active-page" : "navLink"}>My pets</span>
-                )}
-              </NavLink>
-            }
-          </Box>
-
-          <Spacer />
-          {/* <Box w='30%'>
-            <Input variant='filled' bg='white' placeholder='Search for your new best friend...' />
-          </Box> */}
-
-
-
-          <Stack direction='row' justify='right' align='center'
-            fontSize={['sm', 'sm', 'md', 'md']}
-            mr={{base: 5, md: 15, lg: 30}}
-
-            >
-
-
-            {!loggedInUser ?
-              <></>
-              :
+<Stack direction='row' shouldWrapChildren='false'> 
+        <Box
+          fontSize={['md', 'lg', '2lg', '2xl']}
+          ml={{ base: 2, sm: 8, md: 12, lg: 30 }}
+        >
+          <NavLink to={isAdmin ? '/admin' : '/'}>
+            {({ isActive }) => (
               <>
-                <NavLink to='/userprofile/edit'
-                  >
-                  <AvatarGroup >
-                    <Avatar bg='#553C9A' src={loggedInUser.picture} />
-                  </AvatarGroup>
-                </NavLink>
+                <span className={isActive ? "active-page" : "navLink"}>
+                  <FontAwesomeIcon className='icon-nav'
+                    icon={faHomeUser} />
+                  <Hide below='md'> Home  </Hide>
+                </span>
 
-                <Menu className='font'
-                
-                >
-                  {loggedInUser &&
-                    <MenuButton as={Button} color='black' colorScheme='gray' rightIcon={<SettingsIcon />}>
-                      <Show above='md'> {loggedInUser.first_name}'s Profile</Show>
-                    </MenuButton>
-                  }
-
-                  <MenuList color='black'>
-                    <MenuGroup title='Profile'>
-                      <NavLink to='/userprofile/edit'>
-                        <MenuItem>Edit Profile</MenuItem>
-                      </NavLink>
-
-                      <NavLink to='/userprofile/updatepassword'>
-                        <MenuItem>Update your password</MenuItem>
-                      </NavLink>
-
-
-                      <MenuItem onClick={handleSignout}>Sign Out</MenuItem>
-
-                    </MenuGroup>
-                    <MenuDivider />
-                    <MenuGroup title='Pets'>
-                      <NavLink to='/mypets'>
-                        <MenuItem>My Pets </MenuItem>
-                      </NavLink>
-                      <NavLink to='/search'>
-                        <MenuItem>Search for a pet</MenuItem>
-                      </NavLink>
-                    </MenuGroup>
-                  </MenuList>
-                </Menu>
               </>
-            }
+            )}
+          </NavLink>
 
-
-
-            {!loggedInUser ?
-              <NavLink onClick={onOpen} to='/login' 
-              fontSize={['sm', 'md', 'lg', 'xl']}>
-                <Button ml={3} bgGradient='linear(to-r, teal.500, purple.500)'
-                  _hover={{
-                    bgGradient: 'linear(to-r, teal.200, purple.200)',
-                  }}
-
-                  onClick={onOpen}>
-                  <span>Login</span>
-                </Button>
-              </NavLink>
-              :
-
+          <NavLink to='/search'>
+            {({ isActive }) => (
               <>
-                <Hide below='lg'>
+                <span className={isActive ? "active-page" : "navLink"}>
+                  <FontAwesomeIcon className='icon-nav' icon={faMagnifyingGlass} />
+                  <Hide below='md'>
+                    Search
+                  </Hide>
+                </span>
+              </>
+            )}
+          </NavLink>
 
-                  <Button 
-                  size='sm'
-                  mr={{base: 1, lg:2}} ml={{base: 1, lg:2}}
+
+          {!loggedInUser ?
+            <></>
+            :
+            <NavLink to='/mypets'>
+              {({ isActive }) => (
+
+                <span className={isActive ? "active-page" : "navLink"}>
+                  <FontAwesomeIcon className='icon-nav' icon={faPaw} />
+                  <Hide below='md'>My pets</Hide></span>
+              )}
+            </NavLink>
+          }
+        </Box>
+        </Stack>
+
+        <Spacer />
+
+
+
+        <Stack direction='row' justify='right' align='center'
+          fontSize={['sm', 'sm', 'md', 'md']}
+          mr={{ base: 5, md: 15, lg: 30 }}
+
+        >
+
+
+          {!loggedInUser ?
+            <></>
+            :
+            <>
+              <NavLink to='/userprofile/edit'
+              >
+                <AvatarGroup mr={3} >
+                  <Avatar bg='#553C9A' src={loggedInUser.picture} />
+                </AvatarGroup>
+              </NavLink>
+
+
+             
+
+              <Menu>
+                {loggedInUser &&
+                  <MenuButton className='font-weird' as={Button} colorScheme='yellow'  rightIcon={<SettingsIcon />}>
+                    <Show  above='md'> {loggedInUser.first_name}'s Profile</Show>
+                  </MenuButton>
+                }
+
+                <MenuList textColor='red.800' className='font'>
+                  <MenuGroup title='Profile'>
+                    <NavLink to='/userprofile/edit'>
+                      <MenuItem>Edit Profile</MenuItem>
+                    </NavLink>
+
+                    <NavLink to='/userprofile/updatepassword'>
+                      <MenuItem>Update your password</MenuItem>
+                    </NavLink>
+
+
+                    <MenuItem onClick={handleSignout}>Sign Out</MenuItem>
+
+                  </MenuGroup>
+                  <MenuDivider />
+                  <MenuGroup title='Pets'>
+                    <NavLink to='/mypets'>
+                      <MenuItem>My Pets </MenuItem>
+                    </NavLink>
+                    <NavLink to='/search'>
+                      <MenuItem>Search for a pet</MenuItem>
+                    </NavLink>
+                  </MenuGroup>
+                </MenuList>
+              </Menu>
+            </>
+          }
+
+
+
+          {!loggedInUser ?
+            <NavLink onClick={onOpen} to='/login'
+            >
+              <Button fontSize={['sm', 'md', 'lg', '3xl']}
+                className="font-weird" color='#8B0404' ml={3}
+                bgGradient='linear(to-r, yellow.300, white)'
+                _hover={{
+                  bgGradient: 'linear(to-r, yellow.100, white)',
+                }}
+
+                onClick={onOpen}>
+                Login
+              </Button>
+            </NavLink>
+            :
+
+            <>
+              <Hide below='lg'>
+                <Button ml={5}
+                className='font-weird'
+                  fontSize={['sm', 'md', 'lg']}
+                  mr={{ base: 1, lg: 2 }} 
                   bgGradient='linear(to-r, orange.500, pink.500)'
                   _hover={{
                     bgGradient: 'linear(to-r, orange.200, pink.200)',
                   }}
 
                   onClick={handleSignout}>
-                  <span>Sign Out</span>
+                 Sign Out
                 </Button>
 
 
-                </Hide>
-              </>
+              </Hide>
+            </>
 
-            }
-          </Stack>
-        </Box>
+          }
+        </Stack>
+      </Box>
     </>
   )
 }

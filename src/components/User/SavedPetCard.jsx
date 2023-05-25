@@ -32,16 +32,17 @@ function SavedPetCard({ pet }) {
       },[])
 
 
+
     useEffect(() => {
         if (pet?.adoptionStatus === 'Available') {
-            setColorStatus("green")
+          setColorStatus("yellow")
         }
         if (pet?.adoptionStatus === 'Fostered') {
-            setColorStatus("blue")
+          setColorStatus("teal")
         } if (pet?.adoptionStatus === 'Adopted') {
-            setColorStatus("purple")
+          setColorStatus("red")
         }
-    }, [pet]);
+      }, [pet]);
 
     const handleClick = () => {
         setIsFilled(!isFilled);

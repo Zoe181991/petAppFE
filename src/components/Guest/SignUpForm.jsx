@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react'
 import { FormControl, FormLabel, FormErrorMessage, FormHelperText, } from '@chakra-ui/react'
 import { Input, InputGroup, InputLeftAddon } from '@chakra-ui/react'
-import { Button,  } from '@chakra-ui/react'
+import { Button, Stack  } from '@chakra-ui/react'
 import {  useNavigate } from 'react-router-dom';
 import { UsersContextInstance } from '../../contex/UsersContext';
 import axios from 'axios';
@@ -105,11 +105,15 @@ function SignUpForm({ initialRef, onClose}) {
 
             <div className='errorMsg'>{errorMsgClient}</div>
 
+            <Stack  mt={6} direction='row' justifyContent='center'>
 
-            <Button onClick={handleSubmit} colorScheme='purple' mr={3} mt={6}>
+            <Button onClick={handleSubmit} className="font-weird" color='red.800'  colorScheme='yellow' 
+            mr={3} size='lg'>
                 Sign Up
             </Button>
-            <Button mt={6} onClick={navigateHome}>Cancel</Button>
+
+            <Button size='lg' className="font-weird" onClick={navigateHome}>Cancel</Button>
+            </Stack>
         </>
     )
 }

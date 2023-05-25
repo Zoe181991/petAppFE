@@ -96,16 +96,11 @@ function UserProfile() {
 
     return (
         <div className='main-container'>
-           <Stack spacing={4} width={['100%', '90%', '70%']} align='center' >
 
-            <Text fontSize={{base: '3xl', sm: '3xl', md: '4xl', lg: '4xl' }}
-                bgGradient='linear(to-r, teal.500, purple.500)'
-                bgClip='text'
-                fontWeight='extrabold'
-                mb={6}
-            >
-                Edit your profile      </Text>
+                <Text  className='main-header' mb={3} textColor='red.800' 
+      fontSize={['xl', '2xl', '3xl', '5xl']}>  Edit your profile</Text>
 
+<Stack width={['90%', '80%','65%','60%']} align='center'>
 
             <Card maxW='md'>
                 <CardHeader>

@@ -38,6 +38,7 @@ function App() {
             <UsersContext>
             <AdminContext>
               <Navbar onOpen={onOpen} />
+              <div className='bg'>
               <Routes>
                 {/* //Admin */}
                 <Route path='/' element={<Home />} />
@@ -69,6 +70,7 @@ function App() {
                 <Route path='userprofile/updatepassword' element={<PrivateRouteUser><UpdatePassword /></PrivateRouteUser>} />
 
               </Routes>
+              </div>
               </AdminContext>
             </UsersContext>
           </PetsContext>
