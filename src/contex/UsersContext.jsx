@@ -4,6 +4,7 @@ import axios from 'axios';
 import {useNavigate } from 'react-router-dom';
 import { AuthContextInstance } from './AuthContext';
 import { PetsContextInstance } from './PetsContext';
+import { useToast } from '@chakra-ui/react'
 
 
 
@@ -19,12 +20,22 @@ const UsersContext = ({ children }) => {
     const { setSavedPetsList, setFosteredPetsList, setAdoptedPetsList } = useContext(PetsContextInstance);
     
     const navigate = useNavigate();
+    const toast = useToast();
 
     useEffect(()=>{
         if(loggedInUser){
             fetchInfo(loggedInUserID);
         }
     },[])
+
+    const ErrorToast = (error)=>{
+        toast({ title: 'Something went wrong',
+            description: error,
+            status: 'warning',
+            duration: 5000,
+            isClosable: true,})
+   
+    }
 
     const fetchInfo = async (id) => {
         try {
@@ -101,6 +112,7 @@ const UsersContext = ({ children }) => {
         }
         catch (err) {
             setErrorMsgClient(err.response.data)
+            ErrorToast(err.response.data)
             console.log(err);
             setIsLoading(false)
 

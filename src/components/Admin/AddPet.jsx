@@ -67,13 +67,25 @@ function AddPet() {
             console.log(res.data)
             if (res.data.status==='201') {
                 setIsLoading(false)
+                // toast({
+                //     title: res.data.name + " is now registered!",
+                //     description: res.data.name + " the " + res.data.type + " was added succsufly!",
+                //     status: 'success',
+                //     duration: 3000,
+                //     isClosable: true,
+                // })
+
                 toast({
-                    title: res.data.name + " is now registered!",
-                    description: res.data.name + " the " + res.data.type + " was added succsufly!",
+                    position: 'bottom',
                     status: 'success',
                     duration: 3000,
+                    render: () => (
+                      <Box className='font-weird' color='red.800' p={3} bg='gray.200'>
+                        description: {res.data.name} + " the " + {res.data.type} + " was added succsufly!" ✅
+                      </Box>
+                    ),
                     isClosable: true,
-                })
+                  })
             }
         }
         catch (err) {
