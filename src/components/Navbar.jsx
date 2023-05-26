@@ -48,15 +48,15 @@ function Navbar({ onOpen }) {
        justifyContent='center' pt={{ base: 6, lg: 8 }} pb={{ base: 6, lg: 8 }} color='white' >
 
 
-        <Stack  direction='row' alignItems='center'    fontSize={['sm', 'md', 'lg', 'xl']}
+        <Stack  direction='row' alignItems='baseline'    fontSize={['sm', 'md', 'lg', '3lg']}
             ml={{ base: '1em', sm: '2em', md: '2em', lg: '3em'}}>
+
+
+<NavLink to={isAdmin ? '/admin' : '/'}>
 
           <Image 
             className='logo-navbar'
             src="https://res.cloudinary.com/dwhknzktx/image/upload/v1685119482/logoNavBar_ifohh7.png" />
-
-          
-         
 
           {/* <Box alignContent='baseline'
             fontSize={['sm', 'md', 'lg', 'xl']}
@@ -67,6 +67,8 @@ function Navbar({ onOpen }) {
             Pawsitive Adoptions  
             </Hide>
             </Text>
+            </NavLink>
+
 
             <NavLink to={isAdmin ? '/admin' : '/'}>
               {({ isActive }) => (

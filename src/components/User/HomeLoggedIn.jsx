@@ -1,19 +1,75 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { useContext } from 'react'
 import { UsersContextInstance } from '../../contex/UsersContext';
-import { Card, CardHeader, CardBody, CardFooter, Text, Button, Heading, SimpleGrid, GridItem, Grid, Stack } from '@chakra-ui/react'
+import { Card, IconButton, CardHeader, CardBody, CardFooter, Text, Button, Heading, SimpleGrid, GridItem, Grid, Stack } from '@chakra-ui/react'
 import { useNavigate, NavLink } from 'react-router-dom';
 import { AuthContextInstance } from '../../contex/AuthContext';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faRuler, faShieldDog, faPaw, faWeightScale, faHeart, faGear } from '@fortawesome/free-solid-svg-icons'
 import CountAnimation from './CountAnimation';
+import {ArrowRightIcon } from '@chakra-ui/icons'
+import axios from 'axios';
+
 
 function HomeLoggedIn() {
-  const { loggedInUser, setLoggedInUser, fetchInfo } = useContext(UsersContextInstance);
+  const { loggedInUser, setLoggedInUser, fetchInfo, isLoading, setIsLoading } = useContext(UsersContextInstance);
   const { loggedInUserID, } = useContext(AuthContextInstance);
   const navigate = useNavigate();
 
+  const[countAdopted, setCountAdopted] = useState("")
+  const[countUsers, setCountUsers] = useState("")
+  const[countAvailable, setCountAvailable] = useState("")
 
+  useEffect(()=>{
+fetchAdopted();
+fetchAvailable()
+fetchAllUsers()
+  },[])
+
+  const fetchAdopted = async()=>{
+    setIsLoading(true)
+
+    try{
+      const res = await axios.get(`${process.env.REACT_APP_SERVER_URL}/pets/adopted`, { withCredentials: true });
+      setCountAdopted(res.data.length)
+      setIsLoading(false)
+    }catch(err){
+      console.log(err)
+      setIsLoading(false)
+    }
+  }
+
+  const fetchAvailable = async()=>{
+    setIsLoading(true)
+
+    try{
+      const res = await axios.get(`${process.env.REACT_APP_SERVER_URL}/pets/available`, { withCredentials: true });
+      setCountAvailable(res.data.length)
+      setIsLoading(false)
+
+    }catch(err){
+      console.log(err)
+      setIsLoading(false)
+
+    }
+
+  }
+
+  const fetchAllUsers = async()=>{
+    setIsLoading(true)
+
+    try{
+      const res = await axios.get(`${process.env.REACT_APP_SERVER_URL}/users`, { withCredentials: true });
+      setCountUsers(res.data.length)
+      setIsLoading(false)
+
+    }catch(err){
+      console.log(err)
+      setIsLoading(false)
+
+    }
+
+  }
 
 
 
@@ -24,34 +80,43 @@ function HomeLoggedIn() {
                     fontSize={['3xl', '4xl', '4xl', '5xl']}>  Hello {loggedInUser?.first_name} {loggedInUser?.last_name}</Text>
 
 
-      <Stack >
-        <SimpleGrid className='font' mt={6} spacing={4} templateColumns='repeat(3, minmax(200px, 3fr))'
+      <Stack width={['100%', '100%', '90%']}>
+
+        <SimpleGrid className='font'  maxChildHeight='400px' minChildWidth='220px' spacing='10px'
         >
           {/* templateColumns='repeat(auto-fill, minmax(200px, 3fr))'minChildWidth='150px' */}
           <NavLink to='/mypets'>
-            <Card bgColor='purple.50' _hover={{
+            <Card  bgColor='purple.50' _hover={{
               bgGradient: 'linear(to-r, orange.200, pink.200)',
             }} >
               <CardHeader className='header-card'>
-                <Heading size='md'> My Pets
-                </Heading>
+                <Text fontSize='3xl' className='font-weird'> My Pets
+                </Text>
                 <FontAwesomeIcon size='xl' icon={faHeart} />
               </CardHeader>
 
               <CardBody>
-                <Text>View a summary of all your pets.</Text>
+                <Text>View a summary of all your pets.
+
+                <IconButton ml={3} bgColor='#f9de10' icon={<ArrowRightIcon/>} p={2} size='xs' onClick={(e) => { navigate('/mypets') }}></IconButton>
+
+                </Text>
+                {!isLoading &&
                 <Text fontSize='6xl' fontWeight='extrabold'> 
-                <CountAnimation duration={"30000"} targetNumber={"100"}>
-</CountAnimation></Text> 
+                <CountAnimation duration={"2000"} targetNumber={countAdopted}>
+</CountAnimation></Text> }
 
-<Text>pets were adopted so far</Text>
+<Text fontSize='xl' color='red.800' className='font-weird'>pets had found a new home!</Text>
 
-               
-              
-              
               </CardBody>
               <CardFooter justify='center'>
-                <Button onClick={(e) => { navigate('/mypets') }}>View here</Button>
+
+                <Button p={4} className='font-weird' onClick={(e) => { navigate('/mypets') }} color='red.800' w='10em' 
+            size="lg" bgColor='#f9de10' borderBlockEndWidth={4} _hover={{
+                bgGradient: 'linear(to-r, gray.200, gray.100)',
+                color: 'black'}}
+              > View My Pets</Button>
+
               </CardFooter>
             </Card>
           </NavLink>
@@ -66,21 +131,36 @@ function HomeLoggedIn() {
             }} >
 
               <CardHeader className='header-card'>
-                <Heading size='md'> Adopt a pet!</Heading>
+
+                <Text fontSize='3xl' className='font-weird'> Adopt a pet!
+                </Text>
 
                 <FontAwesomeIcon size='xl' icon={faPaw} />
               </CardHeader>
               <CardBody>
-                <Text>Search for your perfect match</Text>
+                <Text >Search for your perfect match
+
+                <IconButton ml={3} bgColor='#f9de10' icon={<ArrowRightIcon/>} p={2} size='xs' onClick={(e) => { navigate('/search') }}></IconButton>
+
+
+                </Text>
+
                 <Text fontSize='6xl' fontWeight='extrabold'> 
-                <CountAnimation duration={"30000"} targetNumber={"67"}>
+                <CountAnimation duration={"2000"} targetNumber={countAvailable}>
 </CountAnimation></Text> 
-<Text>pets are waiting to find a new home!</Text>
+<Text fontSize='xl' color='red.800' className='font-weird'>pets are waiting to find a new home!</Text>
 
 
               </CardBody>
               <CardFooter justify='center'>
-                <Button onClick={(e) => { navigate('/search') }} >Find a pet</Button>
+
+                <Button className='font-weird' 
+                onClick={(e) => { navigate('/search') }} color='red.800' 
+            size="lg" bgColor='#f9de10' borderBlockEndWidth={4} _hover={{
+                bgGradient: 'linear(to-r, gray.200, gray.100)',
+                color: 'black'}}
+              > Find your furry friend
+              </Button>
               </CardFooter>
             </Card>
           </NavLink>
@@ -91,19 +171,31 @@ function HomeLoggedIn() {
               bgGradient: 'linear(to-r, orange.200, pink.200)',
             }} >
               <CardHeader className='header-card'>
-                <Heading size='md'> My profile</Heading>
+                <Text fontSize='3xl' className='font-weird'> My profile
+                </Text>
                 <FontAwesomeIcon size='xl' icon={faGear} />
               </CardHeader>
               <CardBody>
-                <Text>Set your profile</Text>
+                <Text>Set your profile
+
+                <IconButton ml={3} bgColor='#f9de10' icon={<ArrowRightIcon/>} p={2} size='xs' onClick={(e) => { navigate('/userprofile/edit') }}></IconButton>
+
+                </Text>
 
                 <Text fontSize='6xl' fontWeight='extrabold'> 
-                <CountAnimation duration={"30000"} targetNumber={"4"}>
+                <CountAnimation duration={"1000"} targetNumber={countUsers}>
 </CountAnimation></Text> 
-<Text>pepole have joined Pawsitive Adoptions so far</Text>
+<Text fontSize='xl' color='red.800' className='font-weird'>pepole joined Pawsitive Adoptions!</Text>
               </CardBody>
               <CardFooter justify='center'>
-                <Button onClick={(e) => { navigate('/userprofile/edit') }} >Edit profile</Button>
+                <Button p={4} className='font-weird' onClick={(e) => { navigate('/userprofile/edit') }} color='red.800' w='10em' 
+            size="lg" bgColor='#f9de10' borderBlockEndWidth={4} _hover={{
+                bgGradient: 'linear(to-r, gray.200, gray.100)',
+                color: 'black'}}
+              > Edit your profile</Button>
+              
+              
+              
               </CardFooter>
             </Card>
           </NavLink>

@@ -193,15 +193,19 @@ html{
 
 
 
-@media (min-width: 800px) and (max-width: 1050px) {
+@media (min-width: 800px) and (max-width: 1280px) {
   .logo-navbar {
-    height: 2em;
+    height: 3.5em;
+    padding-bottom: 0em;
+
   }
 }
 
 @media (min-width: 500px) and (max-width: 800px) {
   .logo-navbar {
-    height: 2.2em;
+    height: 4em;
+    padding-bottom: 0em;
+
   }
 }
 

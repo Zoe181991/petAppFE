@@ -15,6 +15,7 @@ import { UsersContextInstance } from '../../contex/UsersContext';
 import { AddIcon } from '@chakra-ui/icons'
 import PetsListAdminTable from './PetsListAdminTable'
 import UsersListAdminTable from './UsersListAdminTable'
+import {ArrowRightIcon } from '@chakra-ui/icons'
 
 function HomeAdmin() {
 
