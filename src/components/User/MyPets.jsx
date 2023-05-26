@@ -39,7 +39,7 @@ function MyPets() {
 <Text  className='main-header' mb={3} textColor='red.800' 
       fontSize={['3xl', '4xl', '4xl', '5xl']}> My Pets</Text>
 
-      <Stack width={['90%', '80%','65%','60%']}>
+      <Stack width={['100%', '80%','65%','60%']}>
         <Tabs isFitted variant='enclosed-colored' color='red.800' colorScheme='red' >
           <TabList className=" font-weird" as="span" flex='1' textAlign='center'  mb='1em'>
             <Tab fontSize={['md', 'lg', 'xl', '2xl']}> 
