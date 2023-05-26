@@ -1,24 +1,22 @@
 import React from 'react'
-import { FormControl, Stack, Text, Input, Button, FormErrorMessage, EditablePreview, Flex, IconButton, ButtonGroup } from '@chakra-ui/react'
-import { CheckIcon, EditIcon, CloseIcon, } from '@chakra-ui/icons'
+import { FormControl, Box, Stack, Text, Input, Button, FormErrorMessage, EditablePreview, Flex, IconButton, ButtonGroup } from '@chakra-ui/react'
+import { CheckIcon,  EditIcon, CloseIcon, } from '@chakra-ui/icons'
 import { useEditableControls } from '@chakra-ui/react'
 import { UsersContextInstance } from '../../contex/UsersContext';
 import { AuthContextInstance } from '../../contex/AuthContext';
-
 import { useEffect, useState, useContext } from 'react'
 import axios from 'axios';
+import { useToast } from '@chakra-ui/react'
 
 
 function UpdatePassword() {
 
     const { isLoading, setIsLoading, loggedInUser, setLoggedInUser, errorMsgClient, setErrorMsgClient, fetchInfo } = useContext(UsersContextInstance);
     const { loggedInUserID } = useContext(AuthContextInstance);
-
     const [password, setPassword] = useState("");
     const [repassword, setRePassword] = useState("");
-
     const [passwordsMatch, setPasswordsMatch] = useState(false);
-
+    const toast = useToast()
 
 
     useEffect(() => {
@@ -49,6 +47,19 @@ function UpdatePassword() {
             setLoggedInUser(res.data)
             console.log(res.data)
             setIsLoading(false)
+            setRePassword("")
+            setPassword("")
+            toast({
+                position: 'bottom',
+                status: 'success',
+                duration: 3000,
+                render: () => (
+                  <Box className='font-weird' color='red.800' p={3} bg='gray.200'>
+                    The password was updated successfully ✅
+                  </Box>
+                ),
+                isClosable: true,
+              })
 
         } catch (err) {
             console.log(err)

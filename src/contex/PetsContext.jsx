@@ -96,7 +96,7 @@ const PetsContext = ({ children }) => {
         duration: 3000,
         render: () => (
           <Box className='font-weird' color='red.800' p={3} bg='gray.200'>
-            Congratulations! {name} was fostered successfuly. 🐾
+            Congratulations! {name} was fostered successfully. 🐾
           </Box>
         ),
         isClosable: true,

@@ -48,7 +48,8 @@ function PetCardAdminView({ pet }) {
 
             <Image
           objectFit='cover'
-          maxH={['180px', '180px', '200px']}
+          maxW={{ base: '100%', sm: '200px' }}
+
           src={pet.picture ? pet.picture :
             pet.type == 'Dog' ?
               "https://i.pinimg.com/564x/2c/ac/e1/2cace15889eb210ce4ab764d8e49848f.jpg"

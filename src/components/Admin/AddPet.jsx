@@ -64,7 +64,8 @@ function AddPet() {
         try {
             setIsLoading(true)
             const res = await axios.post(`${process.env.REACT_APP_SERVER_URL}/admin/addpet`, formData, { withCredentials: true });
-            if (res.data) {
+            console.log(res.data)
+            if (res.data.status==='201') {
                 setIsLoading(false)
                 toast({
                     title: res.data.name + " is now registered!",
@@ -236,7 +237,7 @@ function AddPet() {
 
 
 
-                <FormControl mt={4}>
+                <FormControl mt={4} isRequired>
                     <FormLabel className='font'>Upload an image:</FormLabel>
                     <input type='file' variant='filled' onChange={(e) => setImage(e.target.files[0])} />
                 </FormControl>

@@ -8,7 +8,7 @@ import { useToast } from '@chakra-ui/react'
 import { SearchIcon, } from '@chakra-ui/icons'
 import { AuthContextInstance } from '../../contex/AuthContext';
 import { UsersContextInstance } from '../../contex/UsersContext';
-import { Switch } from '@chakra-ui/react'
+import { Switch, SimpleGrid } from '@chakra-ui/react'
 import { NumberInput, NumberInputField, NumberInputStepper, NumberIncrementStepper, NumberDecrementStepper, } from '@chakra-ui/react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faRuler, faWeightScale } from '@fortawesome/free-solid-svg-icons'
@@ -191,35 +191,32 @@ borderBlockEndWidth={4}
 
 
 
-
-            {/* <Input className='font' variant='filled' type='number' placeholder="Height in Cm" /> */}
-            <Stack direction='row' wrap='true' justify='center' isInline='true'>
+            <SimpleGrid minChildWidth='230px' spacing='40px' justify='center' isInline='true'>
 
               <InputGroup className='font'>
                 <span className="icon-mgR" >
-
                   <FontAwesomeIcon icon={faRuler} />
                 </span>
-                <FormLabel>Height (Cm):
-
+                <FormLabel>Min. Height (Cm):
 
                 </FormLabel>
                 <NumberInput name='height' value={height}
-                  onChange={(e) => setHeight(e)} size='sm' maxW={20} min={1} className='font' variant='filled' type='number' >
+                  onChange={(e) => setHeight(e)} size='sm' maxW={24} min={1} className='font' variant='filled' type='number' >
                   <NumberInputField />
                   <NumberInputStepper>
                     <NumberIncrementStepper />
                     <NumberDecrementStepper />
                   </NumberInputStepper>
-
                 </NumberInput>
               </InputGroup>
+
 
               <InputGroup className='font'>
                 <FormLabel>
                   <span className="icon-mgR" >
                     <FontAwesomeIcon icon={faWeightScale} /></span>
-                  Weight (Kg): </FormLabel>
+                  Min. Weight (Kg): </FormLabel>
+                  
                 <NumberInput name='weight' value={weight}
                   onChange={(e) => setWeight(e)}
                   colorScheme='purple' maxW={24} allowMouseWheel size='sm' min={1} className='font' variant='filled' type='number' >
@@ -230,7 +227,8 @@ borderBlockEndWidth={4}
                   </NumberInputStepper>
                 </NumberInput>
               </InputGroup>
-            </Stack>
+            
+              </SimpleGrid>
 
 
 

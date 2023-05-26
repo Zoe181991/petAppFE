@@ -6,7 +6,7 @@ import axios from 'axios';
 import { Editable, Text, Skeleton, EditableInput, EditableTextarea, FormErrorMessage, EditablePreview, Flex, IconButton, ButtonGroup, Spacer } from '@chakra-ui/react'
 import { CheckIcon, EditIcon, CloseIcon, } from '@chakra-ui/icons'
 import { useEditableControls, } from '@chakra-ui/react'
-import { Button, Select, Avatar, Card, CardHeader, Heading, CardBody, CardFooter, } from '@chakra-ui/react'
+import { Button, Box, Select, Avatar, Card, CardHeader, Heading, CardBody, CardFooter, } from '@chakra-ui/react'
 import { Checkbox, InputGroup, FormControl } from '@chakra-ui/react'
 import { Modal, ModalOverlay, ModalContent, ModalHeader, ModalFooter, ModalBody, ModalCloseButton, } from '@chakra-ui/react'
 import { DeleteIcon } from '@chakra-ui/icons'
@@ -88,6 +88,20 @@ function EditPet() {
       setPet("")
       setIsLoadingChanges(false)
 
+      toast({
+        position: 'bottom',
+        status: 'success',
+        duration: 3000,
+        render: () => (
+          <Box className='font-weird' color='red.800' p={3} bg='gray.200'>
+            The pet {pet.name} was deleted successfully 🗑️
+          </Box>
+        ),
+        isClosable: true,
+      })
+
+      navigate('/dashboard')
+
     } catch (err) {
       console.log(err)
       setIsLoadingChanges(false)
@@ -134,6 +148,18 @@ function EditPet() {
         setPet(res.data)
         setIsLoadingChanges(false)
       }
+
+      toast({
+        position: 'bottom',
+        status: 'success',
+        duration: 3000,
+        render: () => (
+          <Box className='font-weird' color='red.800' p={3} bg='gray.200'>
+            The pet {pet.name} was updated successfully ✅
+          </Box>
+        ),
+        isClosable: true,
+      })
     } catch (err) {
       console.log(err)
       setIsLoading(false)
@@ -168,15 +194,17 @@ function EditPet() {
                     fontSize={['3xl', '4xl', '4xl', '5xl']}>  Edit the pet {pet?.name}</Text>
       <Stack minW='10em' spacing={4} width={['80%', '70%', '55%', '45%']} align='center'>
 
-        <Flex className='font' flex='1' gap='2' jusitify='center' alignItems='center' flexWrap='wrap' w='100%'>
           <Stack direction='row' bgColor='gray.300' wrap={true} width={['100%', '100%', '90%']} p={5} borderRadius='md'>
-            <Avatar mr={[3, 5, 8]} name={name} src={pet?.picture} />
+            <Avatar size={['md', 'lg', 'xl']} mr={[3, 5, 8]} name={name} src={pet?.picture} />
             <Stack fontSize={['sm', 'md', 'md']} >
               <Text  ><span className='bold'>Name:</span> {pet?.name}</Text>
               <Text  ><span className='bold'>Type:</span> {pet?.type}</Text>
               <Text  ><span className='bold'>Breed:</span> {pet?.breed}</Text>
             </Stack>
-            <IconButton  onClick={onOpen} colorScheme='red' aria-label='Call Segun' size={['sm', 'md', 'md']} icon={<DeleteIcon />} />
+<Spacer/>
+            <Stack>
+            <IconButton align='right'  onClick={onOpen} colorScheme='red' aria-label='Call Segun' size={['sm', 'md', 'md']} icon={<DeleteIcon />} />
+          </Stack>
           </Stack>
 
 
@@ -296,7 +324,6 @@ function EditPet() {
             </Stack>
 
           </Stack>
-        </Flex>
       </Stack>
 
     </div>

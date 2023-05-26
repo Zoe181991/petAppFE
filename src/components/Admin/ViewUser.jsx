@@ -158,7 +158,7 @@ const fetchFosteredPets = async (id) => {
 
         <Stack className='font' p={6} bgColor='gray.100' wrap={true} width={['100%', '100%', '90%']} borderRadius='md'>
           <Stack direction='row' mb={5}>
-            <Avatar mr={[3, 5, 8]} name={user?.first_name} src={user?.picture} />
+            <Avatar size={['md', 'lg', 'xl']} mr={[3, 5, 8]} name={user?.first_name} src={user?.picture} />
             <Stack fontSize={['sm', 'md', 'md']} >
               <Text  ><span className='bold'>First Name:</span> {user?.first_name}</Text>
               <Text  ><span className='bold'>Last Name:</span> {user?.last_name}</Text>
@@ -169,12 +169,17 @@ const fetchFosteredPets = async (id) => {
               <Text  ><span className='bold'>Bio:</span> {user?.bio}</Text>
               <Text  ><span className='bold'>Member Since:</span> {user?.date_created}</Text>
             </Stack>
+            <Spacer/>
+
+<Stack>
             <IconButton onClick={onOpen} colorScheme='red' aria-label='Call Segun' size={['sm', 'md', 'md']} icon={<DeleteIcon />} />
+          </Stack>
           </Stack>
 
           <Stack mt={6} direction='row' fontWeight='normal'  justify='center' >
 
-          <Button leftIcon={<ArrowBackIcon />} onClick={(e) => { navigate('/admin') }}>
+          <Button size={['sm', 'md']}
+ className='font-weird' leftIcon={<ArrowBackIcon />} onClick={(e) => { navigate('/admin') }}>
               Back to Dashboard
             </Button>
 
@@ -187,7 +192,7 @@ _hover={{
   bgGradient: 'linear(to-r, gray.200, gray.100)',
   color: 'black'
 }}
-size={['md', 'lg']}
+size={['sm', 'md']}
 isLoading={isLoadingChanges} 
 loadingText='Saving Changes'
 colorScheme='red' 

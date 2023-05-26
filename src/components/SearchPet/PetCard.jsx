@@ -4,7 +4,8 @@ import {  useNavigate } from 'react-router-dom';
 import { useEffect, useState, useContext } from 'react'
 import { PetsContextInstance } from '../../contex/PetsContext';
 import { UsersContextInstance } from '../../contex/UsersContext';
-import { InfoOutlineIcon } from '@chakra-ui/icons'
+import { AdminContextInstance } from '../../contex/AdminContext';
+import { InfoOutlineIcon, EditIcon } from '@chakra-ui/icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faRuler,faShieldDog, faPaw, faWeightScale } from '@fortawesome/free-solid-svg-icons'
 
@@ -13,6 +14,7 @@ function PetCard({ pet}) {
 
   const [colorStatus, setColorStatus] = useState(false)
   const {petsList, savePet, removeSavedPet}=useContext(PetsContextInstance);
+  const {isAdmin}=useContext(AdminContextInstance);
   const { loggedInUser } = useContext(UsersContextInstance);
   const [isFilled, setIsFilled] = useState(false);
 
@@ -142,10 +144,21 @@ function PetCard({ pet}) {
           colorScheme='yellow' onClick={navigatePetsParams}>
               More info
             </Button>
+
+            {loggedInUser.role==='Admin' && 
+            
+            <Button className='font-weird' size='sm' color='black' colorScheme='gray'
+                       leftIcon={<EditIcon />}
+                        _hover={{
+                          bgGradient: 'linear(to-r, gray.200, gray.100)',
+                        }}
+                        onClick={(e) => navigate(`/admin/editpet/${pet._id}`)}>
+                        Edit pet</Button>}
+
             { !loggedInUser?
             <>
               <Button  onClick={(e)=>{navigate('/login')}}
-              size={['base: sm', 'sm', 'xs', 'sm', 'sm']}
+              size='sm'
               variant='ghost' colorScheme='pink'>  
               <Hide below='md'>
               Save

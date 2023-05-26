@@ -7,6 +7,7 @@ import { AuthContextInstance } from '../../contex/AuthContext';
 import { Stack, Text, HStack, VStack } from '@chakra-ui/react'
 import { useEffect, useState, useContext } from 'react'
 import axios from 'axios';
+import { useToast } from '@chakra-ui/react'
 
 
 function UserProfile() {
@@ -23,6 +24,7 @@ function UserProfile() {
     const [bio, setBio] = useState(loggedInUser ? loggedInUser?.bio : "");
 
     const [userImage, setUserImage] = useState();
+    const toast = useToast()
 
     useEffect(() => {
         fetchInfo(loggedInUserID)
@@ -44,7 +46,10 @@ function UserProfile() {
 
 
     const updateUser = async (formData) => {
-        setIsLoading(true)
+
+
+        try{
+            setIsLoading(true)
         for (const value of formData.values()) {
             console.log(value)
         }
@@ -71,6 +76,22 @@ function UserProfile() {
             setLoggedInUser(res.data)
             setIsLoading(false)
         }
+
+            toast({
+                position: 'bottom',
+                status: 'success',
+                duration: 3000,
+                render: () => (
+                  <Box className='font-weird' color='red.800' p={3} bg='gray.200'>
+                    The user {firstName} {lastName} was updated successfully ✅
+                  </Box>
+                ),
+                isClosable: true,
+              })
+        } catch(err){
+            console.log(err)
+        }
+        
     }
 
 

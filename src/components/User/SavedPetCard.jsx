@@ -1,13 +1,13 @@
 import React from 'react'
 import { Card, ButtonGroup, CardBody, CardFooter, Image, Button, Text, Stack, Heading, Skeleton } from '@chakra-ui/react'
-import { Badge, Tag } from '@chakra-ui/react'
+import { Badge, Tag, Hide } from '@chakra-ui/react'
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState, useContext } from 'react'
 import { PetsContextInstance } from '../../contex/PetsContext';
 import { UsersContextInstance } from '../../contex/UsersContext';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faRuler,faShieldDog, faPaw, faWeightScale, faFaceFrownOpen } from '@fortawesome/free-solid-svg-icons'
-import {  InfoOutlineIcon } from '@chakra-ui/icons'
+import { faRuler, faShieldDog, faPaw, faWeightScale, faFaceFrownOpen } from '@fortawesome/free-solid-svg-icons'
+import { InfoOutlineIcon } from '@chakra-ui/icons'
 
 function SavedPetCard({ pet }) {
 
@@ -22,56 +22,56 @@ function SavedPetCard({ pet }) {
         navigate(`/pets/${pet._id}`);
     };
 
-    useEffect(()=>{
+    useEffect(() => {
         setIsLoadingPets(true)
-        if(loggedInUser){
-            for(let i=0; i<loggedInUser.savedPets.length;i++){
-                if(loggedInUser.savedPets[i]===pet._id){
-                  setIsFilled(true)
-                }     
-              }
+        if (loggedInUser) {
+            for (let i = 0; i < loggedInUser.savedPets.length; i++) {
+                if (loggedInUser.savedPets[i] === pet._id) {
+                    setIsFilled(true)
+                }
+            }
         }
         setIsLoadingPets(false)
-      },[])
+    }, [])
 
 
 
     useEffect(() => {
         if (pet?.adoptionStatus === 'Available') {
-          setColorStatus("yellow")
+            setColorStatus("yellow")
         }
         if (pet?.adoptionStatus === 'Fostered') {
-          setColorStatus("teal")
+            setColorStatus("teal")
         } if (pet?.adoptionStatus === 'Adopted') {
-          setColorStatus("red")
+            setColorStatus("red")
         }
-      }, [pet]);
+    }, [pet]);
 
     const handleClick = () => {
         setIsFilled(!isFilled);
-      };
-      
-      const handleSaveBtn = ()=>{
-        if(!isFilled){
-          const saveReq = {
-            userId: loggedInUser._id,
-            petId: pet._id,
-            owner: pet.owner,
-            petName: pet.name
-        }
-    
-        savePet(saveReq)
-        } else{
+    };
+
+    const handleSaveBtn = () => {
+        if (!isFilled) {
+            const saveReq = {
+                userId: loggedInUser._id,
+                petId: pet._id,
+                owner: pet.owner,
+                petName: pet.name
+            }
+
+            savePet(saveReq)
+        } else {
             removeSavedPet(pet._id, pet.name)
         }
-    
+
     }
 
 
     return (
         <>
 
-      
+
             <Card mt={5}
                 direction={{ base: 'column', sm: 'row' }}
                 overflow='hidden'
@@ -87,154 +87,161 @@ function SavedPetCard({ pet }) {
                             "https://i.pinimg.com/564x/87/5d/a7/875da7e9bc315b93715186e0cf09667a.jpg"
 
                     }
-                    alt={pet.type}/>
+                    alt={pet.type} />
 
-<Skeleton isLoaded={!isLoadingPets}>
-                <Stack>
-                    <CardBody>
-                        <Stack  direction='row'> 
-                        <Text  fontSize={['lg', 'lg', 'xl', '2xl']} className='font-weird'>{pet.name}</Text>
-                            <Tag fontSize='0.8em' ml={4} colorScheme={colorStatus}>{pet?.adoptionStatus}</Tag>
-                        </Stack>
-                   
-                        <Tag fontWeight='normal' mt={4} mr={2} size='lg'> 
-            <span className="icon-mgR" >
-            <FontAwesomeIcon icon={faPaw} />
-            </span>
-            Type: {pet.type}
-            </Tag>
+                <Skeleton isLoaded={!isLoadingPets}>
+                    <Stack>
+                        <CardBody>
+                            <Stack direction='row'>
+                                <Text fontSize={['lg', 'lg', 'xl', '2xl']} className='font-weird'>{pet.name}</Text>
+                                <Tag fontSize='0.8em' ml={4} colorScheme={colorStatus}>{pet?.adoptionStatus}</Tag>
+                            </Stack>
 
-            <Tag fontWeight='normal' mt={4} mr={2} size='lg'>  
-            <span className="icon-mgR" >
-            <FontAwesomeIcon icon={faShieldDog} />
-            </span>
-            Breed: {pet.breed}
-            </Tag>
+                            <Tag fontWeight='normal' mt={4} mr={2} size='lg'>
+                                <span className="icon-mgR" >
+                                    <FontAwesomeIcon icon={faPaw} />
+                                </span>
+                                Type: {pet.type}
+                            </Tag>
 
-            <Tag fontWeight='normal' mt={4} mr={2} size='lg'>  
-            <span className="icon-mgR" >
-            <FontAwesomeIcon icon={faRuler} />
-            </span>
-            Height: {pet.height}</Tag>
+                            <Tag fontWeight='normal' mt={4} mr={2} size='lg'>
+                                <span className="icon-mgR" >
+                                    <FontAwesomeIcon icon={faShieldDog} />
+                                </span>
+                                Breed: {pet.breed}
+                            </Tag>
 
-            <Tag fontWeight='normal' mt={4} mr={2} size='lg'>  
-            <span className="icon-mgR" >
-            <FontAwesomeIcon icon={faWeightScale} />
-            </span>
+                            <Tag fontWeight='normal' mt={4} mr={2} size='lg'>
+                                <span className="icon-mgR" >
+                                    <FontAwesomeIcon icon={faRuler} />
+                                </span>
+                                Height: {pet.height}</Tag>
 
-            Weight: {pet.weight}</Tag>
-                    </CardBody>
+                            <Tag fontWeight='normal' mt={4} mr={2} size='lg'>
+                                <span className="icon-mgR" >
+                                    <FontAwesomeIcon icon={faWeightScale} />
+                                </span>
 
-                    <CardFooter>
-                        <ButtonGroup spacing='3'  className='font-weird'>
-                        <Button rightIcon={ <InfoOutlineIcon/>} 
-                        size={['base: sm', 'sm', 'xs', 'sm', 'sm']}
-                        p={2}
-                        colorScheme='yellow' onClick={navigatePetsParams}>
-                        More info
-                        </Button>
+                                Weight: {pet.weight}</Tag>
+                        </CardBody>
 
-                            {pet.adoptionStatus === "Available" &&
-                                <>
-                                    <Button ml={3} size='sm' color='white' onClick={() => adoptPet(pet._id, pet.name, loggedInUser)}
-                                        bgGradient='linear(to-r, purple.500, purple.300)'
-                                        _hover={{
-                                            bgGradient: 'linear(to-r, purple.400, purple.200)',
-                                        }}>
-                                        Adopt me
-                                    </Button>
+                        <CardFooter >
 
-                                    <Button 
-                                    ml={3} size='sm' color='white' onClick={() => fosterPet(pet._id, pet.name)}
-                                        bgGradient='linear(to-r, teal.400, blue.400)'
-                                        _hover={{
-                                            bgGradient: 'linear(to-r, teal.200, blue.200)',
-                                        }}>
-                                        Foster
-                                    </Button>
-
-                                    <button onClick={handleClick} className={`heart-button ${isFilled ? 'filled' : 'empty'}`}>
-                                    <Button onClick={handleSaveBtn} 
-                                    size='sm' variant='ghost' colorScheme='pink'>
-                                    {isFilled? "Saved" : "Save"}          
-                                    <div className="heart"></div>
-                                    </Button>
-                                    </button>
-                                </>
-                            }
-
-                            {pet.adoptionStatus === "Fostered" &&
-                                <>
-                                {pet.owner === loggedInUser._id ?
-                                <>
-                                <Button ml={3} size='sm' color='white' onClick={() => adoptPet(pet._id, pet.name, loggedInUser)}
-                                bgGradient='linear(to-r, purple.500, purple.300)'
-                                _hover={{
-                                bgGradient: 'linear(to-r, purple.400, purple.200)',
-                                }}>
-                                Adopt me
-
+                            <ButtonGroup spacing='3' className='font-weird' >
+                                <Button rightIcon={<InfoOutlineIcon />}
+                                    size={['base: sm', 'sm', 'xs', 'sm', 'sm']}
+                                    p={2}
+                                    colorScheme='yellow' onClick={navigatePetsParams}>
+                                    <Hide below='md'> More </Hide> info
                                 </Button>
 
+                                {pet.adoptionStatus === "Available" &&
+                                    <>
+                                        <Button ml={3} size='sm' color='white' onClick={() => adoptPet(pet._id, pet.name, loggedInUser)}
+                                            bgGradient='linear(to-r, purple.500, purple.300)'
+                                            _hover={{
+                                                bgGradient: 'linear(to-r, purple.400, purple.200)',
+                                            }}>
+                                            Adopt me
+                                        </Button>
 
-                                <Button ml={3} size='sm' variant='outline' onClick={() => removeFosteredPet(pet._id, pet.name)}
-                                leftIcon={<FontAwesomeIcon icon={faFaceFrownOpen} />} 
-                                colorScheme='gray'>
-                                Return to Shelter
-                                </Button>
+                                        <Button
+                                            ml={3} size='sm' color='white' onClick={() => fosterPet(pet._id, pet.name)}
+                                            bgGradient='linear(to-r, teal.400, blue.400)'
+                                            _hover={{
+                                                bgGradient: 'linear(to-r, teal.200, blue.200)',
+                                            }}>
+                                            Foster
+                                        </Button>
 
-                                </>
-                                :
-                                <>                         
-                                <button onClick={handleClick} className={`heart-button ${isFilled ? 'filled' : 'empty'}`}>
-                                <Button onClick={handleSaveBtn} size='sm' variant='ghost' colorScheme='pink'>
-                                {isFilled? "Saved" : "Save"}          
-                                <div className="heart"></div>
-                                </Button>
-                                </button>
-              
-            
-                                        </>
-}
-                                </>
-                            }
-
-                            {pet.adoptionStatus === "Adopted" &&
-                                <>
-                                    {pet.owner === loggedInUser._id ?
-
-                                        <>
-
-                                            <Button ml={3} size='sm' variant='outline' onClick={() => removeAdoptedPet(pet._id, pet.name)}
-                                                colorScheme='gray'
-                                                leftIcon={<FontAwesomeIcon icon={faFaceFrownOpen} />}
-                                                >
-                                                Return to Shelter
+                                        <button onClick={handleClick} className={`heart-button ${isFilled ? 'filled' : 'empty'}`}>
+                                            <Button onClick={handleSaveBtn}
+                                                size='sm' variant='ghost' colorScheme='pink'>
+                                                <Hide below='md'>
+                                                    {isFilled ? "Saved" : "Save"}
+                                                </Hide>
+                                                <div className="heart"></div>
                                             </Button>
+                                        </button>
+                                    </>
+                                }
 
-                                        </>
-                                        :
-                                        <>
-                                              <button onClick={handleClick} className={`heart-button ${isFilled ? 'filled' : 'empty'}`}>
-              <Button onClick={handleSaveBtn} 
-              size='sm' variant='ghost' colorScheme='pink'>
-              {isFilled? "Saved" : "Save"}          
-              <div className="heart"></div>
-              </Button>
-              </button>
-                                        </>
+                                {pet.adoptionStatus === "Fostered" &&
+                                    <>
+                                        {pet.owner === loggedInUser._id ?
+                                            <>
+                                                <Button ml={3} size='sm' color='white' onClick={() => adoptPet(pet._id, pet.name, loggedInUser)}
+                                                    bgGradient='linear(to-r, purple.500, purple.300)'
+                                                    _hover={{
+                                                        bgGradient: 'linear(to-r, purple.400, purple.200)',
+                                                    }}>
+                                                    Adopt me
 
-                                    }
-
+                                                </Button>
 
 
-                                </>
+                                                <Button ml={3} size='sm' variant='outline' onClick={() => removeFosteredPet(pet._id, pet.name)}
+                                                    leftIcon={<FontAwesomeIcon icon={faFaceFrownOpen} />}
+                                                    colorScheme='gray'>
+                                                    Return to Shelter
+                                                </Button>
 
-                            }
+                                            </>
+                                            :
+                                            <>
+                                                <button onClick={handleClick} className={`heart-button ${isFilled ? 'filled' : 'empty'}`}>
+                                                    <Button onClick={handleSaveBtn} size='sm' variant='ghost' colorScheme='pink'>
+                                                        <Hide below='md'>
+                                                            {isFilled ? "Saved" : "Save"}
+                                                        </Hide>
+                                                        <div className="heart"></div>
+                                                    </Button>
+                                                </button>
 
-                        </ButtonGroup>
-                    </CardFooter>
-                </Stack>
+
+                                            </>
+                                        }
+                                    </>
+                                }
+
+                                {pet.adoptionStatus === "Adopted" &&
+                                    <>
+                                        {pet.owner === loggedInUser._id ?
+
+                                            <>
+
+                                                <Button ml={3} size='sm' variant='outline' onClick={() => removeAdoptedPet(pet._id, pet.name)}
+                                                    colorScheme='gray'
+                                                    leftIcon={<FontAwesomeIcon icon={faFaceFrownOpen} />}
+                                                >
+                                                    Return to Shelter
+                                                </Button>
+
+                                            </>
+                                            :
+                                            <>
+                                                <button onClick={handleClick} className={`heart-button ${isFilled ? 'filled' : 'empty'}`}>
+                                                    <Button onClick={handleSaveBtn}
+                                                        size='sm' variant='ghost' colorScheme='pink'>
+                                                        <Hide below='md'>
+                                                            {isFilled ? "Saved" : "Save"}
+                                                        </Hide>
+                                                        <div className="heart"></div>
+                                                    </Button>
+                                                </button>
+                                            </>
+
+                                        }
+
+
+
+                                    </>
+
+                                }
+
+                            </ButtonGroup>
+                        </CardFooter>
+                    </Stack>
                 </Skeleton>
             </Card>
 
