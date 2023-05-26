@@ -1,5 +1,5 @@
 import React from 'react'
-import { Card, ButtonGroup, CardBody, CardFooter, Image, Button, Text, Stack, Heading } from '@chakra-ui/react'
+import { Card, ButtonGroup, CardBody, CardFooter, Image, Button, Text, Stack, Heading, Skeleton } from '@chakra-ui/react'
 import { Badge, Tag } from '@chakra-ui/react'
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState, useContext } from 'react'
@@ -12,7 +12,7 @@ import {  InfoOutlineIcon } from '@chakra-ui/icons'
 function SavedPetCard({ pet }) {
 
     const [colorStatus, setColorStatus] = useState(false)
-    const { removeSavedPet, fosterPet, savePet, removeFosteredPet, adoptPet, removeAdoptedPet } = useContext(PetsContextInstance)
+    const { setIsLoadingPets, isLoadingPets, removeSavedPet, fosterPet, savePet, removeFosteredPet, adoptPet, removeAdoptedPet } = useContext(PetsContextInstance)
     const { loggedInUser } = useContext(UsersContextInstance);
     const [isFilled, setIsFilled] = useState(false);
 
@@ -23,12 +23,15 @@ function SavedPetCard({ pet }) {
     };
 
     useEffect(()=>{
-        for(let i=0; i<loggedInUser.savedPets.length;i++){
-          if(loggedInUser.savedPets[i]===pet._id){
-            setIsFilled(true)
-          }
-    
+        setIsLoadingPets(true)
+        if(loggedInUser){
+            for(let i=0; i<loggedInUser.savedPets.length;i++){
+                if(loggedInUser.savedPets[i]===pet._id){
+                  setIsFilled(true)
+                }     
+              }
         }
+        setIsLoadingPets(false)
       },[])
 
 
@@ -53,12 +56,13 @@ function SavedPetCard({ pet }) {
           const saveReq = {
             userId: loggedInUser._id,
             petId: pet._id,
-            owner: pet.owner
+            owner: pet.owner,
+            petName: pet.name
         }
     
         savePet(saveReq)
         } else{
-          removeSavedPet(pet._id)
+            removeSavedPet(pet._id, pet.name)
         }
     
     }
@@ -66,11 +70,12 @@ function SavedPetCard({ pet }) {
 
     return (
         <>
+
+      
             <Card mt={5}
                 direction={{ base: 'column', sm: 'row' }}
                 overflow='hidden'
-                variant='outline'
-            >
+                variant='outline'>
                 <Image
                     objectFit='cover'
                     maxW={{ base: '100%', sm: '200px' }}
@@ -82,9 +87,9 @@ function SavedPetCard({ pet }) {
                             "https://i.pinimg.com/564x/87/5d/a7/875da7e9bc315b93715186e0cf09667a.jpg"
 
                     }
-                    alt={pet.type}
-                />
+                    alt={pet.type}/>
 
+<Skeleton isLoaded={!isLoadingPets}>
                 <Stack>
                     <CardBody>
                         <Stack  direction='row'> 
@@ -124,13 +129,14 @@ function SavedPetCard({ pet }) {
                         <ButtonGroup spacing='3'  className='font-weird'>
                         <Button rightIcon={ <InfoOutlineIcon/>} 
                         size={['base: sm', 'sm', 'xs', 'sm', 'sm']}
+                        p={2}
                         colorScheme='yellow' onClick={navigatePetsParams}>
                         More info
                         </Button>
 
                             {pet.adoptionStatus === "Available" &&
                                 <>
-                                    <Button ml={3} size='sm' color='white' onClick={() => adoptPet(pet._id)}
+                                    <Button ml={3} size='sm' color='white' onClick={() => adoptPet(pet._id, pet.name, loggedInUser)}
                                         bgGradient='linear(to-r, purple.500, purple.300)'
                                         _hover={{
                                             bgGradient: 'linear(to-r, purple.400, purple.200)',
@@ -139,7 +145,7 @@ function SavedPetCard({ pet }) {
                                     </Button>
 
                                     <Button 
-                                    ml={3} size='sm' color='white' onClick={() => fosterPet(pet._id)}
+                                    ml={3} size='sm' color='white' onClick={() => fosterPet(pet._id, pet.name)}
                                         bgGradient='linear(to-r, teal.400, blue.400)'
                                         _hover={{
                                             bgGradient: 'linear(to-r, teal.200, blue.200)',
@@ -159,9 +165,9 @@ function SavedPetCard({ pet }) {
 
                             {pet.adoptionStatus === "Fostered" &&
                                 <>
-                                pet.owner === loggedInUser._id ?
+                                {pet.owner === loggedInUser._id ?
                                 <>
-                                <Button ml={3} size='sm' color='white' onClick={() => adoptPet(pet._id)}
+                                <Button ml={3} size='sm' color='white' onClick={() => adoptPet(pet._id, pet.name, loggedInUser)}
                                 bgGradient='linear(to-r, purple.500, purple.300)'
                                 _hover={{
                                 bgGradient: 'linear(to-r, purple.400, purple.200)',
@@ -171,7 +177,7 @@ function SavedPetCard({ pet }) {
                                 </Button>
 
 
-                                <Button ml={3} size='sm' variant='outline' onClick={() => removeFosteredPet(pet._id)}
+                                <Button ml={3} size='sm' variant='outline' onClick={() => removeFosteredPet(pet._id, pet.name)}
                                 leftIcon={<FontAwesomeIcon icon={faFaceFrownOpen} />} 
                                 colorScheme='gray'>
                                 Return to Shelter
@@ -189,7 +195,7 @@ function SavedPetCard({ pet }) {
               
             
                                         </>
-                                    }
+}
                                 </>
                             }
 
@@ -199,7 +205,7 @@ function SavedPetCard({ pet }) {
 
                                         <>
 
-                                            <Button ml={3} size='sm' variant='outline' onClick={() => removeAdoptedPet(pet._id)}
+                                            <Button ml={3} size='sm' variant='outline' onClick={() => removeAdoptedPet(pet._id, pet.name)}
                                                 colorScheme='gray'
                                                 leftIcon={<FontAwesomeIcon icon={faFaceFrownOpen} />}
                                                 >
@@ -229,7 +235,11 @@ function SavedPetCard({ pet }) {
                         </ButtonGroup>
                     </CardFooter>
                 </Stack>
+                </Skeleton>
             </Card>
+
+
+
         </>
     )
 }

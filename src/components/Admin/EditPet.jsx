@@ -163,11 +163,10 @@ function EditPet() {
 
   return (
     <div className='main-container'>
-      <Stack minW='10em' spacing={4} width={['80%', '60%', '50%', '35%']} align='center'>
-     
-
-        <Text className='main-header' mb={3} textColor='red.800'
+      
+      <Text className='main-header' mb={3} textColor='red.800'
                     fontSize={['3xl', '4xl', '4xl', '5xl']}>  Edit the pet {pet?.name}</Text>
+      <Stack minW='10em' spacing={4} width={['80%', '70%', '55%', '45%']} align='center'>
 
         <Flex className='font' flex='1' gap='2' jusitify='center' alignItems='center' flexWrap='wrap' w='100%'>
           <Stack direction='row' bgColor='gray.300' wrap={true} width={['100%', '100%', '90%']} p={5} borderRadius='md'>
@@ -277,26 +276,22 @@ function EditPet() {
               </Stack>
             </Skeleton>
 
-            <Stack className='font' direction='row' align='center' justify='center' flexWrap='wrap' >
+            <Stack className='font' direction='row' 
+            align='center' justify='center' justifyContent='center' flexWrap='wrap' >
               <Skeleton isLoaded={!isLoading}>
                 <Button className='font-weird' mt={5} color='white' 
                   maxW='15em' minW='5em' 
                   bgColor='red.800' 
                   borderBlockEndWidth={4}
-                  _hover={{
-                    bgGradient: 'linear(to-r, gray.200, gray.100)',
-                    color: 'black'
-                }}
+                  _hover={{bgGradient: 'linear(to-r, gray.200, gray.100)', color: 'black'}}
                   size={['md', 'lg']}
                   isLoading={isLoadingChanges} 
                   loadingText='Saving Changes'
                   colorScheme='red' 
                   variant='outline'  
                   spinnerPlacement='start'
-
                   onClick={handleSubmit}>
                   Save changes</Button>
-
               </Skeleton>
             </Stack>
 

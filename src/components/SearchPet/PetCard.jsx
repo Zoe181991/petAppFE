@@ -54,13 +54,15 @@ function PetCard({ pet}) {
       const saveReq = {
         userId: loggedInUser._id,
         petId: pet._id,
-        owner: pet.owner
+        owner: pet.owner,
+        petName: pet.name
     }
     savePet(saveReq)
     } else{
-      removeSavedPet(pet._id)
+      removeSavedPet(pet._id, pet.name)
     }
 }
+
 
 
   return (
@@ -136,7 +138,7 @@ function PetCard({ pet}) {
           <ButtonGroup spacing={4} className='font-weird'>
           <Button rightIcon={ <InfoOutlineIcon/>} 
           size={['base: sm', 'sm', 'xs', 'sm', 'sm']}
-          
+          p={2}
           colorScheme='yellow' onClick={navigatePetsParams}>
               More info
             </Button>

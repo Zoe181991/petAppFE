@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react'
+import React, { useState, useContext, useEffect } from 'react'
 import { FormControl, FormLabel, FormErrorMessage, FormHelperText, } from '@chakra-ui/react'
 import { Input, InputGroup, InputLeftAddon } from '@chakra-ui/react'
 import { Button, Stack  } from '@chakra-ui/react'
@@ -19,9 +19,11 @@ function SignUpForm({ initialRef, onClose}) {
     const [password, setPassword] = useState('');
     const [repassword, setRePassword] = useState('');
 
-    const {errorMsgClient, loginReq } = useContext(UsersContextInstance);
+    const {setErrorMsgClient, errorMsgClient, loginReq } = useContext(UsersContextInstance);
 
-
+useEffect(()=>{
+    setErrorMsgClient("")
+},[])
 
     const navigateHome = () => {
         // 👇️ navigate to /

@@ -47,7 +47,9 @@ function AdminDashboard() {
         <Button className='font-weird' 
         
         onClick={(e) => navigate('/admin/addpet')}  color='white' w='10em' 
-            size="lg"
+            size={['sm', 'md', 'lg']}
+            p={2}
+            minW='10em'
             leftIcon={<AddIcon />}
 bgColor='red.800'
 borderBlockEndWidth={4}

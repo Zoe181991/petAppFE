@@ -83,8 +83,8 @@ const UsersContext = ({ children }) => {
 
 
     const loginReq = async (userDetails) => {
+        setIsLoading(true)
         try {
-            console.log("hi")
             console.log(`${process.env.REACT_APP_SERVER_URL}`)
             const res = await axios.post(`${process.env.REACT_APP_SERVER_URL}/users/login`, userDetails, {withCredentials: true});
             console.log(res.data)
@@ -94,11 +94,16 @@ const UsersContext = ({ children }) => {
                 setLoggedInUser(res.data)
                 fetchInfo(res.data.id)
                 navigate('/search')
+
             }
+            setIsLoading(false)
+
         }
         catch (err) {
-            setErrorMsgClient(err.message)
+            setErrorMsgClient(err.response.data)
             console.log(err);
+            setIsLoading(false)
+
         }
     }
 

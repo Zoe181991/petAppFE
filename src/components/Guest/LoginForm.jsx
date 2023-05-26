@@ -3,7 +3,7 @@ import {FormControl,FormLabel, Stack,} from '@chakra-ui/react'
 import { Input } from '@chakra-ui/react'
 import { Button, ButtonGroup } from '@chakra-ui/react'
 import { useNavigate} from 'react-router-dom';
-import { useState, useContext } from 'react'
+import { useState, useEffect, useContext } from 'react'
 import {UsersContextInstance} from '../../contex/UsersContext';
 
 
@@ -11,12 +11,15 @@ function LoginForm({initialRef, onClose}) {
 
     const [loginEmail, setLoginEmail]= useState("");
     const [loginPassword, setLoginPassword]= useState("");
-    const { errorMsgClient, loginReq} = useContext(UsersContextInstance);
+    const { errorMsgClient, setErrorMsgClient, loginReq, isLoading, setIsLoading} = useContext(UsersContextInstance);
 
 
 
     const navigate = useNavigate();
 
+    useEffect(()=>{
+        setErrorMsgClient("")
+    },[])
 
     const navigateHome = () => {
         // 👇️ navigate to /
@@ -49,7 +52,13 @@ function LoginForm({initialRef, onClose}) {
 
 <Stack  mt={6} direction='row' justifyContent='center'>
             <Button className="font-weird" color='red.800' onClick={handleLogin} colorScheme='yellow' 
-            mr={3} size='lg'>
+            mr={3} size='lg'
+            isLoading={isLoading} 
+loadingText='One moment...'
+variant='outline'  
+spinnerPlacement='start'
+            
+            >
                             Login
                         </Button>
            <Button size='lg' className="font-weird" onClick={navigateHome}>Cancel</Button>

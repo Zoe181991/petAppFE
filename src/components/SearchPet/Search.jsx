@@ -94,6 +94,12 @@ function Search() {
 
   }
 
+  async function clearRecReasults (){
+    console.log("hi")
+    setNumResults("")
+    setNumResultsS("")
+  }
+
 
 
 
@@ -125,7 +131,7 @@ function Search() {
             <FormLabel htmlFor='adv-search' mb='0' >
               Advanced Search?
             </FormLabel>
-            <Switch colorScheme='red' id='adv-search' />
+            <Switch onChange={clearRecReasults} colorScheme='red' id='adv-search' />
           </FormControl>
           {!advSearch &&
             <Button className='font-weird' onClick={getPetbyType} color='white' w='10em' 

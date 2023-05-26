@@ -75,20 +75,20 @@ function PetPage() {
         setIsFilled(!isFilled);
     };
 
-    const handleSaveBtn = () => {
-        if (!isFilled) {
-            const saveReq = {
-                userId: loggedInUser._id,
-                petId: pet._id,
-                owner: pet.owner
-            }
-
-            savePet(saveReq)
-        } else {
-            setchange("removeSaved")
-            removeSavedPet(pet._id)
+    const handleSaveBtn = ()=>{
+        if(!isFilled){
+          const saveReq = {
+            userId: loggedInUser._id,
+            petId: pet._id,
+            owner: pet.owner,
+            petName: pet.name
         }
-
+    
+        savePet(saveReq)
+        } else{
+            removeSavedPet(pet._id, pet.name)
+        }
+    
     }
 
 

@@ -26,6 +26,7 @@ function UserProfile() {
 
     useEffect(() => {
         fetchInfo(loggedInUserID)
+        console.log(loggedInUser)
     }, [])
 
     const handleSubmit = () => {

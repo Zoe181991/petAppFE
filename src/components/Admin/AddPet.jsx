@@ -70,7 +70,7 @@ function AddPet() {
                     title: res.data.name + " is now registered!",
                     description: res.data.name + " the " + res.data.type + " was added succsufly!",
                     status: 'success',
-                    duration: 5000,
+                    duration: 3000,
                     isClosable: true,
                 })
             }

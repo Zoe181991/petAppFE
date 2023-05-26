@@ -134,7 +134,7 @@ function Navbar({ onOpen }) {
 <Hide below='md'>
               <NavLink to='/userprofile/edit'>
                 <AvatarGroup mr={3} >
-                  <Avatar bg='#553C9A' src={loggedInUser.picture} />
+                  <Avatar bg='gray' src={loggedInUser.picture} />
                 </AvatarGroup>
               </NavLink>
               </Hide>
