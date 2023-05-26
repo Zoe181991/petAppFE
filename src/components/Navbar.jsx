@@ -1,5 +1,5 @@
 import React from 'react'
-import { Box, Button, SimpleGrid, ButtonGroup, Menu, MenuItem, MenuGroup, MenuDivider, MenuButton, MenuList } from '@chakra-ui/react'
+import { Box, Image, Button, SimpleGrid, ButtonGroup, Menu, MenuItem, MenuGroup, MenuDivider, MenuButton, MenuList } from '@chakra-ui/react'
 import { Input } from '@chakra-ui/react'
 import { UsersContextInstance } from '../contex/UsersContext';
 import { useEffect, useContext } from 'react'
@@ -51,12 +51,21 @@ function Navbar({ onOpen }) {
         pt={{ base: 6, lg: 8 }} pb={{ base: 6, lg: 8 }}
         color='white' alignItems='center'>
 
-<Stack direction='row' shouldWrapChildren='false'> 
+<Stack direction='row' shouldWrapChildren='false' align='center'> 
+
+
+<Stack align='baseline'></Stack>
+<Image maxH='-moz-max-content'
+className='logo-navbar' 
+src="https://res.cloudinary.com/dwhknzktx/image/upload/v1685119482/logoNavBar_ifohh7.png" />
+
         <Box
           fontSize={['sm', 'md', '2lg', 'xl']}
-          ml={{ base: 2, sm: 8, md: 12, lg: 30 }}
-        >
-          <NavLink to={isAdmin ? '/admin' : '/'}>
+          ml={{ base: 2, sm: 8, md: 12, lg: 30 }}>
+
+
+
+<NavLink to={isAdmin ? '/admin' : '/'}>
             {({ isActive }) => (
               <>
                 <span className={isActive ? "active-page" : "navLink"}>

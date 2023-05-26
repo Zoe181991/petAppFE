@@ -185,6 +185,11 @@ html{
 
 }
 
+.logo-navbar{
+  height: 4em;
+  padding-left: 3em;
+}
+
 
 
 /* .nav-right {

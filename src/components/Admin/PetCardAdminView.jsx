@@ -114,14 +114,7 @@ function PetCardAdminView({ pet }) {
           colorScheme='yellow' onClick={navigatePetsParams}>
               More info
             </Button>
-          
-{/* <Button ml={5} size='sm' color='white' bgGradient='linear(to-r, teal.500, purple.500)'
-_hover={{
-  bgGradient: 'linear(to-r, teal.200, purple.200)',
-}}
-onClick={(e) => navigate(`/admin/editpet/${pet._id}`)}>
 
-Edit pet</Button>  */}
 
 <Button className='font-weird' size='sm' color='black' colorScheme='gray'
                        leftIcon={<EditIcon />}

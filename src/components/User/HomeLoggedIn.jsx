@@ -6,7 +6,7 @@ import { useNavigate, NavLink } from 'react-router-dom';
 import { AuthContextInstance } from '../../contex/AuthContext';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faRuler, faShieldDog, faPaw, faWeightScale, faHeart, faGear } from '@fortawesome/free-solid-svg-icons'
-
+import CountAnimation from './CountAnimation';
 
 function HomeLoggedIn() {
   const { loggedInUser, setLoggedInUser, fetchInfo } = useContext(UsersContextInstance);
@@ -19,9 +19,9 @@ function HomeLoggedIn() {
 
   return (
     <div className='main-container'>
-      <h1 className='main-header'>
-        Hello {loggedInUser?.first_name} {loggedInUser?.last_name} </h1>
-
+ 
+        <Text className='main-header' mb={3} textColor='red.800'
+                    fontSize={['3xl', '4xl', '4xl', '5xl']}>  Hello {loggedInUser?.first_name} {loggedInUser?.last_name}</Text>
 
 
       <Stack >
@@ -40,9 +40,47 @@ function HomeLoggedIn() {
 
               <CardBody>
                 <Text>View a summary of all your pets.</Text>
+                <Text fontSize='6xl' fontWeight='extrabold'> 
+                <CountAnimation duration={"30000"} targetNumber={"100"}>
+</CountAnimation></Text> 
+
+<Text>pets were adopted so far</Text>
+
+               
+              
+              
               </CardBody>
               <CardFooter justify='center'>
                 <Button onClick={(e) => { navigate('/mypets') }}>View here</Button>
+              </CardFooter>
+            </Card>
+          </NavLink>
+
+
+       
+
+
+          <NavLink to='/search'>
+            <Card bgColor='purple.50' _hover={{
+              bgGradient: 'linear(to-r, orange.200, pink.200)',
+            }} >
+
+              <CardHeader className='header-card'>
+                <Heading size='md'> Adopt a pet!</Heading>
+
+                <FontAwesomeIcon size='xl' icon={faPaw} />
+              </CardHeader>
+              <CardBody>
+                <Text>Search for your perfect match</Text>
+                <Text fontSize='6xl' fontWeight='extrabold'> 
+                <CountAnimation duration={"30000"} targetNumber={"67"}>
+</CountAnimation></Text> 
+<Text>pets are waiting to find a new home!</Text>
+
+
+              </CardBody>
+              <CardFooter justify='center'>
+                <Button onClick={(e) => { navigate('/search') }} >Find a pet</Button>
               </CardFooter>
             </Card>
           </NavLink>
@@ -58,6 +96,11 @@ function HomeLoggedIn() {
               </CardHeader>
               <CardBody>
                 <Text>Set your profile</Text>
+
+                <Text fontSize='6xl' fontWeight='extrabold'> 
+                <CountAnimation duration={"30000"} targetNumber={"4"}>
+</CountAnimation></Text> 
+<Text>pepole have joined Pawsitive Adoptions so far</Text>
               </CardBody>
               <CardFooter justify='center'>
                 <Button onClick={(e) => { navigate('/userprofile/edit') }} >Edit profile</Button>
@@ -66,24 +109,6 @@ function HomeLoggedIn() {
           </NavLink>
 
 
-          <NavLink to='/search'>
-            <Card bgColor='purple.50' _hover={{
-              bgGradient: 'linear(to-r, orange.200, pink.200)',
-            }} >
-
-              <CardHeader className='header-card'>
-                <Heading size='md'> Adopt a pet!</Heading>
-
-                <FontAwesomeIcon size='xl' icon={faPaw} />
-              </CardHeader>
-              <CardBody>
-                <Text>Search for your perfect match</Text>
-              </CardBody>
-              <CardFooter justify='center'>
-                <Button onClick={(e) => { navigate('/search') }} >Find a pet</Button>
-              </CardFooter>
-            </Card>
-          </NavLink>
         </SimpleGrid>
       </Stack>
     </div>
