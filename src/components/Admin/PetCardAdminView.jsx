@@ -88,14 +88,14 @@ function PetCardAdminView({ pet }) {
             <span className="icon-mgR" >
             <FontAwesomeIcon icon={faRuler} />
             </span>
-            Height: {pet.height}</Tag>
+            Height: {pet.height} cm</Tag>
 
             <Tag fontWeight='normal' mt={4} mr={2} size={['sm', 'sm', 'md', 'md']}>  
             <span className="icon-mgR" >
             <FontAwesomeIcon icon={faWeightScale} />
             </span>
 
-            Weight: {pet.weight}</Tag>
+            Weight: {pet.weight} kg</Tag>
        
           </CardBody>
 

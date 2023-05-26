@@ -118,14 +118,14 @@ function PetCard({ pet}) {
             <span className="icon-mgR" >
             <FontAwesomeIcon icon={faRuler} />
             </span>
-            Height: {pet.height}</Tag>
+            Height: {pet.height} cm</Tag>
 
             <Tag fontWeight='normal' mt={4} mr={2} size={['sm', 'sm', 'md', 'md']}>  
             <span className="icon-mgR" >
             <FontAwesomeIcon icon={faWeightScale} />
             </span>
 
-            Weight: {pet.weight}</Tag>
+            Weight: {pet.weight} kg</Tag>
        
           </CardBody>
 
@@ -138,14 +138,7 @@ function PetCard({ pet}) {
           >
 
           <ButtonGroup spacing={4} className='font-weird'>
-          <Button rightIcon={ <InfoOutlineIcon/>} 
-          size={['base: sm', 'sm', 'xs', 'sm', 'sm']}
-          p={2}
-          colorScheme='yellow' onClick={navigatePetsParams}>
-              More info
-            </Button>
-
-            {loggedInUser.role==='Admin' && 
+          {loggedInUser.role==='Admin' && 
             
             <Button className='font-weird' size='sm' color='black' colorScheme='gray'
                        leftIcon={<EditIcon />}
@@ -153,7 +146,16 @@ function PetCard({ pet}) {
                           bgGradient: 'linear(to-r, gray.200, gray.100)',
                         }}
                         onClick={(e) => navigate(`/admin/editpet/${pet._id}`)}>
-                        Edit pet</Button>}
+                        </Button>}
+
+          <Button rightIcon={ <InfoOutlineIcon/>} 
+          size={['base: sm', 'sm', 'xs', 'sm', 'sm']}
+          p={2}
+          colorScheme='yellow' onClick={navigatePetsParams}>
+              More info
+            </Button>
+
+           
 
             { !loggedInUser?
             <>

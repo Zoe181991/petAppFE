@@ -39,7 +39,7 @@ function MyPets() {
 <Text  className='main-header' mb={3} textColor='red.800' 
       fontSize={['3xl', '4xl', '4xl', '5xl']}> My Pets</Text>
 
-      <Stack width={['100%', '80%','65%','60%']}>
+      <Stack width={['100%', '80%','70%','65%']}>
         <Tabs isFitted variant='enclosed-colored' color='red.800' colorScheme='red' >
           <TabList className=" font-weird" as="span" flex='1' textAlign='center'  mb='1em'>
             <Tab fontSize={['md', 'lg', 'xl', '2xl']}> 
@@ -89,56 +89,3 @@ function MyPets() {
 
 export default MyPets
 
-
-// <Stack w="60%">
-
-// <Accordion defaultIndex={[0]} allowMultiple>
-//   <AccordionItem>
-//     <h2>
-//       <AccordionButton>
-//         <Box className="font" as="span" flex='1' textAlign='left' fontSize='1.5em'>
-//           Saved Pets
-//         </Box>
-//         <AccordionIcon />
-//       </AccordionButton>
-//     </h2>
-//     <AccordionPanel pb={4}>
-
-//       <SavedPetsList />
-
-//     </AccordionPanel>
-//   </AccordionItem>
-
-//   <AccordionItem>
-//     <h2>
-//       <AccordionButton>
-//       <Box className="font" as="span" flex='1' textAlign='left' fontSize='1.5em'>
-//       Fostered Pets
-//         </Box>
-//         <AccordionIcon />
-//       </AccordionButton>
-//     </h2>
-//     <AccordionPanel pb={4}>
-//     <FosteredPetsList />
-
-//     </AccordionPanel>
-//   </AccordionItem>
-
-
-//   <AccordionItem>
-//     <h2>
-//       <AccordionButton>
-//       <Box className="font" as="span" flex='1' textAlign='left' fontSize='1.5em'>
-//       Adopted Pets
-//         </Box>
-//         <AccordionIcon />
-//       </AccordionButton>
-//     </h2>
-//     <AccordionPanel pb={4}>
-//     <AdoptedPetsList />
-
-//     </AccordionPanel>
-//   </AccordionItem>
-// </Accordion>
-
-// </Stack>

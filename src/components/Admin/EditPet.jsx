@@ -201,7 +201,7 @@ function EditPet() {
               <Text  ><span className='bold'>Type:</span> {pet?.type}</Text>
               <Text  ><span className='bold'>Breed:</span> {pet?.breed}</Text>
             </Stack>
-<Spacer/>
+            <Spacer/>
             <Stack>
             <IconButton align='right'  onClick={onOpen} colorScheme='red' aria-label='Call Segun' size={['sm', 'md', 'md']} icon={<DeleteIcon />} />
           </Stack>

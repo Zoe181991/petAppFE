@@ -6,8 +6,9 @@ import axios from 'axios';
 import { Tag, Spacer, Card, CardBody, CardFooter, ButtonGroup } from '@chakra-ui/react'
 import { PetsContextInstance } from '../../contex/PetsContext';
 import { UsersContextInstance } from '../../contex/UsersContext';
-import { faFaceFrownOpen, faRuler, faShieldDog, faPen, faBowlFood, faPaw, faWeightScale } from '@fortawesome/free-solid-svg-icons'
+import { faFaceFrownOpen, faPalette, faRuler, faQuestion, faShieldDog, faPen, faBowlFood, faPaw, faWeightScale } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { ArrowBackIcon } from '@chakra-ui/icons'
 
 
 function PetPage() {
@@ -43,8 +44,7 @@ function PetPage() {
                     setIsFilled(true)
                 }
             }
-        }
-        
+        }     
         setIsLoading(false)
     }, [])
 
@@ -109,9 +109,13 @@ function PetPage() {
     return (
 
         <div className='main-container'>
-            <Skeleton isLoaded={!isLoading} >
-            <Stack spacing={4} width={['90%', '80%','65%','60%']} >
+            <Stack minW='10em' spacing={4} width={['80%', '70%', '75%', '60%']} justify='center'>
 
+<Text align='center' className='main-header' mb={3} textColor='red.800'
+                    fontSize={['3xl', '4xl', '4xl', '5xl']}>  Meet {pet?.name}</Text>
+
+        
+            <Skeleton isLoaded={!isLoading} >
                 {pet &&
                     <Card direction={{ base: 'column', md: 'row' }}
                         overflow='hidden' className='font' 
@@ -170,27 +174,33 @@ function PetPage() {
                                     <span className="icon-mgR" >
                                         <FontAwesomeIcon icon={faRuler} />
                                     </span>
-                                    Height: {pet.height}</Tag>
+                                    Height: {pet.height} cm</Tag>
 
                                 <Tag fontWeight='normal' mt={4} mr={2} size='lg'>
                                     <span className="icon-mgR" >
                                         <FontAwesomeIcon icon={faWeightScale} />
                                     </span>
 
-                                    Weight: {pet.weight}</Tag>
+                                    Weight: {pet.weight} kg</Tag>
 
                                 <Tag fontWeight='normal' mt={4} mr={2} size='lg'>
+                                <span className="icon-mgR" >
+                                <FontAwesomeIcon icon={faPalette} />                                    </span>
+
                                     Color: {pet?.color}</Tag>
 
                                 <Tag fontWeight='normal' mt={4} mr={2} size='lg'>
-                                    Hypoallergnic: {pet?.hypoallergnic}</Tag>
+                                <span className="icon-mgR" >
+                                <FontAwesomeIcon icon={faQuestion} />
+                                    </span>
+                                    Hypoallergnic: {pet?.hypoallergnic === true? "Yes" : "No"}</Tag>
 
 
                                 <Tag fontWeight='normal' mt={4} mr={2} size='lg'>
                                     <span className="icon-mgR" >
                                         <FontAwesomeIcon icon={faBowlFood} />
                                     </span>
-                                    Dietery: {pet?.dietery}</Tag>
+                                    Dietery: {pet?.dietery.join(", ")}</Tag>
 
                                 <Tag fontWeight='normal' mt={4} mr={2} size='lg'>
                                     <span className="icon-mgR" >
@@ -375,10 +385,24 @@ function PetPage() {
                                 </ButtonGroup>
                             </CardFooter>
                         </Stack>
+
                     </Card>
                 }
-            </Stack>
+
+
             </Skeleton>
+
+            
+            <Button className='font-weird' onClick={(e)=>navigate(-1)} color='white' 
+            leftIcon={<ArrowBackIcon />} bgColor='red.800' borderBlockEndWidth={4}
+            _hover={{ bgGradient: 'linear(to-r, gray.200, gray.100)', color: 'black'}}
+           
+            >
+              Go Back</Button>
+            
+
+            </Stack>
+
         </div>
 
 
