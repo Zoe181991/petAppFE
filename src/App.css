@@ -187,7 +187,28 @@ html{
 
 .logo-navbar{
   height: 4em;
-  padding-left: 3em;
+  margin-left: 3em;
+  margin-right: 0.5;
+}
+
+
+
+@media (min-width: 800px) and (max-width: 1050px) {
+  .logo-navbar {
+    height: 3em;
+  }
+}
+
+@media (min-width: 500px) and (max-width: 800px) {
+  .logo-navbar {
+    height: 2em;
+  }
+}
+
+@media (min-width: 200px) and (max-width: 500px) {
+  .logo-navbar {
+    height: 0em;
+  }
 }
 
 

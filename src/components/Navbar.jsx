@@ -5,12 +5,12 @@ import { UsersContextInstance } from '../contex/UsersContext';
 import { useEffect, useContext } from 'react'
 import { useNavigate, NavLink, } from 'react-router-dom';
 import { SettingsIcon } from '@chakra-ui/icons'
-import { Avatar, AvatarGroup } from '@chakra-ui/react'
+import { Avatar, Text, AvatarGroup } from '@chakra-ui/react'
 import { AuthContextInstance } from '../contex/AuthContext';
 import { Flex, Stack, Spacer, Show, Hide } from '@chakra-ui/react'
 import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faHomeUser, faMagnifyingGlass, faPaw , faGaugeHigh} from '@fortawesome/free-solid-svg-icons'
+import { faHomeUser, faMagnifyingGlass, faPaw, faGaugeHigh } from '@fortawesome/free-solid-svg-icons'
 
 function Navbar({ onOpen }) {
 
@@ -43,119 +43,123 @@ function Navbar({ onOpen }) {
 
   return (
     <>
-      
-      <Box  className='navBar' h='20%'
-        wrap='false'
-        align='center'
-        display={{ base: 'flex', md: 'flex' }}
-        pt={{ base: 6, lg: 8 }} pb={{ base: 6, lg: 8 }}
-        color='white' alignItems='center'>
 
-<Stack direction='row' shouldWrapChildren='false' align='center'> 
+      <Box className='navBar' h='20%' wrap='false' display={{ base: 'flex', md: 'flex' }}
+        alignItems='baseline' pt={{ base: 6, lg: 8 }} pb={{ base: 6, lg: 8 }} color='white' >
 
 
-<Stack align='baseline'></Stack>
-<Image maxH='-moz-max-content'
-className='logo-navbar' 
-src="https://res.cloudinary.com/dwhknzktx/image/upload/v1685119482/logoNavBar_ifohh7.png" />
+{/* //logo+text */}
+        <Stack  direction='row'>
+          <Image maxH='-moz-max-content'
+            className='logo-navbar'
+            src="https://res.cloudinary.com/dwhknzktx/image/upload/v1685119482/logoNavBar_ifohh7.png" />
 
-        <Box
-          fontSize={['sm', 'md', '2lg', 'xl']}
-          ml={{ base: 2, sm: 8, md: 12, lg: 30 }}>
+            <Stack>
+            <Text  fontWeight='extrabold' fontSize= {['md', 'lg', 'xl', 'xl']} 
+            className='font' color='#f9de10'> 
+            <Hide below='md'>
+            Pawsitive 
+            </Hide>
+            </Text>
+            <Text  fontWeight='extrabold' fontSize= {['md', 'lg', 'xl', 'xl']} 
+            className='font' color='#f9de10'> 
+            <Hide below='md'>
+            Adoptions 
+            </Hide>
+            </Text>
+            </Stack>
 
-
-
-<NavLink to={isAdmin ? '/admin' : '/'}>
-            {({ isActive }) => (
-              <>
-                <span className={isActive ? "active-page" : "navLink"}>
-                  <FontAwesomeIcon className='icon-nav'
-                    icon={faHomeUser} />
-                  <Hide below='md'> Home  </Hide>
-                </span>
-
-              </>
-            )}
-          </NavLink>
-
-          <NavLink to='/search'>
-            {({ isActive }) => (
-              <>
-                <span className={isActive ? "active-page" : "navLink"}>
-                  <FontAwesomeIcon className='icon-nav' icon={faMagnifyingGlass} />
-                  <Hide below='md'>
-                    Search
-                  </Hide>
-                </span>
-              </>
-            )}
-          </NavLink>
-
-          {isAdmin &&
-          <NavLink to='/dashboard'>
-            {({ isActive }) => (
-              <>
-                <span className={isActive ? "active-page" : "navLink"}>
-                  <FontAwesomeIcon className='icon-nav' icon={faGaugeHigh} />
-                  <Hide below='md'>
-                    Dashboard
-                  </Hide>
-                </span>
-              </>
-            )}
-          </NavLink>
-        }
+          <Box
+            fontSize={['sm', 'md', '2lg', 'xl']}
+            ml={{ base: 2, sm: 8, md: 12, lg: 30 }}>
 
 
 
-
-          {!loggedInUser ?
-            <></>
-            :
-            <NavLink to='/mypets'>
+            <NavLink to={isAdmin ? '/admin' : '/'}>
               {({ isActive }) => (
+                <>
+                  <span className={isActive ? "active-page" : "navLink"}>
+                    <FontAwesomeIcon className='icon-nav'
+                      icon={faHomeUser} />
+                    <Hide below='md'> Home  </Hide>
+                  </span>
 
-                <span className={isActive ? "active-page" : "navLink"}>
-                  <FontAwesomeIcon className='icon-nav' icon={faPaw} />
-                  <Hide below='md'>My pets</Hide></span>
+                </>
               )}
             </NavLink>
-          }
-        </Box>
+
+            <NavLink to='/search'>
+              {({ isActive }) => (
+                <>
+                  <span className={isActive ? "active-page" : "navLink"}>
+                    <FontAwesomeIcon className='icon-nav' icon={faMagnifyingGlass} />
+                    <Hide below='md'>
+                      Search
+                    </Hide>
+                  </span>
+                </>
+              )}
+            </NavLink>
+
+            {isAdmin &&
+              <NavLink to='/dashboard'>
+                {({ isActive }) => (
+                  <>
+                    <span className={isActive ? "active-page" : "navLink"}>
+                      <FontAwesomeIcon className='icon-nav' icon={faGaugeHigh} />
+                      <Hide below='md'>
+                        Dashboard
+                      </Hide>
+                    </span>
+                  </>
+                )}
+              </NavLink>
+            }
+
+
+
+
+            {!loggedInUser ?
+              <></>
+              :
+              <NavLink to='/mypets'>
+                {({ isActive }) => (
+
+                  <span className={isActive ? "active-page" : "navLink"}>
+                    <FontAwesomeIcon className='icon-nav' icon={faPaw} />
+                    <Hide below='md'>My pets</Hide></span>
+                )}
+              </NavLink>
+            }
+          </Box>
         </Stack>
 
         <Spacer />
 
 
 
-        <Stack direction='row' justify='right' align='center'
+        <Stack direction='row' justify='right'
+        alignItems='center'
           fontSize={['sm', 'sm', 'md', 'md']}
-          mr={{ base: 5, md: 15, lg: 30 }}
+          mr={{ base: "0.5em", md: "1em", lg: "3em" }}>
 
-        >
-
-
-          {!loggedInUser ?
-            <></>
-            :
-            <>
-
-<Hide below='md'>
-              <NavLink to='/userprofile/edit'>
-                <AvatarGroup mr={3} >
-                  <Avatar bg='gray' src={loggedInUser.picture} />
-                </AvatarGroup>
-              </NavLink>
+          {loggedInUser &&
+         <>
+              <Stack >
+              <Hide below='lg'>
+                <NavLink to='/userprofile/edit'>
+                  <AvatarGroup  mr={3} mb={0}>
+                    <Avatar bg='gray' src={loggedInUser.picture} />
+                  </AvatarGroup>
+                </NavLink>
               </Hide>
-
-
-             
+              </Stack>
 
               <Menu>
                 {loggedInUser &&
-                  <MenuButton size={['sm', 'md', 'md']} className='font-weird' as={Button} 
-                  colorScheme='yellow' color='red.800' rightIcon={<SettingsIcon />}>
-                    <Show  above='md'> {loggedInUser.first_name}'s Profile</Show>
+                  <MenuButton size={['sm', 'md', 'md']} className='font-weird' as={Button}
+                    colorScheme='yellow' color='red.800' rightIcon={<SettingsIcon />}>
+                    <Show above='lg'> {loggedInUser.first_name}'s Profile</Show>
                   </MenuButton>
                 }
 
@@ -184,9 +188,8 @@ src="https://res.cloudinary.com/dwhknzktx/image/upload/v1685119482/logoNavBar_if
                   </MenuGroup>
                 </MenuList>
               </Menu>
-            </>
+              </>
           }
-
 
 
           {!loggedInUser ?
@@ -208,19 +211,17 @@ src="https://res.cloudinary.com/dwhknzktx/image/upload/v1685119482/logoNavBar_if
             <>
               <Hide below='lg'>
                 <Button ml={5}
-                className='font-weird'
+                  className='font-weird'
                   fontSize={['sm', 'md', 'lg']}
-                  mr={{ base: 1, lg: 2 }} 
+                  mr={{ base: 1, lg: 2 }}
                   bgGradient='linear(to-r, orange.500, pink.500)'
                   _hover={{
                     bgGradient: 'linear(to-r, orange.200, pink.200)',
                   }}
 
                   onClick={handleSignout}>
-                 Sign Out
+                  Sign Out
                 </Button>
-
-
               </Hide>
             </>
 
