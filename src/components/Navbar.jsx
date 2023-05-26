@@ -45,35 +45,28 @@ function Navbar({ onOpen }) {
     <>
 
       <Box className='navBar' h='20%' wrap='false' display={{ base: 'flex', md: 'flex' }}
-        alignItems='baseline' pt={{ base: 6, lg: 8 }} pb={{ base: 6, lg: 8 }} color='white' >
+       justifyContent='center' pt={{ base: 6, lg: 8 }} pb={{ base: 6, lg: 8 }} color='white' >
 
 
-{/* //logo+text */}
-        <Stack  direction='row'>
-          <Image maxH='-moz-max-content'
+        <Stack  direction='row' alignItems='center'    fontSize={['sm', 'md', 'lg', 'xl']}
+            ml={{ base: '1em', sm: '2em', md: '2em', lg: '3em'}}>
+
+          <Image 
             className='logo-navbar'
             src="https://res.cloudinary.com/dwhknzktx/image/upload/v1685119482/logoNavBar_ifohh7.png" />
 
-            <Stack>
-            <Text  fontWeight='extrabold' fontSize= {['md', 'lg', 'xl', 'xl']} 
+          
+         
+
+          {/* <Box alignContent='baseline'
+            fontSize={['sm', 'md', 'lg', 'xl']}
+            ml={{ base: 2, sm: 8, md: 12, lg: 30 }}> */}
+   <Text  fontWeight='extrabold' 
             className='font' color='#f9de10'> 
-            <Hide below='md'>
-            Pawsitive 
+            <Hide below='xl'>
+            Pawsitive Adoptions  
             </Hide>
             </Text>
-            <Text  fontWeight='extrabold' fontSize= {['md', 'lg', 'xl', 'xl']} 
-            className='font' color='#f9de10'> 
-            <Hide below='md'>
-            Adoptions 
-            </Hide>
-            </Text>
-            </Stack>
-
-          <Box
-            fontSize={['sm', 'md', '2lg', 'xl']}
-            ml={{ base: 2, sm: 8, md: 12, lg: 30 }}>
-
-
 
             <NavLink to={isAdmin ? '/admin' : '/'}>
               {({ isActive }) => (
@@ -131,7 +124,7 @@ function Navbar({ onOpen }) {
                 )}
               </NavLink>
             }
-          </Box>
+          {/* </Box> */}
         </Stack>
 
         <Spacer />
@@ -146,7 +139,7 @@ function Navbar({ onOpen }) {
           {loggedInUser &&
          <>
               <Stack >
-              <Hide below='lg'>
+              <Hide below='xl'>
                 <NavLink to='/userprofile/edit'>
                   <AvatarGroup  mr={3} mb={0}>
                     <Avatar bg='gray' src={loggedInUser.picture} />
