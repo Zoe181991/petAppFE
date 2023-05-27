@@ -70,7 +70,7 @@ function PetCard({ pet}) {
   return (
     <>
 
-      <Card mt={5} className='font'  
+      <Card mt={3} className='font'  
        _hover={{
         bgGradient: 'linear(to-r, yellow.100, gray.100)',
        cursor: 'pointer'
@@ -137,31 +137,36 @@ function PetCard({ pet}) {
            flexWrap='wrap'
           >
 
-          <ButtonGroup spacing={4} className='font-weird'>
+          <ButtonGroup   
+          pr={2} pl={2}
+          size={['base: sm', 'sm', 'xs', 'sm', 'sm']} spacing={2} className='font-weird'>
           {loggedInUser.role==='Admin' && 
             
-            <Button className='font-weird' size='sm' color='black' colorScheme='gray'
-                       leftIcon={<EditIcon />}
+            <Button className='font-weird' 
+          
+         color='black' colorScheme='gray'
+         leftIcon={<EditIcon />}
                         _hover={{
                           bgGradient: 'linear(to-r, gray.200, gray.100)',
                         }}
                         onClick={(e) => navigate(`/admin/editpet/${pet._id}`)}>
                         </Button>}
 
-          <Button rightIcon={ <InfoOutlineIcon/>} 
-          size={['base: sm', 'sm', 'xs', 'sm', 'sm']}
+          <Button leftIcon={ <InfoOutlineIcon/>} 
           p={2}
           colorScheme='yellow' onClick={navigatePetsParams}>
-              More info
+              <Hide below='lg'>
+             More info
+              </Hide>
             </Button>
 
            
 
             { !loggedInUser?
             <>
-              <Button  onClick={(e)=>{navigate('/login')}}
-              size='sm'
-              variant='ghost' colorScheme='pink'>  
+              <Button             
+              onClick={(e)=>{navigate('/login')}}
+              variant='ghost' colorScheme='pink' bgColor='pink.50'>  
               <Hide below='md'>
               Save
               </Hide>     
@@ -173,8 +178,8 @@ function PetCard({ pet}) {
 
             <>
                <button onClick={handleClick} className={`heart-button ${isFilled ? 'filled' : 'empty'}`}>
-              <Button size={['base: sm', 'sm', 'xs', 'xs', 'sm']}
-              onClick={handleSaveBtn} 
+              <Button  size={['base: sm', 'sm', 'xs', 'sm', 'sm']}
+              onClick={handleSaveBtn} bgColor='pink.50'
               variant='ghost' colorScheme='pink'>
                   <Hide below='md'>
               {isFilled? "Saved" : "Save"} 

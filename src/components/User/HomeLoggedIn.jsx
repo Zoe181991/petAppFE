@@ -106,7 +106,7 @@ fetchAllUsers()
                 <CountAnimation duration={"2000"} targetNumber={countAdopted}>
 </CountAnimation></Text> }
 
-<Text fontSize='xl' color='red.800' className='font-weird'>pets had found a new home!</Text>
+<Text fontSize='xl' color='red.800' className='font-weird'>pets have found a new home!</Text>
 
               </CardBody>
               <CardFooter justify='center'>
@@ -185,7 +185,7 @@ fetchAllUsers()
                 <Text fontSize='6xl' fontWeight='extrabold'> 
                 <CountAnimation duration={"1000"} targetNumber={countUsers}>
 </CountAnimation></Text> 
-<Text fontSize='xl' color='red.800' className='font-weird'>pepole joined Pawsitive Adoptions!</Text>
+<Text fontSize='xl' color='red.800' className='font-weird'>people joined Pawsitive Adoptions!</Text>
               </CardBody>
               <CardFooter justify='center'>
                 <Button p={4} className='font-weird' onClick={(e) => { navigate('/userprofile/edit') }} color='red.800' w='10em' 
@@ -193,9 +193,7 @@ fetchAllUsers()
                 bgGradient: 'linear(to-r, gray.200, gray.100)',
                 color: 'black'}}
               > Edit your profile</Button>
-              
-              
-              
+               
               </CardFooter>
             </Card>
           </NavLink>

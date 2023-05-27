@@ -200,7 +200,7 @@ function PetPage() {
                                     <span className="icon-mgR" >
                                         <FontAwesomeIcon icon={faBowlFood} />
                                     </span>
-                                    Dietery: {pet?.dietery.join(", ")}</Tag>
+                                    Dietery: {pet?.dietery? pet?.dietery.join(", "): "none"}</Tag>
 
                                 <Tag fontWeight='normal' mt={4} mr={2} size='lg'>
                                     <span className="icon-mgR" >
@@ -396,7 +396,6 @@ function PetPage() {
             <Button className='font-weird' onClick={(e)=>navigate(-1)} color='white' 
             leftIcon={<ArrowBackIcon />} bgColor='red.800' borderBlockEndWidth={4}
             _hover={{ bgGradient: 'linear(to-r, gray.200, gray.100)', color: 'black'}}
-           
             >
               Go Back</Button>
             
