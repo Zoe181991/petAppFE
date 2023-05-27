@@ -1,8 +1,8 @@
 import React, { useState, useContext, useEffect } from 'react'
 import { FormControl, FormLabel, FormErrorMessage, FormHelperText, } from '@chakra-ui/react'
 import { Input, InputGroup, InputLeftAddon } from '@chakra-ui/react'
-import { Button, Tooltip, Stack  } from '@chakra-ui/react'
-import {  useNavigate } from 'react-router-dom';
+import { Button, Tooltip, Stack } from '@chakra-ui/react'
+import { useNavigate } from 'react-router-dom';
 import { UsersContextInstance } from '../../contex/UsersContext';
 import axios from 'axios';
 
@@ -10,7 +10,7 @@ import axios from 'axios';
 //https://chakra-ui.com/docs/components/form-control
 //https://react-hook-form.com/api/useform/watch/
 
-function SignUpForm({ initialRef, onClose}) {
+function SignUpForm({ initialRef, onClose }) {
     const navigate = useNavigate();
     const [email, setEmail] = useState('');
     const [firstName, setFirstName] = useState('');
@@ -21,11 +21,11 @@ function SignUpForm({ initialRef, onClose}) {
     const [checkForm, setCheckForm] = useState(false)
     const [passwordsMatch, setPasswordsMatch] = useState(false);
 
-    const {setErrorMsgClient, errorMsgClient, loginReq } = useContext(UsersContextInstance);
+    const { setErrorMsgClient, errorMsgClient, loginReq } = useContext(UsersContextInstance);
 
-useEffect(()=>{
-    setErrorMsgClient("")
-},[])
+    useEffect(() => {
+        setErrorMsgClient("")
+    }, [])
 
     const navigateHome = () => {
         // 👇️ navigate to /
@@ -44,21 +44,21 @@ useEffect(()=>{
         signUpReq(newUser)
     }
 
-    
-useEffect(()=>{
 
-    if(email && firstName && lastName && password.length>5 && repassword.length>5 && password===repassword ){
-setCheckForm(true)
-    } else{
-        setCheckForm(false)
+    useEffect(() => {
+
+        if (email && firstName && lastName && password.length > 5 && repassword.length > 5 && password === repassword) {
+            setCheckForm(true)
+        } else {
+            setCheckForm(false)
+        }
+
+    }, [email, firstName, lastName, password, repassword])
+
+    function handleConfirmPasswordChange(event) {
+        setRePassword(event.target.value);
+        setPasswordsMatch(event.target.value === password);
     }
-
-},[email, firstName, lastName, password, repassword ])
-
-function handleConfirmPasswordChange(event) {
-    setRePassword(event.target.value);
-    setPasswordsMatch(event.target.value === password);
-}
 
 
     const signUpReq = async (userDetails) => {
@@ -82,8 +82,8 @@ function handleConfirmPasswordChange(event) {
                 <FormLabel>Email</FormLabel>
                 <Input ref={initialRef} placeholder='Email'
                     value={email}
-                    onChange={(e) => setEmail(e.target.value)} 
-                    />
+                    onChange={(e) => setEmail(e.target.value)}
+                />
             </FormControl>
 
             <FormControl mt={4} isRequired>
@@ -115,31 +115,31 @@ function handleConfirmPasswordChange(event) {
                 <Input type='password' placeholder='Password'
                     value={password}
                     onChange={(e) => setPassword(e.target.value)} />
-                    
+
                 <FormLabel>Retype Password</FormLabel>
                 <Input type='password' placeholder='Retype Password'
                     value={repassword}
                     onChange={handleConfirmPasswordChange} />
-                  <FormErrorMessage>Passwords doesn't match!</FormErrorMessage>
+                <FormErrorMessage>Passwords doesn't match!</FormErrorMessage>
 
             </FormControl>
 
-        
+
             <div className='errorMsg'>{errorMsgClient}</div>
 
-            <Stack  mt={6} direction='row' justifyContent='center'>
+            <Stack mt={6} direction='row' justifyContent='center'>
 
-  <Tooltip 
-  label={!checkForm && 'Please fill in the required fields, make sure the passwords match. min length of password is 6 chars'}
-               > 
-            
-            <Button  isDisabled={!checkForm} onClick={handleSubmit} className="font-weird" color='red.800'  colorScheme='yellow' 
-            mr={3} size='lg'>
-                Sign Up
-            </Button>
-            </Tooltip>
+                <Tooltip
+                    label={!checkForm && 'Please fill in the required fields, make sure the passwords match. min length of password is 6 chars'}
+                >
 
-            <Button size='lg' className="font-weird" onClick={navigateHome}>Cancel</Button>
+                    <Button isDisabled={!checkForm} onClick={handleSubmit} className="font-weird" color='red.800' colorScheme='yellow'
+                        mr={3} size='lg'>
+                        Sign Up
+                    </Button>
+                </Tooltip>
+
+                <Button size='lg' className="font-weird" onClick={navigateHome}>Cancel</Button>
             </Stack>
         </>
     )

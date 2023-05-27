@@ -1,53 +1,51 @@
 import React, { useEffect, useState } from 'react'
 import { useContext } from 'react'
 import { UsersContextInstance } from '../../contex/UsersContext';
-import { Card, IconButton, CardHeader, CardBody, CardFooter, Text, Button, Heading, SimpleGrid, GridItem, Grid, Stack } from '@chakra-ui/react'
+import { Card, IconButton, CardHeader, CardBody, CardFooter, Text, Button, SimpleGrid, Stack } from '@chakra-ui/react'
 import { useNavigate, NavLink } from 'react-router-dom';
-import { AuthContextInstance } from '../../contex/AuthContext';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faRuler, faShieldDog, faPaw, faWeightScale, faHeart, faGear } from '@fortawesome/free-solid-svg-icons'
+import { faPaw, faHeart, faGear } from '@fortawesome/free-solid-svg-icons'
 import CountAnimation from './CountAnimation';
-import {ArrowRightIcon } from '@chakra-ui/icons'
+import { ArrowRightIcon } from '@chakra-ui/icons'
 import axios from 'axios';
 
 
 function HomeLoggedIn() {
-  const { loggedInUser,  isLoading, setIsLoading } = useContext(UsersContextInstance);
-  const { loggedInUserID, } = useContext(AuthContextInstance);
+  const { loggedInUser, isLoading, setIsLoading } = useContext(UsersContextInstance);
   const navigate = useNavigate();
 
-  const[countAdopted, setCountAdopted] = useState("")
-  const[countUsers, setCountUsers] = useState("")
-  const[countAvailable, setCountAvailable] = useState("")
+  const [countAdopted, setCountAdopted] = useState("")
+  const [countUsers, setCountUsers] = useState("")
+  const [countAvailable, setCountAvailable] = useState("")
 
-  useEffect(()=>{
-fetchAdopted();
-fetchAvailable()
-fetchAllUsers()
-  },[])
+  useEffect(() => {
+    fetchAdopted();
+    fetchAvailable()
+    fetchAllUsers()
+  }, [])
 
-  const fetchAdopted = async()=>{
+  const fetchAdopted = async () => {
     setIsLoading(true)
 
-    try{
+    try {
       const res = await axios.get(`${process.env.REACT_APP_SERVER_URL}/pets/adopted`, { withCredentials: true });
       setCountAdopted(res.data.length)
       setIsLoading(false)
-    }catch(err){
+    } catch (err) {
       console.log(err)
       setIsLoading(false)
     }
   }
 
-  const fetchAvailable = async()=>{
+  const fetchAvailable = async () => {
     setIsLoading(true)
 
-    try{
+    try {
       const res = await axios.get(`${process.env.REACT_APP_SERVER_URL}/pets/available`, { withCredentials: true });
       setCountAvailable(res.data.length)
       setIsLoading(false)
 
-    }catch(err){
+    } catch (err) {
       console.log(err)
       setIsLoading(false)
 
@@ -55,15 +53,15 @@ fetchAllUsers()
 
   }
 
-  const fetchAllUsers = async()=>{
+  const fetchAllUsers = async () => {
     setIsLoading(true)
 
-    try{
+    try {
       const res = await axios.get(`${process.env.REACT_APP_SERVER_URL}/users`, { withCredentials: true });
       setCountUsers(res.data.length)
       setIsLoading(false)
 
-    }catch(err){
+    } catch (err) {
       console.log(err)
       setIsLoading(false)
 
@@ -75,18 +73,15 @@ fetchAllUsers()
 
   return (
     <div className='main-container'>
- 
-        <Text className='main-header' mb={3} textColor='red.800'
-                    fontSize={['3xl', '4xl', '4xl', '5xl']}>  Hello {loggedInUser?.first_name} {loggedInUser?.last_name}</Text>
 
+      <Text className='main-header' mb={3} textColor='red.800'
+        fontSize={['3xl', '4xl', '4xl', '5xl']}>  Hello {loggedInUser?.first_name} {loggedInUser?.last_name}</Text>
 
       <Stack width={['100%', '100%', '90%']}>
 
-        <SimpleGrid className='font'  maxChildHeight='400px' minChildWidth='220px' spacing='10px'
-        >
-          {/* templateColumns='repeat(auto-fill, minmax(200px, 3fr))'minChildWidth='150px' */}
+        <SimpleGrid className='font' minChildWidth='220px' spacing='10px'>
           <NavLink to='/mypets'>
-            <Card  bgColor='purple.50' _hover={{
+            <Card bgColor='purple.50' _hover={{
               bgGradient: 'linear(to-r, orange.200, pink.200)',
             }} >
               <CardHeader className='header-card'>
@@ -98,31 +93,32 @@ fetchAllUsers()
               <CardBody>
                 <Text>View a summary of all your pets.
 
-                <IconButton ml={3} bgColor='#f9de10' icon={<ArrowRightIcon/>} p={2} size='xs' onClick={(e) => { navigate('/mypets') }}></IconButton>
+                  <IconButton ml={3} bgColor='#f9de10' icon={<ArrowRightIcon />} p={2} size='xs' onClick={(e) => { navigate('/mypets') }}></IconButton>
 
                 </Text>
                 {!isLoading &&
-                <Text fontSize='6xl' fontWeight='extrabold'> 
-                <CountAnimation duration={"2000"} targetNumber={countAdopted}>
-</CountAnimation></Text> }
+                  <Text fontSize='6xl' fontWeight='extrabold'>
+                    <CountAnimation duration={"2000"} targetNumber={countAdopted}>
+                    </CountAnimation></Text>}
 
-<Text fontSize='xl' color='red.800' className='font-weird'>pets have found a new home!</Text>
+                <Text fontSize='xl' color='red.800' className='font-weird'>pets have found a new home!</Text>
 
               </CardBody>
               <CardFooter justify='center'>
 
-                <Button p={4} className='font-weird' onClick={(e) => { navigate('/mypets') }} color='red.800' w='10em' 
-            size="lg" bgColor='#f9de10' borderBlockEndWidth={4} _hover={{
-                bgGradient: 'linear(to-r, gray.200, gray.100)',
-                color: 'black'}}
-              > View My Pets</Button>
+                <Button p={4} className='font-weird' onClick={(e) => { navigate('/mypets') }} color='red.800' w='10em'
+                  size="lg" bgColor='#f9de10' borderBlockEndWidth={4} _hover={{
+                    bgGradient: 'linear(to-r, gray.200, gray.100)',
+                    color: 'black'
+                  }}
+                > View My Pets</Button>
 
               </CardFooter>
             </Card>
           </NavLink>
 
 
-       
+
 
 
           <NavLink to='/search'>
@@ -140,27 +136,28 @@ fetchAllUsers()
               <CardBody>
                 <Text >Search for your perfect match
 
-                <IconButton ml={3} bgColor='#f9de10' icon={<ArrowRightIcon/>} p={2} size='xs' onClick={(e) => { navigate('/search') }}></IconButton>
+                  <IconButton ml={3} bgColor='#f9de10' icon={<ArrowRightIcon />} p={2} size='xs' onClick={(e) => { navigate('/search') }}></IconButton>
 
 
                 </Text>
 
-                <Text fontSize='6xl' fontWeight='extrabold'> 
-                <CountAnimation duration={"2000"} targetNumber={countAvailable}>
-</CountAnimation></Text> 
-<Text fontSize='xl' color='red.800' className='font-weird'>pets are waiting to find a new home!</Text>
+                <Text fontSize='6xl' fontWeight='extrabold'>
+                  <CountAnimation duration={"2000"} targetNumber={countAvailable}>
+                  </CountAnimation></Text>
+                <Text fontSize='xl' color='red.800' className='font-weird'>pets are waiting to find a new home!</Text>
 
 
               </CardBody>
               <CardFooter justify='center'>
 
-                <Button className='font-weird' 
-                onClick={(e) => { navigate('/search') }} color='red.800' 
-            size="lg" bgColor='#f9de10' borderBlockEndWidth={4} _hover={{
-                bgGradient: 'linear(to-r, gray.200, gray.100)',
-                color: 'black'}}
-              > Find your furry friend
-              </Button>
+                <Button className='font-weird'
+                  onClick={(e) => { navigate('/search') }} color='red.800'
+                  size="lg" bgColor='#f9de10' borderBlockEndWidth={4} _hover={{
+                    bgGradient: 'linear(to-r, gray.200, gray.100)',
+                    color: 'black'
+                  }}
+                > Find your furry friend
+                </Button>
               </CardFooter>
             </Card>
           </NavLink>
@@ -178,22 +175,23 @@ fetchAllUsers()
               <CardBody>
                 <Text>Set your profile
 
-                <IconButton ml={3} bgColor='#f9de10' icon={<ArrowRightIcon/>} p={2} size='xs' onClick={(e) => { navigate('/userprofile/edit') }}></IconButton>
+                  <IconButton ml={3} bgColor='#f9de10' icon={<ArrowRightIcon />} p={2} size='xs' onClick={(e) => { navigate('/userprofile/edit') }}></IconButton>
 
                 </Text>
 
-                <Text fontSize='6xl' fontWeight='extrabold'> 
-                <CountAnimation duration={"1000"} targetNumber={countUsers}>
-</CountAnimation></Text> 
-<Text fontSize='xl' color='red.800' className='font-weird'>people joined Pawsitive Adoptions!</Text>
+                <Text fontSize='6xl' fontWeight='extrabold'>
+                  <CountAnimation duration={"1000"} targetNumber={countUsers}>
+                  </CountAnimation></Text>
+                <Text fontSize='xl' color='red.800' className='font-weird'>people joined Pawsitive Adoptions!</Text>
               </CardBody>
               <CardFooter justify='center'>
-                <Button p={4} className='font-weird' onClick={(e) => { navigate('/userprofile/edit') }} color='red.800' w='10em' 
-            size="lg" bgColor='#f9de10' borderBlockEndWidth={4} _hover={{
-                bgGradient: 'linear(to-r, gray.200, gray.100)',
-                color: 'black'}}
-              > Edit your profile</Button>
-               
+                <Button p={4} className='font-weird' onClick={(e) => { navigate('/userprofile/edit') }} color='red.800' w='10em'
+                  size="lg" bgColor='#f9de10' borderBlockEndWidth={4} _hover={{
+                    bgGradient: 'linear(to-r, gray.200, gray.100)',
+                    color: 'black'
+                  }}
+                > Edit your profile</Button>
+
               </CardFooter>
             </Card>
           </NavLink>

@@ -1,18 +1,17 @@
 import React from 'react'
-import { Image, Skeleton, Spinner, Text } from '@chakra-ui/react'
+import { Image,  Spinner, Text } from '@chakra-ui/react'
 import {  NavLink, useNavigate,  } from 'react-router-dom';
 import { UsersContextInstance } from '../contex/UsersContext';
 import HomeLoggedIn from './User/HomeLoggedIn';
 import { AuthContextInstance } from '../contex/AuthContext';
-import HomeAdmin from './Admin/HomeAdmin';
 import { useEffect, useState, useContext } from 'react'
-
+import PrivateRouteUser from './User/PrivateRouteUser';
 
 
 function Home() {
   const navigate = useNavigate();
 
-  const { loggedInUser, setLoggedInUser, fetchInfo, loginReq, isLoading, setIsLoading  } = useContext(UsersContextInstance);
+  const {  fetchInfo, isLoading, setIsLoading  } = useContext(UsersContextInstance);
   const { loggedInUserID, setLoggedInUserID  } = useContext(AuthContextInstance);
   const [ gifSrc, setGifSrc  ] = useState("")
   const [ gifArray, setGifArray  ] = useState([
@@ -43,22 +42,28 @@ function Home() {
 
   useEffect(()=>{
     setIsLoading(true)
-    RandomGIF(gifArray)
+    if(loggedInUserID){
+      RandomGIF(gifArray)
+    }
     const userId=localStorage.getItem('isLoggedin')
     if(userId){
     setLoggedInUserID(userId)
-    loginReq(userId)
     fetchInfo(userId)
     } 
     setIsLoading(false)
 
   },[])
 
+  useEffect(()=>{
+    setIsLoading(true)
+      RandomGIF(gifArray)
+      setIsLoading(false)
+  },[loggedInUserID])
+
 
   function RandomGIF(array) {
       const randomIndex = Math.floor(Math.random() * array.length);
       const randomValue = array[randomIndex];
-      console.log(gifSrc)
       setGifSrc(randomValue)
   }
 
@@ -94,8 +99,9 @@ fontSize='4xl' color='red.800'>  Welcome to Pawsitive Adoptions
 
         :
         <>
-        
+        <PrivateRouteUser>
           <HomeLoggedIn />
+          </PrivateRouteUser>
         </>
       }
 

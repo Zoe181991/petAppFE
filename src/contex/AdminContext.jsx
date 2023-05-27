@@ -1,28 +1,25 @@
 import { useState } from "react";
-import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import { createContext, useEffect, useContext } from "react";
-import { AuthContextInstance } from './AuthContext';
+import { createContext } from "react";
 
 
 const AdminContextInstance = createContext({});
 
 const AdminContext = ({ children }) => {
   const [isLoading, setIsLoading] = useState(false)
-  const { loggedInUserID } = useContext(AuthContextInstance);
 
 
   const navigate = useNavigate();
 
 
-return (
+  return (
 
-  <AdminContextInstance.Provider value={{
-    isLoading, setIsLoading,
-  }}>
-    {children}
-  </AdminContextInstance.Provider>
-);
+    <AdminContextInstance.Provider value={{
+      isLoading, setIsLoading,
+    }}>
+      {children}
+    </AdminContextInstance.Provider>
+  );
 
 };
 

@@ -1,10 +1,10 @@
 import React from 'react'
-import { Avatar, Card, CardHeader, Editable, Heading, CardBody, Box, CardFooter, FormControl, EditableInput, EditableTextarea, Input, Button, FormErrorMessage, EditablePreview, Flex, IconButton, ButtonGroup, Spacer } from '@chakra-ui/react'
+import { Avatar, Card, CardHeader, Editable, CardBody, Box, CardFooter, FormControl, EditableInput, EditableTextarea, Input, Button, FormErrorMessage, EditablePreview, Flex, IconButton, ButtonGroup, } from '@chakra-ui/react'
 import { CheckIcon, EditIcon, CloseIcon, } from '@chakra-ui/icons'
 import { useEditableControls, } from '@chakra-ui/react'
 import { UsersContextInstance } from '../../contex/UsersContext';
 import { AuthContextInstance } from '../../contex/AuthContext';
-import { Stack, Text, HStack, VStack } from '@chakra-ui/react'
+import { Stack, Text } from '@chakra-ui/react'
 import { useEffect, useState, useContext } from 'react'
 import axios from 'axios';
 import { useToast } from '@chakra-ui/react'
@@ -12,10 +12,8 @@ import { useToast } from '@chakra-ui/react'
 
 function UserProfile() {
 
-
     const { isLoading, setIsLoading, loggedInUser, setLoggedInUser, errorMsgClient, setErrorMsgClient, fetchInfo } = useContext(UsersContextInstance);
     const { loggedInUserID } = useContext(AuthContextInstance);
-
 
     const [firstName, setFirstName] = useState(loggedInUser ? loggedInUser.first_name : "");
     const [lastName, setLastName] = useState(loggedInUser ? loggedInUser.last_name : "");
@@ -46,52 +44,50 @@ function UserProfile() {
 
 
     const updateUser = async (formData) => {
-
-
-        try{
+        try {
             setIsLoading(true)
-        for (const value of formData.values()) {
-            console.log(value)
-        }
-
-        if (userImage) {
-            const res = await axios.post(`${process.env.REACT_APP_SERVER_URL}/users/update/`, formData, { withCredentials: true });
-            console.log(res.data)
-            setLoggedInUser(res.data)
-            setIsLoading(false)
-
-        } else {
-            const updatedUser = {
-                id: loggedInUserID,
-                first_name: firstName,
-                last_name: lastName,
-                phone_number: phone,
-                email,
-                bio
+            for (const value of formData.values()) {
+                console.log(value)
             }
-            console.log(updatedUser)
-            const res = await axios.post(`${process.env.REACT_APP_SERVER_URL}/users/updateinfo/`,
-                updatedUser, { withCredentials: true });
-            console.log(res.data)
-            setLoggedInUser(res.data)
-            setIsLoading(false)
-        }
+
+            if (userImage) {
+                const res = await axios.post(`${process.env.REACT_APP_SERVER_URL}/users/update/`, formData, { withCredentials: true });
+                console.log(res.data)
+                setLoggedInUser(res.data)
+                setIsLoading(false)
+
+            } else {
+                const updatedUser = {
+                    id: loggedInUserID,
+                    first_name: firstName,
+                    last_name: lastName,
+                    phone_number: phone,
+                    email,
+                    bio
+                }
+                console.log(updatedUser)
+                const res = await axios.post(`${process.env.REACT_APP_SERVER_URL}/users/updateinfo/`,
+                    updatedUser, { withCredentials: true });
+                console.log(res.data)
+                setLoggedInUser(res.data)
+                setIsLoading(false)
+            }
 
             toast({
                 position: 'bottom',
                 status: 'success',
                 duration: 3000,
                 render: () => (
-                  <Box className='font-weird' color='red.800' p={3} bg='gray.200'>
-                    The user {firstName} {lastName} was updated successfully ✅
-                  </Box>
+                    <Box className='font-weird' color='red.800' p={3} bg='gray.200'>
+                        The user {firstName} {lastName} was updated successfully ✅
+                    </Box>
                 ),
                 isClosable: true,
-              })
-        } catch(err){
+            })
+        } catch (err) {
             console.log(err)
         }
-        
+
     }
 
 
@@ -120,117 +116,117 @@ function UserProfile() {
     return (
         <div className='main-container'>
 
-                <Text  className='main-header' mb={3} textColor='red.800' 
-      fontSize={['3xl', '4xl', '4xl', '5xl']}>  Edit your profile</Text>
+            <Text className='main-header' mb={3} textColor='red.800'
+                fontSize={['3xl', '4xl', '4xl', '5xl']}>  Edit your profile</Text>
 
-<Stack width={['90%', '85%','80%','70%']} align='center'>
+            <Stack width={['90%', '85%', '80%', '70%']} align='center'>
 
-            <Card maxW='md'>
-                <CardHeader>
-                    <Flex flex='1' gap='2' alignItems='center' flexWrap='wrap'>
-                        <Avatar mr={5} name={firstName} src={loggedInUser.picture} />
-                        <Stack>
-                        <Text fontSize= '1.5em' className= 'font-weird'>{firstName} {lastName}</Text>
-                        <Text fontSize= '1em' className= 'font' >Role: {loggedInUser.role}</Text>
-                        </Stack>
+                <Card maxW='md'>
+                    <CardHeader>
+                        <Flex flex='1' gap='2' alignItems='center' flexWrap='wrap'>
+                            <Avatar mr={5} name={firstName} src={loggedInUser.picture} />
+                            <Stack>
+                                <Text fontSize='1.5em' className='font-weird'>{firstName} {lastName}</Text>
+                                <Text fontSize='1em' className='font' >Role: {loggedInUser.role}</Text>
+                            </Stack>
                         </Flex>
-                </CardHeader>
-                <CardBody mt={0}>
-                    <Text className='user-edit-field'>First name:</Text>
-                    <Editable className='editable-field'
-                        defaultValue={firstName}
-                        fontSize='xl'
-                        isPreviewFocusable={false}
+                    </CardHeader>
+                    <CardBody mt={0}>
+                        <Text className='user-edit-field'>First name:</Text>
+                        <Editable className='editable-field'
+                            defaultValue={firstName}
+                            fontSize='xl'
+                            isPreviewFocusable={false}
+                        >
+                            <EditablePreview />
+                            <Input value={firstName} as={EditableInput} onChange={(e) => setFirstName(e.target.value)} />
+                            <EditableControls />
+                        </Editable>
+
+                        <Text className='user-edit-field'>Last name:</Text>
+                        <Editable className='editable-field'
+                            defaultValue={lastName}
+                            fontSize='xl'
+                            isPreviewFocusable={false}
+                        >
+                            <EditablePreview />
+                            <Input value={lastName} as={EditableInput} onChange={(e) => setLastName(e.target.value)} />
+                            <EditableControls />
+                        </Editable>
+
+                        <Text className='user-edit-field'>Upload Photo:</Text>
+
+                        <input type='file' variant='filled' onChange={(e) => setUserImage(e.target.files[0])} />
+
+
+                        <Text className='user-edit-field'>Email:</Text>
+                        <Editable className='editable-field'
+                            defaultValue={email}
+                            fontSize='xl'
+                            isPreviewFocusable={false}
+                        >
+                            <EditablePreview />
+                            <Input value={email} as={EditableInput} onChange={(e) => setEmail(e.target.value)} />
+                            <EditableControls />
+                        </Editable>
+
+                        <Text className='user-edit-field'>Phone Number:</Text>
+                        <Editable className='editable-field'
+                            defaultValue={phone}
+                            fontSize='xl'
+                            isPreviewFocusable={false}
+                        >
+                            <EditablePreview />
+
+                            <Input variant='filled' value={phone} as={EditableInput} onChange={(e) => setPhone(e.target.value)} />
+                            <EditableControls />
+                        </Editable>
+
+                        <Text className='user-edit-field'>Add a Bio:</Text>
+                        <Editable className='editable-field'
+                            defaultValue={bio}
+                            fontSize='xl'
+                            isPreviewFocusable={false}
+                        >
+                            <EditablePreview />
+
+                            <Input variant='filled' value={bio} as={EditableInput} onChange={(e) => setBio(e.target.value)} />
+                            <EditableControls />
+                        </Editable>
+                    </CardBody>
+
+
+                    <CardFooter
+                        justify='space-between'
+                        justifyContent='center'
+                        flexWrap='wrap'
+                        sx={{
+                            '& > button': {
+                                minW: '136px',
+                            },
+                        }}
                     >
-                        <EditablePreview />
-                        <Input value={firstName} as={EditableInput} onChange={(e) => setFirstName(e.target.value)} />
-                        <EditableControls />
-                    </Editable>
-
-                    <Text className='user-edit-field'>Last name:</Text>
-                    <Editable className='editable-field'
-                        defaultValue={lastName}
-                        fontSize='xl'
-                        isPreviewFocusable={false}
-                    >
-                        <EditablePreview />
-                        <Input value={lastName} as={EditableInput} onChange={(e) => setLastName(e.target.value)} />
-                        <EditableControls />
-                    </Editable>
-
-                    <Text className='user-edit-field'>Upload Photo:</Text>
-
-                    <input type='file' variant='filled' onChange={(e) => setUserImage(e.target.files[0])} />
 
 
-                    <Text className='user-edit-field'>Email:</Text>
-                    <Editable className='editable-field'
-                        defaultValue={email}
-                        fontSize='xl'
-                        isPreviewFocusable={false}
-                    >
-                        <EditablePreview />
-                        <Input value={email} as={EditableInput} onChange={(e) => setEmail(e.target.value)} />
-                        <EditableControls />
-                    </Editable>
-
-                    <Text className='user-edit-field'>Phone Number:</Text>
-                    <Editable className='editable-field'
-                        defaultValue={phone}
-                        fontSize='xl'
-                        isPreviewFocusable={false}
-                    >
-                        <EditablePreview />
-
-                        <Input variant='filled' value={phone} as={EditableInput} onChange={(e) => setPhone(e.target.value)} />
-                        <EditableControls />
-                    </Editable>
-
-                    <Text className='user-edit-field'>Add a Bio:</Text>
-                    <Editable className='editable-field'
-                        defaultValue={bio}
-                        fontSize='xl'
-                        isPreviewFocusable={false}
-                    >
-                        <EditablePreview />
-
-                        <Input variant='filled' value={bio} as={EditableInput} onChange={(e) => setBio(e.target.value)} />
-                        <EditableControls />
-                    </Editable>
-                </CardBody>
-
-
-                <CardFooter
-                    justify='space-between'
-                    justifyContent='center'
-                    flexWrap='wrap'
-                    sx={{
-                        '& > button': {
-                            minW: '136px',
-                        },
-                    }}
-                >
-
-
-                    <Button onClick={handleSubmit} className='font-weird' 
-                    color='white' 
-                    width={{base: 'sm', sm: 'sm', md: 'md', lg: 'md' }}
-                    maxW='15em' minW='10em'
-                    bgColor='red.800' 
-                    borderBlockEndWidth={4}
-                    _hover={{
-                      bgGradient: 'linear(to-r, gray.200, gray.100)',
-                      color: 'black'
-                  }}
-              isLoading={isLoading}
-              loadingText='Loading'
-              colorScheme='red'
-              variant='outline'
-              spinnerPlacement='start'
-            >
-              Save changes</Button>
-                </CardFooter>
-            </Card>
+                        <Button onClick={handleSubmit} className='font-weird'
+                            color='white'
+                            width={{ base: 'sm', sm: 'sm', md: 'md', lg: 'md' }}
+                            maxW='15em' minW='10em'
+                            bgColor='red.800'
+                            borderBlockEndWidth={4}
+                            _hover={{
+                                bgGradient: 'linear(to-r, gray.200, gray.100)',
+                                color: 'black'
+                            }}
+                            isLoading={isLoading}
+                            loadingText='Loading'
+                            colorScheme='red'
+                            variant='outline'
+                            spinnerPlacement='start'
+                        >
+                            Save changes</Button>
+                    </CardFooter>
+                </Card>
             </Stack>
         </div>
     )

@@ -19,7 +19,7 @@ const CountAnimation = ({ targetNumber, duration }) => {
     requestAnimationFrame(increment);
   }, [targetNumber, duration]);
 
-  return <div>{currentNumber}</div>;
+  return <>{currentNumber}</>;
 };
 
 export default CountAnimation;

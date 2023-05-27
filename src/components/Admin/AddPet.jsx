@@ -1,13 +1,13 @@
 import React, { useEffect } from 'react'
-import { Checkbox, Textarea, Button, Select, Input, Stack, InputGroup, InputLeftElement, FormControl, FormLabel, Text, Box, Spacer } from '@chakra-ui/react'
+import { Checkbox, Textarea, Button, Select, Input, Stack, InputGroup,  FormControl, FormLabel, Text, Box, Spacer } from '@chakra-ui/react'
 import { useState, useContext } from 'react'
 import { NumberInput, List, ListItem, ListIcon, NumberInputField, NumberInputStepper, NumberIncrementStepper, NumberDecrementStepper, } from '@chakra-ui/react'
 import { IconButton, Tooltip } from '@chakra-ui/react'
-import { SmallCloseIcon, MinusIcon } from '@chakra-ui/icons'
+import { MinusIcon } from '@chakra-ui/icons'
 import axios from 'axios';
 import { useToast } from '@chakra-ui/react'
 import { AdminContextInstance } from '../../contex/AdminContext'
-import {  faPaw } from '@fortawesome/free-solid-svg-icons'
+import { faPaw } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 function AddPet() {
@@ -26,38 +26,17 @@ function AddPet() {
     const [image, setImage] = useState("")
     const [checkForm, setCheckForm] = useState(false)
     const toast = useToast();
-
-
     const { isLoading, setIsLoading } = useContext(AdminContextInstance);
 
-
-useEffect(()=>{
-
-    if(name && type && breed && image && weight && height){
-setCheckForm(true)
-    } else{
-        setCheckForm(false)
-    }
-
-
-},[name, type, breed, image, weight, height])
+    useEffect(() => {
+        if (name && type && breed && image && weight && height) {
+            setCheckForm(true)
+        } else {
+            setCheckForm(false)
+        }
+    }, [name, type, breed, image, weight, height])
 
 
-const fillRequied = () =>{
-
-    toast({
-        position: 'bottom',
-        status: 'success',
-        duration: 3000,
-        render: () => (
-          <Box className='font-weird' color='red.800' p={3} bg='gray.200'>
-            Please fill the required fields
-          </Box>
-        ),
-        isClosable: true,
-      })
-
-}
 
 
     const addItem = () => {
@@ -70,7 +49,6 @@ const fillRequied = () =>{
         const newArray = dietArray.filter((dietItem) => dietItem !== item)
         setDietArray(newArray)
     }
-
 
     const handleSubmit = () => {
         const formData = new FormData();
@@ -94,19 +72,19 @@ const fillRequied = () =>{
             setIsLoading(true)
             const res = await axios.post(`${process.env.REACT_APP_SERVER_URL}/admin/addpet`, formData, { withCredentials: true });
             console.log(res.data)
-            if (res.data.status==='201') {
+            if (res.data.status === '201') {
                 setIsLoading(false)
                 toast({
                     position: 'bottom',
                     status: 'success',
                     duration: 3000,
                     render: () => (
-                      <Box className='font-weird' color='red.800' p={3} bg='gray.200'>
-                        description: {res.data.name} + " the " + {res.data.type} + " was added succsufly!" ✅
-                      </Box>
+                        <Box className='font-weird' color='red.800' p={3} bg='gray.200'>
+                            description: {res.data.name} + " the " + {res.data.type} + " was added succsufly!" ✅
+                        </Box>
                     ),
                     isClosable: true,
-                  })
+                })
             }
         }
         catch (err) {
@@ -276,36 +254,32 @@ const fillRequied = () =>{
                 </FormControl>
 
 
-                {/* <div className='errorMsg'>{errorMsgClient}</div> */}
-                <Tooltip 
-  label={!checkForm && 'Please fill in the required fields'}
-               > 
-                <Button 
-                onClick={handleSubmit}
-                
-                className='font-weird' 
-                isDisabled={!checkForm}
-                size={['md', 'lg']}
-                color='white' 
-                bgColor='red.800' variant='outline'
-                borderBlockEndWidth={4}
-                _hover={
-                    { 
-                    bgGradient: 'linear(to-r, gray.200, gray.100)',
-                    color: 'black'     
-                }}
-                    isLoading={isLoading}
-                    loadingText='Saving'
-                    colorScheme='red'
-                    spinnerPlacement='start'
-                    
+                <Tooltip
+                    label={!checkForm && 'Please fill in the required fields'}
                 >
-<FontAwesomeIcon className='icon-mgR' icon={faPaw} />
-                    Register A New Pet</Button>
-                    </Tooltip>
+                    <Button
+                        onClick={handleSubmit}
 
-        
+                        className='font-weird'
+                        isDisabled={!checkForm}
+                        size={['md', 'lg']}
+                        color='white'
+                        bgColor='red.800' variant='outline'
+                        borderBlockEndWidth={4}
+                        _hover={
+                            {
+                                bgGradient: 'linear(to-r, gray.200, gray.100)',
+                                color: 'black'
+                            }}
+                        isLoading={isLoading}
+                        loadingText='Saving'
+                        colorScheme='red'
+                        spinnerPlacement='start'
 
+                    >
+                        <FontAwesomeIcon className='icon-mgR' icon={faPaw} />
+                        Register A New Pet</Button>
+                </Tooltip>
             </Stack>
 
         </div>

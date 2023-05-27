@@ -1,6 +1,6 @@
 import React from 'react'
 import { FormControl, Box, Stack, Text, Input, Button, FormErrorMessage, EditablePreview, Flex, IconButton, ButtonGroup } from '@chakra-ui/react'
-import { CheckIcon,  EditIcon, CloseIcon, } from '@chakra-ui/icons'
+import { CheckIcon, EditIcon, CloseIcon, } from '@chakra-ui/icons'
 import { useEditableControls } from '@chakra-ui/react'
 import { UsersContextInstance } from '../../contex/UsersContext';
 import { AuthContextInstance } from '../../contex/AuthContext';
@@ -54,12 +54,12 @@ function UpdatePassword() {
                 status: 'success',
                 duration: 3000,
                 render: () => (
-                  <Box className='font-weird' color='red.800' p={3} bg='gray.200'>
-                    The password was updated successfully ✅
-                  </Box>
+                    <Box className='font-weird' color='red.800' p={3} bg='gray.200'>
+                        The password was updated successfully ✅
+                    </Box>
                 ),
                 isClosable: true,
-              })
+            })
 
         } catch (err) {
             console.log(err)
@@ -118,7 +118,7 @@ function UpdatePassword() {
                         fontWeight='medium'
                         className='user-edit-field font'>
                         Retype your Password:             </Text>
-                    <Input mb={6}  minW='10em' type='password' variant='filled' value={repassword} onChange={handleConfirmPasswordChange} />
+                    <Input mb={6} minW='10em' type='password' variant='filled' value={repassword} onChange={handleConfirmPasswordChange} />
                     <FormErrorMessage>Passwords doesn't match!</FormErrorMessage>
                 </FormControl>
 
@@ -140,8 +140,8 @@ function UpdatePassword() {
 
 
                 <Button
-                className='font-weird' isDisabled={!passwordsMatch}
-                    onClick={handlePasswordUpdate} color='white' 
+                    className='font-weird' isDisabled={!passwordsMatch}
+                    onClick={handlePasswordUpdate} color='white'
                     h='2.6em'
                     width={['15em', '20em', '25em', '30em']}
                     p={1}

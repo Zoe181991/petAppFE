@@ -1,6 +1,6 @@
 import React from 'react'
-import { Card, ButtonGroup, CardBody, CardFooter, Image, Button, Text, Stack, Heading, Skeleton } from '@chakra-ui/react'
-import { Badge, Tag, Hide } from '@chakra-ui/react'
+import { Card, ButtonGroup, CardBody, CardFooter, Image, Button, Text, Stack, Skeleton } from '@chakra-ui/react'
+import { Tag, Hide } from '@chakra-ui/react'
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState, useContext } from 'react'
 import { PetsContextInstance } from '../../contex/PetsContext';
@@ -76,11 +76,11 @@ function SavedPetCard({ pet }) {
                 direction={{ base: 'column', sm: 'row' }}
                 overflow='hidden'
                 variant='outline'>
-                <Image
+                <Image onClick={navigatePetsParams}
                     objectFit='cover'
                     maxW={{ base: '100%', sm: '200px' }}
                     src={pet.picture ? pet.picture :
-                        pet.type == 'Dog' ?
+                        pet?.type === 'Dog' ?
                             "https://i.pinimg.com/564x/2c/ac/e1/2cace15889eb210ce4ab764d8e49848f.jpg"
                             :
 
@@ -91,7 +91,7 @@ function SavedPetCard({ pet }) {
 
                 <Skeleton isLoaded={!isLoadingPets}>
                     <Stack>
-                        <CardBody>
+                        <CardBody onClick={navigatePetsParams}>
                             <Stack direction='row'>
                                 <Text fontSize={['lg', 'lg', 'xl', '2xl']} className='font-weird'>{pet.name}</Text>
                                 <Tag fontSize='0.8em' ml={4} colorScheme={colorStatus}>{pet?.adoptionStatus}</Tag>
@@ -161,15 +161,13 @@ function SavedPetCard({ pet }) {
                                             Foster
                                         </Button>
 
-                                        <button onClick={handleClick} className={`heart-button ${isFilled ? 'filled' : 'empty'}`}>
+                                        <div onClick={handleClick} className={`heart-button ${isFilled ? 'filled' : 'empty'}`}>
                                             <Button onClick={handleSaveBtn}
                                                 variant='ghost' colorScheme='pink' bgColor='pink.50'>
-                                                <Hide below='md'>
                                                     {isFilled ? "Saved" : "Save"}
-                                                </Hide>
                                                 <div className="heart"></div>
                                             </Button>
-                                        </button>
+                                        </div>
                                     </>
                                 }
 
@@ -200,15 +198,13 @@ function SavedPetCard({ pet }) {
                                             </>
                                             :
                                             <>
-                                                <button onClick={handleClick} className={`heart-button ${isFilled ? 'filled' : 'empty'}`}>
+                                                <div onClick={handleClick} className={`heart-button ${isFilled ? 'filled' : 'empty'}`}>
                                                     <Button onClick={handleSaveBtn}
                                                         variant='ghost' colorScheme='pink' bgColor='pink.50'>
-                                                        <Hide below='md'>
                                                             {isFilled ? "Saved" : "Save"}
-                                                        </Hide>
                                                         <div className="heart"></div>
                                                     </Button>
-                                                </button>
+                                                </div>
 
 
                                             </>
@@ -234,15 +230,13 @@ function SavedPetCard({ pet }) {
                                             </>
                                             :
                                             <>
-                                                <button onClick={handleClick} className={`heart-button ${isFilled ? 'filled' : 'empty'}`}>
+                                                <div onClick={handleClick} className={`heart-button ${isFilled ? 'filled' : 'empty'}`}>
                                                     <Button onClick={handleSaveBtn}
                                                         variant='ghost' colorScheme='pink' bgColor='pink.50'>
-                                                        <Hide below='md'>
                                                             {isFilled ? "Saved" : "Save"}
-                                                        </Hide>
                                                         <div className="heart"></div>
                                                     </Button>
-                                                </button>
+                                                </div>
                                             </>
 
                                         }

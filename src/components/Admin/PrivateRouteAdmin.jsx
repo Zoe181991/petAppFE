@@ -1,7 +1,7 @@
 import React from 'react'
-import {useContext, useEffect} from 'react'
+import {useContext} from 'react'
 import { AuthContextInstance } from '../../contex/AuthContext'
-import {Navigate, useNavigate} from 'react-router-dom'
+import {Navigate} from 'react-router-dom'
 
 
 function PrivateRouteAdmin({children}) {

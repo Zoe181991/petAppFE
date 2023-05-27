@@ -1,36 +1,36 @@
 import React from 'react'
-import {FormControl,FormLabel, Stack,} from '@chakra-ui/react'
+import { FormControl, FormLabel, Stack, } from '@chakra-ui/react'
 import { Input } from '@chakra-ui/react'
 import { Button, ButtonGroup } from '@chakra-ui/react'
-import { useNavigate} from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useState, useEffect, useContext } from 'react'
-import {UsersContextInstance} from '../../contex/UsersContext';
+import { UsersContextInstance } from '../../contex/UsersContext';
 
 
-function LoginForm({initialRef, onClose}) {
+function LoginForm({ initialRef, onClose }) {
 
-    const [loginEmail, setLoginEmail]= useState("");
-    const [loginPassword, setLoginPassword]= useState("");
-    const { errorMsgClient, setErrorMsgClient, loginReq, isLoading, setIsLoading} = useContext(UsersContextInstance);
+    const [loginEmail, setLoginEmail] = useState("");
+    const [loginPassword, setLoginPassword] = useState("");
+    const { errorMsgClient, setErrorMsgClient, loginReq, isLoading, setIsLoading } = useContext(UsersContextInstance);
 
 
 
     const navigate = useNavigate();
 
-    useEffect(()=>{
+    useEffect(() => {
         setErrorMsgClient("")
-    },[])
+    }, [])
 
     const navigateHome = () => {
         // 👇️ navigate to /
         navigate('/');
-      };
+    };
 
-    const handleLogin = ()=>{
+    const handleLogin = () => {
         console.log(`trying to login with ${loginEmail} and ${loginPassword} `)
-        const newLogin={
-            email:loginEmail,
-            password:loginPassword
+        const newLogin = {
+            email: loginEmail,
+            password: loginPassword
         }
         loginReq(newLogin);
     }
@@ -40,29 +40,29 @@ function LoginForm({initialRef, onClose}) {
 
             <FormControl isRequired>
                 <FormLabel>Email</FormLabel>
-                <Input ref={initialRef} placeholder='Email' value={loginEmail} onChange={(e)=> setLoginEmail(e.target.value)} />
+                <Input ref={initialRef} placeholder='Email' value={loginEmail} onChange={(e) => setLoginEmail(e.target.value)} />
             </FormControl>
 
             <FormControl isRequired mt={4}>
                 <FormLabel>Password</FormLabel>
-                <Input type='password' placeholder='Password' value={loginPassword} onChange={(e)=> setLoginPassword(e.target.value)} />
+                <Input type='password' placeholder='Password' value={loginPassword} onChange={(e) => setLoginPassword(e.target.value)} />
             </FormControl>
 
             <div className='errorMsg'>{errorMsgClient}</div>
 
-<Stack  mt={6} direction='row' justifyContent='center'>
-            <Button className="font-weird" color='red.800' onClick={handleLogin} colorScheme='yellow' 
-            mr={3} size='lg'
-            isLoading={isLoading} 
-loadingText='One moment...'
-variant='outline'  
-spinnerPlacement='start'
-            
-            >
-                            Login
-                        </Button>
-           <Button size='lg' className="font-weird" onClick={navigateHome}>Cancel</Button>
-           </Stack>
+            <Stack mt={6} direction='row' justifyContent='center'>
+                <Button className="font-weird" color='red.800' onClick={handleLogin} colorScheme='yellow'
+                    mr={3} size='lg'
+                    isLoading={isLoading}
+                    loadingText='One moment...'
+                    variant='outline'
+                    spinnerPlacement='start'
+
+                >
+                    Login
+                </Button>
+                <Button size='lg' className="font-weird" onClick={navigateHome}>Cancel</Button>
+            </Stack>
         </>
     )
 }

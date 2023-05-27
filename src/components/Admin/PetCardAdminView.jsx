@@ -7,46 +7,46 @@ import { PetsContextInstance } from '../../contex/PetsContext';
 import { UsersContextInstance } from '../../contex/UsersContext';
 import { ArrowForwardIcon } from '@chakra-ui/icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faRuler,faShieldDog, faPaw, faWeightScale } from '@fortawesome/free-solid-svg-icons'
+import { faRuler, faShieldDog, faPaw, faWeightScale } from '@fortawesome/free-solid-svg-icons'
 import { InfoOutlineIcon } from '@chakra-ui/icons'
 import { EditIcon } from '@chakra-ui/icons'
 
 function PetCardAdminView({ pet }) {
 
-    const [colorStatus, setColorStatus] = useState(false)
-    const { loggedInUser } = useContext(UsersContextInstance);
+  const [colorStatus, setColorStatus] = useState(false)
+  const { loggedInUser } = useContext(UsersContextInstance);
 
 
-    const navigate = useNavigate();
-    const navigatePetsParams = () => {
-        navigate(`/pets/${pet._id}`);
-    };
+  const navigate = useNavigate();
+  const navigatePetsParams = () => {
+    navigate(`/pets/${pet._id}`);
+  };
 
 
-    useEffect(() => {
-        if (pet?.adoptionStatus === 'Available') {
-            setColorStatus("green")
-        }
-        if (pet?.adoptionStatus === 'Fostered') {
-            setColorStatus("blue")
-        } if (pet?.adoptionStatus === 'Adopted') {
-            setColorStatus("purple")
-        }
-    }, [pet]);
+  useEffect(() => {
+    if (pet?.adoptionStatus === 'Available') {
+      setColorStatus("green")
+    }
+    if (pet?.adoptionStatus === 'Fostered') {
+      setColorStatus("blue")
+    } if (pet?.adoptionStatus === 'Adopted') {
+      setColorStatus("purple")
+    }
+  }, [pet]);
 
 
- 
 
 
-    return (
-        <>
-            <Card mt={5}
-                direction={{ base: 'column', sm: 'row' }}
-                overflow='hidden'
-                variant='outline'
-            >
 
-            <Image
+  return (
+    <>
+      <Card mt={5}
+        direction={{ base: 'column', sm: 'row' }}
+        overflow='hidden'
+        variant='outline'
+      >
+
+        <Image
           objectFit='cover'
           maxW={{ base: '100%', sm: '200px' }}
 
@@ -61,84 +61,84 @@ function PetCardAdminView({ pet }) {
 
 
 
-                <Stack>
-                  <CardBody ml={2}>
-            <Stack  direction='row'> 
-            <Text  fontSize={['lg', 'lg', 'xl', '2xl']} className='font-weird'>{pet.name}</Text>
+        <Stack>
+          <CardBody ml={2}>
+            <Stack direction='row'>
+              <Text fontSize={['lg', 'lg', 'xl', '2xl']} className='font-weird'>{pet.name}</Text>
               <Tag fontWeight='semibold' fontSize='0.8em' ml={4} colorScheme={colorStatus}>{pet?.adoptionStatus}</Tag>
 
             </Stack>
-       
 
-            <Tag  size={['sm', 'sm', 'md', 'md']}  fontWeight='normal' mt={4} mr={2} > 
-            <span className="icon-mgR" >
-            <FontAwesomeIcon icon={faPaw} />
-            </span>
-            Type: {pet.type}
+
+            <Tag size={['sm', 'sm', 'md', 'md']} fontWeight='normal' mt={4} mr={2} >
+              <span className="icon-mgR" >
+                <FontAwesomeIcon icon={faPaw} />
+              </span>
+              Type: {pet.type}
             </Tag>
 
-            <Tag fontWeight='normal' mt={4} mr={2} size={['sm', 'sm', 'md', 'md']}>  
-            <span className="icon-mgR" >
-            <FontAwesomeIcon icon={faShieldDog} />
-            </span>
-            Breed: {pet.breed}
+            <Tag fontWeight='normal' mt={4} mr={2} size={['sm', 'sm', 'md', 'md']}>
+              <span className="icon-mgR" >
+                <FontAwesomeIcon icon={faShieldDog} />
+              </span>
+              Breed: {pet.breed}
             </Tag>
 
-            <Tag fontWeight='normal' mt={4} mr={2} size={['sm', 'sm', 'md', 'md']}>  
-            <span className="icon-mgR" >
-            <FontAwesomeIcon icon={faRuler} />
-            </span>
-            Height: {pet.height} cm</Tag>
+            <Tag fontWeight='normal' mt={4} mr={2} size={['sm', 'sm', 'md', 'md']}>
+              <span className="icon-mgR" >
+                <FontAwesomeIcon icon={faRuler} />
+              </span>
+              Height: {pet.height} cm</Tag>
 
-            <Tag fontWeight='normal' mt={4} mr={2} size={['sm', 'sm', 'md', 'md']}>  
-            <span className="icon-mgR" >
-            <FontAwesomeIcon icon={faWeightScale} />
-            </span>
+            <Tag fontWeight='normal' mt={4} mr={2} size={['sm', 'sm', 'md', 'md']}>
+              <span className="icon-mgR" >
+                <FontAwesomeIcon icon={faWeightScale} />
+              </span>
 
-            Weight: {pet.weight} kg</Tag>
-       
+              Weight: {pet.weight} kg</Tag>
+
           </CardBody>
 
           <CardFooter
-          position='-webkit-sticky'
-          bottom='1'
-          alignItems='end'
-           justify='space-between'
-           flexWrap='wrap'
+            position='-webkit-sticky'
+            bottom='1'
+            alignItems='end'
+            justify='space-between'
+            flexWrap='wrap'
           >
 
-          <ButtonGroup spacing={4} className='font-weird'>
-          <Button rightIcon={ <InfoOutlineIcon/>} 
-          size={['base: sm', 'sm', 'xs', 'sm', 'sm']}
-          
-          colorScheme='yellow' onClick={navigatePetsParams}>
-              More info
-            </Button>
+            <ButtonGroup spacing={4} className='font-weird'>
+              <Button rightIcon={<InfoOutlineIcon />}
+                size={['base: sm', 'sm', 'xs', 'sm', 'sm']}
+
+                colorScheme='yellow' onClick={navigatePetsParams}>
+                More info
+              </Button>
 
 
-<Button className='font-weird' size='sm' color='black' colorScheme='gray'
-                       leftIcon={<EditIcon />}
-                        _hover={{
-                          bgGradient: 'linear(to-r, gray.200, gray.100)',
-                        }}
-                        onClick={(e) => navigate(`/admin/editpet/${pet._id}`)}>
+              <Button className='font-weird' size='sm' color='black' colorScheme='gray'
+                leftIcon={<EditIcon />}
+                _hover={{
+                  bgGradient: 'linear(to-r, gray.200, gray.100)',
+                }}
+                onClick={(e) => navigate(`/admin/editpet/${pet._id}`)}>
 
-                        Edit pet</Button>
-           
+                Edit pet</Button>
 
 
-            
+
+
             </ButtonGroup>
 
           </CardFooter>
 
 
 
-                 
-                </Stack>
-            </Card>
-        </>
-    )
+
+        </Stack>
+      </Card>
+    </>
+  )
 }
 
 export default PetCardAdminView

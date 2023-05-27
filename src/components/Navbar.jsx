@@ -1,21 +1,20 @@
 import React from 'react'
-import { Box, Image, Button, SimpleGrid, ButtonGroup, Menu, MenuItem, MenuGroup, MenuDivider, MenuButton, MenuList } from '@chakra-ui/react'
-import { Input } from '@chakra-ui/react'
+import { Box, Image, Button, Menu, MenuItem, MenuGroup, MenuDivider, MenuButton, MenuList } from '@chakra-ui/react'
 import { UsersContextInstance } from '../contex/UsersContext';
 import { useEffect, useContext } from 'react'
 import { useNavigate, NavLink, } from 'react-router-dom';
 import { SettingsIcon } from '@chakra-ui/icons'
 import { Avatar, Text, AvatarGroup } from '@chakra-ui/react'
 import { AuthContextInstance } from '../contex/AuthContext';
-import { Flex, Stack, Spacer, Show, Hide } from '@chakra-ui/react'
+import { Stack, Spacer, Show, Hide } from '@chakra-ui/react'
 import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHomeUser, faMagnifyingGlass, faPaw, faGaugeHigh } from '@fortawesome/free-solid-svg-icons'
 
 function Navbar({ onOpen }) {
 
-  const { loggedInUser, setLoggedInUser, fetchInfo } = useContext(UsersContextInstance);
-  const { setLoggedInUserID, loggedInUserID, isAdmin, setIsAdmin } = useContext(AuthContextInstance);
+  const { loggedInUser, setLoggedInUser, } = useContext(UsersContextInstance);
+  const { setLoggedInUserID, isAdmin, setIsAdmin } = useContext(AuthContextInstance);
 
   const navigate = useNavigate();
   useEffect(() => {
@@ -45,87 +44,87 @@ function Navbar({ onOpen }) {
     <>
 
       <Box className='navBar' h='20%' wrap='false' display={{ base: 'flex', md: 'flex' }}
-       justifyContent='center' pt={{ base: 6, lg: 8 }} pb={{ base: 6, lg: 8 }} color='white' >
+        justifyContent='center' pt={{ base: 6, lg: 8 }} pb={{ base: 6, lg: 8 }} color='white' >
 
 
-        <Stack  direction='row' alignItems='baseline'    fontSize={['sm', 'md', 'lg', '3lg']}
-            ml={{ base: '1em', sm: '2em', md: '2em', lg: '3em'}}>
+        <Stack direction='row' alignItems='baseline' fontSize={['sm', 'md', 'lg', '3lg']}
+          ml={{ base: '1em', sm: '2em', md: '2em', lg: '3em' }}>
 
 
-<NavLink to={isAdmin ? '/admin' : '/'}>
+          <NavLink to={isAdmin ? '/admin' : '/'}>
 
-          <Image 
-            className='logo-navbar'
-            src="https://res.cloudinary.com/dwhknzktx/image/upload/v1685119482/logoNavBar_ifohh7.png" />
+            <Image
+              className='logo-navbar'
+              src="https://res.cloudinary.com/dwhknzktx/image/upload/v1685119482/logoNavBar_ifohh7.png" />
 
-          {/* <Box alignContent='baseline'
+            {/* <Box alignContent='baseline'
             fontSize={['sm', 'md', 'lg', 'xl']}
             ml={{ base: 2, sm: 8, md: 12, lg: 30 }}> */}
-   <Text  fontWeight='extrabold' 
-            className='font' color='#f9de10'> 
-            <Hide below='xl'>
-            Pawsitive Adoptions  
-            </Hide>
+            <Text fontWeight='extrabold'
+              className='font' color='#f9de10'>
+              <Hide below='xl'>
+                Pawsitive Adoptions
+              </Hide>
             </Text>
-            </NavLink>
+          </NavLink>
 
 
-            <NavLink to={isAdmin ? '/admin' : '/'}>
+          <NavLink to={isAdmin ? '/admin' : '/'}>
+            {({ isActive }) => (
+              <>
+                <span className={isActive ? "active-page" : "navLink"}>
+                  <FontAwesomeIcon className='icon-nav'
+                    icon={faHomeUser} />
+                  <Hide below='md'> Home  </Hide>
+                </span>
+
+              </>
+            )}
+          </NavLink>
+
+          <NavLink to='/search'>
+            {({ isActive }) => (
+              <>
+                <span className={isActive ? "active-page" : "navLink"}>
+                  <FontAwesomeIcon className='icon-nav' icon={faMagnifyingGlass} />
+                  <Hide below='md'>
+                    Search
+                  </Hide>
+                </span>
+              </>
+            )}
+          </NavLink>
+
+          {isAdmin &&
+            <NavLink to='/dashboard'>
               {({ isActive }) => (
                 <>
                   <span className={isActive ? "active-page" : "navLink"}>
-                    <FontAwesomeIcon className='icon-nav'
-                      icon={faHomeUser} />
-                    <Hide below='md'> Home  </Hide>
-                  </span>
-
-                </>
-              )}
-            </NavLink>
-
-            <NavLink to='/search'>
-              {({ isActive }) => (
-                <>
-                  <span className={isActive ? "active-page" : "navLink"}>
-                    <FontAwesomeIcon className='icon-nav' icon={faMagnifyingGlass} />
+                    <FontAwesomeIcon className='icon-nav' icon={faGaugeHigh} />
                     <Hide below='md'>
-                      Search
+                      Dashboard
                     </Hide>
                   </span>
                 </>
               )}
             </NavLink>
-
-            {isAdmin &&
-              <NavLink to='/dashboard'>
-                {({ isActive }) => (
-                  <>
-                    <span className={isActive ? "active-page" : "navLink"}>
-                      <FontAwesomeIcon className='icon-nav' icon={faGaugeHigh} />
-                      <Hide below='md'>
-                        Dashboard
-                      </Hide>
-                    </span>
-                  </>
-                )}
-              </NavLink>
-            }
+          }
 
 
 
 
-            {!loggedInUser ?
-              <></>
-              :
-              <NavLink to='/mypets'>
-                {({ isActive }) => (
+          {!loggedInUser ?
+            <></>
+            :
+            <NavLink to='/mypets'>
+              {({ isActive }) => (
 
-                  <span className={isActive ? "active-page" : "navLink"}>
-                    <FontAwesomeIcon className='icon-nav' icon={faPaw} />
-                    <Hide below='md'>My pets</Hide></span>
-                )}
-              </NavLink>
-            }
+                <span className={isActive ? "active-page" : "navLink"}>
+                  <FontAwesomeIcon className='icon-nav' icon={faPaw} />
+                  <Hide below='md'>My pets</Hide></span>
+              )}
+            </NavLink>
+          }
           {/* </Box> */}
         </Stack>
 
@@ -134,20 +133,20 @@ function Navbar({ onOpen }) {
 
 
         <Stack direction='row' justify='right'
-        alignItems='center'
+          alignItems='center'
           fontSize={['sm', 'sm', 'md', 'md']}
           mr={{ base: "0.5em", md: "1em", lg: "3em" }}>
 
           {loggedInUser &&
-         <>
+            <>
               <Stack >
-              <Hide below='xl'>
-                <NavLink to='/userprofile/edit'>
-                  <AvatarGroup  mr={3} mb={0}>
-                    <Avatar bg='gray' src={loggedInUser.picture} />
-                  </AvatarGroup>
-                </NavLink>
-              </Hide>
+                <Hide below='xl'>
+                  <NavLink to='/userprofile/edit'>
+                    <AvatarGroup mr={3} mb={0}>
+                      <Avatar bg='gray' src={loggedInUser.picture} />
+                    </AvatarGroup>
+                  </NavLink>
+                </Hide>
               </Stack>
 
               <Menu>
@@ -183,7 +182,7 @@ function Navbar({ onOpen }) {
                   </MenuGroup>
                 </MenuList>
               </Menu>
-              </>
+            </>
           }
 
 
