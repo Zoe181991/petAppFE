@@ -140,8 +140,8 @@ fetchAllUsers()
       <CardHeader className='header-card'>
         <Text fontSize='3xl' className='font-weird'> Add a new pet
         </Text>
+        <FontAwesomeIcon size='xl' icon={faDog} />
 
-        <FontAwesomeIcon size='xl' icon={faPenToSquare} />
 
       </CardHeader>
 
@@ -175,7 +175,7 @@ fetchAllUsers()
       <CardHeader className='header-card'>
         <Text fontSize='3xl' className='font-weird'> View Users
         </Text>
-        <FontAwesomeIcon size='xl' icon={faDog} />
+        <FontAwesomeIcon size='xl' icon={faPenToSquare} />
       </CardHeader>
       <CardBody>
         <Text>View users and edit roles
