@@ -22,11 +22,11 @@ const UsersContext = ({ children }) => {
     const navigate = useNavigate();
     const toast = useToast();
 
-    useEffect(()=>{
-        if(loggedInUser){
-            fetchInfo(loggedInUserID);
-        }
-    },[])
+    // useEffect(()=>{
+    //     if(loggedInUser){
+    //         fetchInfo(loggedInUserID);
+    //     }
+    // },[])
 
     const ErrorToast = (error)=>{
         toast({ title: 'Something went wrong',
