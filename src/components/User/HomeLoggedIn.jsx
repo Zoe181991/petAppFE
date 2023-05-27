@@ -12,7 +12,7 @@ import axios from 'axios';
 
 
 function HomeLoggedIn() {
-  const { loggedInUser, setLoggedInUser, fetchInfo, isLoading, setIsLoading } = useContext(UsersContextInstance);
+  const { loggedInUser,  isLoading, setIsLoading } = useContext(UsersContextInstance);
   const { loggedInUserID, } = useContext(AuthContextInstance);
   const navigate = useNavigate();
 

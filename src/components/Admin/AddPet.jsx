@@ -1,8 +1,8 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Checkbox, Textarea, Button, Select, Input, Stack, InputGroup, InputLeftElement, FormControl, FormLabel, Text, Box, Spacer } from '@chakra-ui/react'
 import { useState, useContext } from 'react'
 import { NumberInput, List, ListItem, ListIcon, NumberInputField, NumberInputStepper, NumberIncrementStepper, NumberDecrementStepper, } from '@chakra-ui/react'
-import { IconButton } from '@chakra-ui/react'
+import { IconButton, Tooltip } from '@chakra-ui/react'
 import { SmallCloseIcon, MinusIcon } from '@chakra-ui/icons'
 import axios from 'axios';
 import { useToast } from '@chakra-ui/react'
@@ -29,6 +29,35 @@ function AddPet() {
 
 
     const { isLoading, setIsLoading } = useContext(AdminContextInstance);
+
+
+useEffect(()=>{
+
+    if(name && type && breed && image && weight && height){
+setCheckForm(true)
+    } else{
+        setCheckForm(false)
+    }
+
+
+},[name, type, breed, image, weight, height])
+
+
+const fillRequied = () =>{
+
+    toast({
+        position: 'bottom',
+        status: 'success',
+        duration: 3000,
+        render: () => (
+          <Box className='font-weird' color='red.800' p={3} bg='gray.200'>
+            Please fill the required fields
+          </Box>
+        ),
+        isClosable: true,
+      })
+
+}
 
 
     const addItem = () => {
@@ -248,15 +277,22 @@ function AddPet() {
 
 
                 {/* <div className='errorMsg'>{errorMsgClient}</div> */}
-
-                <Button onClick={handleSubmit} className='font-weird' 
+                <Tooltip 
+  label={!checkForm && 'Please fill in the required fields'}
+               > 
+                <Button 
+                onClick={handleSubmit}
+                
+                className='font-weird' 
+                isDisabled={!checkForm}
                 size={['md', 'lg']}
                 color='white' 
                 bgColor='red.800' variant='outline'
                 borderBlockEndWidth={4}
-                _hover={{
+                _hover={
+                    { 
                     bgGradient: 'linear(to-r, gray.200, gray.100)',
-                    color: 'black'
+                    color: 'black'     
                 }}
                     isLoading={isLoading}
                     loadingText='Saving'
@@ -266,6 +302,7 @@ function AddPet() {
                 >
 <FontAwesomeIcon className='icon-mgR' icon={faPaw} />
                     Register A New Pet</Button>
+                    </Tooltip>
 
         
 

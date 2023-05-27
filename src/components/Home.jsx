@@ -52,6 +52,7 @@ fontSize='4xl'>  Welcome to Pawsitive Adoptions
 
         :
         <>
+        
           <HomeLoggedIn />
         </>
       }

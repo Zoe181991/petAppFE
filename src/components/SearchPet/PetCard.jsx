@@ -70,7 +70,8 @@ function PetCard({ pet}) {
   return (
     <>
 
-      <Card mt={3} className='font'  
+      <Card mt={3} className='font' 
+      
        _hover={{
         bgGradient: 'linear(to-r, yellow.100, gray.100)',
        cursor: 'pointer'
@@ -79,7 +80,7 @@ function PetCard({ pet}) {
         overflow='hidden'
         variant='outline'
       >
-        <Image
+        <Image onClick={navigatePetsParams}
           objectFit='cover'
           maxH={['180px', '200px', '220px']}
           src={pet.picture ? pet.picture :
@@ -92,7 +93,7 @@ function PetCard({ pet}) {
         />
 
         <Stack>
-          <CardBody ml={2}>
+          <CardBody ml={2} onClick={navigatePetsParams}>
             <Stack  direction='row'> 
             <Text  fontSize={['lg', 'lg', 'xl', '2xl']} className='font-weird'>{pet.name}</Text>
               <Tag fontWeight='semibold' fontSize='0.8em' ml={4} colorScheme={colorStatus}>{pet?.adoptionStatus}</Tag>
