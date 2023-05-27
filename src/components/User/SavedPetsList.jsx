@@ -9,10 +9,13 @@ function SavedPetsList() {
   const {savedPetsList}=useContext(PetsContextInstance);
 
   return (
+    <SimpleGrid minChildWidth= {[ '300px' ]}
+    maxChildWidth={['base: 180px', '220px', '250px', '300px' ]} spacing='15px'>
           <div>
 
               {savedPetsList.map((pet) => (<SavedPetCard key={pet._id} pet={pet}/>))}
           </div>
+        </SimpleGrid>
   )
 }
 

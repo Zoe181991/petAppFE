@@ -127,19 +127,22 @@ function SavedPetCard({ pet }) {
 
                         <CardFooter >
 
-                            <ButtonGroup   pr={2} pl={2}
-          size={['base: sm', 'sm', 'xs', 'sm', 'sm']} spacing={2} className='font-weird' >
+                            <ButtonGroup pr={2} pl={2}
+                                size={['base: sm', 'sm', 'xs', 'sm', 'sm']}
+                                spacing={2} className='font-weird' >
                                 <Button leftIcon={<InfoOutlineIcon />}
-                                  
+
                                     p={2}
                                     colorScheme='yellow' onClick={navigatePetsParams}>
-                                                  <Hide below='lg'>
- More info </Hide> 
+                                    <Hide below='xl'>
+                                        More info </Hide>
                                 </Button>
 
                                 {pet.adoptionStatus === "Available" &&
                                     <>
-                                        <Button ml={3} size='sm' color='white' onClick={() => adoptPet(pet._id, pet.name, loggedInUser)}
+                                        <Button ml={3} color='white' onClick={() => adoptPet(pet._id, pet.name, loggedInUser)}
+                                             p={2}
+                                             fontSize={['base: xs', 'xs', 'xs', 'sm', 'sm']}
                                             bgGradient='linear(to-r, purple.500, purple.300)'
                                             _hover={{
                                                 bgGradient: 'linear(to-r, purple.400, purple.200)',
@@ -148,7 +151,9 @@ function SavedPetCard({ pet }) {
                                         </Button>
 
                                         <Button
-                                            ml={3} size='sm' color='white' onClick={() => fosterPet(pet._id, pet.name)}
+                                            ml={3} color='white' onClick={() => fosterPet(pet._id, pet.name)}
+                                            p={2}
+                                                    fontSize={['base: xs', 'xs', 'xs', 'sm', 'sm']}
                                             bgGradient='linear(to-r, teal.400, blue.400)'
                                             _hover={{
                                                 bgGradient: 'linear(to-r, teal.200, blue.200)',
@@ -172,7 +177,9 @@ function SavedPetCard({ pet }) {
                                     <>
                                         {pet.owner === loggedInUser._id ?
                                             <>
-                                                <Button ml={3} size='sm' color='white' onClick={() => adoptPet(pet._id, pet.name, loggedInUser)}
+                                                <Button ml={3} color='white' onClick={() => adoptPet(pet._id, pet.name, loggedInUser)}
+                                                    p={2}
+                                                    fontSize={['base: xs', 'xs', 'xs', 'sm', 'sm']}
                                                     bgGradient='linear(to-r, purple.500, purple.300)'
                                                     _hover={{
                                                         bgGradient: 'linear(to-r, purple.400, purple.200)',
@@ -182,7 +189,9 @@ function SavedPetCard({ pet }) {
                                                 </Button>
 
 
-                                                <Button ml={3} size='sm' variant='outline' onClick={() => removeFosteredPet(pet._id, pet.name)}
+                                                <Button ml={3} variant='outline' onClick={() => removeFosteredPet(pet._id, pet.name)}
+                                                   p={2}
+                                                   fontSize={['base: xs', 'xs', 'xs', 'sm', 'sm']}
                                                     leftIcon={<FontAwesomeIcon icon={faFaceFrownOpen} />}
                                                     colorScheme='gray'>
                                                     Return to Shelter
@@ -192,8 +201,8 @@ function SavedPetCard({ pet }) {
                                             :
                                             <>
                                                 <button onClick={handleClick} className={`heart-button ${isFilled ? 'filled' : 'empty'}`}>
-                                                    <Button onClick={handleSaveBtn} 
-                                                    variant='ghost' colorScheme='pink' bgColor='pink.50'>
+                                                    <Button onClick={handleSaveBtn}
+                                                        variant='ghost' colorScheme='pink' bgColor='pink.50'>
                                                         <Hide below='md'>
                                                             {isFilled ? "Saved" : "Save"}
                                                         </Hide>
@@ -213,8 +222,10 @@ function SavedPetCard({ pet }) {
 
                                             <>
 
-                                                <Button ml={3} size='sm' variant='outline' onClick={() => removeAdoptedPet(pet._id, pet.name)}
+                                                <Button ml={3} variant='outline' onClick={() => removeAdoptedPet(pet._id, pet.name)}
                                                     colorScheme='gray'
+                                                    p={2}
+                                                    fontSize={['base: xs', 'xs', 'xs', 'sm', 'sm']}
                                                     leftIcon={<FontAwesomeIcon icon={faFaceFrownOpen} />}
                                                 >
                                                     Return to Shelter
@@ -225,7 +236,7 @@ function SavedPetCard({ pet }) {
                                             <>
                                                 <button onClick={handleClick} className={`heart-button ${isFilled ? 'filled' : 'empty'}`}>
                                                     <Button onClick={handleSaveBtn}
-                                                       variant='ghost' colorScheme='pink' bgColor='pink.50'>
+                                                        variant='ghost' colorScheme='pink' bgColor='pink.50'>
                                                         <Hide below='md'>
                                                             {isFilled ? "Saved" : "Save"}
                                                         </Hide>

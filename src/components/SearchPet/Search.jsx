@@ -135,20 +135,14 @@ function Search() {
           </FormControl>
           {!advSearch &&
             <Button className='font-weird' onClick={getPetbyType} color='white' w='10em' 
-            size="lg" 
-bgColor='red.800'
-borderBlockEndWidth={4}
-            _hover={{
+            size="lg" bgColor='red.800' borderBlockEndWidth={4} _hover={{
                 bgGradient: 'linear(to-r, gray.200, gray.100)',
-                color: 'black'
-              }}
+                color: 'black'}}
               isLoading={loading}
               loadingText='Loading'
               colorScheme='teal'
               variant='outline'
-              spinnerPlacement='start'
-            >
-              Search</Button>
+              spinnerPlacement='start'> Search</Button>
 
 
           }</Stack>

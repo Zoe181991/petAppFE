@@ -36,7 +36,7 @@ const PetsContext = ({ children }) => {
         duration: 3000,
         render: () => (
           <Box className='font-weird' color='red.800' p={3} bg='gray.200'>
-            {savePetToUser.petName} was saved successfuly! ❤️
+            {savePetToUser.petName} was saved successfully! ❤️
           </Box>
         ),
         isClosable: true,

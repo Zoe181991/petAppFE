@@ -67,14 +67,6 @@ function AddPet() {
             console.log(res.data)
             if (res.data.status==='201') {
                 setIsLoading(false)
-                // toast({
-                //     title: res.data.name + " is now registered!",
-                //     description: res.data.name + " the " + res.data.type + " was added succsufly!",
-                //     status: 'success',
-                //     duration: 3000,
-                //     isClosable: true,
-                // })
-
                 toast({
                     position: 'bottom',
                     status: 'success',
