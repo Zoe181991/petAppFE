@@ -1,7 +1,7 @@
 import React, { useState, useContext, useEffect } from 'react'
 import { FormControl, FormLabel, FormErrorMessage, FormHelperText, } from '@chakra-ui/react'
 import { Input, InputGroup, InputLeftAddon } from '@chakra-ui/react'
-import { Button, Stack  } from '@chakra-ui/react'
+import { Button, Tooltip, Stack  } from '@chakra-ui/react'
 import {  useNavigate } from 'react-router-dom';
 import { UsersContextInstance } from '../../contex/UsersContext';
 import axios from 'axios';
@@ -18,6 +18,8 @@ function SignUpForm({ initialRef, onClose}) {
     const [phone, setPhone] = useState('');
     const [password, setPassword] = useState('');
     const [repassword, setRePassword] = useState('');
+    const [checkForm, setCheckForm] = useState(false)
+    const [passwordsMatch, setPasswordsMatch] = useState(false);
 
     const {setErrorMsgClient, errorMsgClient, loginReq } = useContext(UsersContextInstance);
 
@@ -41,6 +43,23 @@ useEffect(()=>{
         }
         signUpReq(newUser)
     }
+
+    
+useEffect(()=>{
+
+    if(email && firstName && lastName && password.length>5 && repassword.length>5 && password===repassword ){
+setCheckForm(true)
+    } else{
+        setCheckForm(false)
+    }
+
+},[email, firstName, lastName, password, repassword ])
+
+function handleConfirmPasswordChange(event) {
+    setRePassword(event.target.value);
+    setPasswordsMatch(event.target.value === password);
+}
+
 
     const signUpReq = async (userDetails) => {
         try {
@@ -91,28 +110,34 @@ useEffect(()=>{
                 </InputGroup>
             </FormControl>
 
-            <FormControl mt={4} isRequired>
+            <FormControl mt={4} isRequired isInvalid={!passwordsMatch}>
                 <FormLabel>Password</FormLabel>
                 <Input type='password' placeholder='Password'
                     value={password}
                     onChange={(e) => setPassword(e.target.value)} />
-            </FormControl>
-
-            <FormControl mt={4} isRequired>
+                    
                 <FormLabel>Retype Password</FormLabel>
                 <Input type='password' placeholder='Retype Password'
                     value={repassword}
-                    onChange={(e) => setRePassword(e.target.value)} />
+                    onChange={handleConfirmPasswordChange} />
+                  <FormErrorMessage>Passwords doesn't match!</FormErrorMessage>
+
             </FormControl>
 
+        
             <div className='errorMsg'>{errorMsgClient}</div>
 
             <Stack  mt={6} direction='row' justifyContent='center'>
 
-            <Button onClick={handleSubmit} className="font-weird" color='red.800'  colorScheme='yellow' 
+  <Tooltip 
+  label={!checkForm && 'Please fill in the required fields, make sure the passwords match. min length of password is 6 chars'}
+               > 
+            
+            <Button  isDisabled={!checkForm} onClick={handleSubmit} className="font-weird" color='red.800'  colorScheme='yellow' 
             mr={3} size='lg'>
                 Sign Up
             </Button>
+            </Tooltip>
 
             <Button size='lg' className="font-weird" onClick={navigateHome}>Cancel</Button>
             </Stack>
