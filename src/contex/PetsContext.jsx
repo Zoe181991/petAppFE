@@ -26,7 +26,7 @@ const PetsContext = ({ children }) => {
   const savePet = async (savePetToUser) => {
     setIsLoadingPets(true)
     try {
-    
+
       const res = await axios.post(`${process.env.REACT_APP_SERVER_URL}/pets/save`, savePetToUser, { withCredentials: true });
       setSavedPetsList(res.data.savedPets)
       setIsLoadingPets(false)
@@ -57,21 +57,21 @@ const PetsContext = ({ children }) => {
     try {
       setIsLoadingPets(true)
       const res = await axios.delete(`${process.env.REACT_APP_SERVER_URL}/pets/${id}/removesaved/${loggedInUserID}`, { withCredentials: true });
-        const updateList = savedPetsList.filter((pet) => pet._id !== id);
-        setSavedPetsList(updateList);
-        setIsLoadingPets(false)
-        
-        toast({
-          position: 'bottom',
-          status: 'success',
-          duration: 3000,
-          render: () => (
-            <Box className='font-weird' color='red.800' p={3} bg='gray.200'>
-              {name} was removed from Saved Pets 💔
-            </Box>
-          ),
-          isClosable: true,
-        })
+      const updateList = savedPetsList.filter((pet) => pet._id !== id);
+      setSavedPetsList(updateList);
+      setIsLoadingPets(false)
+
+      toast({
+        position: 'bottom',
+        status: 'success',
+        duration: 3000,
+        render: () => (
+          <Box className='font-weird' color='red.800' p={3} bg='gray.200'>
+            {name} was removed from Saved Pets 💔
+          </Box>
+        ),
+        isClosable: true,
+      })
 
     } catch (err) {
       console.log(err)
@@ -102,7 +102,7 @@ const PetsContext = ({ children }) => {
         isClosable: true,
       })
 
-      
+
     } catch (err) {
       console.log(err)
       setIsLoadingPets(false)
@@ -129,8 +129,8 @@ const PetsContext = ({ children }) => {
         ),
         isClosable: true,
       })
-    
-      
+
+
     } catch (err) {
       console.log(err)
       setIsLoadingPets(false)
@@ -164,7 +164,7 @@ const PetsContext = ({ children }) => {
         isClosable: true,
       })
 
-      
+
     } catch (err) {
       console.log(err)
       setIsLoadingPets(false)
@@ -180,20 +180,20 @@ const PetsContext = ({ children }) => {
       setAdoptedPetsList(updateList);
       setIsLoadingPets(false)
 
-      
-        toast({
-          position: 'bottom',
-          status: 'success',
-          duration: 3000,
-          render: () => (
-            <Box className='font-weird' color='red.800' p={3} bg='gray.200'>
-              {name} has been returned to the shelter 😥
-            </Box>
-          ),
-          isClosable: true,
-        })
-      
-      
+
+      toast({
+        position: 'bottom',
+        status: 'success',
+        duration: 3000,
+        render: () => (
+          <Box className='font-weird' color='red.800' p={3} bg='gray.200'>
+            {name} has been returned to the shelter 😥
+          </Box>
+        ),
+        isClosable: true,
+      })
+
+
     } catch (err) {
       console.log(err)
       setIsLoadingPets(false)
@@ -204,22 +204,22 @@ const PetsContext = ({ children }) => {
 
 
 
-return (
+  return (
 
-  <PetsContextInstance.Provider value={{
-    petsList, setPetsList, 
-    setIsLoadingPets, isLoadingPets,
-    savedPetsList, setSavedPetsList, 
-    adoptedPetsList, setAdoptedPetsList,
-    fosteredPetsList, setFosteredPetsList,
-    removeSavedPet, savePet,
-    messageClient, setMessageClient,
-    fosterPet, removeFosteredPet,
-    adoptPet, removeAdoptedPet
-  }}>
-    {children}
-  </PetsContextInstance.Provider>
-);
+    <PetsContextInstance.Provider value={{
+      petsList, setPetsList,
+      setIsLoadingPets, isLoadingPets,
+      savedPetsList, setSavedPetsList,
+      adoptedPetsList, setAdoptedPetsList,
+      fosteredPetsList, setFosteredPetsList,
+      removeSavedPet, savePet,
+      messageClient, setMessageClient,
+      fosterPet, removeFosteredPet,
+      adoptPet, removeAdoptedPet
+    }}>
+      {children}
+    </PetsContextInstance.Provider>
+  );
 
 };
 

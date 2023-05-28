@@ -141,8 +141,8 @@ function SavedPetCard({ pet }) {
                                 {pet.adoptionStatus === "Available" &&
                                     <>
                                         <Button ml={3} color='white' onClick={() => adoptPet(pet._id, pet.name, loggedInUser)}
-                                             p={2}
-                                             fontSize={['base: xs', 'xs', 'xs', 'sm', 'sm']}
+                                            p={2}
+                                            fontSize={['base: xs', 'xs', 'xs', 'sm', 'sm']}
                                             bgGradient='linear(to-r, purple.500, purple.300)'
                                             _hover={{
                                                 bgGradient: 'linear(to-r, purple.400, purple.200)',
@@ -153,7 +153,7 @@ function SavedPetCard({ pet }) {
                                         <Button
                                             ml={3} color='white' onClick={() => fosterPet(pet._id, pet.name)}
                                             p={2}
-                                                    fontSize={['base: xs', 'xs', 'xs', 'sm', 'sm']}
+                                            fontSize={['base: xs', 'xs', 'xs', 'sm', 'sm']}
                                             bgGradient='linear(to-r, teal.400, blue.400)'
                                             _hover={{
                                                 bgGradient: 'linear(to-r, teal.200, blue.200)',
@@ -164,7 +164,7 @@ function SavedPetCard({ pet }) {
                                         <div onClick={handleClick} className={`heart-button ${isFilled ? 'filled' : 'empty'}`}>
                                             <Button onClick={handleSaveBtn}
                                                 variant='ghost' colorScheme='pink' bgColor='pink.50'>
-                                                    {isFilled ? "Saved" : "Save"}
+                                                {isFilled ? "Saved" : "Save"}
                                                 <div className="heart"></div>
                                             </Button>
                                         </div>
@@ -188,8 +188,8 @@ function SavedPetCard({ pet }) {
 
 
                                                 <Button ml={3} variant='outline' onClick={() => removeFosteredPet(pet._id, pet.name)}
-                                                   p={2}
-                                                   fontSize={['base: xs', 'xs', 'xs', 'sm', 'sm']}
+                                                    p={2}
+                                                    fontSize={['base: xs', 'xs', 'xs', 'sm', 'sm']}
                                                     leftIcon={<FontAwesomeIcon icon={faFaceFrownOpen} />}
                                                     colorScheme='gray'>
                                                     Return to Shelter
@@ -201,7 +201,7 @@ function SavedPetCard({ pet }) {
                                                 <div onClick={handleClick} className={`heart-button ${isFilled ? 'filled' : 'empty'}`}>
                                                     <Button onClick={handleSaveBtn}
                                                         variant='ghost' colorScheme='pink' bgColor='pink.50'>
-                                                            {isFilled ? "Saved" : "Save"}
+                                                        {isFilled ? "Saved" : "Save"}
                                                         <div className="heart"></div>
                                                     </Button>
                                                 </div>
@@ -233,7 +233,7 @@ function SavedPetCard({ pet }) {
                                                 <div onClick={handleClick} className={`heart-button ${isFilled ? 'filled' : 'empty'}`}>
                                                     <Button onClick={handleSaveBtn}
                                                         variant='ghost' colorScheme='pink' bgColor='pink.50'>
-                                                            {isFilled ? "Saved" : "Save"}
+                                                        {isFilled ? "Saved" : "Save"}
                                                         <div className="heart"></div>
                                                     </Button>
                                                 </div>
