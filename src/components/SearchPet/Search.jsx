@@ -12,6 +12,7 @@ import { Switch, SimpleGrid } from '@chakra-ui/react'
 import { NumberInput, NumberInputField, NumberInputStepper, NumberIncrementStepper, NumberDecrementStepper, } from '@chakra-ui/react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faRuler, faWeightScale } from '@fortawesome/free-solid-svg-icons'
+import ButtonStyled from '../StyledComponents/ButtonStyled';
 
 function Search() {
   const toast = useToast()
@@ -134,16 +135,18 @@ function Search() {
             <Switch onChange={clearRecReasults} colorScheme='red' id='adv-search' />
           </FormControl>
           {!advSearch &&
-            <Button className='font-weird' onClick={getPetbyType} color='white' w='10em'
-              size="lg" bgColor='red.800' borderBlockEndWidth={4} _hover={{
-                bgGradient: 'linear(to-r, gray.200, gray.100)',
-                color: 'black'
-              }}
-              isLoading={loading}
-              loadingText='Loading'
-              colorScheme='teal'
-              variant='outline'
-              spinnerPlacement='start'> Search</Button>
+            // <Button className='font-weird' onClick={getPetbyType} color='white' w='10em'
+            //   size="lg" bgColor='red.800' borderBlockEndWidth={4} _hover={{
+            //     bgGradient: 'linear(to-r, gray.200, gray.100)',
+            //     color: 'black'
+            //   }}
+            //   isLoading={loading}
+            //   loadingText='Loading'
+            //   colorScheme='teal'
+            //   variant='outline'
+            //   spinnerPlacement='start'> Search</Button>
+         
+<ButtonStyled text={"Search"} textIsLoading={"Loading"} action={getPetbyType}/>
 
 
           }</Stack>
