@@ -74,14 +74,11 @@ function Home() {
       {!loggedInUserID ?
         <div className='main-container'>
 
-          <Text className='main-header'  
-fontSize='4xl' color='red.800'>  Welcome to Pawsitive Adoptions
-</Text>
+<h1 className='main-header'>  Welcome to Pawsitive Adoptions
+</h1>
     
           <h2 onClick={navigateSearch} className='sub-header'>Your new best friend is waiting for you</h2>
-          
           {isLoading? 
-          
           <><Spinner ></Spinner></>
         :
           

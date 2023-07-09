@@ -12,7 +12,7 @@ import { Switch, SimpleGrid } from '@chakra-ui/react'
 import { NumberInput, NumberInputField, NumberInputStepper, NumberIncrementStepper, NumberDecrementStepper, } from '@chakra-ui/react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faRuler, faWeightScale } from '@fortawesome/free-solid-svg-icons'
-import ButtonStyled from '../StyledComponents/ButtonStyled';
+import ButtonStyled from '../StyledComponents/ButtonStyled'
 
 function Search() {
   const toast = useToast()
@@ -107,11 +107,11 @@ function Search() {
 
   return (
     <div className='main-container'>
-      <Text className='main-header' mb={3} textColor='red.800'
+      <Text className='main-header' mb={3} textColor='#733e87'
         fontSize={['3xl', '4xl', '4xl', '5xl']}> Search for a pet</Text>
 
 
-      <Text className='sub-header' mb={3} textColor='red.800'
+      <Text className='sub-header' mb={3} textColor='#733e87'
         fontSize={['md', 'lg', 'xl', '2xl']}> Your new friend is waiting for you</Text>
 
 
@@ -129,10 +129,10 @@ function Search() {
 
         <Stack direction='row'>
           <FormControl onChange={(e) => setAdvSearch(!advSearch)} display='flex' alignItems='center'>
-            <FormLabel htmlFor='adv-search' mb='0' >
+            <FormLabel className='font' htmlFor='adv-search' mb='0' >
               Advanced Search?
             </FormLabel>
-            <Switch onChange={clearRecReasults} colorScheme='red' id='adv-search' />
+            <Switch onChange={clearRecReasults} colorScheme='purple' id='adv-search' />
           </FormControl>
           {!advSearch &&
             // <Button className='font-weird' onClick={getPetbyType} color='white' w='10em'
@@ -230,7 +230,7 @@ function Search() {
 
 
 
-            <Button className='font-weird' onClick={handleSubmit} color='white' h='2.6em' p={1}
+            {/* <Button className='font-weird' onClick={handleSubmit} color='white' h='2.6em' p={1}
 
               bgColor='red.800'
               borderBlockEndWidth={4}
@@ -244,7 +244,9 @@ function Search() {
               variant='outline'
               spinnerPlacement='start'
               fontSize={['md', 'lg', 'xl']}
-            >  Search</Button>
+            >  Search</Button> */}
+
+<ButtonStyled text={"Search"} textIsLoading={"Loading"} action={handleSubmit}></ButtonStyled>
 
             {numResults &&
 

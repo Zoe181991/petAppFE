@@ -47,7 +47,7 @@ function Navbar({ onOpen }) {
         justifyContent='center' pt={{ base: 6, lg: 8 }} pb={{ base: 6, lg: 8 }} color='white' >
 
 
-        <Stack direction='row' alignItems='baseline' fontSize={['sm', 'md', 'lg', '3lg']}
+        <Stack className='font' direction='row' alignItems='baseline' fontSize={['sm', 'md', 'lg', '3lg']}
           ml={{ base: '1em', sm: '2em', md: '2em', lg: '3em' }}>
 
 
@@ -151,7 +151,7 @@ function Navbar({ onOpen }) {
 
               <Menu>
                 {loggedInUser &&
-                  <MenuButton size={['sm', 'md', 'md']} className='font-weird' as={Button}
+                  <MenuButton size={['sm', 'md', 'md']} className='font' as={Button}
                     colorScheme='yellow' color='red.800' rightIcon={<SettingsIcon />}>
                     <Show above='lg'> {loggedInUser.first_name}'s Profile</Show>
                   </MenuButton>
@@ -190,7 +190,7 @@ function Navbar({ onOpen }) {
             <NavLink onClick={onOpen} to='/login'
             >
               <Button fontSize={['sm', 'md', 'lg', '3xl']}
-                className="font-weird" color='#8B0404' ml={3}
+                className="font" color='#8B0404' ml={3}
                 bgGradient='linear(to-r, yellow.300, white)'
                 _hover={{
                   bgGradient: 'linear(to-r, yellow.100, white)',
@@ -205,7 +205,7 @@ function Navbar({ onOpen }) {
             <>
               <Hide below='lg'>
                 <Button ml={5}
-                  className='font-weird'
+                  className='font'
                   fontSize={['sm', 'md', 'lg']}
                   mr={{ base: 1, lg: 2 }}
                   bgGradient='linear(to-r, orange.500, pink.500)'

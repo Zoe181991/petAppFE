@@ -4,11 +4,11 @@
   text-align: center;
   align-items: center;
   flex-direction: column;
-  background-color: #f9de10;
+  background-color: #f8f7f6;
 }
 
 html{
-  background-color: #f9de10;
+  background-color: #f8f7f6;
 
 }
 
@@ -84,7 +84,7 @@ html{
 }
 
 .bg{
-  background-color: #f9de10;
+  background-color: #f8f7f6;
   height: 90vh;
 }
 
@@ -156,9 +156,7 @@ html{
 /* NavBar */
 
 .navBar{
-
-  background-color: rgb(139, 4, 4);
-
+  background-color: #733e87;
 }
 
 .font-weird{
@@ -166,7 +164,7 @@ html{
 }
 
 .font{
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Outfit', sans-serif;
  }
 
 
@@ -175,7 +173,9 @@ html{
   margin-right: 1em;
   margin-left: 1em;
   color:rgb(255, 255, 255);
-  font-family: 'Kalam', cursive;
+  font-weight: 600;
+  font-family: 'Outfit', sans-serif;
+
 
 }
 
@@ -226,9 +226,10 @@ html{
 } */
 
 .active-page {
-  font-family: 'Kalam', cursive;
-
+  font-family: 'Outfit', sans-serif;
   color: #f9de10;
+  font-weight: 600;
+
   margin-right: 1em;
   margin-left: 1em;
 }
@@ -243,7 +244,10 @@ a:visited {
 
 /* Home Page */
 .main-header {
-  font-family: 'Titan One', cursive; 
+  font-family: 'Outfit', sans-serif;
+    font-weight:900;
+  color: #733e87;
+  font-size: 2.5em;
 }
 
 
@@ -254,8 +258,10 @@ a:visited {
 }
 
 .sub-header {
-  font-family: 'Kalam', cursive;
-  font-size: 1.5em;
+  /* font-family: 'Kalam', cursive; */
+  
+  font-family: 'Outfit', sans-serif;
+    font-size: 1.5em;
   margin-bottom: 0.5em;
 }
 
