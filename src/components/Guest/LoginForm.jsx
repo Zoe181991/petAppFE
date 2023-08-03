@@ -51,11 +51,14 @@ function LoginForm({ initialRef, onClose }) {
             <div className='errorMsg'>{errorMsgClient}</div>
 
             <Stack mt={6} direction='row' justifyContent='center'>
-                <Button className="font-weird" color='red.800' onClick={handleLogin} colorScheme='yellow'
+                <Button className="font-weird" color='white' onClick={handleLogin} colorScheme='purple'
+                    bgGradient='linear(to-r, pink.400, purple.500)'
+                    _hover={{
+                        bgGradient: 'purple.200',
+                      }}
                     mr={3} size='lg'
                     isLoading={isLoading}
                     loadingText='One moment...'
-                    variant='outline'
                     spinnerPlacement='start'
 
                 >
