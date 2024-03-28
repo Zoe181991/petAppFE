@@ -26,6 +26,7 @@ import AdminContext from "./contex/AdminContext";
 import { Routes, Route } from "react-router-dom";
 import { ChakraProvider } from "@chakra-ui/react";
 import { useDisclosure } from "@chakra-ui/react";
+import Footer from "./components/Footer";
 
 function App() {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -128,6 +129,7 @@ function App() {
                     />
                   </Routes>
                 </div>
+                  <Footer />
               </AdminContext>
             </UsersContext>
           </PetsContext>
@@ -139,4 +141,3 @@ function App() {
 
 export default App;
 
-// https://pet-app-be.vercel.app

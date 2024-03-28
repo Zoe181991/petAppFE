@@ -154,7 +154,7 @@ function ViewUser() {
 
         </Skeleton>
 
-        <Stack className='font' p={6} bgColor='gray.100' wrap={true} width={['100%', '100%', '90%']} borderRadius='md'>
+        <Stack className='mainFont' p={6} bgColor='gray.100' wrap={true} width={['100%', '100%', '90%']} borderRadius='md'>
           <Stack direction='row' mb={5}>
             <Avatar size={['md', 'lg', 'xl']} mr={[3, 5, 8]} name={user?.first_name} src={user?.picture} />
             <Stack fontSize={['sm', 'md', 'md']} >
@@ -279,10 +279,10 @@ function ViewUser() {
       <Modal fontClass='font' isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader className='font' >Delete Confirmation</ModalHeader>
+          <ModalHeader className='mainFont' >Delete Confirmation</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
-            <Text fontWeight='medium' className='font'>Are you sure you want to delete {user?.first_name} {user?.last_name}, Id: {user?._id} ?</Text>
+            <Text fontWeight='medium' className='mainFont'>Are you sure you want to delete {user?.first_name} {user?.last_name}, Id: {user?._id} ?</Text>
             <div className='errorMsg'></div>
             {/* <Text>{deleteConfirm}</Text> */}
           </ModalBody>

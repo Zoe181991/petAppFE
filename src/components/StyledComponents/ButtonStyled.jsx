@@ -3,12 +3,11 @@ import { UsersContextInstance } from "../../contex/UsersContext";
 import { useContext } from "react";
 
 function ButtonStyled({ text, action, textIsLoading }) {
-  // const { isLoading, setIsLoading } = useContext(UsersContextInstance);
 
   return (
     <>
       <Button
-        className="font"
+        className="mainFont"
         onClick={action}
         color="white"
         w="10em"

@@ -92,7 +92,7 @@ function HomeAdmin() {
 
           <Stack width={['100%', '100%', '90%']}>
 
-            <SimpleGrid className='font' maxChildHeight='400px' minChildWidth='220px' spacing='10px'
+            <SimpleGrid className='mainFont' maxChildHeight='400px' minChildWidth='220px' spacing='10px'
             >
               {/* templateColumns='repeat(auto-fill, minmax(200px, 3fr))'minChildWidth='150px' */}
               <NavLink to='/dashboard'>

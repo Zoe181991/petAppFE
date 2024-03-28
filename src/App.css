@@ -120,15 +120,9 @@ html{
 .icon-nav{
   height: 2em;
   margin-right: 15px;
+  color: #8c52fd;
 }
 
-
-
-/* @media (prefers-reduced-motion: no-preference) {
-  .icon-nav {
-    animation: App-logo-spin infinite 20s linear;
-  }
-} */
 
 @media (min-width: 800px) and (max-width: 1050px) {
   .icon-nav {
@@ -149,17 +143,17 @@ html{
 }
 
 /* NavBar */
-
 .navBar{
-  background-color: #cecece;
+  background-color: white;
 }
 
 .font-weird{
   font-family: 'Kalam', cursive;
 }
 
-.font{
-  font-family: 'Outfit', sans-serif;
+.mainFont{
+  font-family: 'Poppins', sans-serif;
+  font-weight: 100;
  }
 
 
@@ -167,7 +161,7 @@ html{
 .navLink {
   margin-right: 1em;
   margin-left: 1em;
-  color:rgb(255, 255, 255);
+  color:#8c52fd;
   font-weight: 600;
   font-family: 'Outfit', sans-serif;
 
@@ -212,17 +206,10 @@ html{
 
 
 
-/* .nav-right {
-  display: flex;
-  flex: 1;
-  justify-content: right;
-  align-items: center;
-  margin-right: 2em;
-} */
 
 .active-page {
   font-family: 'Outfit', sans-serif;
-  color: #733e87;
+  color: #8c52fd;
   font-weight: 600;
 
   margin-right: 1em;
@@ -309,10 +296,9 @@ a:visited {
   width: 100px;
   height: 100px;
   margin-left: 0.3em;
-  background-image: url('../src/images/dog.svg'); /* Replace with your SVG paths */
+  background-image: url('../src/images/logo.png'); /* Replace with your SVG paths */
   background-repeat: no-repeat;
   background-position: center;
-  transition: background-image 0.2s;
 }
 
 .heart {

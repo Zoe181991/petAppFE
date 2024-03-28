@@ -83,12 +83,12 @@ function Home() {
         :
           
         <NavLink to='/search'>
-          <Image className="home-welcome-dog-pic"
-            
-            borderRadius='full'
-            boxSize='400px'
-            src={gifSrc}
-            alt='dog-img'/>
+          {/*<Image className="home-welcome-dog-pic"*/}
+          {/*  */}
+          {/*  borderRadius='full'*/}
+          {/*  boxSize='400px'*/}
+          {/*  src={gifSrc}*/}
+          {/*  alt='dog-img'/>*/}
             </NavLink>
             
             }
