@@ -79,7 +79,7 @@ function HomeLoggedIn() {
 
       <Stack width={['100%', '100%', '90%']}>
 
-        <SimpleGrid className='font' minChildWidth='220px' spacing='10px'>
+        <SimpleGrid className='mainFont' minChildWidth='220px' spacing='10px'>
           <NavLink to='/mypets'>
             <Card bgColor='purple.50' _hover={{
               bgGradient: 'linear(to-r, orange.200, pink.200)',

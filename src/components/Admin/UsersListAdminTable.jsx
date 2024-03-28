@@ -103,7 +103,7 @@ function UsersListAdminTable() {
             {endResults === '' ?
 
               <>
-                <Table className='font' bgColor='white' size="sm" variant='striped' colorScheme='gray'>
+                <Table className='mainFont' bgColor='white' size="sm" variant='striped' colorScheme='gray'>
                   <Thead>
                     <Tr>
                       <Th>Image</Th>
@@ -188,7 +188,7 @@ function UsersListAdminTable() {
               :
 
               <Flex justify='center' mb={4} mt={5}>
-                <Text fontSize={['xs', 'md', 'lg', '2xl']} className='font'> {endResults} </Text>
+                <Text fontSize={['xs', 'md', 'lg', '2xl']} className='mainFont'> {endResults} </Text>
               </Flex>
 
             }
@@ -200,7 +200,7 @@ function UsersListAdminTable() {
                 </Hide>
               </Button>
               <Spacer />
-              <Text className='font'> Displaying {([page - 1] * 5) + countResults} out of {totalResults} users</Text>
+              <Text className='mainFont'> Displaying {([page - 1] * 5) + countResults} out of {totalResults} users</Text>
 
               <Spacer />
 

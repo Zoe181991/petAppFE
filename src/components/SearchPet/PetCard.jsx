@@ -70,7 +70,7 @@ function PetCard({ pet }) {
   return (
     <>
 
-      <Card mt={3} className='font'
+      <Card mt={3} className='mainFont'
 
         _hover={{
           bgGradient: 'linear(to-r, yellow.100, gray.100)',
