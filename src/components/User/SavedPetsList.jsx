@@ -5,6 +5,7 @@ import { useContext } from 'react';
 import { SimpleGrid, Button, Text, Stack } from '@chakra-ui/react'
 import { NavLink } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
+import ButtonStyled from "../StyledComponents/ButtonStyled";
 
 
 function SavedPetsList() {
@@ -18,19 +19,16 @@ function SavedPetsList() {
 
         <NavLink to='/search'>
           <Stack alignContent='center' direction='row' align='center'>
-            <Text className='font-weird' color='red.800' fontSize={['md', 'lg', 'xl']}>
-              You don't have any saved pets in your wishlist yet!
 
 
+              <Text className='font-weird' mr={5} color="blackAlpha.700" fontSize={['md', 'lg', 'xl']}>
+                  You don't have any saved pets in your wishlist yet!
 
-              <Button ml={3} mt={3} className='font-weird' onClick={(e) => { navigate('/search') }} color='white' w='10em'
-                size={['sm', 'md']} bgColor='red.800' borderBlockEndWidth={4} _hover={{
-                  bgGradient: 'linear(to-r, gray.200, gray.100)',
-                  color: 'black'
-                }}
+              </Text>
 
-                spinnerPlacement='start'> Search for a pet 😻</Button>
-            </Text>
+              <ButtonStyled action={(e) => { navigate('/search') }}
+                      text={"Search for a pet 😻"}
+              />
           </Stack>
         </NavLink>
       }

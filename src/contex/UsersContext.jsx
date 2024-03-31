@@ -23,7 +23,6 @@ const UsersContext = ({ children }) => {
   } = useContext(PetsContextInstance);
 
   const navigate = useNavigate();
-  const toast = useToast();
 
   useEffect(() => {
     if (loggedInUser) {
@@ -31,16 +30,7 @@ const UsersContext = ({ children }) => {
     }
   }, []);
 
-  // const ErrorToast = (error) => {
-  //     toast({
-  //         title: 'Something went wrong',
-  //         description: error,
-  //         status: 'warning',
-  //         duration: 5000,
-  //         isClosable: true,
-  //     })
 
-  // }
 
   const fetchInfo = async (id) => {
     try {

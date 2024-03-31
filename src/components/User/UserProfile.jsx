@@ -1,5 +1,5 @@
 import React from 'react'
-import { Avatar, Card, CardHeader, Editable, CardBody, Box, CardFooter, FormControl, EditableInput, EditableTextarea, Input, Button, FormErrorMessage, EditablePreview, Flex, IconButton, ButtonGroup, } from '@chakra-ui/react'
+import { Avatar, Card, CardHeader, Editable, CardBody, Box, CardFooter,  EditableInput,  Input, Button, EditablePreview, Flex, IconButton, ButtonGroup, } from '@chakra-ui/react'
 import { CheckIcon, EditIcon, CloseIcon, } from '@chakra-ui/icons'
 import { useEditableControls, } from '@chakra-ui/react'
 import { UsersContextInstance } from '../../contex/UsersContext';
@@ -8,6 +8,8 @@ import { Stack, Text } from '@chakra-ui/react'
 import { useEffect, useState, useContext } from 'react'
 import axios from 'axios';
 import { useToast } from '@chakra-ui/react'
+import ButtonStyled from "../StyledComponents/ButtonStyled";
+import MainHeader from "../StyledComponents/MainHeader";
 
 
 function UserProfile() {
@@ -116,26 +118,28 @@ function UserProfile() {
     return (
         <div className='main-container'>
 
-            <Text className='main-header' mb={3} textColor='red.800'
-                fontSize={['3xl', '4xl', '4xl', '5xl']}>  Edit your profile</Text>
+            <MainHeader text={ "Edit your profile"}/>
 
-            <Stack width={['90%', '85%', '80%', '70%']} align='center'>
+            <Stack  width={['100%', '80%', '60%', '50%']} align='center' >
 
-                <Card maxW='md'>
+                <Card w="100%" >
                     <CardHeader>
-                        <Flex flex='1' gap='2' alignItems='center' flexWrap='wrap'>
+                        <Stack  color="white" bgGradient= "linear(to-r, pink.400, purple.500)" borderRadius={'5px'} pr={5} pl={5} pt={3} pb={3}>
+                        <Flex flex='1' gap='2'  alignItems='center' flexWrap='wrap'
+                          >
                             <Avatar mr={5} name={firstName} src={loggedInUser.picture} />
                             <Stack>
                                 <Text fontSize='1.5em' className='font-weird'>{firstName} {lastName}</Text>
                                 <Text fontSize='1em' className='main-font' >Role: {loggedInUser.role}</Text>
                             </Stack>
                         </Flex>
+                        </Stack>
                     </CardHeader>
                     <CardBody mt={0}>
                         <Text className='user-edit-field'>First name:</Text>
                         <Editable className='editable-field'
                             defaultValue={firstName}
-                            fontSize='xl'
+                            fontSize='md'
                             isPreviewFocusable={false}
                         >
                             <EditablePreview />
@@ -146,7 +150,7 @@ function UserProfile() {
                         <Text className='user-edit-field'>Last name:</Text>
                         <Editable className='editable-field'
                             defaultValue={lastName}
-                            fontSize='xl'
+                            fontSize='md'
                             isPreviewFocusable={false}
                         >
                             <EditablePreview />
@@ -162,7 +166,7 @@ function UserProfile() {
                         <Text className='user-edit-field'>Email:</Text>
                         <Editable className='editable-field'
                             defaultValue={email}
-                            fontSize='xl'
+                            fontSize='md'
                             isPreviewFocusable={false}
                         >
                             <EditablePreview />
@@ -173,7 +177,7 @@ function UserProfile() {
                         <Text className='user-edit-field'>Phone Number:</Text>
                         <Editable className='editable-field'
                             defaultValue={phone}
-                            fontSize='xl'
+                            fontSize='md'
                             isPreviewFocusable={false}
                         >
                             <EditablePreview />
@@ -185,7 +189,7 @@ function UserProfile() {
                         <Text className='user-edit-field'>Add a Bio:</Text>
                         <Editable className='editable-field'
                             defaultValue={bio}
-                            fontSize='xl'
+                            fontSize='md'
                             isPreviewFocusable={false}
                         >
                             <EditablePreview />
@@ -207,24 +211,7 @@ function UserProfile() {
                         }}
                     >
 
-
-                        <Button onClick={handleSubmit} className='font-weird'
-                            color='white'
-                            width={{ base: 'sm', sm: 'sm', md: 'md', lg: 'md' }}
-                            maxW='15em' minW='10em'
-                            bgColor='red.800'
-                            borderBlockEndWidth={4}
-                            _hover={{
-                                bgGradient: 'linear(to-r, gray.200, gray.100)',
-                                color: 'black'
-                            }}
-                            isLoading={isLoading}
-                            loadingText='Loading'
-                            colorScheme='red'
-                            variant='outline'
-                            spinnerPlacement='start'
-                        >
-                            Save changes</Button>
+                        <ButtonStyled text='Save changes' action={handleSubmit} isLoading={isLoading} />
                     </CardFooter>
                 </Card>
             </Stack>

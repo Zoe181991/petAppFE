@@ -140,8 +140,9 @@ function App() {
                       }
                     />
                   </Routes>
+                    <Footer />
                 </div>
-                  <Footer />
+
               </AdminContext>
             </UsersContext>
           </PetsContext>

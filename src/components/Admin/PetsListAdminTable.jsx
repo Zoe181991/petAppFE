@@ -1,14 +1,12 @@
 import React, { useEffect } from 'react'
-import { PetsContextInstance } from '../../contex/PetsContext';
-import PetCard from '../SearchPet/PetCard'
 import { useContext, useState } from 'react';
-import { Tag, Hide, Show, Button, Spacer, Text } from '@chakra-ui/react';
+import { Tag, Hide,  Button, Spacer, Text } from '@chakra-ui/react';
 import {
-  Table, Thead, Tbody, Tfoot, Box, Stack, ListItem, List, Flex,
-  Tr, Th, Td, TableCaption, TableContainer,
+  Table, Thead, Tbody, Tfoot, Flex,
+  Tr, Th, Td, TableContainer,
 } from '@chakra-ui/react'
 import axios from 'axios';
-import { Avatar, Spinner, AvatarGroup } from '@chakra-ui/react'
+import { Avatar, Spinner } from '@chakra-ui/react'
 import { ArrowBackIcon, ArrowForwardIcon, EditIcon } from '@chakra-ui/icons'
 import { useNavigate } from 'react-router-dom';
 import { UsersContextInstance } from '../../contex/UsersContext';
@@ -100,7 +98,7 @@ function PetsListAdminTable() {
               thickness='8px'
               speed='0.65s'
               emptyColor='gray.200'
-              color='red.800'
+              color='purple.500'
               size='xl'
             />
 

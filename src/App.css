@@ -47,23 +47,17 @@ html{
   }
 }
 
-@keyframes pop {
-  from {
-    transform: rotate(0deg);
-  }
-
-  to {
-    transform: rotate(360deg);
-  }
+.position-footer{
+  position: fixed;
+  bottom: 0;
+  width: 100%;
 }
 
 /* layout */
 
-.containerCenter {
+.container-center {
   display: flex;
   justify-content: center;
-  /* background-color: #f2e9e4; */
-
 
 }
 
@@ -102,15 +96,27 @@ html{
 
 .dashboard-container{
   display: flex;
-  justify-content: left;
   flex-direction: column;
-  padding: 3em;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  px: 30em;
 
+}
+@media (min-width: 200px)  {
+  .dashboard-container {
+    px: 10em;
+  }
 }
 
 .bg{
   background-color: #f8f7f6;
-  height: 90vh;
+  height: 80vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  font-family: 'Outfit', sans-serif;
+
 }
 
 
@@ -145,15 +151,20 @@ html{
 
 
 .icon-nav{
-  height: 2em;
+  height: 1em;
   margin-right: 15px;
   color: #8c52fd;
+}
+
+.icon-nav:hover{
+
+  color: #d700d3;
 }
 
 
 @media (min-width: 800px) and (max-width: 1050px) {
   .icon-nav {
-    height: 1em;
+    height: 0.5em;
   }
 }
 
@@ -197,8 +208,12 @@ html{
 
 .nav-link:hover {
 
-  color: #8c52fd;
+    color: #d700d3;
+}
 
+.nav-link:hover .icon-nav,
+.icon-nav:hover + .av-link{
+  color: #d700d3;
 }
 
 .logo-navbar{
@@ -304,44 +319,40 @@ a:visited {
 
 
 .typewriter h1 {
-  overflow: hidden; /* Ensures the content is not revealed until the animation */
-  border-right: .15em solid orange; /* The typwriter cursor */
-  white-space: nowrap; /* Keeps the content on a single line */
-  margin: 0 auto; /* Gives that scrolling effect as the typing happens */
-  letter-spacing: .15em; /* Adjust as needed */
+  overflow: hidden;
+  border-right: .2em solid orange;
+  white-space: nowrap;
+  margin: 0 auto;
+  letter-spacing: .15em;
   animation:
           typing 3.5s steps(40, end),
           blink-caret .75s step-end infinite;
 }
 
-/* The typing effect */
 @keyframes typing {
   from { width: 0 }
   to { width: 100% }
 }
 
-/* The typewriter cursor effect */
 @keyframes blink-caret {
   from, to { border-color: transparent }
   50% { border-color: orange; }
 }.typewriter h2 {
-   overflow: hidden; /* Ensures the content is not revealed until the animation */
-   border-right: .15em solid orange; /* The typwriter cursor */
-   white-space: nowrap; /* Keeps the content on a single line */
-   margin: 0 auto; /* Gives that scrolling effect as the typing happens */
-   letter-spacing: .15em; /* Adjust as needed */
+   overflow: hidden;
+   border-right: .15em solid orange;
+   white-space: nowrap;
+   margin: 0 auto;
+   letter-spacing: .15em;
    animation:
            typing 3.5s steps(40, end),
            blink-caret .75s step-end infinite;
  }
 
-/* The typing effect */
 @keyframes typing {
   from { width: 0 }
   to { width: 100% }
 }
 
-/* The typewriter cursor effect */
 @keyframes blink-caret {
   from, to { border-color: transparent }
   50% { border-color: orange; }
@@ -371,9 +382,10 @@ a:visited {
 }
 
 .user-edit-field{
-  font-family: 'Poppins', sans-serif;
-  font-weight: 550;
-  margin-top: 1.2em;
+  font-family: 'Outfit', sans-serif;
+  font-weight: 600;
+  margin-top: 1.5em;
+  margin-bottom: 0.5em;
   font-size: 1.2em;
 
 }
@@ -383,13 +395,15 @@ a:visited {
   border: none;
   cursor: pointer;
   padding: 0;
-  width: 24px;
-  height: 24px;
   transition: transform 0.2s;
+}
+.card-footer-position{
+  position: relative;
+  bottom: 0;
 }
 
 .heart-button:hover {
-  transform: scale(1.2);
+  transform: scale(1.1);
 }
 
 .dog-logo{

@@ -1,7 +1,6 @@
 import React, { useEffect, useState, useContext } from 'react'
 import { useParams, useNavigate, } from 'react-router-dom';
-import { Image, Button, Text, Stack, Heading, Skeleton } from '@chakra-ui/react'
-import { Badge } from '@chakra-ui/react'
+import { Image, Button, Text, Stack, Skeleton } from '@chakra-ui/react'
 import axios from 'axios';
 import { Tag, Spacer, Card, CardBody, CardFooter, ButtonGroup } from '@chakra-ui/react'
 import { PetsContextInstance } from '../../contex/PetsContext';
@@ -9,6 +8,7 @@ import { UsersContextInstance } from '../../contex/UsersContext';
 import { faFaceFrownOpen, faPalette, faRuler, faQuestion, faShieldDog, faPen, faBowlFood, faPaw, faWeightScale } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { ArrowBackIcon } from '@chakra-ui/icons'
+import MainHeader from "../StyledComponents/MainHeader";
 
 
 function PetPage() {
@@ -109,11 +109,10 @@ function PetPage() {
     return (
 
         <div className='main-container'>
-            <Stack minW='10em' spacing={4} width={['80%', '70%', '75%', '60%']} justify='center'>
+            <Stack minW='10em' spacing={4} width={['90%', '90%', '80%', '70%']} justify='center'>
 
-                <Text align='center' className='main-header' mb={3} textColor='red.800'
-                    fontSize={['3xl', '4xl', '4xl', '5xl']}>  Meet {pet?.name}</Text>
 
+<MainHeader text={`Meet ${pet?.name}`}/>
 
                 <Skeleton isLoaded={!isLoading} >
                     {pet &&
@@ -149,9 +148,11 @@ function PetPage() {
 
 
                                         <Spacer />
-                                        <Tag className='main-font' size={['lg', 'lg', 'lg', 'xl']}
+                                        <Tag className='main-font'
                                              p={3}
-                                             fontWeight='semibold' mr={3}
+                                             mr={3}
+                                             fontSize='sm'
+                                             fontWeight='semibold'
                                              colorScheme={colorStatus}>
                                             {pet?.adoptionStatus}</Tag>
                                     </Stack>
@@ -393,11 +394,27 @@ function PetPage() {
                 </Skeleton>
 
 
-                <Button className='font-weird' onClick={(e) => navigate(-1)} color='white'
-                    leftIcon={<ArrowBackIcon />} bgColor='red.800' borderBlockEndWidth={4}
-                    _hover={{ bgGradient: 'linear(to-r, gray.200, gray.100)', color: 'black' }}
+                <Button
+                    className="font-weird"
+                    onClick={(e) => navigate(-1)}
+                    leftIcon={<ArrowBackIcon />}
+                    color="white"
+                    widthMatch="true"
+                    size="md"
+                    pr={4}
+                    pl={4}
+                    pt={2}
+                    pb={2}
+                    bgGradient= "linear(to-r, pink.400, purple.500)"
+                    _hover={{
+                        bgGradient: "linear(to-r, purple.500, purple.500)",
+                        color: "white",
+                    }}
+                    colorScheme="purple"
+                    variant="ghost"
+                    spinnerPlacement="start"
                 >
-                    Go Back</Button>
+                    Go Back                </Button>
 
 
             </Stack>

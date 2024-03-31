@@ -8,13 +8,13 @@ import {
   MenuGroup,
   MenuDivider,
   MenuButton,
-  MenuList, InputGroup, Select,
+  MenuList, Text
 } from "@chakra-ui/react";
 import { UsersContextInstance } from "../contex/UsersContext";
 import { useEffect, useContext, useState } from "react";
 import { useNavigate, NavLink } from "react-router-dom";
 import { SettingsIcon } from "@chakra-ui/icons";
-import { Avatar, Text, AvatarGroup } from "@chakra-ui/react";
+import { Avatar, AvatarGroup } from "@chakra-ui/react";
 import { AuthContextInstance } from "../contex/AuthContext";
 import { Stack, Spacer, Show, Hide } from "@chakra-ui/react";
 import axios from "axios";
@@ -32,7 +32,6 @@ function Navbar({ onOpen }) {
   const { setLoggedInUserID, isAdmin, setIsAdmin } = useContext(
     AuthContextInstance
   );
-  const [type, setType] = useState("");
 
   const navigate = useNavigate();
   useEffect(() => {
@@ -64,20 +63,21 @@ function Navbar({ onOpen }) {
       <Box
         color="white"
         w="100%"
-        h="10rem"
+        h="20vh"
         wrap="false"
         display="flex"
         justifyContent="center"
         pt={{ base: 4, lg: 10 }}
-        pl={{ base: 8, lg: 60 }}
-        pr={{ base: 8, lg: 60 }}
+        pl={{ base: 8, lg: 40 }}
+        pr={{ base: 8, lg: 40 }}
         alignItems='center'
       >
 
         <Stack
+            display='flex'
             direction="row"
-            alignItems="center"
             spacing={4}
+            alignItems="center"
             width={["90%", "80%", "65%", "60%"]}
         >
           <NavLink to={isAdmin ? "/admin" : "/"}>
@@ -86,78 +86,80 @@ function Navbar({ onOpen }) {
                 objectFit='cover'
                 src={logo}
                 alt='Pawsitive Adoptions'
-            />
-            </Box>
+            />            </Box>
+
 
 
           </NavLink>
-
-        </Stack>
-
-        <Stack
-          direction="row"
-          alignItems="center"
-          spacing={4}
-          width={["90%", "80%", "65%", "60%"]}
-        >
-
-        </Stack>
-
-        {isAdmin && (
-          <NavLink to="/dashboard">
-            {({ isActive }) => (
-              <>
+          <Stack  direction='row'>
+            {isAdmin && (
+                <NavLink to="/dashboard">
+                  {({ isActive }) => (
+                      <>
                 <span className={isActive ? "active-page" : "nav-link"}>
                   <FontAwesomeIcon className="icon-nav" icon={faGaugeHigh} />
                   <Hide below="md">Dashboard</Hide>
                 </span>
-              </>
+                      </>
+                  )}
+                </NavLink>
             )}
-          </NavLink>
-        )}
-
-        {loggedInUser && (
-          <NavLink to="/mypets">
-            {({ isActive }) => (
-              <span className={isActive ? "active-page" : "nav-link"}>
+            {loggedInUser && (
+                <NavLink to="/mypets">
+                  {({ isActive }) => (
+                      <span className={isActive ? "active-page" : "nav-link"}>
                 <FontAwesomeIcon className="icon-nav" icon={faPaw} />
                 <Hide below="md">My pets</Hide>
               </span>
+                  )}
+                </NavLink>
             )}
-          </NavLink>
-        )}
+          </Stack>
+        </Stack>
+
+
+
+
+
+
+
+
+
 
         <Spacer />
 
 
           {loggedInUser && (
             <>
-              <Stack>
-                <Hide below="xl">
-                  <NavLink to="/userprofile/edit">
-                    <AvatarGroup mr={3} mb={0}>
-                      <Avatar bg="gray" src={loggedInUser.picture} />
-                    </AvatarGroup>
-                  </NavLink>
-                </Hide>
-              </Stack>
 
               <Menu>
                 {loggedInUser && (
+                    <>
                   <MenuButton
-                    size={["sm", "md", "md"]}
                     className="main-font"
                     as={Button}
-                    colorScheme="yellow"
-                    color="red.800"
+                    pr={4}
+                    pl={4}
+                    pt={2}
+                    pb={2}
+                    color="blackAlpha.700"
+                    bgColor="blackAlpha.200"
+                    matchWidth={true}
+                    matchHeight={true}
                     rightIcon={<SettingsIcon />}
                   >
-                    <Show above="lg"> {loggedInUser.first_name}'s Profile</Show>
+                    <Stack direction="row" verticalAlign={true} spacing={2}>
+                    <Show above="lg"> <Text fontSize="sm">{loggedInUser.first_name}'s Profile</Text> </Show>
+                      <Hide above="lg">                     <Avatar mr={2} bg="gray" size='sm' src={loggedInUser.picture} />
+                      </Hide>
+
+                    </Stack>
                   </MenuButton>
+                    </>
                 )}
 
-                <MenuList textColor="red.800" className="main-font">
-                  <MenuGroup title="Profile">
+                <MenuList textColor="blackAlpha.700" className="main-font">
+                  <MenuGroup color="#d700d3" title="Profile">
                     <NavLink to="/userprofile/edit">
                       <MenuItem>Edit Profile</MenuItem>
                     </NavLink>
@@ -169,7 +171,7 @@ function Navbar({ onOpen }) {
                     <MenuItem onClick={handleSignout}>Sign Out</MenuItem>
                   </MenuGroup>
                   <MenuDivider />
-                  <MenuGroup title="Pets">
+                  <MenuGroup color="#d700d3" title="Pets">
                     <NavLink to="/mypets">
                       <MenuItem>My Pets </MenuItem>
                     </NavLink>
@@ -195,19 +197,7 @@ function Navbar({ onOpen }) {
           ) : (
             <>
               <Hide below="lg">
-                <Button
-                  ml={5}
-                  className="main-font"
-                  fontSize={["sm", "md", "lg"]}
-                  mr={{ base: 1, lg: 2 }}
-                  bgGradient="linear(to-r, orange.500, pink.500)"
-                  _hover={{
-                    bgGradient: "linear(to-r, orange.200, pink.200)",
-                  }}
-                  onClick={handleSignout}
-                >
-                  Sign Out
-                </Button>
+                <NavbarButton action={handleSignout} text={"Sign Out"}></NavbarButton>
               </Hide>
             </>
           )}

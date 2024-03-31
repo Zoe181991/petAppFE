@@ -1,8 +1,6 @@
 import { Button } from "@chakra-ui/react";
-import { UsersContextInstance } from "../../contex/UsersContext";
-import { useContext } from "react";
 
-function ButtonStyled({ text, action, textIsLoading }) {
+function ButtonStyled({ text, action, isLoading, textIsLoading, icon, children}) {
 
   return (
     <>
@@ -10,14 +8,19 @@ function ButtonStyled({ text, action, textIsLoading }) {
         className="main-font"
         onClick={action}
         color="white"
-        w="10em"
+        widthMatch="true"
         size="md"
-
+        pr={4}
+        pl={4}
+        pt={2}
+        pb={2}
+        leftIcon={icon}
         bgGradient= "linear(to-r, pink.400, purple.500)"
         _hover={{
             bgGradient: "linear(to-r, purple.500, purple.500)",
             color: "white",
         }}
+        isLoading={isLoading}
         loadingText={textIsLoading ? textIsLoading : "Loading"}
         colorScheme="purple"
         variant="ghost"

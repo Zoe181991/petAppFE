@@ -7,9 +7,9 @@ import { AuthContextInstance } from '../../contex/AuthContext';
 import { Tabs, TabList, TabPanels, Tab, TabPanel, Skeleton } from '@chakra-ui/react'
 import {
   Stack, Text,
-  Box,
 } from '@chakra-ui/react'
 import { useEffect, useContext } from 'react';
+import MainHeader from "../StyledComponents/MainHeader";
 
 
 function MyPets() {
@@ -36,11 +36,12 @@ function MyPets() {
 
 
 
-      <Text className='main-header' mb={3} textColor='red.800'
-        fontSize={['3xl', '4xl', '4xl', '5xl']}> My Pets</Text>
+
+      <MainHeader text={"My Pets"}/>
+
 
       <Stack width={['100%', '80%', '65%', '55%']}>
-        <Tabs isFitted variant='enclosed-colored' color='red.800' colorScheme='red' >
+        <Tabs isFitted variant='enclosed-colored' color='#d700d3' colorScheme='purple' >
           <TabList className=" font-weird" as="span" flex='1' textAlign='center' mb='1em'>
             <Tab fontSize={['md', 'lg', 'xl', '2xl']}>
               Saved Pets

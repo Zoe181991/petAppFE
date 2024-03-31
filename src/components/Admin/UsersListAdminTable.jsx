@@ -22,7 +22,7 @@ function UsersListAdminTable() {
 
   const [disableBtn, setDisableBtn] = useState(false);
   const navigate = useNavigate();
-  const { isLoading, setIsLoading } = useContext(UsersContextInstance);
+  const { isLoading } = useContext(UsersContextInstance);
 
 
   useEffect(() => {

@@ -1,5 +1,18 @@
 import React from 'react'
-import { Hide, Tag, Card, Text, ButtonGroup, CardBody, CardFooter, Image, Button, Stack, } from '@chakra-ui/react'
+import {
+  Hide,
+  Tag,
+  Card,
+  Text,
+  ButtonGroup,
+  CardBody,
+  CardFooter,
+  Image,
+  Button,
+  Stack,
+  Box,
+  Flex, VStack, Container, Show,
+} from '@chakra-ui/react'
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState, useContext } from 'react'
 import { PetsContextInstance } from '../../contex/PetsContext';
@@ -71,18 +84,16 @@ function PetCard({ pet }) {
     <>
 
       <Card mt={3} className='main-font'
-
         _hover={{
-          bgGradient: 'linear(to-r, yellow.100, gray.100)',
+          bgGradient: "linear(to-r, blackAlpha.100, whiteAlpha.200)",
           cursor: 'pointer'
         }}
         direction={{ base: 'column', sm: 'column' }}
-        overflow='hidden'
-        variant='outline'
+        variant='outline' minHeight={{base:"520px", md:"560px", lg:"660px", xl:'600px'}}
       >
+        <Flex  h={"250px"}  matchWidth={true}>
         <Image onClick={navigatePetsParams}
-          objectFit='cover'
-          maxH={['180px', '200px', '220px']}
+               objectFit='cover'
           src={pet.picture ? pet.picture :
             pet.type == 'Dog' ?
               "https://i.pinimg.com/564x/2c/ac/e1/2cace15889eb210ce4ab764d8e49848f.jpg"
@@ -91,102 +102,106 @@ function PetCard({ pet }) {
           }
           alt={pet.type}
         />
+        </Flex>
 
         <Stack>
-          <CardBody ml={2} onClick={navigatePetsParams}>
-            <Stack direction='row'>
+          <CardBody  onClick={navigatePetsParams}>
+            <Stack direction='row' alignItems={"center"}>
               <Text fontSize={['lg', 'lg', 'xl', '2xl']} className='font-weird'>{pet.name}</Text>
-              <Tag fontWeight='semibold' fontSize='0.8em' ml={4} colorScheme={colorStatus}>{pet?.adoptionStatus}</Tag>
+              <Tag fontWeight='semibold' maxH={3} ml={4} colorScheme={colorStatus}>{pet?.adoptionStatus}</Tag>
 
             </Stack>
 
-
-            <Tag size={['sm', 'sm', 'md', 'md']} fontWeight='normal' mt={4} mr={2} >
+            <Tag  fontWeight='normal' mt={4} mr={2} size='sm' p={2} >
               <span className="icon-mgR" >
                 <FontAwesomeIcon icon={faPaw} />
               </span>
               Type: {pet.type}
             </Tag>
 
-            <Tag fontWeight='normal' mt={4} mr={2} size={['sm', 'sm', 'md', 'md']}>
-              <span className="icon-mgR" >
-                <FontAwesomeIcon icon={faShieldDog} />
-              </span>
-              Breed: {pet.breed}
-            </Tag>
 
-            <Tag fontWeight='normal' mt={4} mr={2} size={['sm', 'sm', 'md', 'md']}>
+
+            <Tag fontWeight='normal' mt={4} mr={2} size='sm' p={2}>
               <span className="icon-mgR" >
                 <FontAwesomeIcon icon={faRuler} />
               </span>
               Height: {pet.height} cm</Tag>
 
-            <Tag fontWeight='normal' mt={4} mr={2} size={['sm', 'sm', 'md', 'md']}>
+            <Tag fontWeight='normal' mt={4} mr={2} size={'sm'} p={2}>
               <span className="icon-mgR" >
                 <FontAwesomeIcon icon={faWeightScale} />
               </span>
 
               Weight: {pet.weight} kg</Tag>
-
+            <Tag fontWeight='normal' mt={4} mr={2} size='sm'  p={2}>
+              <span className="icon-mgR" >
+                <FontAwesomeIcon icon={faShieldDog} />
+              </span>
+              Breed: {pet.breed}
+            </Tag>
           </CardBody>
 
           <CardFooter
-            position='-webkit-sticky'
-            bottom='1'
             alignItems='end'
             justify='space-between'
-            flexWrap='wrap'
+            w={"100%"}
+            h={15}
+            pr={4} pl={4}
+            position='absolute'
+            bottom='0'
+
           >
 
             <ButtonGroup
-              pr={2} pl={2}
-              size={['base: sm', 'sm', 'xs', 'sm', 'sm']} spacing={2} className='font-weird'>
-              {loggedInUser.role === 'Admin' &&
-
-                <Button className='font-weird'
-
-                  color='black' colorScheme='gray'
-                  leftIcon={<EditIcon />}
-                  _hover={{
-                    bgGradient: 'linear(to-r, gray.200, gray.100)',
-                  }}
-                  onClick={(e) => navigate(`/admin/editpet/${pet._id}`)}>
-                </Button>}
-
-              <Button leftIcon={<InfoOutlineIcon />}
-                p={2}
-                colorScheme='yellow' onClick={navigatePetsParams}>
-                <Hide below='lg'>
-                  More info
-                </Hide>
-              </Button>
-
-
-
+              size='sm' spacing={2} className='font-weird' flexWrap={true}>
               {!loggedInUser ?
-                <>
-                  <Button
-                    onClick={(e) => { navigate('/login') }}
-                    variant='ghost' colorScheme='pink' bgColor='pink.50'>
-                    Save
-                    <div className="heart"></div>
-                  </Button>
-                </>
-
-                :
-
-                <>
-                  <div onClick={handleClick} className={`heart-button ${isFilled ? 'filled' : 'empty'}`}>
-                    <Button size={['base: sm', 'sm', 'xs', 'sm', 'sm']}
-                      onClick={handleSaveBtn} bgColor='pink.50'
-                      variant='ghost' colorScheme='pink'>
-                      {isFilled ? "Saved" : "Save"}
+                  <>
+                    <Button
+                        onClick={(e) => { navigate('/login') }}
+                        variant='ghost' colorScheme='pink' bgColor='pink.50'>
+                      Save
                       <div className="heart"></div>
                     </Button>
-                  </div>
+                  </>
 
-                </>
+                  :
+
+                  <>
+                    <div onClick={handleClick} className={`heart-button ${isFilled ? 'filled' : 'empty'}`}>
+                      <Button size='sm'
+                              onClick={handleSaveBtn} bgColor='pink.50'
+                              variant='ghost' colorScheme='pink'>
+                        {isFilled ? "Saved" : "Save"}
+                        <div className="heart"></div>
+                      </Button>
+                    </div>
+
+                  </>
               }
+
+
+
+              <Button
+                p={2}
+                colorScheme='yellow' onClick={navigatePetsParams}>
+           <InfoOutlineIcon />
+
+              </Button>
+
+              {loggedInUser.role === 'Admin' &&
+
+                  <Button className='font-weird'
+                          color='black' colorScheme='gray'
+                          _hover={{
+                            bgGradient: 'linear(to-r, gray.200, gray.100)',
+                          }}
+                          onClick={(e) => navigate(`/admin/editpet/${pet._id}`)}>
+                    <EditIcon />
+                  </Button>}
+
+
+
+
 
 
 
