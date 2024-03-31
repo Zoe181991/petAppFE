@@ -9,6 +9,7 @@ import { useEffect, useState, useContext } from 'react'
 import axios from 'axios';
 import { useToast } from '@chakra-ui/react'
 import ButtonStyled from "../StyledComponents/ButtonStyled";
+import MainHeader from "../StyledComponents/MainHeader";
 
 
 function UserProfile() {
@@ -117,8 +118,7 @@ function UserProfile() {
     return (
         <div className='main-container'>
 
-            <Text className='main-header' mb={3} textColor='#8c52fd'
-                fontSize={['xl', '2xl', '3xl', '4xl']}>  Edit your profile</Text>
+            <MainHeader text={ "Edit your profile"}/>
 
             <Stack  width={['100%', '80%', '60%', '50%']} align='center' >
 

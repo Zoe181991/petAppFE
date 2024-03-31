@@ -108,6 +108,8 @@ html{
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  font-family: 'Outfit', sans-serif;
+
 }
 
 
@@ -386,13 +388,15 @@ a:visited {
   border: none;
   cursor: pointer;
   padding: 0;
-  width: 24px;
-  height: 24px;
   transition: transform 0.2s;
+}
+.card-footer-position{
+  position: relative;
+  bottom: 0;
 }
 
 .heart-button:hover {
-  transform: scale(1.2);
+  transform: scale(1.1);
 }
 
 .dog-logo{

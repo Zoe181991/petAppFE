@@ -8,6 +8,7 @@ import { useEffect, useState, useContext } from 'react'
 import axios from 'axios';
 import { useToast } from '@chakra-ui/react'
 import ButtonStyled from "../StyledComponents/ButtonStyled";
+import MainHeader from "../StyledComponents/MainHeader";
 
 
 function UpdatePassword() {
@@ -96,8 +97,8 @@ function UpdatePassword() {
             <Stack minW='10em' spacing={4} width={['100%', '80%', '60%', '50%']} align='center' >
 
 
-                <Text className='main-header' mb={3} textColor='#8c52fd'
-                      fontSize={['xl', '2xl', '3xl', '4xl']}>  Update Password</Text>
+
+                <MainHeader text={ "Update Password"}/>
 
                 <FormControl isInvalid={!passwordsMatch}>
                     {/* <p className='user-edit-field'>Enter a new Password:</p> */}

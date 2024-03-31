@@ -108,7 +108,7 @@ function PetPage() {
     return (
 
         <div className='main-container'>
-            <Stack minW='10em' spacing={4} width={['80%', '70%', '75%', '60%']} justify='center'>
+            <Stack minW='10em' spacing={4} width={['90%', '90%', '80%', '70%']} justify='center'>
 
                 <Text align='center' className='main-header' mb={3} textColor='red.800'
                     fontSize={['3xl', '4xl', '4xl', '5xl']}>  Meet {pet?.name}</Text>
