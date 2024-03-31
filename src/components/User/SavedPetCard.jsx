@@ -94,7 +94,8 @@ function SavedPetCard({ pet }) {
                         <CardBody onClick={navigatePetsParams}>
                             <Stack direction='row'>
                                 <Text fontSize={['lg', 'lg', 'xl', '2xl']} className='font-weird'>{pet.name}</Text>
-                                <Tag fontSize='0.8em' ml={4} colorScheme={colorStatus}>{pet?.adoptionStatus}</Tag>
+                                <Tag fontSize='0.8em' fontWeight='semibold'
+                                     ml={4} colorScheme={colorStatus}>{pet?.adoptionStatus}</Tag>
                             </Stack>
 
                             <Tag fontWeight='normal' mt={4} mr={2} size='lg'>

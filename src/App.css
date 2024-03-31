@@ -96,10 +96,17 @@ html{
 
 .dashboard-container{
   display: flex;
-  justify-content: left;
   flex-direction: column;
-  padding: 3em;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  px: 30em;
 
+}
+@media (min-width: 200px)  {
+  .dashboard-container {
+    px: 10em;
+  }
 }
 
 .bg{

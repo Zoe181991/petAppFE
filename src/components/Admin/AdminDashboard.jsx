@@ -15,6 +15,8 @@ import { UsersContextInstance } from '../../contex/UsersContext';
 import { AddIcon } from '@chakra-ui/icons'
 import PetsListAdminTable from './PetsListAdminTable'
 import UsersListAdminTable from './UsersListAdminTable'
+import MainHeader from "../StyledComponents/MainHeader";
+import ButtonStyled from "../StyledComponents/ButtonStyled";
 
 function AdminDashboard() {
 
@@ -28,12 +30,11 @@ function AdminDashboard() {
 
       <div className='dashboard-container'>
 
-        <Stack width={['110%', '95%', '90%']} >
+        <Stack  >
           <Flex mt={6} justify='left'>
             <Stack>
-              <Text className='main-header' mb={3} textColor='red.800'
-                fontSize={['3xl', '4xl', '4xl', '5xl']}> Admin Dashboard</Text>
 
+<MainHeader text={"Admin Dashboard"} />
               <Text className='font-weird'
                 fontSize='xl'
                 mb={4}
@@ -43,24 +44,13 @@ function AdminDashboard() {
             </Stack>
             <Spacer />
 
-            <Button className='font-weird'
-
-              onClick={(e) => navigate('/admin/addpet')} color='white' w='10em'
-              size={['sm', 'md', 'lg']}
-              p={2}
-              minW='10em'
-              leftIcon={<AddIcon />}
-              bgColor='red.800'
-              borderBlockEndWidth={4}
-              _hover={{
-                bgGradient: 'linear(to-r, gray.200, gray.100)',
-                color: 'black'
-              }}
-
-              variant='outline'
+            <ButtonStyled
+              action={(e) => navigate('/admin/addpet')}
+              text={"Add a new pet"}
+              icon={<AddIcon />}
 
             >
-              Add a new pet</Button>
+              </ButtonStyled>
           </Flex>
 
 
@@ -74,8 +64,8 @@ function AdminDashboard() {
                   <Box as="span" flex='1' textAlign='left'>
 
 
-                    <Text className='main-header' mb={3} textColor='red.800'
-                      fontSize={['lg', 'xl', '2xl', '3xl']}> View Pets</Text>
+                      <Text className='main-header' mb={3} textColor='#8c52fd'
+                            fontSize={['xl', 'xl', 'xl', '2xl']}> View Pets</Text>
                   </Box>
                   <AccordionIcon />
                 </AccordionButton>
@@ -94,9 +84,9 @@ function AdminDashboard() {
                   <Box as="span" flex='1' textAlign='left'>
 
 
-                    <Text className='main-header' mb={3} textColor='red.800'
-                      fontSize={['lg', 'xl', '2xl', '3xl']}> View Users</Text>
 
+                      <Text className='main-header' mb={3} textColor='#8c52fd'
+                            fontSize={['xl', 'xl', 'xl', '2xl']}> View Users</Text>
 
                   </Box>
                   <AccordionIcon />
