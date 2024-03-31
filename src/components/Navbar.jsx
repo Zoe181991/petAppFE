@@ -63,7 +63,7 @@ function Navbar({ onOpen }) {
       <Box
         color="white"
         w="100%"
-        h="10rem"
+        h="20vh"
         wrap="false"
         display="flex"
         justifyContent="center"
@@ -77,8 +77,7 @@ function Navbar({ onOpen }) {
             display='flex'
             direction="row"
             spacing={4}
-            justifyContent="center"
-alignItems="center"
+            alignItems="center"
             width={["90%", "80%", "65%", "60%"]}
         >
           <NavLink to={isAdmin ? "/admin" : "/"}>

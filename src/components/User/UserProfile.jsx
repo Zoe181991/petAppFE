@@ -8,6 +8,7 @@ import { Stack, Text } from '@chakra-ui/react'
 import { useEffect, useState, useContext } from 'react'
 import axios from 'axios';
 import { useToast } from '@chakra-ui/react'
+import ButtonStyled from "../StyledComponents/ButtonStyled";
 
 
 function UserProfile() {
@@ -207,24 +208,7 @@ function UserProfile() {
                         }}
                     >
 
-
-                        <Button onClick={handleSubmit} className='font-weird'
-                            color='white'
-                            width={{ base: 'sm', sm: 'sm', md: 'md', lg: 'md' }}
-                            maxW='15em' minW='10em'
-                            bgColor='red.800'
-                            borderBlockEndWidth={4}
-                            _hover={{
-                                bgGradient: 'linear(to-r, gray.200, gray.100)',
-                                color: 'black'
-                            }}
-                            isLoading={isLoading}
-                            loadingText='Loading'
-                            colorScheme='red'
-                            variant='outline'
-                            spinnerPlacement='start'
-                        >
-                            Save changes</Button>
+                        <ButtonStyled text='Save changes' action={handleSubmit} isLoading={isLoading} />
                     </CardFooter>
                 </Card>
             </Stack>

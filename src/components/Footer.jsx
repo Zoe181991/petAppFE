@@ -18,17 +18,17 @@ function Footer() {
           alignItems='center'
           bgColor="#8c52fd"
           w="100%"
-          h="10rem"
+          h="8em"
           display="flex"
           justifyContent="center"
           color={"white"}
-          className='main-font ' pt="2" pb="6"
+          className='main-font' pt="2" pb="6"
       >
           <Stack display="flex" direction="column" alignItems="center"  >
               <NavLink to={isAdmin ? "/admin" : "/"}>
               <Image
                   objectFit='cover'
-                  w="150px"
+                  w="100px"
                   src={logo}
                   alt='Pawsitive Adoptions'
               />

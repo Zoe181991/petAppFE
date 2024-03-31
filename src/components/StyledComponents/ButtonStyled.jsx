@@ -1,6 +1,6 @@
 import { Button } from "@chakra-ui/react";
 
-function ButtonStyled({ text, action, textIsLoading }) {
+function ButtonStyled({ text, action, isLoading, textIsLoading}) {
 
   return (
     <>
@@ -16,6 +16,7 @@ function ButtonStyled({ text, action, textIsLoading }) {
             bgGradient: "linear(to-r, purple.500, purple.500)",
             color: "white",
         }}
+        isLoading={isLoading}
         loadingText={textIsLoading ? textIsLoading : "Loading"}
         colorScheme="purple"
         variant="ghost"
