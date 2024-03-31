@@ -98,7 +98,7 @@ function PetsListAdminTable() {
               thickness='8px'
               speed='0.65s'
               emptyColor='gray.200'
-              color='red.800'
+              color='purple.500'
               size='xl'
             />
 

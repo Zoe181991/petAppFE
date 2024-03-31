@@ -12,6 +12,7 @@ import { Modal, ModalOverlay, ModalContent, ModalHeader, ModalFooter, ModalBody,
 import { DeleteIcon } from '@chakra-ui/icons'
 import { useDisclosure } from '@chakra-ui/react'
 import { useToast } from '@chakra-ui/react'
+import MainHeader from "../StyledComponents/MainHeader";
 
 
 function EditPet() {
@@ -190,8 +191,9 @@ function EditPet() {
   return (
     <div className='main-container'>
 
-      <Text className='main-header' mb={3} textColor='red.800'
-        fontSize={['3xl', '4xl', '4xl', '5xl']}>  Edit the pet {pet?.name}</Text>
+
+
+      <MainHeader text={`Edit the pet ${pet?.name}`} />
       <Stack minW='10em' spacing={4} width={['80%', '70%', '55%', '45%']} align='center'>
 
         <Stack direction='row' bgColor='gray.300' wrap={true} width={['100%', '100%', '90%']} p={5} borderRadius='md'>
@@ -307,11 +309,14 @@ function EditPet() {
           <Stack className='main-font' direction='row'
                  align='center' justify='center' justifyContent='center' flexWrap='wrap' >
             <Skeleton isLoaded={!isLoading}>
-              <Button className='font-weird' mt={5} color='white'
+              <Button className='main-font' mt={5} color='white'
                 maxW='15em' minW='5em'
-                bgColor='red.800'
                 borderBlockEndWidth={4}
-                _hover={{ bgGradient: 'linear(to-r, gray.200, gray.100)', color: 'black' }}
+                      bgGradient= "linear(to-r, pink.400, purple.500)"
+                      _hover={{
+                        bgGradient: "linear(to-r, purple.500, purple.500)",
+                        color: "white",
+                      }}
                 size={['md', 'lg']}
                 isLoading={isLoadingChanges}
                 loadingText='Saving Changes'

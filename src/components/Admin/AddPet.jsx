@@ -9,6 +9,8 @@ import { useToast } from '@chakra-ui/react'
 import { AdminContextInstance } from '../../contex/AdminContext'
 import { faPaw } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import MainHeader from "../StyledComponents/MainHeader";
+import ButtonStyled from "../StyledComponents/ButtonStyled";
 
 function AddPet() {
 
@@ -104,9 +106,7 @@ function AddPet() {
                 width={['90%', '80%', '65%', '60%']}
             >
 
-                <Text className='main-header' mb={3} textColor='red.800'
-                    fontSize={['3xl', '4xl', '4xl', '5xl']}> Add a pet</Text>
-
+<MainHeader text={"Add a pet"}/>
                 <FormControl mt={4} isRequired>
                     <FormLabel className='main-font'>Type:</FormLabel>
                     <InputGroup className='main-font'>
@@ -219,14 +219,16 @@ function AddPet() {
                         <Input placeholder="Add one dietary restriction"
                             variant='filled' value={diet}
                             onChange={(e) => setDiet(e.target.value)} />
-                        <Button className='font-weird' color='white'
-                            ml={2} fontWeight='light' fontSize={13}
-                            bgColor='red.800' variant='outline'
-                            borderBlockEndWidth={4}
-                            _hover={{
-                                bgGradient: 'linear(to-r, gray.200, gray.100)',
-                                color: 'black'
-                            }}
+                        <Button className='font-weird'
+                            ml={2} fontWeight='light' fontSize={12}
+                             variant='outline'
+                                bgColor="#8c52fd"
+                                color={"white"}
+                                colorScheme="purple"
+                                _hover={{
+                                    bgGradient: "linear(to-r, pink.400, purple.500)",
+                                    color: "white",
+                                }}
                             onClick={addItem}>Add Restriction</Button>
 
 
@@ -257,24 +259,27 @@ function AddPet() {
                 <Tooltip
                     label={!checkForm && 'Please fill in the required fields'}
                 >
+
                     <Button
                         onClick={handleSubmit}
-
-                        className='font-weird'
-                        isDisabled={!checkForm}
-                        size={['md', 'lg']}
-                        color='white'
-                        bgColor='red.800' variant='outline'
-                        borderBlockEndWidth={4}
-                        _hover={
-                            {
-                                bgGradient: 'linear(to-r, gray.200, gray.100)',
-                                color: 'black'
-                            }}
+                        className="main-font"
+                        color="white"
+                        widthMatch="true"
+                        size="md"
+                        pr={4}
+                        pl={4}
+                        pt={2}
+                        pb={2}
+                        bgGradient= "linear(to-r, pink.400, purple.500)"
+                        _hover={{
+                            bgGradient: "linear(to-r, purple.500, purple.500)",
+                            color: "white",
+                        }}
                         isLoading={isLoading}
-                        loadingText='Saving'
-                        colorScheme='red'
-                        spinnerPlacement='start'
+                        loadingText="Saving"
+                        colorScheme="purple"
+                        variant="ghost"
+                        spinnerPlacement="start"
 
                     >
                         <FontAwesomeIcon className='icon-mgR' icon={faPaw} />

@@ -57,7 +57,7 @@ function AdminDashboard() {
 
 
 
-          <Accordion defaultIndex={[0]} allowMultiple >
+          <Accordion defaultIndex={[0]} allowMultiple minWidth={"70%"} >
             <AccordionItem>
               <h2>
                 <AccordionButton>

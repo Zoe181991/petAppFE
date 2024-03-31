@@ -1,6 +1,6 @@
 import { Button } from "@chakra-ui/react";
 
-function ButtonStyled({ text, action, isLoading, textIsLoading, icon}) {
+function ButtonStyled({ text, action, isLoading, textIsLoading, icon, children}) {
 
   return (
     <>
