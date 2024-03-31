@@ -8,7 +8,7 @@ import {
   MenuGroup,
   MenuDivider,
   MenuButton,
-  MenuList,
+  MenuList, InputGroup, Select,
 } from "@chakra-ui/react";
 import { UsersContextInstance } from "../contex/UsersContext";
 import { useEffect, useContext, useState } from "react";
@@ -20,20 +20,12 @@ import { Stack, Spacer, Show, Hide } from "@chakra-ui/react";
 import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faHomeUser,
-  faMagnifyingGlass,
+
   faPaw,
   faGaugeHigh,
 } from "@fortawesome/free-solid-svg-icons";
-import {
-  Select,
-  Input,
-  InputGroup,
-  InputLeftElement,
-  FormControl,
-  FormLabel,
-} from "@chakra-ui/react";
-import ButtonStyled from "./StyledComponents/ButtonStyled";
+import logo from "../images/logo.png"
+import NavbarButton from "./StyledComponents/NavbarButton";
 
 function Navbar({ onOpen }) {
   const { loggedInUser, setLoggedInUser } = useContext(UsersContextInstance);
@@ -47,21 +39,6 @@ function Navbar({ onOpen }) {
     console.log(loggedInUser);
   }, []);
 
-  // async function getPetbyType(e) {
-  //   try {
-  //     setLoading(true)
-  //     const res = await axios.get(`${process.env.REACT_APP_SERVER_URL}/pets/search/${type}`, { withCredentials: true });
-  //     setPetsList(res.data)
-  //     setNumResultsS(res.data.length)
-  //     setLoading(false)
-
-  //   } catch (err) {
-  //     console.log(err)
-  //     setErrorMsgClient(err)
-  //     setLoading(false)
-  //   }
-
-  // }
 
   const handleSignout = async () => {
     //ROUTE TO LOG OUT CLEAR COOKIES RES.CLEAR.COOKIES
@@ -85,25 +62,37 @@ function Navbar({ onOpen }) {
   return (
     <>
       <Box
-        className="navBar"
-        h={"-webkit-fit-content"}
-        wrap="false"
-        display={{ base: "flex", md: "flex" }}
-        justifyContent="center"
-        pt={{ base: 6, lg: 8 }}
-        pb={{ base: 6, lg: 8 }}
         color="white"
+        w="100%"
+        h="10rem"
+        wrap="false"
+        display="flex"
+        justifyContent="center"
+        pt={{ base: 4, lg: 10 }}
+        pl={{ base: 8, lg: 60 }}
+        pr={{ base: 8, lg: 60 }}
+        alignItems='center'
       >
-        <Stack mr="5" ml={{ base: "0.5em", md: "2em", lg: "10em" }}>
-          <NavLink to={isAdmin ? "/admin" : "/"}>
-            <div className="dog-logo"></div>
-            <Text fontWeight="bold" className="font" color="blackAlpha.700">
-              <Hide below="2xl">Pawsitive Adoptions</Hide>
-            </Text>
-          </NavLink>
-        </Stack>
 
-        <Spacer />
+        <Stack
+            direction="row"
+            alignItems="center"
+            spacing={4}
+            width={["90%", "80%", "65%", "60%"]}
+        >
+          <NavLink to={isAdmin ? "/admin" : "/"}>
+            <Box  boxSize={{base: '120px', lg:"180px"}} overflow="hidden"  >
+            <Image
+                objectFit='cover'
+                src={logo}
+                alt='Pawsitive Adoptions'
+            />
+            </Box>
+
+
+          </NavLink>
+
+        </Stack>
 
         <Stack
           direction="row"
@@ -111,37 +100,14 @@ function Navbar({ onOpen }) {
           spacing={4}
           width={["90%", "80%", "65%", "60%"]}
         >
-          {" "}
-          <NavLink to={isAdmin ? "/admin" : "/"}>
-            {({ isActive }) => (
-              <>
-                <span className={isActive ? "active-page" : "navLink"}>
-                  <FontAwesomeIcon className="icon-nav" icon={faHomeUser} />
-                  <Hide below="md"> Home </Hide>
-                </span>
-              </>
-            )}
-          </NavLink>
-          <NavLink to="/search">
-            {({ isActive }) => (
-              <>
-                <span className={isActive ? "active-page" : "navLink"}>
-                  <FontAwesomeIcon
-                    className="icon-nav"
-                    icon={faMagnifyingGlass}
-                  />
-                  <Hide below="md">Search</Hide>
-                </span>
-              </>
-            )}
-          </NavLink>
+
         </Stack>
 
         {isAdmin && (
           <NavLink to="/dashboard">
             {({ isActive }) => (
               <>
-                <span className={isActive ? "active-page" : "navLink"}>
+                <span className={isActive ? "active-page" : "nav-link"}>
                   <FontAwesomeIcon className="icon-nav" icon={faGaugeHigh} />
                   <Hide below="md">Dashboard</Hide>
                 </span>
@@ -153,7 +119,7 @@ function Navbar({ onOpen }) {
         {loggedInUser && (
           <NavLink to="/mypets">
             {({ isActive }) => (
-              <span className={isActive ? "active-page" : "navLink"}>
+              <span className={isActive ? "active-page" : "nav-link"}>
                 <FontAwesomeIcon className="icon-nav" icon={faPaw} />
                 <Hide below="md">My pets</Hide>
               </span>
@@ -163,13 +129,7 @@ function Navbar({ onOpen }) {
 
         <Spacer />
 
-        <Stack
-          direction="row"
-          justify="right"
-          alignItems="center"
-          fontSize={["sm", "sm", "md", "md"]}
-          mr={{ base: "0.5em", md: "2em", lg: "10em" }}
-        >
+
           {loggedInUser && (
             <>
               <Stack>
@@ -186,7 +146,7 @@ function Navbar({ onOpen }) {
                 {loggedInUser && (
                   <MenuButton
                     size={["sm", "md", "md"]}
-                    className="font"
+                    className="main-font"
                     as={Button}
                     colorScheme="yellow"
                     color="red.800"
@@ -196,7 +156,7 @@ function Navbar({ onOpen }) {
                   </MenuButton>
                 )}
 
-                <MenuList textColor="red.800" className="font">
+                <MenuList textColor="red.800" className="main-font">
                   <MenuGroup title="Profile">
                     <NavLink to="/userprofile/edit">
                       <MenuItem>Edit Profile</MenuItem>
@@ -223,29 +183,21 @@ function Navbar({ onOpen }) {
           )}
 
           {!loggedInUser ? (
+              <>
             <NavLink onClick={onOpen} to="/login">
-              <Button
-                fontSize={["sm", "md", "lg", "2xl"]}
-                className="font-weird"
-                ml="5"
-                color="white"
-                colorScheme="purple"
-                bgGradient="linear(to-r, pink.400, purple.500)"
-                _hover={{
-                  bgGradient: "linear(to-r, white, white)",
-                  color: "purple.500",
-                }}
-                onClick={onOpen}
-              >
-                Login
-              </Button>
+              <NavbarButton textIsLoading='blah' text='Login'></NavbarButton>
+
             </NavLink>
+              <NavLink onClick={onOpen} to="/signup">
+                <NavbarButton textIsLoading='' text='Sign up'></NavbarButton>
+              </NavLink>
+              </>
           ) : (
             <>
               <Hide below="lg">
                 <Button
                   ml={5}
-                  className="font"
+                  className="main-font"
                   fontSize={["sm", "md", "lg"]}
                   mr={{ base: 1, lg: 2 }}
                   bgGradient="linear(to-r, orange.500, pink.500)"
@@ -259,7 +211,6 @@ function Navbar({ onOpen }) {
               </Hide>
             </>
           )}
-        </Stack>
       </Box>
     </>
   );

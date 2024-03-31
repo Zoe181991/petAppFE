@@ -118,7 +118,7 @@ function PetPage() {
                 <Skeleton isLoaded={!isLoading} >
                     {pet &&
                         <Card direction={{ base: 'column', md: 'row' }}
-                            overflow='hidden' className='font'
+                            overflow='hidden' className='main-font'
                             variant='outline'
                         >
 
@@ -149,10 +149,10 @@ function PetPage() {
 
 
                                         <Spacer />
-                                        <Tag className='font' size={['lg', 'lg', 'lg', 'xl']}
-                                            p={3}
-                                            fontWeight='semibold' mr={3}
-                                            colorScheme={colorStatus}>
+                                        <Tag className='main-font' size={['lg', 'lg', 'lg', 'xl']}
+                                             p={3}
+                                             fontWeight='semibold' mr={3}
+                                             colorScheme={colorStatus}>
                                             {pet?.adoptionStatus}</Tag>
                                     </Stack>
 

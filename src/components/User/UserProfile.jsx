@@ -127,7 +127,7 @@ function UserProfile() {
                             <Avatar mr={5} name={firstName} src={loggedInUser.picture} />
                             <Stack>
                                 <Text fontSize='1.5em' className='font-weird'>{firstName} {lastName}</Text>
-                                <Text fontSize='1em' className='font' >Role: {loggedInUser.role}</Text>
+                                <Text fontSize='1em' className='main-font' >Role: {loggedInUser.role}</Text>
                             </Stack>
                         </Flex>
                     </CardHeader>

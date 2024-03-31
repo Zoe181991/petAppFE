@@ -3,24 +3,21 @@ import { UsersContextInstance } from "../../contex/UsersContext";
 import { useContext } from "react";
 
 function ButtonStyled({ text, action, textIsLoading }) {
-  // const { isLoading, setIsLoading } = useContext(UsersContextInstance);
 
   return (
     <>
       <Button
-        className="font"
+        className="main-font"
         onClick={action}
         color="white"
         w="10em"
         size="md"
-        bgColor="#733e87"
-        // bgGradient= 'linear(to-r, gray.200, purple.400)'
 
+        bgGradient= "linear(to-r, pink.400, purple.500)"
         _hover={{
-          bgGradient: "linear(to-r, gray.200, purple.300)",
-          color: "#733e87",
+            bgGradient: "linear(to-r, purple.500, purple.500)",
+            color: "white",
         }}
-        // isLoading={isLoading}
         loadingText={textIsLoading ? textIsLoading : "Loading"}
         colorScheme="purple"
         variant="ghost"
