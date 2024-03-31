@@ -27,6 +27,7 @@ import { Routes, Route } from "react-router-dom";
 import { ChakraProvider } from "@chakra-ui/react";
 import { useDisclosure } from "@chakra-ui/react";
 import Footer from "./components/Footer";
+import SignUp from "./components/Guest/SignUp";
 
 function App() {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -94,6 +95,17 @@ function App() {
                         />
                       }
                     />
+
+                      <Route
+                          path="/signup"
+                          element={
+                              <SignUp
+                                  onOpen={onOpen}
+                                  isOpen={isOpen}
+                                  onClose={onClose}
+                              />
+                          }
+                      />
                     <Route path="/search" element={<Search />} />
 
                     {/* Pets */}

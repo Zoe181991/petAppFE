@@ -71,7 +71,7 @@ function Home() {
   return (
     <>
       {!loggedInUserID ?
-        <div className='main-container'>
+        <div className='home-container'>
 <div className='inner-box'>
     {isLoading?
         <><Spinner ></Spinner></>

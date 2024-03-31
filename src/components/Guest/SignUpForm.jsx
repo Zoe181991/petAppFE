@@ -24,14 +24,11 @@ function SignUpForm({ initialRef, onClose }) {
   const [repassword, setRePassword] = useState("");
   const [checkForm, setCheckForm] = useState(false);
   const [passwordsMatch, setPasswordsMatch] = useState(false);
-
   const { setErrorMsgClient, errorMsgClient, loginReq } = useContext(
     UsersContextInstance
   );
 
-  useEffect(() => {
-    setErrorMsgClient("");
-  }, []);
+
 
   const navigateHome = () => {
     // 👇️ navigate to /
@@ -59,7 +56,7 @@ function SignUpForm({ initialRef, onClose }) {
       repassword.length > 5 &&
       password === repassword
     ) {
-      setCheckForm(true);
+        setCheckForm(true);
     } else {
       setCheckForm(false);
     }
@@ -69,6 +66,10 @@ function SignUpForm({ initialRef, onClose }) {
     setRePassword(event.target.value);
     setPasswordsMatch(event.target.value === password);
   }
+
+  useEffect(() => {
+    setErrorMsgClient("");
+  }, []);
 
   const signUpReq = async (userDetails) => {
     try {
@@ -81,7 +82,6 @@ function SignUpForm({ initialRef, onClose }) {
       loginReq(userDetails);
       navigate("/");
     } catch (err) {
-      // setErrorMsgClient(err.message)
       console.error(err.message);
     }
   };
@@ -147,7 +147,7 @@ function SignUpForm({ initialRef, onClose }) {
           value={repassword}
           onChange={handleConfirmPasswordChange}
         />
-        <FormErrorMessage>Passwords doesn't match!</FormErrorMessage>
+        <FormErrorMessage>Passwords do not match!</FormErrorMessage>
       </FormControl>
 
       <div className="errorMsg">{errorMsgClient}</div>

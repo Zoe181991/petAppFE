@@ -120,7 +120,7 @@ const UsersContext = ({ children }) => {
       }
       setIsLoading(false);
     } catch (err) {
-      setErrorMsgClient(err.response.data);
+      // setErrorMsgClient(err.response.data);
       // ErrorToast(err.response.data)
       console.log(err);
       setIsLoading(false);

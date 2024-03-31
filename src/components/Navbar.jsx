@@ -93,7 +93,6 @@ function Navbar({ onOpen }) {
           </NavLink>
 
         </Stack>
-        {/*<Spacer />*/}
 
         <Stack
           direction="row"
@@ -190,7 +189,7 @@ function Navbar({ onOpen }) {
 
             </NavLink>
               <NavLink onClick={onOpen} to="/signup">
-                <NavbarBuuton textIsLoading='blah' text='Sign up'></NavbarBuuton>
+                <NavbarBuuton textIsLoading='' text='Sign up'></NavbarBuuton>
               </NavLink>
               </>
           ) : (
