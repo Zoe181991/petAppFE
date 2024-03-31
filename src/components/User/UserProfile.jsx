@@ -120,23 +120,26 @@ function UserProfile() {
             <Text className='main-header' mb={3} textColor='#8c52fd'
                 fontSize={['xl', '2xl', '3xl', '4xl']}>  Edit your profile</Text>
 
-            <Stack width={['90%', '85%', '80%', '70%']} align='center'>
+            <Stack  width={['100%', '80%', '60%', '50%']} align='center' >
 
-                <Card maxW='md'>
+                <Card w="100%" >
                     <CardHeader>
-                        <Flex flex='1' gap='2' alignItems='center' flexWrap='wrap'>
+                        <Stack  color="white" bgGradient= "linear(to-r, pink.400, purple.500)" borderRadius={'5px'} pr={5} pl={5} pt={3} pb={3}>
+                        <Flex flex='1' gap='2'  alignItems='center' flexWrap='wrap'
+                          >
                             <Avatar mr={5} name={firstName} src={loggedInUser.picture} />
                             <Stack>
                                 <Text fontSize='1.5em' className='font-weird'>{firstName} {lastName}</Text>
                                 <Text fontSize='1em' className='main-font' >Role: {loggedInUser.role}</Text>
                             </Stack>
                         </Flex>
+                        </Stack>
                     </CardHeader>
                     <CardBody mt={0}>
                         <Text className='user-edit-field'>First name:</Text>
                         <Editable className='editable-field'
                             defaultValue={firstName}
-                            fontSize='xl'
+                            fontSize='md'
                             isPreviewFocusable={false}
                         >
                             <EditablePreview />
@@ -147,7 +150,7 @@ function UserProfile() {
                         <Text className='user-edit-field'>Last name:</Text>
                         <Editable className='editable-field'
                             defaultValue={lastName}
-                            fontSize='xl'
+                            fontSize='md'
                             isPreviewFocusable={false}
                         >
                             <EditablePreview />
@@ -163,7 +166,7 @@ function UserProfile() {
                         <Text className='user-edit-field'>Email:</Text>
                         <Editable className='editable-field'
                             defaultValue={email}
-                            fontSize='xl'
+                            fontSize='md'
                             isPreviewFocusable={false}
                         >
                             <EditablePreview />
@@ -174,7 +177,7 @@ function UserProfile() {
                         <Text className='user-edit-field'>Phone Number:</Text>
                         <Editable className='editable-field'
                             defaultValue={phone}
-                            fontSize='xl'
+                            fontSize='md'
                             isPreviewFocusable={false}
                         >
                             <EditablePreview />
@@ -186,7 +189,7 @@ function UserProfile() {
                         <Text className='user-edit-field'>Add a Bio:</Text>
                         <Editable className='editable-field'
                             defaultValue={bio}
-                            fontSize='xl'
+                            fontSize='md'
                             isPreviewFocusable={false}
                         >
                             <EditablePreview />
