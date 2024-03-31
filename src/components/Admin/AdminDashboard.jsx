@@ -20,8 +20,7 @@ function AdminDashboard() {
 
   const navigate = useNavigate();
 
-  const { petsList } = useContext(PetsContextInstance);
-  const { loggedInUser, setLoggedInUser, fetchInfo, } = useContext(UsersContextInstance);
+  const { loggedInUser } = useContext(UsersContextInstance);
 
 
   return (

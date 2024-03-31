@@ -8,13 +8,13 @@ import {
   MenuGroup,
   MenuDivider,
   MenuButton,
-  MenuList, InputGroup, Select,
+  MenuList
 } from "@chakra-ui/react";
 import { UsersContextInstance } from "../contex/UsersContext";
 import { useEffect, useContext, useState } from "react";
 import { useNavigate, NavLink } from "react-router-dom";
 import { SettingsIcon } from "@chakra-ui/icons";
-import { Avatar, Text, AvatarGroup } from "@chakra-ui/react";
+import { Avatar, AvatarGroup } from "@chakra-ui/react";
 import { AuthContextInstance } from "../contex/AuthContext";
 import { Stack, Spacer, Show, Hide } from "@chakra-ui/react";
 import axios from "axios";
@@ -32,7 +32,6 @@ function Navbar({ onOpen }) {
   const { setLoggedInUserID, isAdmin, setIsAdmin } = useContext(
     AuthContextInstance
   );
-  const [type, setType] = useState("");
 
   const navigate = useNavigate();
   useEffect(() => {

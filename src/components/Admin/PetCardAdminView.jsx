@@ -1,11 +1,9 @@
 import React from 'react'
-import { Card, ButtonGroup, CardBody, CardFooter, Image, Button, Text, Stack, Heading } from '@chakra-ui/react'
-import { Badge, Tag } from '@chakra-ui/react'
+import { Card, ButtonGroup, CardBody, CardFooter, Image, Button, Text, Stack} from '@chakra-ui/react'
+import {  Tag } from '@chakra-ui/react'
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState, useContext } from 'react'
-import { PetsContextInstance } from '../../contex/PetsContext';
 import { UsersContextInstance } from '../../contex/UsersContext';
-import { ArrowForwardIcon } from '@chakra-ui/icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faRuler, faShieldDog, faPaw, faWeightScale } from '@fortawesome/free-solid-svg-icons'
 import { InfoOutlineIcon } from '@chakra-ui/icons'
@@ -14,7 +12,6 @@ import { EditIcon } from '@chakra-ui/icons'
 function PetCardAdminView({ pet }) {
 
   const [colorStatus, setColorStatus] = useState(false)
-  const { loggedInUser } = useContext(UsersContextInstance);
 
 
   const navigate = useNavigate();

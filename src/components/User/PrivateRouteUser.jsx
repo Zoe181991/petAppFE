@@ -1,5 +1,5 @@
 import React from 'react'
-import {useContext, useEffect} from 'react'
+import {useContext} from 'react'
 import { AuthContextInstance } from '../../contex/AuthContext'
 import {Navigate,} from 'react-router-dom'
 

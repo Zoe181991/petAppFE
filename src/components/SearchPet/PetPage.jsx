@@ -1,7 +1,6 @@
 import React, { useEffect, useState, useContext } from 'react'
 import { useParams, useNavigate, } from 'react-router-dom';
-import { Image, Button, Text, Stack, Heading, Skeleton } from '@chakra-ui/react'
-import { Badge } from '@chakra-ui/react'
+import { Image, Button, Text, Stack, Skeleton } from '@chakra-ui/react'
 import axios from 'axios';
 import { Tag, Spacer, Card, CardBody, CardFooter, ButtonGroup } from '@chakra-ui/react'
 import { PetsContextInstance } from '../../contex/PetsContext';

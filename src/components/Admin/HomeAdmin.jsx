@@ -14,7 +14,6 @@ function HomeAdmin() {
 
   const navigate = useNavigate();
 
-  const { petsList } = useContext(PetsContextInstance);
   const { loggedInUser, isLoading, setIsLoading } = useContext(UsersContextInstance);
 
   const [countAdopted, setCountAdopted] = useState("")

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Avatar, Card, CardHeader, Editable, CardBody, Box, CardFooter, FormControl, EditableInput, EditableTextarea, Input, Button, FormErrorMessage, EditablePreview, Flex, IconButton, ButtonGroup, } from '@chakra-ui/react'
+import { Avatar, Card, CardHeader, Editable, CardBody, Box, CardFooter,  EditableInput,  Input, Button, FormErrorMessage, EditablePreview, Flex, IconButton, ButtonGroup, } from '@chakra-ui/react'
 import { CheckIcon, EditIcon, CloseIcon, } from '@chakra-ui/icons'
 import { useEditableControls, } from '@chakra-ui/react'
 import { UsersContextInstance } from '../../contex/UsersContext';

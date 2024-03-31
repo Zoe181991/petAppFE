@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
-import { Checkbox, Textarea, Button, Select, Input, Stack, InputGroup,  FormControl, FormLabel, Text, Box, Spacer } from '@chakra-ui/react'
+import { Checkbox, Textarea, Button, Select, Input, Stack, InputGroup,  FormControl, FormLabel, Text, Box } from '@chakra-ui/react'
 import { useState, useContext } from 'react'
-import { NumberInput, List, ListItem, ListIcon, NumberInputField, NumberInputStepper, NumberIncrementStepper, NumberDecrementStepper, } from '@chakra-ui/react'
+import { NumberInput, List, ListItem,  NumberInputField, NumberInputStepper, NumberIncrementStepper, NumberDecrementStepper, } from '@chakra-ui/react'
 import { IconButton, Tooltip } from '@chakra-ui/react'
 import { MinusIcon } from '@chakra-ui/icons'
 import axios from 'axios';

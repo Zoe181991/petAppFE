@@ -1,5 +1,5 @@
 import React from 'react'
-import { Image,  Spinner, Text } from '@chakra-ui/react'
+import { Image,  Spinner } from '@chakra-ui/react'
 import {  NavLink, useNavigate,  } from 'react-router-dom';
 import { UsersContextInstance } from '../contex/UsersContext';
 import HomeLoggedIn from './User/HomeLoggedIn';

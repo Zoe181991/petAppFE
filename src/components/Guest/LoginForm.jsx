@@ -1,17 +1,17 @@
 import React from 'react'
 import { FormControl, FormLabel, Stack, } from '@chakra-ui/react'
 import { Input } from '@chakra-ui/react'
-import { Button, ButtonGroup } from '@chakra-ui/react'
+import { Button } from '@chakra-ui/react'
 import { useNavigate } from 'react-router-dom';
 import { useState, useEffect, useContext } from 'react'
 import { UsersContextInstance } from '../../contex/UsersContext';
 
 
-function LoginForm({ initialRef, onClose }) {
+function LoginForm({ initialRef }) {
 
     const [loginEmail, setLoginEmail] = useState("");
     const [loginPassword, setLoginPassword] = useState("");
-    const { errorMsgClient, setErrorMsgClient, loginReq, isLoading, setIsLoading } = useContext(UsersContextInstance);
+    const { errorMsgClient, setErrorMsgClient, loginReq, isLoading } = useContext(UsersContextInstance);
 
 
 

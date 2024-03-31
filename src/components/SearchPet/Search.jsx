@@ -13,7 +13,6 @@ import {
   FormControl,
   FormLabel,
   Text,
-  Box,
   Spacer,
 } from "@chakra-ui/react";
 import { useToast } from "@chakra-ui/react";
@@ -31,23 +30,19 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faRuler, faWeightScale } from "@fortawesome/free-solid-svg-icons";
 import ButtonStyled from "../StyledComponents/ButtonStyled";
-import { useNavigate, useParams } from "react-router-dom";
-import NavbarButton from "../StyledComponents/NavbarButton";
 
-function Search({ searchInput }) {
-  const params = useParams();
-  const navigate = useNavigate();
+function Search({  }) {
+
 
   const toast = useToast();
   const { setPetsList } = useContext(PetsContextInstance);
   const { loggedInUserID } = useContext(AuthContextInstance);
-  const { fetchInfo, errorMsgClient, setErrorMsgClient } = useContext(
+  const { fetchInfo,  setErrorMsgClient } = useContext(
     UsersContextInstance
   );
   const [numResults, setNumResults] = useState("");
   const [numResultsS, setNumResultsS] = useState("");
 
-  const [loading, setLoading] = useState(false);
 
   const [advSearch, setAdvSearch] = useState(false);
   const [type, setType] = useState("");

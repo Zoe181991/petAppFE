@@ -7,7 +7,6 @@ import { AuthContextInstance } from '../../contex/AuthContext';
 import { Tabs, TabList, TabPanels, Tab, TabPanel, Skeleton } from '@chakra-ui/react'
 import {
   Stack, Text,
-  Box,
 } from '@chakra-ui/react'
 import { useEffect, useContext } from 'react';
 

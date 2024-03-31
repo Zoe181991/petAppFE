@@ -3,7 +3,7 @@ import { Input, Stack, Textarea, } from '@chakra-ui/react'
 import { useEffect, useState,  } from 'react'
 import { useParams, useNavigate, } from 'react-router-dom';
 import axios from 'axios';
-import { Editable, Text, Skeleton, EditableInput, EditableTextarea, FormErrorMessage, EditablePreview, Flex, IconButton, ButtonGroup, Spacer } from '@chakra-ui/react'
+import { Editable, Text, Skeleton, EditableInput, EditableTextarea,  EditablePreview, Flex, IconButton, ButtonGroup, Spacer } from '@chakra-ui/react'
 import { CheckIcon, EditIcon, CloseIcon, } from '@chakra-ui/icons'
 import { useEditableControls, } from '@chakra-ui/react'
 import { Button, Box, Select, Avatar,  } from '@chakra-ui/react'

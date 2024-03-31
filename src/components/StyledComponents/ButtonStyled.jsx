@@ -1,6 +1,4 @@
 import { Button } from "@chakra-ui/react";
-import { UsersContextInstance } from "../../contex/UsersContext";
-import { useContext } from "react";
 
 function ButtonStyled({ text, action, textIsLoading }) {
 
