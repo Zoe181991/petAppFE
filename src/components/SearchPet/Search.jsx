@@ -32,6 +32,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faRuler, faWeightScale } from "@fortawesome/free-solid-svg-icons";
 import ButtonStyled from "../StyledComponents/ButtonStyled";
 import { useNavigate, useParams } from "react-router-dom";
+import NavbarButton from "../StyledComponents/NavbarButton";
 
 function Search({ searchInput }) {
   const params = useParams();
@@ -127,7 +128,7 @@ function Search({ searchInput }) {
       <Text
         className="main-header"
         mb={3}
-        textColor="#733e87"
+        textColor="#8c52fd"
         fontSize={["3xl", "4xl", "4xl", "5xl"]}
       >
         {" "}
@@ -137,7 +138,7 @@ function Search({ searchInput }) {
       <Text
         className="sub-header"
         mb={3}
-        textColor="#733e87"
+        textColor="#8c52fd"
         fontSize={["md", "lg", "xl", "2xl"]}
       >
         {" "}
@@ -177,16 +178,6 @@ function Search({ searchInput }) {
             />
           </FormControl>
           {!advSearch && (
-            // <Button className='font-weird' onClick={getPetbyType} color='white' w='10em'
-            //   size="lg" bgColor='red.800' borderBlockEndWidth={4} _hover={{
-            //     bgGradient: 'linear(to-r, gray.200, gray.100)',
-            //     color: 'black'
-            //   }}
-            //   isLoading={loading}
-            //   loadingText='Loading'
-            //   colorScheme='teal'
-            //   variant='outline'
-            //   spinnerPlacement='start'> Search</Button>
 
             <ButtonStyled
               text={"Search"}

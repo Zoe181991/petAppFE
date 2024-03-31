@@ -1,6 +1,6 @@
 import { Button } from "@chakra-ui/react";
 
-function NavbarBuuton({ text, action, textIsLoading }) {
+function NavbarButton({ text, action, textIsLoading }) {
 
   return (
     <>
@@ -26,4 +26,4 @@ function NavbarBuuton({ text, action, textIsLoading }) {
   );
 }
 
-export default NavbarBuuton;
+export default NavbarButton;

@@ -25,7 +25,7 @@ import {
   faGaugeHigh,
 } from "@fortawesome/free-solid-svg-icons";
 import logo from "../images/logo.png"
-import NavbarBuuton from "./StyledComponents/NavbarButton";
+import NavbarButton from "./StyledComponents/NavbarButton";
 
 function Navbar({ onOpen }) {
   const { loggedInUser, setLoggedInUser } = useContext(UsersContextInstance);
@@ -185,11 +185,11 @@ function Navbar({ onOpen }) {
           {!loggedInUser ? (
               <>
             <NavLink onClick={onOpen} to="/login">
-              <NavbarBuuton textIsLoading='blah' text='Login'></NavbarBuuton>
+              <NavbarButton textIsLoading='blah' text='Login'></NavbarButton>
 
             </NavLink>
               <NavLink onClick={onOpen} to="/signup">
-                <NavbarBuuton textIsLoading='' text='Sign up'></NavbarBuuton>
+                <NavbarButton textIsLoading='' text='Sign up'></NavbarButton>
               </NavLink>
               </>
           ) : (
