@@ -12,13 +12,13 @@ function Footer() {
     <>
       <Box
           alignItems='center'
-        bgColor="#8c52fd"
-        w="100%"
+          bgColor="#8c52fd"
+          w="100%"
           h="12rem"
-        display="inline-flex"
-        justifyContent="center"
-        color={"white"}
-        className='mainFont' pt="4" pb="6"
+          display="inline-flex"
+          justifyContent="center"
+          color={"white"}
+          className='main-font' pt="4" pb="6"
       >
           <Stack display="flex" direction="column" alignItems="center"  >
               <Image
@@ -28,7 +28,7 @@ function Footer() {
                   alt='Pawsitive Adoptions'
               />
           <Box
-              className="mainFont"
+              className="main-font"
               fontWeight='semibold'
               letterSpacing='wide'
               fontSize='xs'

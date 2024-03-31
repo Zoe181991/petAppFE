@@ -108,8 +108,8 @@ function AddPet() {
                     fontSize={['3xl', '4xl', '4xl', '5xl']}> Add a pet</Text>
 
                 <FormControl mt={4} isRequired>
-                    <FormLabel className='mainFont'>Type:</FormLabel>
-                    <InputGroup className='mainFont'>
+                    <FormLabel className='main-font'>Type:</FormLabel>
+                    <InputGroup className='main-font'>
 
                         <Select name='type' value={type} onChange={(e) => setType(e.target.value)} variant='filled'>
                             <option value=''>Pick a type</option>
@@ -122,8 +122,8 @@ function AddPet() {
 
 
                 <FormControl mt={4} isRequired>
-                    <FormLabel className='mainFont'>Name:</FormLabel>
-                    <Input variant='filled' className='mainFont' placeholder="Enter the pet's name"
+                    <FormLabel className='main-font'>Name:</FormLabel>
+                    <Input variant='filled' className='main-font' placeholder="Enter the pet's name"
                            value={name}
                            onChange={(e) => setName(e.target.value)} />
                 </FormControl>
@@ -131,8 +131,8 @@ function AddPet() {
 
 
                 <FormControl isRequired mt={4}>
-                    <FormLabel className='mainFont'>Breed:</FormLabel>
-                    <InputGroup className='mainFont'>
+                    <FormLabel className='main-font'>Breed:</FormLabel>
+                    <InputGroup className='main-font'>
                         <Input variant='filled' placeholder="Enter the pet's breed"
                             value={breed}
                             onChange={(e) => setBreed(e.target.value)} />
@@ -140,9 +140,9 @@ function AddPet() {
                 </FormControl>
 
                 <FormControl mt={4} isRequired>
-                    <FormLabel className='mainFont'>Adoption Status:</FormLabel>
+                    <FormLabel className='main-font'>Adoption Status:</FormLabel>
 
-                    <InputGroup className='mainFont'>
+                    <InputGroup className='main-font'>
                         <Select name='status' onChange={(e) => setAdoptionStatus(e.target.value)} value={adoptionStatus} variant='filled'>
                             <option value=''>Adoption status</option>
                             <option value='Available'>Available</option>
@@ -154,8 +154,8 @@ function AddPet() {
 
 
                 <FormControl isRequired mt={4}>
-                    <InputGroup className='mainFont' alignItems='center'>
-                        <FormLabel className='mainFont'>Height (Cm):
+                    <InputGroup className='main-font' alignItems='center'>
+                        <FormLabel className='main-font'>Height (Cm):
                         </FormLabel>
                         <NumberInput name='height' value={height}
                             onChange={(e) => setHeight(e)} allowMouseWheel min={1} size='md' variant='filled' type='number' >
@@ -170,11 +170,11 @@ function AddPet() {
 
                 <FormControl isRequired mt={4}>
 
-                    <InputGroup className='mainFont' alignItems='center'>
+                    <InputGroup className='main-font' alignItems='center'>
                         <FormLabel>Weight (Kg): </FormLabel>
                         <NumberInput name='weight' value={weight}
                                      onChange={(e) => setWeight(e)}
-                                     colorScheme='purple' allowMouseWheel size='md' min={1} className='mainFont' variant='filled' type='number' >
+                                     colorScheme='purple' allowMouseWheel size='md' min={1} className='main-font' variant='filled' type='number' >
                             <NumberInputField />
                             <NumberInputStepper>
                                 <NumberIncrementStepper />
@@ -187,8 +187,8 @@ function AddPet() {
 
 
                 <FormControl mt={4}>
-                    <FormLabel className='mainFont'>Color:</FormLabel>
-                    <InputGroup className='mainFont'>
+                    <FormLabel className='main-font'>Color:</FormLabel>
+                    <InputGroup className='main-font'>
                         <Input variant='filled' placeholder="Pet's color"
                             value={color}
                             onChange={(e) => setColor(e.target.value)} />
@@ -196,7 +196,7 @@ function AddPet() {
                 </FormControl>
 
                 <FormControl mt={4}>
-                    <InputGroup className='mainFont'>
+                    <InputGroup className='main-font'>
                         <Checkbox onChange={(e) => setHypoallergenic(!hypoallergenic)} size='md' colorScheme='red' >
                             Pet is hypoallergenic
                         </Checkbox>
@@ -205,8 +205,8 @@ function AddPet() {
                 </FormControl>
 
                 <FormControl mt={4}>
-                    <FormLabel className='mainFont'>Bio</FormLabel>
-                    <InputGroup className='mainFont'>
+                    <FormLabel className='main-font'>Bio</FormLabel>
+                    <InputGroup className='main-font'>
                         <Textarea variant='filled' placeholder="Enter the pet's bio"
                             value={bio}
                             onChange={(e) => setBio(e.target.value)} />
@@ -214,8 +214,8 @@ function AddPet() {
                 </FormControl>
 
                 <FormControl mt={4}>
-                    <FormLabel className='mainFont'>Enter the pet's dietary restrictions:</FormLabel>
-                    <InputGroup className='mainFont'>
+                    <FormLabel className='main-font'>Enter the pet's dietary restrictions:</FormLabel>
+                    <InputGroup className='main-font'>
                         <Input placeholder="Add one dietary restriction"
                             variant='filled' value={diet}
                             onChange={(e) => setDiet(e.target.value)} />
@@ -233,7 +233,7 @@ function AddPet() {
                     </InputGroup>
 
 
-                    <Text mt={3} colorScheme='red' className='mainFont'>{dietArray && `Dietary Restrictions Submitted:`}</Text>
+                    <Text mt={3} colorScheme='red' className='main-font'>{dietArray && `Dietary Restrictions Submitted:`}</Text>
 
                     <List spacing={3}>
 
@@ -249,7 +249,7 @@ function AddPet() {
 
 
                 <FormControl mt={4} isRequired>
-                    <FormLabel className='mainFont'>Upload an image:</FormLabel>
+                    <FormLabel className='main-font'>Upload an image:</FormLabel>
                     <input type='file' variant='filled' onChange={(e) => setImage(e.target.files[0])} />
                 </FormControl>
 

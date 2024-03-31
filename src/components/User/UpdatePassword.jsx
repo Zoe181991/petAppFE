@@ -104,7 +104,7 @@ function UpdatePassword() {
                     <Text
                         fontSize={{ base: 'md', sm: 'md', md: 'xl', lg: 'xl' }}
                         fontWeight='medium'
-                        className='user-edit-field mainFont'>
+                        className='user-edit-field main-font'>
                         Enter a new Password:                </Text>
 
 
@@ -116,7 +116,7 @@ function UpdatePassword() {
                     <Text
                         fontSize={{ base: 'md', sm: 'md', md: 'xl', lg: 'xl' }}
                         fontWeight='medium'
-                        className='user-edit-field mainFont'>
+                        className='user-edit-field main-font'>
                         Retype your Password:             </Text>
                     <Input mb={6} minW='10em' type='password' variant='filled' value={repassword} onChange={handleConfirmPasswordChange} />
                     <FormErrorMessage>Passwords doesn't match!</FormErrorMessage>

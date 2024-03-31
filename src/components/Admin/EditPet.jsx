@@ -212,10 +212,10 @@ function EditPet() {
         <Modal fontClass='font' isOpen={isOpen} onClose={onClose}>
           <ModalOverlay />
           <ModalContent>
-            <ModalHeader className='mainFont' >Delete Confirmation</ModalHeader>
+            <ModalHeader className='main-font' >Delete Confirmation</ModalHeader>
             <ModalCloseButton />
             <ModalBody>
-              <Text fontWeight='medium' className='mainFont'>Are you sure you want to delete {pet.name}?</Text>
+              <Text fontWeight='medium' className='main-font'>Are you sure you want to delete {pet.name}?</Text>
               <div className='errorMsg'>{deleteConfirm}</div>
               {/* <Text>{deleteConfirm}</Text> */}
             </ModalBody>
@@ -285,7 +285,7 @@ function EditPet() {
 
           <Skeleton isLoaded={!isLoading}>
             <FormControl mt={4}>
-              <InputGroup className='mainFont'>
+              <InputGroup className='main-font'>
                 <Checkbox isChecked={hypoallergnic} value={hypoallergnic} onChange={(e) => setHypoallergnic(!hypoallergnic)} size='md' colorScheme='purple' >
                   Pet is hypoallergnic
                 </Checkbox>
@@ -304,7 +304,7 @@ function EditPet() {
             </Stack>
           </Skeleton>
 
-          <Stack className='mainFont' direction='row'
+          <Stack className='main-font' direction='row'
                  align='center' justify='center' justifyContent='center' flexWrap='wrap' >
             <Skeleton isLoaded={!isLoading}>
               <Button className='font-weird' mt={5} color='white'

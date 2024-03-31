@@ -6,7 +6,7 @@ function NavbarBuuton({ text, action, textIsLoading }) {
     <>
       <Button
           fontSize={["sm", "sm", "md", "lg"]}
-          className="mainFont"
+          className="main-font"
           ml="2"
           color="blackAlpha.700"
           colorScheme="purple"

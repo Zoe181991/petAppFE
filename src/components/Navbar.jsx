@@ -73,8 +73,15 @@ function Navbar({ onOpen }) {
         pr={{ base: 8, lg: 60 }}
         alignItems='center'
       >
+
+        <Stack
+            direction="row"
+            alignItems="center"
+            spacing={4}
+            width={["90%", "80%", "65%", "60%"]}
+        >
           <NavLink to={isAdmin ? "/admin" : "/"}>
-            <Box boxSize={{base: '120px', lg:"150px"}} overflow="hidden"  >
+            <Box  boxSize={{base: '120px', lg:"180px"}} overflow="hidden"  >
             <Image
                 objectFit='cover'
                 src={logo}
@@ -82,12 +89,11 @@ function Navbar({ onOpen }) {
             />
             </Box>
 
-            <Text fontWeight="bold" className="mainFont" color="blackAlpha.700">
-              <Hide below="2xl">Pawsitive Adoptions</Hide>
-            </Text>
+
           </NavLink>
 
-        <Spacer />
+        </Stack>
+        {/*<Spacer />*/}
 
         <Stack
           direction="row"
@@ -102,7 +108,7 @@ function Navbar({ onOpen }) {
           <NavLink to="/dashboard">
             {({ isActive }) => (
               <>
-                <span className={isActive ? "active-page" : "navLink"}>
+                <span className={isActive ? "active-page" : "nav-link"}>
                   <FontAwesomeIcon className="icon-nav" icon={faGaugeHigh} />
                   <Hide below="md">Dashboard</Hide>
                 </span>
@@ -114,7 +120,7 @@ function Navbar({ onOpen }) {
         {loggedInUser && (
           <NavLink to="/mypets">
             {({ isActive }) => (
-              <span className={isActive ? "active-page" : "navLink"}>
+              <span className={isActive ? "active-page" : "nav-link"}>
                 <FontAwesomeIcon className="icon-nav" icon={faPaw} />
                 <Hide below="md">My pets</Hide>
               </span>
@@ -141,7 +147,7 @@ function Navbar({ onOpen }) {
                 {loggedInUser && (
                   <MenuButton
                     size={["sm", "md", "md"]}
-                    className="mainFont"
+                    className="main-font"
                     as={Button}
                     colorScheme="yellow"
                     color="red.800"
@@ -151,7 +157,7 @@ function Navbar({ onOpen }) {
                   </MenuButton>
                 )}
 
-                <MenuList textColor="red.800" className="mainFont">
+                <MenuList textColor="red.800" className="main-font">
                   <MenuGroup title="Profile">
                     <NavLink to="/userprofile/edit">
                       <MenuItem>Edit Profile</MenuItem>
@@ -192,7 +198,7 @@ function Navbar({ onOpen }) {
               <Hide below="lg">
                 <Button
                   ml={5}
-                  className="mainFont"
+                  className="main-font"
                   fontSize={["sm", "md", "lg"]}
                   mr={{ base: 1, lg: 2 }}
                   bgGradient="linear(to-r, orange.500, pink.500)"

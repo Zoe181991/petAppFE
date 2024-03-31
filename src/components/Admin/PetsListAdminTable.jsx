@@ -113,7 +113,7 @@ function PetsListAdminTable() {
             {endResults === '' ?
 
               <>
-                <Table bgColor='white' className='mainFont' size="sm"
+                <Table bgColor='white' className='main-font' size="sm"
                        minW={['15em', '20em', '30em', '50em']}
                        variant='striped' colorScheme='gray'>
                   <Thead>
@@ -196,7 +196,7 @@ function PetsListAdminTable() {
               :
 
               <Flex justify='center' mb={4} mt={5}>
-                <Text fontSize={['xs', 'md', 'lg', '2xl']} className='mainFont'> {endResults} </Text>
+                <Text fontSize={['xs', 'md', 'lg', '2xl']} className='main-font'> {endResults} </Text>
               </Flex>
 
             }
@@ -209,7 +209,7 @@ function PetsListAdminTable() {
               </Button>
               <Spacer />
               {/* <Text className='font'> Page number {page}</Text> */}
-              <Text className='mainFont'> Displaying {([page - 1] * 10) + countResults} out of {totalResults} pets</Text>
+              <Text className='main-font'> Displaying {([page - 1] * 10) + countResults} out of {totalResults} pets</Text>
               <Spacer />
 
               <Button size={['0.5xs', 'xs', 'sm', 'sm']} isDisabled={disableBtn} onClick={handleNextPage} rightIcon={<ArrowForwardIcon />}>

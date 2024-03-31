@@ -7,7 +7,7 @@ function ButtonStyled({ text, action, textIsLoading }) {
   return (
     <>
       <Button
-        className="mainFont"
+        className="main-font"
         onClick={action}
         color="white"
         w="10em"

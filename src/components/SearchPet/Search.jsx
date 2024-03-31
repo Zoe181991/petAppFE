@@ -146,7 +146,7 @@ function Search({ searchInput }) {
 
       <Stack spacing={4} width={["90%", "80%", "65%", "60%"]}>
         <Stack direction="row">
-          <InputGroup className="mainFont">
+          <InputGroup className="main-font">
             <Select
               name="type"
               value={type}
@@ -167,7 +167,7 @@ function Search({ searchInput }) {
             display="flex"
             alignItems="center"
           >
-            <FormLabel className="mainFont" htmlFor="adv-search" mb="0">
+            <FormLabel className="main-font" htmlFor="adv-search" mb="0">
               Advanced Search?
             </FormLabel>
             <Switch
@@ -197,7 +197,7 @@ function Search({ searchInput }) {
         </Stack>
         {numResultsS && (
           <Stack direction="row">
-            <FormLabel mb="0" className="mainFont">
+            <FormLabel mb="0" className="main-font">
               Displaying {numResultsS} results that match your search
             </FormLabel>
             <Spacer />
@@ -210,7 +210,7 @@ function Search({ searchInput }) {
         {advSearch && (
           <>
             <Stack direction="row">
-              <InputGroup className="mainFont">
+              <InputGroup className="main-font">
                 <Select
                   name="status"
                   onChange={(e) => setStatus(e.target.value)}
@@ -225,7 +225,7 @@ function Search({ searchInput }) {
               </InputGroup>
             </Stack>
 
-            <InputGroup className="mainFont">
+            <InputGroup className="main-font">
               <InputLeftElement
                 pointerEvents="none"
                 children={<SearchIcon color="gray.600" />}
@@ -246,7 +246,7 @@ function Search({ searchInput }) {
               justify="center"
               isInline="true"
             >
-              <InputGroup className="mainFont">
+              <InputGroup className="main-font">
                 <span className="icon-mgR">
                   <FontAwesomeIcon icon={faRuler} />
                 </span>
@@ -258,7 +258,7 @@ function Search({ searchInput }) {
                   size="sm"
                   maxW={24}
                   min={1}
-                  className="mainFont"
+                  className="main-font"
                   variant="filled"
                   type="number"
                 >
@@ -270,7 +270,7 @@ function Search({ searchInput }) {
                 </NumberInput>
               </InputGroup>
 
-              <InputGroup className="mainFont">
+              <InputGroup className="main-font">
                 <FormLabel>
                   <span className="icon-mgR">
                     <FontAwesomeIcon icon={faWeightScale} />
@@ -287,7 +287,7 @@ function Search({ searchInput }) {
                   allowMouseWheel
                   size="sm"
                   min={1}
-                  className="mainFont"
+                  className="main-font"
                   variant="filled"
                   type="number"
                 >
@@ -308,7 +308,7 @@ function Search({ searchInput }) {
 
             {numResults && (
               <Stack direction="row">
-                <FormLabel mb="0" className="mainFont">
+                <FormLabel mb="0" className="main-font">
                   Displaying {numResults} results that match your search
                 </FormLabel>
                 <Spacer />

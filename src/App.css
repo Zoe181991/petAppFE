@@ -47,6 +47,16 @@ html{
   }
 }
 
+@keyframes pop {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 /* layout */
 
 .containerCenter {
@@ -66,11 +76,19 @@ html{
 
 .main-container {
   display: flex;
+  flex-direction: row;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
   padding: 2em;
 
+}
+
+.main-container.inner-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2em;
 }
 
 .dashboard-container{
@@ -151,14 +169,14 @@ html{
   font-family: 'Kalam', cursive;
 }
 
-.mainFont{
+.main-font{
   font-family: 'Poppins', sans-serif;
   font-weight: 100;
  }
 
 
 
-.navLink {
+.nav-link {
   margin-right: 1em;
   margin-left: 1em;
   color:#8c52fd;
@@ -168,9 +186,9 @@ html{
 
 }
 
-.navLink:hover {
+.nav-link:hover {
 
-  color: #733e87;
+  color: #8c52fd;
 
 }
 
@@ -228,7 +246,7 @@ a:visited {
 .main-header {
   font-family: 'Outfit', sans-serif;
     font-weight:900;
-  color: #733e87;
+  color: #8c52fd;
   font-size: 2.5em;
 }
 
@@ -239,12 +257,85 @@ a:visited {
 
 }
 
-.sub-header {
-  /* font-family: 'Kalam', cursive; */
-  
-  font-family: 'Outfit', sans-serif;
-    font-size: 1.5em;
-  margin-bottom: 0.5em;
+.container-fluid .search-button {
+  background-color: #8c52fd;
+  width: 100%;
+  margin: auto;
+  border-radius: 10px;
+  margin-top: 1em;
+}
+
+.container-fluid .search-button h3 {
+  color: white;
+  text-align: center;
+  vertical-align: center;
+  padding: 10px;
+  margin: auto;
+}
+
+
+
+.search-button h3 span {
+  display: inline-block;
+  transform: translateX(10px);
+  transition: 1s;
+}
+
+.search-button:hover > h3 span {
+  transform: translateX(30px);
+
+}
+
+.search-button:hover {
+  background:linear-gradient(90deg, rgba(215,0,212,1) 0%, rgba(140,82,253,1) 100%);
+}
+
+
+
+
+
+.typewriter h1 {
+  overflow: hidden; /* Ensures the content is not revealed until the animation */
+  border-right: .15em solid orange; /* The typwriter cursor */
+  white-space: nowrap; /* Keeps the content on a single line */
+  margin: 0 auto; /* Gives that scrolling effect as the typing happens */
+  letter-spacing: .15em; /* Adjust as needed */
+  animation:
+          typing 3.5s steps(40, end),
+          blink-caret .75s step-end infinite;
+}
+
+/* The typing effect */
+@keyframes typing {
+  from { width: 0 }
+  to { width: 100% }
+}
+
+/* The typewriter cursor effect */
+@keyframes blink-caret {
+  from, to { border-color: transparent }
+  50% { border-color: orange; }
+}.typewriter h2 {
+   overflow: hidden; /* Ensures the content is not revealed until the animation */
+   border-right: .15em solid orange; /* The typwriter cursor */
+   white-space: nowrap; /* Keeps the content on a single line */
+   margin: 0 auto; /* Gives that scrolling effect as the typing happens */
+   letter-spacing: .15em; /* Adjust as needed */
+   animation:
+           typing 3.5s steps(40, end),
+           blink-caret .75s step-end infinite;
+ }
+
+/* The typing effect */
+@keyframes typing {
+  from { width: 0 }
+  to { width: 100% }
+}
+
+/* The typewriter cursor effect */
+@keyframes blink-caret {
+  from, to { border-color: transparent }
+  50% { border-color: orange; }
 }
 
 .sub-header:hover {
@@ -260,7 +351,7 @@ a:visited {
 }
 
 .errorMsg{
-  color:red;
+  color:black;
   display: flex;
   justify-content: center;
   margin: 1.5em 1.5em
