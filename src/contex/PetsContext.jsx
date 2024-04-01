@@ -1,10 +1,10 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { createContext, useEffect, useContext } from "react";
 import { AuthContextInstance } from './AuthContext';
 import { useToast } from '@chakra-ui/react'
-import { Box } from '@chakra-ui/react'
+import ToastBox from "../components/StyledComponents/ToastBox";
 
 
 const PetsContextInstance = createContext({});
@@ -35,9 +35,7 @@ const PetsContext = ({ children }) => {
         status: 'success',
         duration: 3000,
         render: () => (
-          <Box className='font-weird' color='red.800' p={3} bg='gray.200'>
-            {savePetToUser.petName} was saved successfully! ❤️
-          </Box>
+            <ToastBox text={`${savePetToUser.petName} was saved successfully! ❤️`} />
         ),
         isClosable: true,
       })
@@ -66,10 +64,10 @@ const PetsContext = ({ children }) => {
         status: 'success',
         duration: 3000,
         render: () => (
-          <Box className='font-weird' color='red.800' p={3} bg='gray.200'>
-            {name} was removed from Saved Pets 💔
-          </Box>
-        ),
+
+      <ToastBox text={`${name} was removed from Saved Pets 💔`} />
+
+    ),
         isClosable: true,
       })
 
@@ -95,10 +93,9 @@ const PetsContext = ({ children }) => {
         status: 'success',
         duration: 3000,
         render: () => (
-          <Box className='font-weird' color='red.800' p={3} bg='gray.200'>
-            Congratulations! {name} was fostered successfully. 🐾
-          </Box>
-        ),
+      <ToastBox text={`Congratulations! ${name} was fostered successfully.`} />
+
+    ),
         isClosable: true,
       })
 
@@ -117,19 +114,18 @@ const PetsContext = ({ children }) => {
       const updateList = fosteredPetsList.filter((pet) => pet._id !== id);
       setFosteredPetsList(updateList);
       setIsLoadingPets(false)
+      if(res.status=== 200){
+        toast({
+          position: 'bottom',
+          status: 'success',
+          duration: 3000,
+          render: () => (
+              <ToastBox text={`${name} has been returned to the shelter 😥`} />
+          ),
+          isClosable: true,
+        })
 
-      toast({
-        position: 'bottom',
-        status: 'success',
-        duration: 3000,
-        render: () => (
-          <Box className='font-weird' color='red.800' p={3} bg='gray.200'>
-            {name} has been returned to the shelter 😥
-          </Box>
-        ),
-        isClosable: true,
-      })
-
+      }
 
     } catch (err) {
       console.log(err)
@@ -157,10 +153,9 @@ const PetsContext = ({ children }) => {
         status: 'success',
         duration: 3000,
         render: () => (
-          <Box className='font-weird' color='red.800' p={3} bg='gray.200'>
-            {name} has a new home thanks to you! 🐕
-          </Box>
-        ),
+      <ToastBox text={`${name} has a new home thanks to you! 🐕`} />
+
+    ),
         isClosable: true,
       })
 
@@ -186,10 +181,9 @@ const PetsContext = ({ children }) => {
         status: 'success',
         duration: 3000,
         render: () => (
-          <Box className='font-weird' color='red.800' p={3} bg='gray.200'>
-            {name} has been returned to the shelter 😥
-          </Box>
-        ),
+      <ToastBox text={`${name} has been returned to the shelter 😥`} />
+
+    ),
         isClosable: true,
       })
 

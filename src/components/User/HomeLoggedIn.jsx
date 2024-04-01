@@ -8,6 +8,7 @@ import { faPaw, faHeart, faGear } from '@fortawesome/free-solid-svg-icons'
 import CountAnimation from './CountAnimation';
 import { ArrowRightIcon } from '@chakra-ui/icons'
 import axios from 'axios';
+import ButtonStyled2 from "../StyledComponents/ButtonStyled2";
 
 
 function HomeLoggedIn() {
@@ -106,12 +107,9 @@ function HomeLoggedIn() {
               </CardBody>
               <CardFooter justify='center'>
 
-                <Button p={4} className='font-weird' onClick={(e) => { navigate('/mypets') }} color='red.800' w='10em'
-                  size="lg" bgColor='#f9de10' borderBlockEndWidth={4} _hover={{
-                    bgGradient: 'linear(to-r, gray.200, gray.100)',
-                    color: 'black'
-                  }}
-                > View My Pets</Button>
+
+
+                <ButtonStyled2 text={"View My Pets"} action={()=>navigate('/mypets')}/>
 
               </CardFooter>
             </Card>
@@ -149,15 +147,7 @@ function HomeLoggedIn() {
 
               </CardBody>
               <CardFooter justify='center'>
-
-                <Button className='font-weird'
-                  onClick={(e) => { navigate('/search') }} color='red.800'
-                  size="lg" bgColor='#f9de10' borderBlockEndWidth={4} _hover={{
-                    bgGradient: 'linear(to-r, gray.200, gray.100)',
-                    color: 'black'
-                  }}
-                > Find your furry friend
-                </Button>
+                <ButtonStyled2 text={"Find your furry friend"} action={(e) => { navigate('/search') }}/>
               </CardFooter>
             </Card>
           </NavLink>
@@ -185,12 +175,7 @@ function HomeLoggedIn() {
                 <Text fontSize='xl' color='red.800' className='font-weird'>people joined Pawsitive Adoptions!</Text>
               </CardBody>
               <CardFooter justify='center'>
-                <Button p={4} className='font-weird' onClick={(e) => { navigate('/userprofile/edit') }} color='red.800' w='10em'
-                  size="lg" bgColor='#f9de10' borderBlockEndWidth={4} _hover={{
-                    bgGradient: 'linear(to-r, gray.200, gray.100)',
-                    color: 'black'
-                  }}
-                > Edit your profile</Button>
+                <ButtonStyled2 text={"Edit your profile"} action={(e) => { navigate('/userprofile/edit') }}/>
 
               </CardFooter>
             </Card>

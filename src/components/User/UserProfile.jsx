@@ -1,5 +1,5 @@
 import React from 'react'
-import { Avatar, Card, CardHeader, Editable, CardBody, Box, CardFooter,  EditableInput,  Input, Button, EditablePreview, Flex, IconButton, ButtonGroup, } from '@chakra-ui/react'
+import { Avatar, Card, CardHeader, Editable, CardBody, CardFooter,  EditableInput,  Input,  EditablePreview, Flex, IconButton, ButtonGroup, } from '@chakra-ui/react'
 import { CheckIcon, EditIcon, CloseIcon, } from '@chakra-ui/icons'
 import { useEditableControls, } from '@chakra-ui/react'
 import { UsersContextInstance } from '../../contex/UsersContext';
@@ -10,6 +10,7 @@ import axios from 'axios';
 import { useToast } from '@chakra-ui/react'
 import ButtonStyled from "../StyledComponents/ButtonStyled";
 import MainHeader from "../StyledComponents/MainHeader";
+import ToastBox from "../StyledComponents/ToastBox";
 
 
 function UserProfile() {
@@ -80,9 +81,7 @@ function UserProfile() {
                 status: 'success',
                 duration: 3000,
                 render: () => (
-                    <Box className='font-weird' color='red.800' p={3} bg='gray.200'>
-                        The user {firstName} {lastName} was updated successfully ✅
-                    </Box>
+                    <ToastBox text={`  The user ${firstName} ${lastName} was updated successfully ✅`} />
                 ),
                 isClosable: true,
             })

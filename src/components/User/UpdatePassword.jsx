@@ -1,5 +1,5 @@
 import React from 'react'
-import { FormControl, Box, Stack, Text, Input, Button, FormErrorMessage, Flex, IconButton, ButtonGroup } from '@chakra-ui/react'
+import { FormControl,  Stack, Text, Input, FormErrorMessage, Flex, IconButton, ButtonGroup } from '@chakra-ui/react'
 import { CheckIcon, EditIcon, CloseIcon, } from '@chakra-ui/icons'
 import { useEditableControls } from '@chakra-ui/react'
 import { UsersContextInstance } from '../../contex/UsersContext';
@@ -9,6 +9,7 @@ import axios from 'axios';
 import { useToast } from '@chakra-ui/react'
 import ButtonStyled from "../StyledComponents/ButtonStyled";
 import MainHeader from "../StyledComponents/MainHeader";
+import ToastBox from "../StyledComponents/ToastBox";
 
 
 function UpdatePassword() {
@@ -56,9 +57,7 @@ function UpdatePassword() {
                 status: 'success',
                 duration: 3000,
                 render: () => (
-                    <Box className='font-weird' color='red.800' p={3} bg='gray.200'>
-                        The password was updated successfully ✅
-                    </Box>
+                    <ToastBox text={"The password was updated successfully ✅"} />
                 ),
                 isClosable: true,
             })
@@ -67,7 +66,6 @@ function UpdatePassword() {
             console.log(err)
             setIsLoading(false)
         }
-
     }
 
 
@@ -108,11 +106,8 @@ function UpdatePassword() {
                         className='user-edit-field main-font'>
                         Enter a new Password:                </Text>
 
-
                     <Input type='password'
                         variant='filled' value={password} onChange={(e) => setPassword(e.target.value)} />
-
-
 
                     <Text
                         fontSize={{ base: 'md', sm: 'md', md: 'xl', lg: 'xl' }}
