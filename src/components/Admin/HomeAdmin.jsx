@@ -90,7 +90,7 @@ function HomeAdmin() {
                     <DashboardCard isLoading={isLoading} header={"Edit Pets"} icon={faDog} description={"View a summary of pets with edit options."} targetNumber={countAdopted} boldStatement={"pets have found a new home!"} buttonText={"View Pets"} buttonAction={()=>navigate('/admin/dashboard')} />
               </NavLink>
 
-              <NavLink to='/admin/dashboard/#users'>
+              <NavLink to='/admin/dashboard'>
                 <DashboardCard isLoading={isLoading} header={"View Users"} icon={faPenToSquare} description={"View users and edit roles"} targetNumber={countUsers} boldStatement={"people joined Pawsitive Adoptions!"} buttonText={"Edit users"} buttonAction={()=>navigate('/admin/dashboard')} />
               </NavLink>
 

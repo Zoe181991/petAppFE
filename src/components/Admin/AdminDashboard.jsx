@@ -20,24 +20,10 @@ import ButtonStyled from "../StyledComponents/ButtonStyled";
 function AdminDashboard() {
 
   const navigate = useNavigate();
-  const params = useParams()
 
 
   const { loggedInUser } = useContext(UsersContextInstance);
 
-  useEffect(() => {
-    console.log('params', params)
-    // if (params) {
-    //   console.log(params.section)
-    //   const sectionElement = document.getElementById(params.section);
-    //   if (sectionElement) {
-    //     window.scrollTo({
-    //       top: sectionElement.offsetTop,
-    //       behavior: 'smooth',
-    //     });
-    //   }
-    // }
-  }, []);
 
   return (
     <>
@@ -85,7 +71,7 @@ function AdminDashboard() {
             </AccordionItem>
 
 
-            <AccordionItem id={"users"}>
+            <AccordionItem>
               <h2>
                 <AccordionButton>
                   <Box as="span" flex='1' textAlign='left'>

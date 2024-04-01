@@ -58,15 +58,6 @@ function App() {
                               <AdminDashboard />
                           </PrivateRouteAdmin>
                       }>
-
-                          <Route
-                              path=":section"
-                              element={
-                                  <PrivateRouteAdmin>
-                                      <AdminDashboard />
-                                  </PrivateRouteAdmin>
-                              }
-                          />
                       </Route>
 
 
