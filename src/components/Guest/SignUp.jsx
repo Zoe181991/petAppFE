@@ -5,17 +5,15 @@ import {
   ModalContent,
   ModalFooter,
   ModalBody,
-  ModalCloseButton, ModalHeader,
+  ModalCloseButton,
+  ModalHeader,
 } from "@chakra-ui/react";
-import { Tabs, TabList, TabPanels, Tab, TabPanel } from "@chakra-ui/react";
-import LoginForm from "./LoginForm";
 import SignUpForm from "./SignUpForm";
 import { useNavigate } from "react-router-dom";
 import { UsersContextInstance } from "../../contex/UsersContext";
 
 function Login({ isOpen, onOpen, onClose }) {
   const navigate = useNavigate();
-
   const { setErrorMsgClient } = useContext(UsersContextInstance);
 
   const initialRef = React.useRef(null);
@@ -37,16 +35,13 @@ function Login({ isOpen, onOpen, onClose }) {
         isOpen={isOpen}
         onClose={navigateSearch}
       >
-        <ModalOverlay  />
+        <ModalOverlay />
         <ModalContent>
           <ModalHeader>Sign up</ModalHeader>
 
           <ModalCloseButton />
           <ModalBody pb={6} pr={10} pl={10}>
-            <SignUpForm
-                initialRef={initialRef}
-                onClose={onClose}
-            ></SignUpForm>
+            <SignUpForm initialRef={initialRef} onClose={onClose}></SignUpForm>
           </ModalBody>
 
           <ModalFooter></ModalFooter>

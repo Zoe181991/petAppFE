@@ -13,17 +13,12 @@ const UsersContext = ({ children }) => {
   const [errorMsgClient, setErrorMsgClient] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [loggedInUser, setLoggedInUser] = useState(false);
-  const toast = useToast()
+  const toast = useToast();
 
-
-  const { loggedInUserID, setLoggedInUserID, setIsAdmin } = useContext(
-      AuthContextInstance
-  );
-  const {
-    setSavedPetsList,
-    setFosteredPetsList,
-    setAdoptedPetsList,
-  } = useContext(PetsContextInstance);
+  const { loggedInUserID, setLoggedInUserID, setIsAdmin } =
+    useContext(AuthContextInstance);
+  const { setSavedPetsList, setFosteredPetsList, setAdoptedPetsList } =
+    useContext(PetsContextInstance);
 
   const navigate = useNavigate();
 
@@ -33,13 +28,11 @@ const UsersContext = ({ children }) => {
     }
   }, []);
 
-
-
   const fetchInfo = async (id) => {
     try {
       const res = await axios.get(
-          `${process.env.REACT_APP_SERVER_URL}/users/${id}`,
-          { withCredentials: true }
+        `${process.env.REACT_APP_SERVER_URL}/users/${id}`,
+        { withCredentials: true },
       );
       setLoggedInUser(res.data);
       setSavedPetsList(res.data.savedPets);
@@ -56,8 +49,8 @@ const UsersContext = ({ children }) => {
     try {
       if (id) {
         const res = await axios.get(
-            `${process.env.REACT_APP_SERVER_URL}/users/${id}/savedpets`,
-            { withCredentials: true }
+          `${process.env.REACT_APP_SERVER_URL}/users/${id}/savedpets`,
+          { withCredentials: true },
         );
         setSavedPetsList(res.data);
       }
@@ -70,8 +63,8 @@ const UsersContext = ({ children }) => {
     try {
       if (id) {
         const res = await axios.get(
-            `${process.env.REACT_APP_SERVER_URL}/users/${id}/adoptedpets`,
-            { withCredentials: true }
+          `${process.env.REACT_APP_SERVER_URL}/users/${id}/adoptedpets`,
+          { withCredentials: true },
         );
         setAdoptedPetsList(res.data);
       }
@@ -84,8 +77,8 @@ const UsersContext = ({ children }) => {
     try {
       if (id) {
         const res = await axios.get(
-            `${process.env.REACT_APP_SERVER_URL}/${id}/fosteredpets`,
-            { withCredentials: true }
+          `${process.env.REACT_APP_SERVER_URL}/${id}/fosteredpets`,
+          { withCredentials: true },
         );
         setFosteredPetsList(res.data);
       }
@@ -99,9 +92,9 @@ const UsersContext = ({ children }) => {
     try {
       console.log(`${process.env.REACT_APP_SERVER_URL}`);
       const res = await axios.post(
-          `${process.env.REACT_APP_SERVER_URL}/users/login`,
-          userDetails,
-          { withCredentials: true }
+        `${process.env.REACT_APP_SERVER_URL}/users/login`,
+        userDetails,
+        { withCredentials: true },
       );
       console.log(res.data);
       if (res.data.ok) {
@@ -114,37 +107,35 @@ const UsersContext = ({ children }) => {
       setIsLoading(false);
     } catch (err) {
       toast({
-        position: 'bottom',
-        status: 'success',
+        position: "bottom",
+        status: "success",
         duration: 3000,
-        render: () => (
-            <ToastBox text={err.response.data} />
-        ),
+        render: () => <ToastBox text={err.response.data} />,
         isClosable: true,
-      })
+      });
       console.log(err);
       setIsLoading(false);
     }
   };
 
   return (
-      <UsersContextInstance.Provider
-          value={{
-            errorMsgClient,
-            setErrorMsgClient,
-            fetchInfo,
-            loggedInUser,
-            setLoggedInUser,
-            loginReq,
-            fetchSavedPets,
-            isLoading,
-            setIsLoading,
-            fetchAdoptedPets,
-            fetchFosteredPets,
-          }}
-      >
-        {children}
-      </UsersContextInstance.Provider>
+    <UsersContextInstance.Provider
+      value={{
+        errorMsgClient,
+        setErrorMsgClient,
+        fetchInfo,
+        loggedInUser,
+        setLoggedInUser,
+        loginReq,
+        fetchSavedPets,
+        isLoading,
+        setIsLoading,
+        fetchAdoptedPets,
+        fetchFosteredPets,
+      }}
+    >
+      {children}
+    </UsersContextInstance.Provider>
   );
 };
 

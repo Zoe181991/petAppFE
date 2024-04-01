@@ -8,7 +8,8 @@ import {
   MenuGroup,
   MenuDivider,
   MenuButton,
-  MenuList, Text
+  MenuList,
+  Text,
 } from "@chakra-ui/react";
 import { UsersContextInstance } from "../contex/UsersContext";
 import { useEffect, useContext, useState } from "react";
@@ -20,31 +21,29 @@ import { Stack, Spacer, Show, Hide } from "@chakra-ui/react";
 import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-
   faPaw,
   faGaugeHigh,
+  faSearch,
 } from "@fortawesome/free-solid-svg-icons";
-import logo from "../images/logo.png"
+import logo from "../images/logo.png";
 import NavbarButton from "./StyledComponents/NavbarButton";
 
 function Navbar({ onOpen }) {
   const { loggedInUser, setLoggedInUser } = useContext(UsersContextInstance);
-  const { setLoggedInUserID, isAdmin, setIsAdmin } = useContext(
-    AuthContextInstance
-  );
+  const { setLoggedInUserID, isAdmin, setIsAdmin } =
+    useContext(AuthContextInstance);
 
   const navigate = useNavigate();
   useEffect(() => {
     console.log(loggedInUser);
   }, []);
 
-
   const handleSignout = async () => {
     //ROUTE TO LOG OUT CLEAR COOKIES RES.CLEAR.COOKIES
     try {
       const res = await axios.get(
         `${process.env.REACT_APP_SERVER_URL}/users/logout`,
-        { withCredentials: true }
+        { withCredentials: true },
       );
       if (res.data) {
         setLoggedInUser("");
@@ -67,74 +66,66 @@ function Navbar({ onOpen }) {
         wrap="false"
         display="flex"
         justifyContent="center"
-        pt={{ base: 4, md:8, lg: 10 }}
-        pl={{ base: 8, md:20, lg: 30, xl: 40 }}
-        pr={{ base: 8, md:20, lg: 30, xl:40 }}
-        alignItems='center'
+        pt={{ base: 4, md: 8, lg: 10 }}
+        pl={{ base: 8, md: 10, lg: 15, xl: 20 }}
+        pr={{ base: 8, md: 10, lg: 15, xl: 20 }}
+        alignItems="center"
       >
-
         <Stack
-            display='flex'
-            direction="row"
-            spacing={4}
-            alignItems="center"
-            width={["90%", "80%", "65%", "60%"]}
+          display="flex"
+          direction="row"
+          spacing={4}
+          alignItems="center"
+          width={["90%", "80%", "65%", "60%"]}
         >
           <NavLink to={isAdmin ? "/admin" : "/"}>
-            <Box  boxSize={{base: '120px', lg:"180px"}} overflow="hidden"  >
-            <Image
-                objectFit='cover'
-                src={logo}
-                alt='Pawsitive Adoptions'
-            />            </Box>
-
-
-
+            <Box boxSize={{ base: "120px", lg: "180px" }} overflow="hidden">
+              <Image objectFit="cover" src={logo} alt="Pawsitive Adoptions" />{" "}
+            </Box>
           </NavLink>
-          <Stack  direction='row'>
-            {isAdmin && (
-                <NavLink to="/admin/dashboard">
-                  {({ isActive }) => (
-                      <>
+          <Stack direction="row">
+            <NavLink to="/search">
+              {({ isActive }) => (
                 <span className={isActive ? "active-page" : "nav-link"}>
-                  <FontAwesomeIcon className="icon-nav" icon={faGaugeHigh} />
-                  <Hide below="md">Dashboard</Hide>
+                  <FontAwesomeIcon className="icon-nav" icon={faSearch} />
+                  <Hide below="md">Search</Hide>
                 </span>
-                      </>
-                  )}
-                </NavLink>
+              )}
+            </NavLink>
+
+            {isAdmin && (
+              <NavLink to="/admin/dashboard">
+                {({ isActive }) => (
+                  <>
+                    <span className={isActive ? "active-page" : "nav-link"}>
+                      <FontAwesomeIcon
+                        className="icon-nav"
+                        icon={faGaugeHigh}
+                      />
+                      <Hide below="md">Dashboard</Hide>
+                    </span>
+                  </>
+                )}
+              </NavLink>
             )}
             {loggedInUser && (
-                <NavLink to="/mypets">
-                  {({ isActive }) => (
-                      <span className={isActive ? "active-page" : "nav-link"}>
-                <FontAwesomeIcon className="icon-nav" icon={faPaw} />
-                <Hide below="md">My pets</Hide>
-              </span>
-                  )}
-                </NavLink>
+              <NavLink to="/mypets">
+                {({ isActive }) => (
+                  <span className={isActive ? "active-page" : "nav-link"}>
+                    <FontAwesomeIcon className="icon-nav" icon={faPaw} />
+                    <Hide below="md">My pets</Hide>
+                  </span>
+                )}
+              </NavLink>
             )}
           </Stack>
         </Stack>
 
-
-
-
-
-
-
-
-
-
-        <Spacer />
-
-
-          {loggedInUser && (
-            <>
-
-              <Menu>
-                {loggedInUser && (
-                    <>
+        {loggedInUser && (
+          <>
+            <Menu>
+              {loggedInUser && (
+                <>
                   <MenuButton
                     className="main-font"
                     as={Button}
@@ -149,58 +140,71 @@ function Navbar({ onOpen }) {
                     rightIcon={<SettingsIcon />}
                   >
                     <Stack direction="row" verticalAlign={true} spacing={2}>
-                    <Show above="lg"> <Text fontSize="sm">{loggedInUser.first_name}'s Profile</Text> </Show>
-                      <Hide above="lg">                     <Avatar mr={2} bg="gray" size='sm' src={loggedInUser.picture} />
+                      <Show above="lg">
+                        {" "}
+                        <Text fontSize="sm">
+                          {loggedInUser.first_name}'s Profile
+                        </Text>{" "}
+                      </Show>
+                      <Hide above="lg">
+                        {" "}
+                        <Avatar
+                          mr={2}
+                          bg="gray"
+                          size="sm"
+                          src={loggedInUser.picture}
+                        />
                       </Hide>
-
                     </Stack>
                   </MenuButton>
-                    </>
-                )}
+                </>
+              )}
 
-                <MenuList textColor="blackAlpha.700" className="main-font">
-                  <MenuGroup color="#d700d3" title="Profile">
-                    <NavLink to="/userprofile/edit">
-                      <MenuItem>Edit Profile</MenuItem>
-                    </NavLink>
+              <MenuList textColor="blackAlpha.700" className="main-font">
+                <MenuGroup color="#d700d3" title="Profile">
+                  <NavLink to="/userprofile/edit">
+                    <MenuItem>Edit Profile</MenuItem>
+                  </NavLink>
 
-                    <NavLink to="/userprofile/updatepassword">
-                      <MenuItem>Update your password</MenuItem>
-                    </NavLink>
+                  <NavLink to="/userprofile/updatepassword">
+                    <MenuItem>Update your password</MenuItem>
+                  </NavLink>
 
-                    <MenuItem onClick={handleSignout}>Sign Out</MenuItem>
-                  </MenuGroup>
-                  <MenuDivider />
-                  <MenuGroup color="#d700d3" title="Pets">
-                    <NavLink to="/mypets">
-                      <MenuItem>My Pets </MenuItem>
-                    </NavLink>
-                    <NavLink to="/search">
-                      <MenuItem>Search for a pet</MenuItem>
-                    </NavLink>
-                  </MenuGroup>
-                </MenuList>
-              </Menu>
-            </>
-          )}
+                  <MenuItem onClick={handleSignout}>Sign Out</MenuItem>
+                </MenuGroup>
+                <MenuDivider />
+                <MenuGroup color="#d700d3" title="Pets">
+                  <NavLink to="/mypets">
+                    <MenuItem>My Pets </MenuItem>
+                  </NavLink>
+                  <NavLink to="/search">
+                    <MenuItem>Search for a pet</MenuItem>
+                  </NavLink>
+                </MenuGroup>
+              </MenuList>
+            </Menu>
+          </>
+        )}
 
-          {!loggedInUser ? (
-              <>
+        {!loggedInUser ? (
+          <>
             <NavLink onClick={onOpen} to="/login">
-              <NavbarButton textIsLoading='blah' text='Login'></NavbarButton>
-
+              <NavbarButton textIsLoading="blah" text="Login"></NavbarButton>
             </NavLink>
-              <NavLink onClick={onOpen} to="/signup">
-                <NavbarButton textIsLoading='' text='Sign up'></NavbarButton>
-              </NavLink>
-              </>
-          ) : (
-            <>
-              <Hide below="lg">
-                <NavbarButton action={handleSignout} text={"Sign Out"}></NavbarButton>
-              </Hide>
-            </>
-          )}
+            <NavLink onClick={onOpen} to="/signup">
+              <NavbarButton textIsLoading="" text="Sign up"></NavbarButton>
+            </NavLink>
+          </>
+        ) : (
+          <>
+            <Hide below="lg">
+              <NavbarButton
+                action={handleSignout}
+                text={"Sign Out"}
+              ></NavbarButton>
+            </Hide>
+          </>
+        )}
       </Box>
     </>
   );
