@@ -1,6 +1,6 @@
-import React from 'react'
-import { Text, Button, Flex } from '@chakra-ui/react'
-import { useNavigate, } from 'react-router-dom';
+import React, {useEffect} from 'react'
+import { Text, Flex } from '@chakra-ui/react'
+import {useNavigate, useParams,} from 'react-router-dom';
 import { Box, Stack, } from '@chakra-ui/react'
 import { useContext } from 'react';
 import {
@@ -10,7 +10,6 @@ import {
   AccordionPanel,
   AccordionIcon, Spacer,
 } from '@chakra-ui/react'
-import { PetsContextInstance } from '../../contex/PetsContext';
 import { UsersContextInstance } from '../../contex/UsersContext';
 import { AddIcon } from '@chakra-ui/icons'
 import PetsListAdminTable from './PetsListAdminTable'
@@ -21,20 +20,33 @@ import ButtonStyled from "../StyledComponents/ButtonStyled";
 function AdminDashboard() {
 
   const navigate = useNavigate();
+  const params = useParams()
+
 
   const { loggedInUser } = useContext(UsersContextInstance);
 
+  useEffect(() => {
+    console.log('params', params)
+    // if (params) {
+    //   console.log(params.section)
+    //   const sectionElement = document.getElementById(params.section);
+    //   if (sectionElement) {
+    //     window.scrollTo({
+    //       top: sectionElement.offsetTop,
+    //       behavior: 'smooth',
+    //     });
+    //   }
+    // }
+  }, []);
 
   return (
     <>
 
       <div className='dashboard-container'>
-
-        <Stack  >
+<Stack w={"75%"} >
           <Flex mt={6} justify='left'>
             <Stack>
-
-<MainHeader text={"Admin Dashboard"} />
+            <MainHeader text={"Admin Dashboard"} />
               <Text className='font-weird'
                 fontSize='xl'
                 mb={4}
@@ -54,16 +66,11 @@ function AdminDashboard() {
           </Flex>
 
 
-
-
-
-          <Accordion defaultIndex={[0]} allowMultiple minWidth={"70%"} >
+          <Accordion defaultIndex={[0]} allowMultiple w={"100%"} >
             <AccordionItem>
               <h2>
                 <AccordionButton>
                   <Box as="span" flex='1' textAlign='left'>
-
-
                       <Text className='main-header' mb={3} textColor='#8c52fd'
                             fontSize={['xl', 'xl', 'xl', '2xl']}> View Pets</Text>
                   </Box>
@@ -78,16 +85,13 @@ function AdminDashboard() {
             </AccordionItem>
 
 
-            <AccordionItem>
+            <AccordionItem id={"users"}>
               <h2>
                 <AccordionButton>
                   <Box as="span" flex='1' textAlign='left'>
 
-
-
                       <Text className='main-header' mb={3} textColor='#8c52fd'
                             fontSize={['xl', 'xl', 'xl', '2xl']}> View Users</Text>
-
                   </Box>
                   <AccordionIcon />
                 </AccordionButton>
@@ -100,11 +104,7 @@ function AdminDashboard() {
               </AccordionPanel>
             </AccordionItem>
           </Accordion>
-
-
-        </Stack>
-
-
+</Stack>
       </div>
     </>
   )

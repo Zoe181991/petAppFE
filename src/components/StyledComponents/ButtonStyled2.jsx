@@ -18,10 +18,10 @@ function ButtonStyled2({ text, action, isLoading, textIsLoading, icon, children}
           size="lg" bgColor='#8c52fd' borderBlockEndWidth={4}
           colorScheme="purple"
           spinnerPlacement="start"
-          _hover={{
-          bgColor: 'blackAlpha.200',
-          // color: '#FFF18D'
-      }}
+      //     _hover={{
+      //     bgColor: 'blackAlpha.200',
+      //     // color: '#FFF18D'
+      // }}
       >
         {text}
       </Button>

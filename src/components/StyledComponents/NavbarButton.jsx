@@ -9,7 +9,7 @@ function NavbarButton({ text, action, textIsLoading }) {
           ml="3"
           pr={2}
           pl={2}
-          size={["sm", "sm", "md", "md"]}
+          size={["xs", "sm", "md", "md"]}
           matchWidth={true}
           color="blackAlpha.700"
           colorScheme="purple"

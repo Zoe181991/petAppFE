@@ -52,14 +52,24 @@ function App() {
                         </PrivateRouteAdmin>
                       }
                     />
-                    <Route
-                      path="/dashboard"
-                      element={
-                        <PrivateRouteAdmin>
-                          <AdminDashboard />
-                        </PrivateRouteAdmin>
-                      }
-                    />
+
+                      <Route path="/admin/dashboard/"  element={
+                          <PrivateRouteAdmin>
+                              <AdminDashboard />
+                          </PrivateRouteAdmin>
+                      }>
+
+                          <Route
+                              path=":section"
+                              element={
+                                  <PrivateRouteAdmin>
+                                      <AdminDashboard />
+                                  </PrivateRouteAdmin>
+                              }
+                          />
+                      </Route>
+
+
                     <Route path="/admin/addpet" element={<AddPet />} />
 
                     <Route path="/admin/editpet/">

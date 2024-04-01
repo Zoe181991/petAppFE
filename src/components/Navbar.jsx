@@ -63,13 +63,13 @@ function Navbar({ onOpen }) {
       <Box
         color="white"
         w="100%"
-        h="20vh"
+        h="10em"
         wrap="false"
         display="flex"
         justifyContent="center"
-        pt={{ base: 4, lg: 10 }}
-        pl={{ base: 8, lg: 40 }}
-        pr={{ base: 8, lg: 40 }}
+        pt={{ base: 4, md:8, lg: 10 }}
+        pl={{ base: 8, md:20, lg: 30, xl: 40 }}
+        pr={{ base: 8, md:20, lg: 30, xl:40 }}
         alignItems='center'
       >
 
@@ -93,7 +93,7 @@ function Navbar({ onOpen }) {
           </NavLink>
           <Stack  direction='row'>
             {isAdmin && (
-                <NavLink to="/dashboard">
+                <NavLink to="/admin/dashboard">
                   {({ isActive }) => (
                       <>
                 <span className={isActive ? "active-page" : "nav-link"}>

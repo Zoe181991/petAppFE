@@ -3,12 +3,14 @@ import { Card, Spacer, CardHeader, CardBody, CardFooter, Text, Button, SimpleGri
 import { useNavigate, NavLink } from 'react-router-dom';
 import { Stack, } from '@chakra-ui/react'
 import { useEffect, useContext, useState } from 'react';
-import { PetsContextInstance } from '../../contex/PetsContext';
 import { UsersContextInstance } from '../../contex/UsersContext';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faDog, faPenToSquare, } from '@fortawesome/free-solid-svg-icons'
 import CountAnimation from '../User/CountAnimation';
 import axios from 'axios';
+import MainHeader from "../StyledComponents/MainHeader";
+import ButtonStyled2 from "../StyledComponents/ButtonStyled2";
+import DashboardCard from "../StyledComponents/DashboardCard";
 
 function HomeAdmin() {
 
@@ -76,140 +78,31 @@ function HomeAdmin() {
   return (
     <>
 
-      <div className='dashboard-container'>
-
-        <Stack ml="3em">
-          <Text className='main-header' mb={3} textColor='red.800'
-            fontSize={['3xl', '4xl', '4xl', '5xl']}> Admin HomePage</Text>
-
-          <Text className='font-weird'
-            fontSize='xl'
-            mb={4}
-          >
+        <div className='main-container'>
+          <MainHeader text={"Admin Home Page"} />
+          <Text fontSize='xl' className='font-weird' mb={5}>
             Welcome {loggedInUser?.first_name} {loggedInUser?.last_name}
           </Text>
-
           <Stack width={['100%', '100%', '90%']}>
-
             <SimpleGrid className='main-font' maxChildHeight='400px' minChildWidth='220px' spacing='10px'
             >
-              {/* templateColumns='repeat(auto-fill, minmax(200px, 3fr))'minChildWidth='150px' */}
-              <NavLink to='/dashboard'>
-                <Card bgColor='purple.50' _hover={{
-                  bgGradient: 'linear(to-r, orange.200, pink.200)',
-                }} >
-                  <CardHeader className='header-card'>
-                    <Text fontSize='3xl' className='font-weird'> Edit Pets
-                    </Text>
+              <NavLink to='/admin/dashboard'>
+                    <DashboardCard isLoading={isLoading} header={"Edit Pets"} icon={faDog} description={"View a summary of pets with edit options."} targetNumber={countAdopted} boldStatement={"pets have found a new home!"} buttonText={"View Pets"} buttonAction={()=>navigate('/admin/dashboard')} />
+              </NavLink>
 
-                    <FontAwesomeIcon size='xl' icon={faPenToSquare} />
-
-                  </CardHeader>
-
-                  <CardBody>
-                    <Text>View a summary of pets with edit options.
-
-
-                    </Text>
-                    {!isLoading &&
-                      <Text fontSize='6xl' fontWeight='extrabold'>
-                        <CountAnimation duration={"2000"} targetNumber={countAdopted}>
-                        </CountAnimation></Text>}
-
-                    <Text fontSize='xl' color='red.800' className='font-weird'>pets have found a new home!</Text>
-
-                  </CardBody>
-                  <CardFooter justify='center'>
-
-                    <Button p={4} className='font-weird' onClick={(e) => { navigate('/dashboard') }} color='red.800' w='10em'
-                      size="lg" bgColor='#f9de10' borderBlockEndWidth={4} _hover={{
-                        bgGradient: 'linear(to-r, gray.200, gray.100)',
-                        color: 'black'
-                      }}
-                    > View Pets</Button>
-
-                  </CardFooter>
-                </Card>
+              <NavLink to='/admin/dashboard/#users'>
+                <DashboardCard isLoading={isLoading} header={"View Users"} icon={faPenToSquare} description={"View users and edit roles"} targetNumber={countUsers} boldStatement={"people joined Pawsitive Adoptions!"} buttonText={"Edit users"} buttonAction={()=>navigate('/admin/dashboard')} />
               </NavLink>
 
               <NavLink to='/admin/addpet'>
-                <Card bgColor='purple.50' _hover={{
-                  bgGradient: 'linear(to-r, orange.200, pink.200)',
-                }} >
-                  <CardHeader className='header-card'>
-                    <Text fontSize='3xl' className='font-weird'> Add a new pet
-                    </Text>
-                    <FontAwesomeIcon size='xl' icon={faDog} />
-
-
-                  </CardHeader>
-
-                  <CardBody>
-                    <Text>Add new pets that are waiting for a new home
-                    </Text>
-
-
-
-                  </CardBody>
-                  <CardFooter justify='center'>
-
-                    <Button p={4} className='font-weird' onClick={(e) => { navigate('/admin/addpet') }} color='red.800' w='10em'
-                      size="lg" bgColor='#f9de10' borderBlockEndWidth={4} _hover={{
-                        bgGradient: 'linear(to-r, gray.200, gray.100)',
-                        color: 'black'
-                      }}
-                    > Add a new pet</Button>
-
-                  </CardFooter>
-                </Card>
-              </NavLink>
-
-
-
-
-
-              <NavLink to='/dashboard'>
-                <Card bgColor='purple.50' _hover={{
-                  bgGradient: 'linear(to-r, orange.200, pink.200)',
-                }} >
-                  <CardHeader className='header-card'>
-                    <Text fontSize='3xl' className='font-weird'> View Users
-                    </Text>
-                    <FontAwesomeIcon size='xl' icon={faPenToSquare} />
-                  </CardHeader>
-                  <CardBody>
-                    <Text>View users and edit roles
-                    </Text>
-                    <Text fontSize='6xl' fontWeight='extrabold'>
-                      <CountAnimation duration={"1000"} targetNumber={countUsers}>
-                      </CountAnimation></Text>
-                    <Text fontSize='xl' color='red.800' className='font-weird'>people joined Pawsitive Adoptions!</Text>
-                  </CardBody>
-                  <CardFooter justify='center'>
-                    <Button p={4} className='font-weird'
-                      onClick={(e) => { navigate('/dashboard') }} color='red.800' w='10em'
-                      size="lg" bgColor='#f9de10' borderBlockEndWidth={4} _hover={{
-                        bgGradient: 'linear(to-r, gray.200, gray.100)',
-                        color: 'black'
-                      }}
-                    > Edit users</Button>
-
-                  </CardFooter>
-                </Card>
+                <DashboardCard isLoading={isLoading} header={"Add a new pet"} icon={faDog}  description={"Add new pets that are waiting for a new home"} buttonText={"Add a new pet"} buttonAction={()=>navigate('/admin/addpet')} />
               </NavLink>
 
 
             </SimpleGrid>
           </Stack>
 
-
-
-
-        </Stack>
         <Spacer />
-
-
-
 
       </div>
 

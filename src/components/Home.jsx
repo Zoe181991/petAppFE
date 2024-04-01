@@ -7,6 +7,7 @@ import { AuthContextInstance } from '../contex/AuthContext';
 import { useEffect, useState, useContext } from 'react'
 import PrivateRouteUser from './User/PrivateRouteUser';
 import fallBackSrc from '../images/dog.jpg'
+import HomeAdmin from "./Admin/HomeAdmin";
 
 function Home() {
   const navigate = useNavigate();
@@ -104,11 +105,17 @@ function Home() {
         </div>
         </div>
         :
-        <>
-        <PrivateRouteUser>
-          <HomeLoggedIn />
-          </PrivateRouteUser>
-        </>
+
+                  <>
+                      <PrivateRouteUser>
+                          <HomeLoggedIn />
+                      </PrivateRouteUser>
+                  </>
+
+
+
+
+
       }
 
     </>
