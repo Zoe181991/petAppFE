@@ -33,7 +33,7 @@ function SignUpForm({ initialRef, onClose }) {
       email: email,
       first_name: firstName,
       last_name: lastName,
-      phone_number: phone,
+      phone_number: "+972".concat(phone),
       password,
       repassword,
     };
