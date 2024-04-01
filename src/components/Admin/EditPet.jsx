@@ -6,7 +6,7 @@ import axios from 'axios';
 import { Editable, Text, Skeleton, EditableInput, EditableTextarea,  EditablePreview, Flex, IconButton, ButtonGroup, Spacer } from '@chakra-ui/react'
 import { CheckIcon, EditIcon, CloseIcon, } from '@chakra-ui/icons'
 import { useEditableControls, } from '@chakra-ui/react'
-import { Button, Box, Select, Avatar,  } from '@chakra-ui/react'
+import { Button, Select, Avatar,  } from '@chakra-ui/react'
 import { Checkbox, InputGroup, FormControl } from '@chakra-ui/react'
 import { Modal, ModalOverlay, ModalContent, ModalHeader, ModalFooter, ModalBody, ModalCloseButton, } from '@chakra-ui/react'
 import { DeleteIcon } from '@chakra-ui/icons'
@@ -14,6 +14,7 @@ import { useDisclosure } from '@chakra-ui/react'
 import { useToast } from '@chakra-ui/react'
 import MainHeader from "../StyledComponents/MainHeader";
 import ToastBox from "../StyledComponents/ToastBox";
+import ButtonStyled from "../StyledComponents/ButtonStyled";
 
 
 function EditPet() {
@@ -34,15 +35,13 @@ function EditPet() {
   const [color, setColor] = useState("")
   const [bio, setBio] = useState("")
   const [hypoallergnic, setHypoallergnic] = useState(false)
-  const [diet, setDiet] = useState("")
   const [dietArray, setDietArray] = useState([])
   const [image, setImage] = useState("")
   const [newPhoto, setNewPhoto] = useState(false)
 
   useEffect(() => {
-    console.log("petsID", params.petId)
     setDeleteConfirm('')
-    fetchPet(params.petId);
+    fetchPet(params.petId)
   }, []);
 
   useEffect(() => {
@@ -63,7 +62,6 @@ function EditPet() {
     try {
       setIsLoading(true)
       const res = await axios.get(`${process.env.REACT_APP_SERVER_URL}/pets/${petIdUrl}`);
-      console.log(res.data);
       setPet(res.data);
       setName(res.data.name)
       setBio(res.data.bio)
@@ -84,8 +82,6 @@ function EditPet() {
     setIsLoadingChanges(true)
     try {
       const res = await axios.delete(`${process.env.REACT_APP_SERVER_URL}/admin/deletepet/${pet._id}`, { withCredentials: true });
-      console.log(res.data)
-
       setDeleteConfirm(res.data)
       setPet("")
       setIsLoadingChanges(false)
@@ -95,7 +91,7 @@ function EditPet() {
         status: 'success',
         duration: 3000,
         render: () => (
-      <ToastBox text={`The pet {pet.name} was deleted successfully 🗑️`} />
+      <ToastBox text={`The pet ${pet.name} was deleted successfully 🗑️`} />
 
     ),
         isClosable: true,
@@ -111,7 +107,6 @@ function EditPet() {
   }
 
   const handleSubmit = () => {
-    console.log(image, "IMAGE FILE")
     const formData = new FormData();
     formData.append('picture', image);
     formData.append('id', pet._id);
@@ -155,10 +150,10 @@ function EditPet() {
         status: 'success',
         duration: 3000,
         render: () => (
-          <Box className='font-weird' color='red.800' p={3} bg='gray.200'>
-            The pet {pet.name} was updated successfully ✅
-          </Box>
-        ),
+
+      <ToastBox text={` The pet ${pet.name} was updated successfully ✅`} />
+
+    ),
         isClosable: true,
       })
     } catch (err) {
@@ -260,7 +255,7 @@ function EditPet() {
 
           <Skeleton isLoaded={!isLoading}>
             <Text fontWeight='semibold' mt={5} >Upload Photo:</Text>
-            <input type='file' variant='filled' onChange={(e) => {
+            <input type='file'  onChange={(e) => {
 
               setImage(e.target.files[0])
               setNewPhoto(true)
@@ -309,22 +304,8 @@ function EditPet() {
           <Stack className='main-font' direction='row'
                  align='center' justify='center' justifyContent='center' flexWrap='wrap' >
             <Skeleton isLoaded={!isLoading}>
-              <Button className='main-font' mt={5} color='white'
-                maxW='15em' minW='5em'
-                borderBlockEndWidth={4}
-                      bgGradient= "linear(to-r, pink.400, purple.500)"
-                      _hover={{
-                        bgGradient: "linear(to-r, purple.500, purple.500)",
-                        color: "white",
-                      }}
-                size={['md', 'lg']}
-                isLoading={isLoadingChanges}
-                loadingText='Saving Changes'
-                colorScheme='red'
-                variant='outline'
-                spinnerPlacement='start'
-                onClick={handleSubmit}>
-                Save changes</Button>
+
+              <ButtonStyled text='Save changes' action={handleSubmit} isLoading={isLoadingChanges} />
             </Skeleton>
           </Stack>
 
