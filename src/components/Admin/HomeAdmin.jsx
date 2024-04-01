@@ -73,8 +73,7 @@ function HomeAdmin() {
   return (
     <>
       <div className="main-container">
-        <MainHeader text={"Admin Home Page"} />
-        <Text fontSize="xl" className="font-weird" mb={5}>
+        <Text fontSize="2xl" color="#d700d3" className="font-weird" mb={2}>
           Welcome {loggedInUser?.first_name} {loggedInUser?.last_name}
         </Text>
         <Stack width={["100%", "100%", "90%"]}>

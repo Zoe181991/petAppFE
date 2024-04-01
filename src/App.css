@@ -63,10 +63,10 @@ html{
 
 .header-card{
   display: flex;
-  direction: row; 
   justify-content: space-between;
-
 }
+
+
 
 .main-container {
   display: flex;
