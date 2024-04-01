@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from "react";
 
 const CountAnimation = ({ targetNumber, duration }) => {
   const [currentNumber, setCurrentNumber] = useState(0);
@@ -12,7 +12,7 @@ const CountAnimation = ({ targetNumber, duration }) => {
       setCurrentNumber((prevNumber) =>
         prevNumber + incrementValue <= targetNumber
           ? prevNumber + incrementValue
-          : targetNumber
+          : targetNumber,
       );
       if (progress < duration) requestAnimationFrame(increment);
     };

@@ -10,10 +10,6 @@ import { Button, Tooltip, Stack } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 import { UsersContextInstance } from "../../contex/UsersContext";
 import axios from "axios";
-
-//https://chakra-ui.com/docs/components/form-control
-//https://react-hook-form.com/api/useform/watch/
-
 function SignUpForm({ initialRef, onClose }) {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
@@ -24,11 +20,8 @@ function SignUpForm({ initialRef, onClose }) {
   const [repassword, setRePassword] = useState("");
   const [checkForm, setCheckForm] = useState(false);
   const [passwordsMatch, setPasswordsMatch] = useState(false);
-  const { setErrorMsgClient, errorMsgClient, loginReq } = useContext(
-    UsersContextInstance
-  );
-
-
+  const { setErrorMsgClient, errorMsgClient, loginReq } =
+    useContext(UsersContextInstance);
 
   const navigateHome = () => {
     // 👇️ navigate to /
@@ -56,7 +49,7 @@ function SignUpForm({ initialRef, onClose }) {
       repassword.length > 5 &&
       password === repassword
     ) {
-        setCheckForm(true);
+      setCheckForm(true);
     } else {
       setCheckForm(false);
     }
@@ -76,7 +69,7 @@ function SignUpForm({ initialRef, onClose }) {
       console.log("Sending user's sign up req to server" + userDetails);
       const res = await axios.post(
         `${process.env.REACT_APP_SERVER_URL}/users/signup`,
-        userDetails
+        userDetails,
       );
       console.log(res.data);
       loginReq(userDetails);

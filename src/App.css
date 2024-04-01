@@ -157,26 +157,30 @@ html{
 }
 
 .icon-nav:hover{
-
   color: #d700d3;
 }
 
 
 @media (min-width: 800px) and (max-width: 1050px) {
   .icon-nav {
-    height: 0.5em;
+    height: 1em;
+    margin-right: 10px;
+
   }
 }
 
 @media (min-width: 500px) and (max-width: 800px) {
   .icon-nav {
-    height: 1.6em;
+    height: 1.5em;
+    margin-right: 0.6px;
+
   }
 }
 
-@media (min-width: 200px) and (max-width: 500px) {
+@media (min-width: 0px) and (max-width: 500px) {
   .icon-nav {
-    height: 2.2em;
+    height: 2em;
+    margin-right: 0px;
   }
 }
 

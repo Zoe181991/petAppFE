@@ -1,10 +1,11 @@
-import { createContext, useEffect, useContext } from "react";
+import React, { createContext, useEffect, useContext } from "react";
 import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { AuthContextInstance } from "./AuthContext";
 import { PetsContextInstance } from "./PetsContext";
 import { useToast } from "@chakra-ui/react";
+import ToastBox from "../components/StyledComponents/ToastBox";
 
 const UsersContextInstance = createContext({});
 
@@ -12,15 +13,12 @@ const UsersContext = ({ children }) => {
   const [errorMsgClient, setErrorMsgClient] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [loggedInUser, setLoggedInUser] = useState(false);
+  const toast = useToast();
 
-  const { loggedInUserID, setLoggedInUserID, setIsAdmin } = useContext(
-    AuthContextInstance
-  );
-  const {
-    setSavedPetsList,
-    setFosteredPetsList,
-    setAdoptedPetsList,
-  } = useContext(PetsContextInstance);
+  const { loggedInUserID, setLoggedInUserID, setIsAdmin } =
+    useContext(AuthContextInstance);
+  const { setSavedPetsList, setFosteredPetsList, setAdoptedPetsList } =
+    useContext(PetsContextInstance);
 
   const navigate = useNavigate();
 
@@ -30,13 +28,11 @@ const UsersContext = ({ children }) => {
     }
   }, []);
 
-
-
   const fetchInfo = async (id) => {
     try {
       const res = await axios.get(
         `${process.env.REACT_APP_SERVER_URL}/users/${id}`,
-        { withCredentials: true }
+        { withCredentials: true },
       );
       setLoggedInUser(res.data);
       setSavedPetsList(res.data.savedPets);
@@ -54,7 +50,7 @@ const UsersContext = ({ children }) => {
       if (id) {
         const res = await axios.get(
           `${process.env.REACT_APP_SERVER_URL}/users/${id}/savedpets`,
-          { withCredentials: true }
+          { withCredentials: true },
         );
         setSavedPetsList(res.data);
       }
@@ -68,7 +64,7 @@ const UsersContext = ({ children }) => {
       if (id) {
         const res = await axios.get(
           `${process.env.REACT_APP_SERVER_URL}/users/${id}/adoptedpets`,
-          { withCredentials: true }
+          { withCredentials: true },
         );
         setAdoptedPetsList(res.data);
       }
@@ -82,7 +78,7 @@ const UsersContext = ({ children }) => {
       if (id) {
         const res = await axios.get(
           `${process.env.REACT_APP_SERVER_URL}/${id}/fosteredpets`,
-          { withCredentials: true }
+          { withCredentials: true },
         );
         setFosteredPetsList(res.data);
       }
@@ -98,7 +94,7 @@ const UsersContext = ({ children }) => {
       const res = await axios.post(
         `${process.env.REACT_APP_SERVER_URL}/users/login`,
         userDetails,
-        { withCredentials: true }
+        { withCredentials: true },
       );
       console.log(res.data);
       if (res.data.ok) {
@@ -110,8 +106,13 @@ const UsersContext = ({ children }) => {
       }
       setIsLoading(false);
     } catch (err) {
-      // setErrorMsgClient(err.response.data);
-      // ErrorToast(err.response.data)
+      toast({
+        position: "bottom",
+        status: "success",
+        duration: 3000,
+        render: () => <ToastBox text={err.response.data} />,
+        isClosable: true,
+      });
       console.log(err);
       setIsLoading(false);
     }
