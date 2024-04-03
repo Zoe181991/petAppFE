@@ -50,7 +50,7 @@ function Login({ isOpen, onOpen, onClose }) {
               borderRadius="5px"
               mb={2}
             >
-              ❤️ If you wish to save this pet - please log in :)
+              ❤️ If you wish to save a pet - please log in :)
             </Text>
             <LoginForm initialRef={initialRef} onClose={onClose}></LoginForm>
           </ModalBody>
