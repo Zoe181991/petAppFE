@@ -28,6 +28,7 @@ import { ChakraProvider } from "@chakra-ui/react";
 import { useDisclosure } from "@chakra-ui/react";
 import Footer from "./components/Footer";
 import SignUp from "./components/Guest/SignUp";
+import PageNotFound from "./components/PageNotFound";
 
 function App() {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -141,6 +142,7 @@ function App() {
                         </PrivateRouteUser>
                       }
                     />
+                    <Route path="*" element={<PageNotFound />} />
                   </Routes>
                   <Footer />
                 </div>
