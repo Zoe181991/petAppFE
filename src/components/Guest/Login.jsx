@@ -7,10 +7,12 @@ import {
   ModalBody,
   ModalCloseButton,
   ModalHeader,
+  Text,
 } from "@chakra-ui/react";
 import LoginForm from "./LoginForm";
 import { useNavigate } from "react-router-dom";
 import { UsersContextInstance } from "../../contex/UsersContext";
+import NavbarButton from "../StyledComponents/NavbarButton";
 
 function Login({ isOpen, onOpen, onClose }) {
   const navigate = useNavigate();
@@ -40,10 +42,25 @@ function Login({ isOpen, onOpen, onClose }) {
 
           <ModalCloseButton />
           <ModalBody pb={6} pr={10} pl={10}>
+            <Text
+              size="xs"
+              className="font-weird"
+              bgColor="blackAlpha.200"
+              p={2}
+              borderRadius="5px"
+              mb={2}
+            >
+              ❤️ If you wish to save a pet - please log in :)
+            </Text>
             <LoginForm initialRef={initialRef} onClose={onClose}></LoginForm>
           </ModalBody>
 
-          <ModalFooter></ModalFooter>
+          <ModalFooter justifyContent="center" className="main-container">
+            <Text fontSize="xs" fontWeight="semibold" mb={1}>
+              Not a registered user? Sign up now!
+            </Text>
+            <NavbarButton to="/signup" text="Sign Up" />
+          </ModalFooter>
         </ModalContent>
       </Modal>
     </div>

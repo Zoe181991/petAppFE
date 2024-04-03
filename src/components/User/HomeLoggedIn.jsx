@@ -128,7 +128,7 @@ function HomeLoggedIn() {
                   description={"Search for your perfect match"}
                   targetNumber={countAvailable}
                   boldStatement={"pets are waiting to find a new home!"}
-                  buttonText={"View My Pets"}
+                  buttonText={"Find your furry friend"}
                   buttonAction={() => navigate("/userprofile/edit")}
                 />
               </NavLink>
@@ -140,8 +140,8 @@ function HomeLoggedIn() {
                   icon={faGear}
                   description={"Set your profile"}
                   targetNumber={countUsers}
-                  boldStatement={"Find your furry friend"}
-                  buttonText={"View My Pets"}
+                  boldStatement={"people joined Pawsitive Adoptions!"}
+                  buttonText={"Edit your profile"}
                   buttonAction={() => navigate("/search")}
                 />
               </NavLink>

@@ -23,7 +23,6 @@ function Home() {
     "https://media.tenor.com/zB332adxbhgAAAAd/cute-dog-unexpected.gif",
     "https://media.tenor.com/oqV4uQja1z4AAAAC/puppytalesphotos-puppytales.gif",
     "https://media.tenor.com/3nB5e66NmtIAAAAC/dog-dog-tail-wagging.gif",
-    "http://acidographie.tumblr.com/post/49251479682/quand-jfais-s-cher-mes-ongles",
     "https://media3.giphy.com/media/13CoXDiaCcCoyk/200.webp?cid=ecf05e474qt6osyiinhlgepgadj2w2jwers07edbuof7eu8k&ep=v1_gifs_search&rid=200.webp&ct=g",
     "https://media4.giphy.com/media/v6aOjy0Qo1fIA/giphy.webp?cid=ecf05e474qt6osyiinhlgepgadj2w2jwers07edbuof7eu8k&ep=v1_gifs_search&rid=giphy.webp&ct=g",
     "https://media2.giphy.com/media/MWSRkVoNaC30A/giphy.webp?cid=ecf05e474qt6osyiinhlgepgadj2w2jwers07edbuof7eu8k&ep=v1_gifs_search&rid=giphy.webp&ct=g",

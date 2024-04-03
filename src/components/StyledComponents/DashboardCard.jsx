@@ -16,15 +16,15 @@ function DashboardCard({
 }) {
   return (
     <Card
-      minHeight="400px"
+      size="md"
+      minHeight="350px"
       bgColor="purple.50"
       _hover={{
         bgGradient: "linear(to-r, orange.200, pink.200)",
       }}
     >
       <CardHeader className="header-card">
-        <Text fontSize="3xl" className="font-weird">
-          {" "}
+        <Text fontSize="2xl" className="font-weird">
           {header}
         </Text>
         <FontAwesomeIcon size="xl" icon={icon} />
@@ -32,14 +32,14 @@ function DashboardCard({
       <CardBody>
         <Text>{description}</Text>
         {!isLoading && (
-          <Text fontSize="6xl" fontWeight="extrabold">
+          <Text fontSize="5xl" fontWeight="extrabold">
             <CountAnimation
               duration={"2000"}
               targetNumber={targetNumber}
             ></CountAnimation>
           </Text>
         )}
-        <Text fontSize="xl" color="blackAlpha.700" className="font-weird">
+        <Text fontSize="lg" color="blackAlpha.700" className="font-weird">
           {boldStatement}
         </Text>
       </CardBody>
