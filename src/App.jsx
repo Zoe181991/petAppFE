@@ -53,13 +53,14 @@ function App() {
                       }
                     />
 
-                      <Route path="/admin/dashboard/"  element={
-                          <PrivateRouteAdmin>
-                              <AdminDashboard />
-                          </PrivateRouteAdmin>
-                      }>
-                      </Route>
-
+                    <Route
+                      path="/admin/dashboard/"
+                      element={
+                        <PrivateRouteAdmin>
+                          <AdminDashboard />
+                        </PrivateRouteAdmin>
+                      }
+                    ></Route>
 
                     <Route path="/admin/addpet" element={<AddPet />} />
 
@@ -97,16 +98,16 @@ function App() {
                       }
                     />
 
-                      <Route
-                          path="/signup"
-                          element={
-                              <SignUp
-                                  onOpen={onOpen}
-                                  isOpen={isOpen}
-                                  onClose={onClose}
-                              />
-                          }
-                      />
+                    <Route
+                      path="/signup"
+                      element={
+                        <SignUp
+                          onOpen={onOpen}
+                          isOpen={isOpen}
+                          onClose={onClose}
+                        />
+                      }
+                    />
                     <Route path="/search" element={<Search />} />
 
                     {/* Pets */}
@@ -141,9 +142,8 @@ function App() {
                       }
                     />
                   </Routes>
-                    <Footer />
+                  <Footer />
                 </div>
-
               </AdminContext>
             </UsersContext>
           </PetsContext>
@@ -154,4 +154,3 @@ function App() {
 }
 
 export default App;
-

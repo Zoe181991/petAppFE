@@ -114,7 +114,9 @@ function HomeLoggedIn() {
                   icon={faHeart}
                   description={"View a summary of all your pets."}
                   targetNumber={countAdopted}
-                  boldStatement={"pets have found a new home!"}
+                  boldStatement={
+                    "pets have found a new home using Pawsitive Adoptions!"
+                  }
                   buttonText={"View My Pets"}
                   buttonAction={() => navigate("/mypets")}
                 />
