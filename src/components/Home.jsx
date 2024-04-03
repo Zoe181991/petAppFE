@@ -76,7 +76,7 @@ function Home() {
               <NavLink to="/search">
                 <Image
                   className="home-welcome-dog-pic"
-                  // fallbackSrc={fallBackSrc}
+                  fallbackSrc={fallBackSrc}
                   borderRadius="full"
                   boxSize="250px"
                   src={gifSrc}
