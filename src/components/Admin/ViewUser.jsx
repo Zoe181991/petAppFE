@@ -32,6 +32,8 @@ import {
   AccordionIcon,
 } from "@chakra-ui/react";
 import PetCardAdminView from "./PetCardAdminView";
+import MainHeader from "../StyledComponents/MainHeader";
+import ButtonStyled from "../StyledComponents/ButtonStyled";
 
 function ViewUser() {
   const [user, setUser] = useState("");
@@ -174,15 +176,7 @@ function ViewUser() {
         maxW={600}
       >
         <Skeleton isLoaded={!isLoading}>
-          <Text
-            className="main-header"
-            mb={3}
-            textColor="red.800"
-            fontSize={["3xl", "4xl", "4xl", "5xl"]}
-          >
-            {" "}
-            View User {user?.first_name}
-          </Text>
+          <MainHeader text={`View User ${user?.first_name}`} />
         </Skeleton>
 
         <Stack
@@ -238,41 +232,15 @@ function ViewUser() {
           </Stack>
 
           <Stack mt={6} direction="row" fontWeight="normal" justify="center">
-            <Button
-              size={["sm", "md"]}
-              className="font-weird"
-              leftIcon={<ArrowBackIcon />}
-              onClick={(e) => {
-                navigate("/admin");
-              }}
-            >
-              Back to Dashboard
-            </Button>
-
-            <Button
-              className="font-weird"
-              mt={5}
-              color="white"
-              maxW="15em"
-              minW="5em"
-              bgColor="red.800"
-              borderBlockEndWidth={4}
-              _hover={{
-                bgGradient: "linear(to-r, gray.200, gray.100)",
-                color: "black",
-              }}
-              size={["sm", "md"]}
-              isLoading={isLoadingChanges}
-              loadingText="Saving Changes"
-              colorScheme="red"
-              variant="outline"
-              spinnerPlacement="start"
-              onClick={user.role !== "Admin" ? updateToAdmin : updateToUser}
-            >
-              {user.role !== "Admin"
-                ? "Turn Into Admin"
-                : "Update role to User"}
-            </Button>
+            <ButtonStyled
+              text={
+                user.role !== "Admin"
+                  ? "Turn Into Admin"
+                  : "Update role to User"
+              }
+              action={user.role !== "Admin" ? updateToAdmin : updateToUser}
+              isLoading={isLoading}
+            />
           </Stack>
         </Stack>
 
@@ -284,8 +252,8 @@ function ViewUser() {
                   <Text
                     className="main-header"
                     mb={3}
-                    textColor="red.800"
-                    fontSize={["lg", "xl", "2xl", "2xl"]}
+                    textColor="#8c52fd"
+                    fontSize={["xl", "xl", "xl", "2xl"]}
                   >
                     {" "}
                     View Saved Pets
@@ -310,8 +278,8 @@ function ViewUser() {
                   <Text
                     className="main-header"
                     mb={3}
-                    textColor="red.800"
-                    fontSize={["lg", "xl", "2xl", "2xl"]}
+                    textColor="#8c52fd"
+                    fontSize={["xl", "xl", "xl", "2xl"]}
                   >
                     {" "}
                     View Fostered Pets
@@ -336,8 +304,8 @@ function ViewUser() {
                   <Text
                     className="main-header"
                     mb={3}
-                    textColor="red.800"
-                    fontSize={["lg", "xl", "2xl", "2xl"]}
+                    textColor="#8c52fd"
+                    fontSize={["xl", "xl", "xl", "2xl"]}
                   >
                     {" "}
                     View Adopted Pets
@@ -368,7 +336,6 @@ function ViewUser() {
               {user?.last_name}, Id: {user?._id} ?
             </Text>
             <div className="errorMsg"></div>
-            {/* <Text>{deleteConfirm}</Text> */}
           </ModalBody>
           <ModalFooter>
             <Button
