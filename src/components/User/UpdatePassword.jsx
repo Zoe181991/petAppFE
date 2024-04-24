@@ -64,7 +64,6 @@ function UpdatePassword() {
         { withCredentials: true },
       );
       setLoggedInUser(res.data);
-      console.log(res.data);
       setIsLoading(false);
       setRePassword("");
       setPassword("");

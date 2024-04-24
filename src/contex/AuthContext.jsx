@@ -12,7 +12,6 @@ const AuthContext = ({ children }) => {
 
   useEffect(() => {
     if (localStorage.getItem("isLoggedin")) {
-      console.log(localStorage.getItem("isLoggedin"));
       setLoggedInUserID(localStorage.getItem("isLoggedin"));
     }
   }, []);

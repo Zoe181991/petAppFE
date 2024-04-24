@@ -37,7 +37,6 @@ const UsersContext = ({ children }) => {
       setLoggedInUser(res.data);
       setSavedPetsList(res.data.savedPets);
       if (res.data.role === "Admin") {
-        console.log("This user is an Admin");
         setIsAdmin(true);
       }
     } catch (err) {
@@ -90,13 +89,11 @@ const UsersContext = ({ children }) => {
   const loginReq = async (userDetails) => {
     setIsLoading(true);
     try {
-      console.log(`${process.env.REACT_APP_SERVER_URL}`);
       const res = await axios.post(
         `${process.env.REACT_APP_SERVER_URL}/users/login`,
         userDetails,
         { withCredentials: true },
       );
-      console.log(res.data);
       if (res.data.ok) {
         localStorage.setItem("isLoggedin", res.data.id);
         setLoggedInUserID(res.data.id);

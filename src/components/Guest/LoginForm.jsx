@@ -24,7 +24,6 @@ function LoginForm({ initialRef }) {
   };
 
   const handleLogin = () => {
-    console.log(`trying to login with ${loginEmail} and ${loginPassword} `);
     const newLogin = {
       email: loginEmail,
       password: loginPassword,

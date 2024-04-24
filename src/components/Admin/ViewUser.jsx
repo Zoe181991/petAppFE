@@ -67,7 +67,6 @@ function ViewUser() {
         `${process.env.REACT_APP_SERVER_URL}/admin/${id}`,
         { withCredentials: true },
       );
-      console.log(res.data);
       setUser(res.data);
       setIsLoading(false);
     } catch (err) {
@@ -83,7 +82,6 @@ function ViewUser() {
         `${process.env.REACT_APP_SERVER_URL}/admin/deleteuser/${user._id}`,
         { withCredentials: true },
       );
-      console.log(res.data);
       setUser(res.data);
       setIsLoadingChanges(false);
     } catch (err) {
@@ -95,7 +93,6 @@ function ViewUser() {
   const updateToAdmin = async () => {
     try {
       setIsLoadingChanges(true);
-      console.log(user._id);
       const res = await axios.put(
         `${process.env.REACT_APP_SERVER_URL}/admin/updateuserinfo/turnintoadmin/${user._id}`,
         { withCredentials: true },
@@ -115,7 +112,6 @@ function ViewUser() {
         `${process.env.REACT_APP_SERVER_URL}/admin/updateuserinfo/turnintouser/${user._id}`,
         { withCredentials: true },
       );
-      console.log(res.data);
       setUser(res.data);
       setIsLoadingChanges(false);
     } catch (err) {

@@ -34,9 +34,7 @@ function Navbar({ onOpen }) {
     useContext(AuthContextInstance);
 
   const navigate = useNavigate();
-  useEffect(() => {
-    console.log(loggedInUser);
-  }, []);
+  useEffect(() => {}, []);
 
   const handleSignout = async () => {
     //ROUTE TO LOG OUT CLEAR COOKIES RES.CLEAR.COOKIES

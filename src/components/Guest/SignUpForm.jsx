@@ -66,12 +66,10 @@ function SignUpForm({ initialRef, onClose }) {
 
   const signUpReq = async (userDetails) => {
     try {
-      console.log("Sending user's sign up req to server" + userDetails);
       const res = await axios.post(
         `${process.env.REACT_APP_SERVER_URL}/users/signup`,
         userDetails,
       );
-      console.log(res.data);
       loginReq(userDetails);
       navigate("/");
     } catch (err) {

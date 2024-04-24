@@ -30,8 +30,6 @@ function MyPets() {
     fetchAdoptedPets(loggedInUserID);
     fetchFosteredPets(loggedInUserID);
     setIsLoading(false);
-
-    // console.log(savedPetsList)
   }, []);
 
   return (

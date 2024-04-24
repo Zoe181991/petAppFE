@@ -145,14 +145,12 @@ function EditPet() {
 
     setIsLoadingChanges(true);
     try {
-      console.log(newPhoto);
       if (newPhoto === true) {
         const res = await axios.post(
           `${process.env.REACT_APP_SERVER_URL}/admin/updatepetwithimage/`,
           formData,
           { withCredentials: true },
         );
-        console.log(res.data);
         setNewPhoto(false);
         setIsLoadingChanges(false);
       }
@@ -168,13 +166,11 @@ function EditPet() {
           adoptionStatus,
           dietery: dietArray,
         };
-        console.log(updatedPet);
         const res = await axios.post(
           `${process.env.REACT_APP_SERVER_URL}/admin/updatepetinfo`,
           updatedPet,
           { withCredentials: true },
         );
-        console.log(res.data);
         setNewPhoto(false);
         setPet(res.data);
         setIsLoadingChanges(false);

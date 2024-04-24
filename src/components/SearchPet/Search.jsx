@@ -114,7 +114,6 @@ function Search({ searchInput }) {
   }
 
   async function clearRecReasults() {
-    console.log("hi");
     setNumResults("");
     setNumResultsS("");
   }

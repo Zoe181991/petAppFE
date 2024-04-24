@@ -49,7 +49,6 @@ function PetPage() {
 
   useEffect(() => {
     setIsLoading(true);
-    console.log("petsID", params.petId);
     fetchPet(params.petId);
     setIsLoading(false);
   }, []);
@@ -106,7 +105,6 @@ function PetPage() {
       const res = await axios.get(
         `${process.env.REACT_APP_SERVER_URL}/pets/${petIdUrl}`,
       );
-      console.log(res.data);
       setPet(res.data);
     } catch (err) {
       console.log(err);

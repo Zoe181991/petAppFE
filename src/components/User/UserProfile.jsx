@@ -54,7 +54,6 @@ function UserProfile() {
 
   useEffect(() => {
     fetchInfo(loggedInUserID);
-    console.log(loggedInUser);
   }, []);
 
   const handleSubmit = () => {
@@ -73,7 +72,6 @@ function UserProfile() {
     try {
       setIsLoading(true);
       for (const value of formData.values()) {
-        console.log(value);
       }
 
       if (userImage) {
@@ -82,7 +80,6 @@ function UserProfile() {
           formData,
           { withCredentials: true },
         );
-        console.log(res.data);
         setLoggedInUser(res.data);
         setIsLoading(false);
       } else {
@@ -94,13 +91,11 @@ function UserProfile() {
           email,
           bio,
         };
-        console.log(updatedUser);
         const res = await axios.post(
           `${process.env.REACT_APP_SERVER_URL}/users/updateinfo/`,
           updatedUser,
           { withCredentials: true },
         );
-        console.log(res.data);
         setLoggedInUser(res.data);
         setIsLoading(false);
       }
